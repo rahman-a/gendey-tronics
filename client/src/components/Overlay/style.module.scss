@@ -1,0 +1,11 @@
+@use '../../sass/variables' as gv;
+
+.overlay {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100vw;
+    min-height: 100vh;
+    background-color: rgba(0,0,0,0.9);
+    z-index:9999;
+}
