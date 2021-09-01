@@ -1,19 +1,22 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import style from './style.module.scss'
 import {Logo, Person, Search, ShoppingCart} from '../icons'
 
 const Nav = () => {
     const searchRef = useRef(null)
+    const [isToggle, setIsToggle] = useState(false)
     const items = ['home', 'courses', 'tuning files', 
     'our blog', 'immo off files', 'hardwares tools',
     'gallery', 'airbag clear crash', 'ecu programmers', 'contact us']
     // eslint-disable-next-line no-script-url
     let url ='javascript:void(0)'
     const toggleSearchBar = _ => {
-        if(parseInt(searchRef.current.style.opacity) === 0){
+        if(!isToggle){
             searchRef.current.style.opacity = '1'
+            setIsToggle(true)
         }else {
             searchRef.current.style.opacity = 0
+            setIsToggle(false)
         }
     }
     return (

@@ -1,0 +1,66 @@
+@use '../../sass/variables' as gv;
+
+.feature {
+    padding:10rem 0;
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__hero {
+        line-height: 1.4;
+        span {
+            font-weight: 300;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        h2 {
+            font-size: 8rem;
+            font-weight: 600;
+        }
+        p {
+            font-size: 5rem;
+        }
+        h3 {
+            font-size: 8rem;
+            font-weight: 400;
+            color:gv.$main-color;
+            text-transform: uppercase;
+        }
+    }
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 5rem;
+        gap:5rem;
+    }
+
+    &__item {
+        width:45%;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.6;
+        span {
+           align-self: center;
+           color:gv.$main-color;
+           margin-bottom: 1.5rem;
+           svg {
+               width:4.5rem;
+               height: 4.5rem;
+           }
+        }
+        h3 {
+            font-size: 1.6rem;
+            color:gv.$light-gray;
+            font-weight: 400;
+        }
+        p {
+            font-size: 1.4rem;
+            color:gv.$light-gray;
+            font-weight: 300;
+        }
+    }
+}

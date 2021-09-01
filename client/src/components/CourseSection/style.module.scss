@@ -1,0 +1,14 @@
+@use '../../sass/variables' as gv;
+
+.courseSection {
+    position: relative;
+    padding:5rem 0;
+    background-color: gv.$off-white;
+    h2 { 
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 500;
+        letter-spacing: 3px;
+        margin-bottom: 3rem;
+    }
+}

@@ -1,0 +1,62 @@
+@use '../../sass/variables' as gv;
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    max-height: calc(100vh - 15rem);
+    img {
+        max-height: calc(100vh - 15rem);
+    }
+    &__desc {
+        width: 40rem;
+        position: absolute;
+        bottom: 2rem;
+        left: 15rem;
+        text-align: left;
+    }
+
+    &__header {
+        font-size: 10rem;
+        font-weight: 400;
+        color: #fff;
+        letter-spacing: 3px;
+    }
+    &__subheader {
+        width:60%;
+        font-size: 5rem;
+        font-weight: 400;
+        color: #F8C600;
+        line-height: 1.2;
+        margin-top: -1.5rem;
+    }
+
+    &__more {
+        all: unset;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right:8rem;
+        bottom:1rem;
+        color: gv.$white-color;
+        background-color: rgba(gv.$light-black, 0.7);
+        padding: 0 0.2rem;
+        font-size: 1.4rem;
+        font-weight: 300;
+        cursor: pointer;
+        z-index: 999;
+        svg {
+            margin-left: 0.5rem;
+            transform: translate(0, 3.5px);
+            transition: all 0.3s ease; 
+        }
+        &:hover svg {
+            transform: translate(5px, 3.5px);
+        }
+        &:hover {
+            background-color: rgba(gv.$light-black, 0.9);
+        }
+    }
+}
+
+
+

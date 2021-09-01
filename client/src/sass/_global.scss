@@ -28,3 +28,15 @@ ul {
 a {
     text-decoration: none;
 }
+
+
+// customize carousel
+.control-dots {
+    .dot {
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+    .selected {
+        background-color: gv.$main-color !important;
+    }
+}
