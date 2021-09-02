@@ -4,10 +4,10 @@ import style from './style.module.scss'
 const Instructor = () => {
     return (
         <div className={style.instructor}>
-            <h2>Meet our instructor</h2>
+            <h2 data-aos='fade-down'>Meet our instructor</h2>
             <div className="container">
                 <div className={style.instructor__content}>
-                    <div className={style.instructor__about}>
+                    <div className={style.instructor__about} data-aos='fade-up'>
                         <h3>Mohamed Elgendy</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Tempore molestiae nam aut laborum vero reprehenderit qui inventore 

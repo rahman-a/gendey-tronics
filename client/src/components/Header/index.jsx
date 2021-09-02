@@ -15,10 +15,10 @@ const Header = () => {
                     <div className={style.header__contact}>
                         <a href={url} className={style.header__contact_link}>have any question?</a>
                         <a href="mailto:mohamedgrndy@gmail.com" className={style.header__contact_link}>
-                            <Envelop className={style.header__icon}/> mohamedgrndy@gmail.com
+                            <Envelop className={`${style.header__icon} ${style.header__contact_link_envelop}`}/> mohamedgrndy@gmail.com
                         </a>
                         <a href="tel:012345678901" className={style.header__contact_link}>
-                            <PhoneAlt  className={style.header__icon}/> 012345678901
+                            <PhoneAlt  className={`${style.header__icon} ${style.header__contact_link_phone}`}/> 012345678901
                         </a>
                     </div>
                     <div className={style.header__options}>

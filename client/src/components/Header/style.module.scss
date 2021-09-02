@@ -5,7 +5,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 1.6rem 0;
+        padding: 1.6rem 0;
     }
     &__icon {
         position: relative;
@@ -19,6 +19,12 @@
         &:hover {
             text-decoration: underline;
         }
+        &:hover &_phone {
+            animation: phoneRing 0.2s ease-in-out infinite;
+        }
+        &:hover &_envelop {
+            animation: envelopMove 1s ease-in-out infinite;
+        }
     }
     &__options {
         display: flex;
@@ -31,8 +37,10 @@
         &_icon {
             margin-left: 4rem;
             cursor: pointer;
+            transition: all 0.3s ease;
             &:hover {
                 color:gv.$main-color;
+                transform:translateY(-3px)
             }
         }
     }
@@ -40,8 +48,12 @@
         width:16rem;
     }
     &__navbar {
+        position: fixed;
+        z-index: 999999;
+        top:6.5rem;
         background-color: gv.$bg-color;
         height: 10.4rem;
+        transition: all 0.2s ease;
     }
     &__navBlock {
         display: flex;
@@ -121,5 +133,52 @@
                 font-size: 1.4rem;
             } 
         }
+    }
+
+    &__onScroll {
+        top:0;
+        background-color: rgba(gv.$bg-color, 0.95);
+    }
+
+    &__up {
+        display: none;
+        position: fixed;
+        right: 0;
+        bottom: 2rem;
+        width: 10rem;
+        z-index: 999999999999999;
+        cursor: pointer;
+        &:hover svg {
+            animation: envelopMove 1s ease-in-out infinite;
+        }
+        a {
+            all: unset;
+            display: inline-block;
+            color: gv.$white-color;
+            background-color: gv.$main-color;
+            padding: 1.3rem;
+            clip-path: circle();
+        }
+    }
+}
+
+@keyframes phoneRing {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(15deg);
+    }
+}
+
+@keyframes envelopMove {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+    100% {
+        transform:translateY(0)
     }
 }

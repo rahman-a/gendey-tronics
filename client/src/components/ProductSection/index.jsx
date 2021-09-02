@@ -9,7 +9,8 @@ const ProductSection = ({data}) => {
         <div className={style.productSection}>
             <div className="container" 
             ref={containerRef}
-            style={{position:'relative', overflow:'hidden'}}>
+            style={{position:'relative', overflow:'hidden'}}
+            data-aos='fade-left'>
                 <CardSlider length={data.cards.length} containerRef={containerRef} title={data.title}>
                     {
                         data.cards.map(card => (

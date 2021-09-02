@@ -8,10 +8,11 @@ const Courses = () => {
     
     return (
         <div className={style.courseSection}>
-           <h2>Explore our latest courses</h2>
+           <h2 data-aos='fade-down'>Explore our latest courses</h2>
             <div className="container" 
             style={{position:'relative', overflow:'hidden'}}
-            ref={containerRef}>
+            ref={containerRef}
+            data-aos='fade-left'>
                 <CardSlider
                     length={10}
                     containerRef={containerRef}>

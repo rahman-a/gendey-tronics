@@ -21,4 +21,5 @@ export { default as HeartOutline } from './HeartOutline'
 export { default as Heart } from './Heart'
 export { default as Play } from './Play'
 export { default as Plus } from './Plus'
+export { default as ArrowUp } from './ArrowUp'
 

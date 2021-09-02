@@ -24,7 +24,7 @@
         position: relative;
         width: 15rem;
         height: 5rem;
-        background-color:rgba(gv.$main-color, 0.8);
+        background-color:darken(gv.$main-color, 15%);
         border-radius: 2.5rem;
         display: flex;
         align-items: center;
@@ -72,8 +72,15 @@
         justify-content: space-around;
     }
     &__link {
-        color:gv.$white-color;
+        display: inline-block;
+        color:darken(gv.$white-color, 15%);
         font-size: 1.4rem;
+        transition: all 0.5s ease;
+        transform:scale(1);
+        &:hover {
+            color:gv.$white-color;
+            transform:scale(1.1)
+        }
     }
     &__social {
         text-align: end;
@@ -84,6 +91,10 @@
             height: 2.5rem;
             margin-left: 1rem;
             cursor:pointer;
+            transition: all 0.3s ease-in;
+            &:hover {
+                transform:translateY(-3px)
+            }
         }
     }
     &__copyright {

@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Template from '../../components/Template'
 import Slider from '../../components/Slider'
 import Feature from '../../components/Features'
@@ -215,6 +217,10 @@ const Home = () => {
         },
         
     ]
+
+    useEffect(() => {
+        AOS.init({duration:2000})
+    })
     return (
         <>
          <Template>

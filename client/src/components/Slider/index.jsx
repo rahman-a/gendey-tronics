@@ -31,6 +31,9 @@ const Slider = () => {
         <Carousel
         showThumbs={false}
         autoPlay
+        infiniteLoop={true}
+        swipeable={true}
+        emulateTouch={true}
         className={style.carousel}>
         
         {

@@ -1,9 +1,11 @@
 import React, {useRef, useState} from 'react'
 import style from './style.module.scss'
-import {Logo, Person, Search, ShoppingCart} from '../icons'
+import {Logo, Person, Search, ShoppingCart, ArrowUp} from '../icons'
 
 const Nav = () => {
     const searchRef = useRef(null)
+    const navRef = useRef(null)
+    const arrowRef = useRef(null)
     const [isToggle, setIsToggle] = useState(false)
     const items = ['home', 'courses', 'tuning files', 
     'our blog', 'immo off files', 'hardwares tools',
@@ -19,8 +21,19 @@ const Nav = () => {
             setIsToggle(false)
         }
     }
+    window.onscroll = () => {
+        console.log(window.pageYOffset)
+        if(window.pageYOffset > 65) {
+            navRef.current.classList.add(style.header__onScroll)
+            arrowRef.current.style.display = 'block'
+        }else{
+            navRef.current.classList.remove(style.header__onScroll)
+            arrowRef.current.style.display = 'none'
+        }
+    }
     return (
-        <div className={style.header__navbar}>
+        <>
+        <div className={style.header__navbar} ref={navRef}>
             <div className='container'>
                 <div className={style.header__navBlock}>
                     <Logo className={style.header__logo}/>
@@ -49,6 +62,12 @@ const Nav = () => {
                 </div>   
             </div>
         </div>
+        <div className={style.header__up} ref={arrowRef}>
+            <a href='#root'>
+                UP<ArrowUp/>
+            </a>
+        </div>
+        </>
     )
 }
 export default Nav

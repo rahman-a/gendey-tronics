@@ -29,9 +29,9 @@ const Footer = () => {
                     <div className={style.footer__details}>
                     
                         {lists.map((list, i) => {
-                            return <ul>
-                                {list.map(item => {
-                                    return <li>
+                            return <ul key={i}>
+                                {list.map((item, idx) => {
+                                    return <li key={idx}>
                                     <a href={url} className={style.footer__link}>{item}</a>
                                 </li>
                                 })}
