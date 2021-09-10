@@ -22,4 +22,8 @@ export { default as Heart } from './Heart'
 export { default as Play } from './Play'
 export { default as Plus } from './Plus'
 export { default as ArrowUp } from './ArrowUp'
+export { default as MapMarked } from './MapMarked'
+export { default as Unlock } from './Unlock'
+export { default as ChevronRight } from './ChevronRight'
+export { default as CartPlus } from './CartPlus'
 

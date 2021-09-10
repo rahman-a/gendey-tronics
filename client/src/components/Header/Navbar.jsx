@@ -22,7 +22,6 @@ const Nav = () => {
         }
     }
     window.onscroll = () => {
-        console.log(window.pageYOffset)
         if(window.pageYOffset > 65) {
             navRef.current.classList.add(style.header__onScroll)
             arrowRef.current.style.display = 'block'

@@ -113,8 +113,11 @@
     &__signIn {
         cursor: pointer;
         margin-bottom: 1.2rem;
+        svg {
+            fill:gv.$white-color;
+        }
         &:hover svg{
-            color:gv.$main-color;
+            fill:gv.$main-color;
         }
     }
     &__search {

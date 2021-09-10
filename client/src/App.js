@@ -1,9 +1,11 @@
-import Home from "./views/Home";
+// import Home from "./views/Home";
+import Account from './views/Account'
 
 function App() {
   return (
     <div className="App">
-      <Home/>
+      {/* <Home/> */}
+      <Account/>
     </div>
   );
 }

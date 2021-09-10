@@ -1,0 +1,106 @@
+@use '../../sass/variables' as gv;
+
+.favList {
+    margin-top: 5rem;
+
+    &__titles {
+        width:80%;
+        margin:1rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p {
+            position: relative;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color:gv.$light-gray;
+        }
+        p:first-child,
+        p:nth-child(3) {
+           left:9%;
+        }
+        p:nth-child(2) {
+            left:15%;
+        }
+    }
+    &__fav {
+        width: 80%;
+        margin:1rem auto;
+        display: flex;
+        align-items: center;
+        justify-content:space-between;
+        color:gv.$main-color;
+        border-top:1px solid gv.$light-gray;
+        &_icon {
+            width:5rem;
+            height: 5rem;
+            cursor: pointer;
+        }
+        &_action {
+            all: unset;
+            color: gv.$light-gray;
+            border: 1px solid;
+            border-radius: 50%;
+            padding: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            justify-content: center
+        }
+    }
+    &__product {
+        display: flex;
+        align-items: center;
+        color:rgb(158, 4, 4);
+        img {
+            width:7rem;
+            margin: 0 3rem;
+        }
+        a {
+            color:gv.$light-gray;
+            font-size: 1.6rem;
+            font-weight: 300;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        svg {
+            width:2.5rem;
+            height: 2.5rem;
+        }
+    }
+
+    &__price {
+        font-size: 2.5rem;
+        color:gv.$tag-color;
+    }
+
+    &__none {
+        display: grid;
+        place-items: center;
+        padding: 5rem 0;
+        p {
+            font-size: 2.5rem;
+            color:gv.$light-gray;
+        }
+
+        button {
+            all:unset;
+            background-color: gv.$main-color;
+            color:gv.$white-color;
+            border-radius:1rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease-in;
+            margin-top: 2rem;
+            &:hover {
+                color:gv.$main-color;
+                background-color: gv.$white-color;
+                box-shadow: 0 2px 12px -6px rgba(0,0,0,0.5);
+            } 
+        }
+    }
+}

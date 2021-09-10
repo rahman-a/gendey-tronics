@@ -1,0 +1,38 @@
+@use '../../sass/variables' as gv;
+
+.purchasedCourse {
+    &__courses {
+        width:80%;
+        display:flex; 
+        flex-wrap:wrap; 
+        align-items:center;
+        margin:5rem auto;
+        transform:translateX(5rem);
+    }
+    &__none {
+        width:100%;
+        display: grid;
+        place-items: center;
+        padding: 5rem 0;
+        p {
+            font-size: 2.5rem;
+            color:gv.$light-gray;
+        }
+
+        button {
+            all:unset;
+            background-color: gv.$main-color;
+            color:gv.$white-color;
+            border-radius:1rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease-in;
+            margin-top: 2rem;
+            &:hover {
+                color:gv.$main-color;
+                background-color: gv.$white-color;
+                box-shadow: 0 2px 12px -6px rgba(0,0,0,0.5);
+            } 
+        }
+    }
+}

@@ -6,6 +6,7 @@
     cursor: pointer;
     transition: all 0.5s ease;
     background-color: gv.$white-color;
+    margin-bottom: 3.5rem;
     &:not(:last-child) {
         margin-right: 2rem;
     }
@@ -51,8 +52,8 @@
         button {
             all:unset;
             color:gv.$main-color;
-            font-weight: bold;
             cursor: pointer;
+            font-weight: 400;
             &:hover {
                 text-decoration: underline;
             }

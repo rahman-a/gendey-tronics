@@ -17,7 +17,7 @@ const Courses = () => {
                     length={10}
                     containerRef={containerRef}>
                         {[...Array(10)].map((card, idx) => (
-                            <CourseCard num={idx + 1}/>
+                            <CourseCard num={idx + 1} fav/>
                         ))}
                     </CardSlider>
             </div>
