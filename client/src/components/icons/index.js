@@ -26,4 +26,7 @@ export { default as MapMarked } from './MapMarked'
 export { default as Unlock } from './Unlock'
 export { default as ChevronRight } from './ChevronRight'
 export { default as CartPlus } from './CartPlus'
+export { default as PlayCircle } from './PlayCircle'
+export { default as ArrowCircleRight } from './ArrowCircleRight'
+export { default as ArrowCircleLeft } from './ArrowCircleLeft'
 

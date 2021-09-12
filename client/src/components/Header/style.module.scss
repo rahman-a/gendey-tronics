@@ -7,13 +7,9 @@
         justify-content: space-between;
         padding: 1.6rem 0;
     }
-    &__icon {
-        position: relative;
-        top:3px;
-    }
     &__contact_link {
         margin-right: 2.5rem;
-        color: gv.$light-gray;
+        color: gv.$light-gray !important;
         font-size: 1.6rem;
         font-weight: 300;
         &:hover {
@@ -48,8 +44,9 @@
         width:16rem;
     }
     &__navbar {
+        width:100vw;
         position: fixed;
-        z-index: 999999;
+        z-index: 99999;
         top:6.5rem;
         background-color: gv.$bg-color;
         height: 10.4rem;
@@ -89,9 +86,9 @@
         }
     }
     &__link {
-        color:gv.$white-color;
+        color:gv.$white-color !important;
         font-size: 1.6rem;
-        font-weight: 300;
+        font-weight: 300 !important;
     }
     &__actions {
         display: flex;

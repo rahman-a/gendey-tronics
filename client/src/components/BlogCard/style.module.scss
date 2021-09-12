@@ -1,0 +1,55 @@
+@use '../../sass/variables' as gv;
+
+.blog {
+    width:90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    figure {
+        width:50rem;
+        height:22rem;
+        margin-right: 3rem;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        img {
+            width:100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &__content {
+        border: 1px solid lighten(gv.$light-black, 50%);
+        border-radius: 10rem;
+        box-shadow: 1px 4px 11px 2px rgb(0 0 0 / 30%);
+        padding:2rem 5rem;
+        font-family: gv.$second-font;
+        h3 {
+            margin-top:2rem;
+            font-weight: 400;
+        }
+        &_date {
+            font-weight: 300;
+            font-size:1.4rem;
+        }
+        &_par {
+            font-size: 1.4rem;
+            font-weight: 300;
+        }
+        button {
+            all:unset;
+            float: right;
+            border: 3px solid gv.$light-gray;
+            color:gv.$light-black;
+            border-radius: 1.6rem;
+            cursor: pointer;
+            padding:0.5rem 1rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            &:hover {
+                background-color: darken(gv.$white-color, 5%);
+            }
+        }
+    }
+}

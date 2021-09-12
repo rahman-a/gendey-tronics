@@ -1,20 +1,24 @@
 @use '../../sass/variables' as gv;
 
-.overlayCard {
-    position: absolute;
+.modal {
+    position: fixed;
     left:50%;
     transform: translate(-50%, -50%);
     background-color:#fff;
     min-width: 20vw;
     min-height: 20vh;
-    z-index:99999;
+    z-index:9999999;
     border-radius: 1.4rem;
-    padding: 1.6rem;
+    padding: 3rem 1.6rem 1.6rem;
     transition: all 0.5s ease-in-out;
+    overflow: auto;
     &__close {
         cursor: pointer;
-        // fill:gv.$yellow-50;
         position: absolute;
+        top:0.5rem;
         right:1.6rem;
+        z-index: 9999;
+        border-radius: 50%;
     }
+    
 }

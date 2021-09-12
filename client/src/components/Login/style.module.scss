@@ -1,0 +1,113 @@
+@use '../../sass/variables' as gv;
+
+.login {
+    width:50%;
+    margin-top: 5rem;
+    &__group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+        label {
+            font-size: 1.4rem;
+            color:gv.$light-gray;
+            margin-bottom: 1rem;
+        }
+        input {
+            all:unset;
+            width:70%;
+            border:1px solid lighten(gv.$light-black, 30%);
+            padding: 1rem;
+            border-radius: 1.2rem;
+            color:lighten(gv.$light-black, 20%);
+            font-size: 1.5rem;
+            &::placeholder{
+                color:lighten(gv.$light-black, 30%);
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    &__options {
+        width:75%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.4rem;
+        p{
+            color:gv.$main-color;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        &_remember {
+            display: flex;
+            align-items: center;
+            input {
+                margin-right:0.5rem
+            }
+        }
+    }
+    &__submit {
+        all:unset;
+        border:1px solid lighten(gv.$light-gray, 50%);
+        background-color: darken( gv.$main-color, 3%);;
+        color:gv.$white-color;
+        border-radius: 1.6rem;
+        margin:2rem 0;
+        padding:0.5rem 2rem;
+        cursor: pointer;
+        &:hover {
+            background-color: gv.$main-color;
+        }
+    }
+
+    &__alt {
+        p {
+            display: flex;
+            align-items: center;
+            width:70%;
+            color:lighten(gv.$light-black, 30%);
+            font-weight: 300;
+            span {
+                flex-grow: 1;
+                margin-left: 1rem;
+                height: 1px;
+                background-color: lighten(gv.$light-black, 60%);
+            }
+        }
+    }
+    &__int {
+        padding: 2rem 0;
+        img {
+            width:10rem;
+            margin-right:2rem;
+            cursor:pointer;
+        }
+    }
+
+    &__signup {
+        display: flex;
+        align-items: center;
+        color:lighten(gv.$light-black, 30%);
+        font-size: 1.4rem;
+        font-weight: 300;
+        span {
+            margin-left: 1.5rem;
+            color:blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    &__reset {
+        width: 45rem;
+        input {
+            width:90% !important;
+        }
+
+        button{
+            margin:1rem !important;
+        }
+    }
+}

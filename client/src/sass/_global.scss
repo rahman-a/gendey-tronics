@@ -55,3 +55,9 @@ a {
         background-color: gv.$main-color !important;
     }
 }
+
+// Customize Loader Size
+.spinner-border {
+    width:100% !important;
+    height: 100% !important;
+}

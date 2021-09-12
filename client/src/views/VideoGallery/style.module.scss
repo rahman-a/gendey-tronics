@@ -1,0 +1,44 @@
+@use '../../sass/variables' as gv;
+
+.videoGallery {
+    margin-top: 10.4rem;
+    figure {
+        position: relative;
+        width:100%;
+        margin-bottom: 5rem;
+        img {
+            width:100%;
+        }
+    }
+    &__switch {
+        position: absolute;
+        top: 35%;
+        right: 5rem;
+        display: flex;
+        flex-direction: column;
+        h2 {
+            font-size: 10rem;
+            color:gv.$main-color;
+            font-weight: 900;
+        }
+        button {
+            all:unset;
+            align-self: center;
+            background-color: lighten(gv.$light-black, 5%);
+            padding: 0.5rem 2rem;
+            border-radius: 1.5rem;
+            cursor: pointer;
+            color:gv.$white-color;
+            &:hover {
+                background-color: gv.$light-black;
+            }
+        }
+    }
+    &__wrapper {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap:3rem;
+    }
+}
