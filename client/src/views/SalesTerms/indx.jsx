@@ -125,6 +125,7 @@ const PrivacyPolicy = () => {
                         <p className={style.sales__content_header}>For more information:</p> 
 
                         <p>If you have any questions about this privacy policy, we are happy to contact you 
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         via: <a>Contact us</a> </p>
                     </div>
                 </div>
