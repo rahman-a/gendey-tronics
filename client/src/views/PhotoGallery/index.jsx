@@ -5,6 +5,7 @@ import ImageCard from '../../components/ImageCard'
 import {Overlay} from '../../components/Overlay'
 import {Modal} from '../../components/Modal'
 import {gallery} from '../../data'
+import {useHistory} from 'react-router-dom'
 
 const PhotoGallery = () => {
     const [showImage, setShowImage] = useState(false)
@@ -12,6 +13,7 @@ const PhotoGallery = () => {
     const [imageIndex, setImageIndex] = useState(0)
     const [isRightArrow, setIsRightArrow] = useState(true)
     const [isLeftArrow, setIsLeftArrow] = useState(true)
+    const history = useHistory()
     
     const showImageHandler = (img, idx) => {
         setShowImage(true)
@@ -79,7 +81,7 @@ const PhotoGallery = () => {
                         <img src="images/screen.jpg" alt="screen" />
                         <div className={style.photoGallery__switch}>
                             <h2>Photo Gallery</h2>
-                            <button>Switch to Video Gallery</button>
+                            <button onClick={() => history.push('/videos-gallery')}>Switch to Video Gallery</button>
                         </div>
                     </figure>
                     <div className={style.photoGallery__wrapper}>

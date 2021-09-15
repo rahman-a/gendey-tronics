@@ -1,7 +1,9 @@
 import React from 'react'
 import style from './style.module.scss'
+import {useHistory} from 'react-router-dom'
 
 const BlogCard = () => {
+    const history = useHistory()
     return (
         <div className={style.blog}>
            <figure>
@@ -13,7 +15,7 @@ const BlogCard = () => {
                <p className={style.blog__content_par}>There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration
                 in some form, by injected humour, or random words which don't  look even slightly believable. If you 
                 are going to use a passage of Lorem Ipsum</p>
-                <button>learn more</button>
+                <button onClick={() => history.push('/blog')}>learn more</button>
            </div>
         </div>
     )

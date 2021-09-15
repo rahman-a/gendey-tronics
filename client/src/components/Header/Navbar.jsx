@@ -1,17 +1,15 @@
 import React, {useRef, useState} from 'react'
 import style from './style.module.scss'
 import {Logo, Person, Search, ShoppingCart, ArrowUp} from '../icons'
+import {items} from './links'
+import {Link, useHistory} from 'react-router-dom'
 
 const Nav = () => {
     const searchRef = useRef(null)
     const navRef = useRef(null)
     const arrowRef = useRef(null)
+    const history = useHistory()
     const [isToggle, setIsToggle] = useState(false)
-    const items = ['home', 'courses', 'tuning files', 
-    'our blog', 'immo off files', 'hardwares tools',
-    'gallery', 'airbag clear crash', 'ecu programmers', 'contact us']
-    // eslint-disable-next-line no-script-url
-    let url ='javascript:void(0)'
     const toggleSearchBar = _ => {
         if(!isToggle){
             searchRef.current.style.opacity = '1'
@@ -40,13 +38,17 @@ const Nav = () => {
                         <ul className={style.header__list}>
                             {items.map((item,i) =>{
                              return <li key={i} className={style.header__item}>
-                                 <a href={url} className={style.header__link}>{item.toLocaleUpperCase()}</a>
+                                <Link 
+                                 to={item.link} 
+                                 className={style.header__link}>
+                                     {item.title.toLocaleUpperCase()}
+                                </Link>
                                 </li>
                             })}
                         </ul>
                     </div>
                     <div className={style.header__actions}>
-                        <div className={style.header__signIn}>
+                        <div className={style.header__signIn} onClick={() => history.push('/login')}>
                             <Person/>
                             <span style={{marginLeft:'.5rem'}}>sign in</span>
                         </div>

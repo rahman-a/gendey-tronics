@@ -38,8 +38,7 @@ const Slider = () => {
         
         {
             sliders.map(slide => (
-                <div style={{cursor:'pointer'}}
-                    onClick={(e) => history.push(slide.target)}>
+                <div style={{cursor:'pointer'}}>
                     <img alt="" src={slide.image}/>
                     <div className={style.carousel__desc}>
                         <h2 className={style.carousel__header}>{slide.header.toLocaleUpperCase()}</h2>

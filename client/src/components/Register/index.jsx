@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import style from './style.module.scss'
 import Alert from 'react-bootstrap/Alert'
+import {Link} from 'react-router-dom'
 
 const Register = ({setPage}) => {
     const [formData, setFormData] = useState({})
@@ -123,13 +124,13 @@ const Register = ({setPage}) => {
                         <label htmlFor="agree">I Agree all statements in</label>
                     </div>
                     <p>
-                        <a>
+                        <Link to='/terms-and-condition'>
                             terms of services 
-                        </a>
+                        </Link>
                         &nbsp;&&nbsp;
-                        <a>
+                        <Link to='/sales-terms'>
                             terms of sales!
-                        </a>
+                        </Link>
                     </p>
                 </div>
                 <button className={style.register__submit}>Sign up</button>
