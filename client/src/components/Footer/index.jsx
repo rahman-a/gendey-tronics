@@ -1,15 +1,11 @@
 import React from 'react'
 import style from './style.module.scss'
 import {Logo, FbBlack, TwBlack, IgBlack, WtsBlack, Assistant} from '../icons'
+import lists from './links'
+import {Link} from 'react-router-dom'
 
 const Footer = () => {
-    const lists = [
-       ['Explore','immo off','hardware tools','tunning','courses','The Blog','ECU PROGRAMMERS'],
-       ['Account','Manage Account','My Favorites','My Cart'],
-       ['Support','FAQs','Privacy Policy','Refund Policy','Cookies'],
-       ['Company','Press','About us','Our Story','Video Gallery','Photo Gallery']
-    ]
-   
+    
     // eslint-disable-next-line no-script-url
     const url = 'javascript:void(0)'
     return (
@@ -32,7 +28,7 @@ const Footer = () => {
                             return <ul key={i}>
                                 {list.map((item, idx) => {
                                     return <li key={idx}>
-                                    <a href={url} className={style.footer__link}>{item}</a>
+                                    <Link to={item.link} className={style.footer__link}>{item.title}</Link>
                                 </li>
                                 })}
                             </ul>
