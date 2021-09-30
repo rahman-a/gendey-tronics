@@ -6,8 +6,6 @@ import {Link, useHistory} from 'react-router-dom'
 
 const Footer = () => {
     const history = useHistory()
-    // eslint-disable-next-line no-script-url
-    const url = 'javascript:void(0)'
     return (
         <div className={style.footer}>
             <div className='container'>
