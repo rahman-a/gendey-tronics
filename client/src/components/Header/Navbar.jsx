@@ -33,7 +33,7 @@ const Nav = () => {
         <div className={style.header__navbar} ref={navRef}>
             <div className='container'>
                 <div className={style.header__navBlock}>
-                    <Logo className={style.header__logo}/>
+                    <Logo className={style.header__logo} onClick={() => history.push('/')}/>
                     <div className={style.header__links}>
                         <ul className={style.header__list}>
                             {items.map((item,i) =>{
@@ -48,9 +48,9 @@ const Nav = () => {
                         </ul>
                     </div>
                     <div className={style.header__actions}>
-                        <div className={style.header__signIn} onClick={() => history.push('/login')}>
-                            <Person/>
-                            <span style={{marginLeft:'.5rem'}}>sign in</span>
+                        <div className={style.header__signIn}>
+                            <span onClick={() => history.push('/signup')}><Person/></span> 
+                            <span style={{marginLeft:'.5rem'}} onClick={() => history.push('/login')}>sign in</span>
                         </div>
                         <div className={style.header__search}>
                             <input type="text" placeholder='search...' ref={searchRef}/>
@@ -58,7 +58,7 @@ const Nav = () => {
                                 <Search/>
                             </span>
                         </div>
-                        <ShoppingCart/>
+                        <span><ShoppingCart/></span>
                     </div>
                 </div>   
             </div>

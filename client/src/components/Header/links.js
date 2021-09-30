@@ -5,11 +5,11 @@ export const items = [
     },
     {
         title:'courses',
-        link:''
+        link:'/courses'
     },
     {
-        title:'tuning files',
-        link:''
+        title:'tunning files',
+        link:'/products?type=tunning'
     },
     {
         title:'our blog',
@@ -17,11 +17,11 @@ export const items = [
     },
     {
         title:'immo off files',
-        link:''
+        link:'/products?type=immo'
     },
     {
         title:'hardwares tools',
-        link:''
+        link:'/products?type=hardware'
     },
     {
         title:'gallery',
@@ -29,14 +29,14 @@ export const items = [
     },
     {
         title:'airbag clear crash',
-        link:''
+        link:'/products?type=airbag'
     },
     {
         title:'ecu programmers',
-        link:''
+        link:'/products?type=ecu'
     },
     {
         title:'contact us',
-        link:'/account'
+        link:'/contact-us'
     }
 ]

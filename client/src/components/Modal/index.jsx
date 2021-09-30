@@ -3,11 +3,15 @@ import style from './style.module.scss'
 import CloseSquare from './CloseSquare'
 
 
-export const Modal = ({children, toggle, closeHandler}) => {
+export const Modal = ({children, toggle, closeHandler, styling}) => {
+    const getStyle = {
+        top: toggle ? '55%': '-100%',
+        ...styling
+    }
 
     return (
          
-        <div style={{top: toggle ? '55%': '-100%'}} className={style.modal}>
+        <div style={getStyle} className={style.modal}>
             <span className={style.close}>
                 <CloseSquare
                 width='20' 

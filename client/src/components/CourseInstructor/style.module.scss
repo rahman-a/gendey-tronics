@@ -1,0 +1,52 @@
+@use '../../sass/variables' as gv;
+
+.instructor {
+    margin-top: 3rem;
+    &__name {
+        margin-bottom: 2rem;
+        h3 {
+            color:gv.$main-color;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0;
+        }
+        p {
+            color:lighten(gv.$light-black, 30%)
+        }
+    }
+    &__overview {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        figure {
+            width:12rem;
+            img {width:100%}
+        }
+        li {
+            display: flex;
+            margin-bottom: 0.5rem;
+            span {
+                color:gv.$main-color;
+            }
+            p {
+                margin:0;
+                margin-left:0.8rem;
+                color:lighten(gv.$light-black, 25%);
+                font-weight: 300;
+            }
+        }
+    }
+    &__info {
+        p {
+            height: 15rem;
+            overflow: hidden;
+            color:lighten(gv.$light-black, 25%);
+            font-weight: 300;
+        }
+        button {
+            all:unset;
+            color:gv.$main-color;
+            cursor: pointer;
+        }
+    }
+}

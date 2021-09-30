@@ -84,18 +84,21 @@ const PhotoGallery = () => {
                             <button onClick={() => history.push('/videos-gallery')}>Switch to Video Gallery</button>
                         </div>
                     </figure>
-                    <div className={style.photoGallery__wrapper}>
-                        {
-                            gallery.map((gal, idx) => {
-                                return <ImageCard 
-                                key={gal.id} 
-                                src={gal.src} 
-                                name={gal.name} 
-                                num={gal.id}
-                                idx={idx}
-                                showImage={showImageHandler}/>
-                            })
-                        }
+
+                    <div className="container">
+                        <div className={style.photoGallery__wrapper}>
+                            {
+                                gallery.map((gal, idx) => {
+                                    return <ImageCard 
+                                    key={gal.id} 
+                                    src={gal.src} 
+                                    name={gal.name} 
+                                    num={gal.id}
+                                    idx={idx}
+                                    showImage={showImageHandler}/>
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
         </Template>

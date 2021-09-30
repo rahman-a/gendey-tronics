@@ -2,10 +2,10 @@ import React from 'react'
 import style from './style.module.scss'
 import {Logo, FbBlack, TwBlack, IgBlack, WtsBlack, Assistant} from '../icons'
 import lists from './links'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 const Footer = () => {
-    
+    const history = useHistory()
     // eslint-disable-next-line no-script-url
     const url = 'javascript:void(0)'
     return (
@@ -14,7 +14,8 @@ const Footer = () => {
                 <div className={style.footer__block}>
                     <div className={style.footer__logo}>
                      <Logo/>
-                     <button className={style.footer__contact}>
+                     <button className={style.footer__contact} 
+                     onClick={() => history.push('/contact-us')}>
                          <span className={style.footer__contact_logo}>
                             <Assistant/>
                          </span>

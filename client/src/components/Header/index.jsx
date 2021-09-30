@@ -27,12 +27,12 @@ const Header = () => {
                             <TwYellow className={style.header__social_icon}/>
                             <YtYellow className={style.header__social_icon}/>
                         </div>
-                        <div className={style.header__lang}>
+                        {/* <div className={style.header__lang}>
                             <DropdownMenu value={lang}>
                                 <li onClick={({target:{innerText}}) => setLang(innerText) }>English</li>
                                 <li onClick={({target:{innerText}}) => setLang(innerText) }>Arabic</li>
                             </DropdownMenu>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

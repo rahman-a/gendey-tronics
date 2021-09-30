@@ -3,7 +3,7 @@ import style from './style.module.scss'
 import Alert from 'react-bootstrap/Alert'
 import {Link} from 'react-router-dom'
 
-const Register = ({setPage}) => {
+const Register = () => {
     const [formData, setFormData] = useState({})
     const [isAgree, setIsAgree] = useState(false)
     const [passConfirm, setPassConfirm] = useState(null)
@@ -56,7 +56,7 @@ const Register = ({setPage}) => {
         <div className={style.register}>
             <div className={style.register__header}>
                 <h2>Sign Up for a new Account</h2>
-                <p>Already have an account <span onClick={setPage}>sign in</span></p>
+                <p>Already have an account <Link to='/login'>sign in</Link></p>
             </div>
             {errors.length > 0 && errors.map(
                 (error, idx) => (

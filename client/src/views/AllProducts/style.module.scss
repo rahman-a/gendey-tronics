@@ -1,0 +1,43 @@
+@use '../../sass/variables' as gv;
+
+.products {
+    margin-top: 10.4rem;
+    &__figure {
+        position: relative;
+        width:100%;
+        img {
+            width:100%;;
+        }
+        
+        &_content {
+            position: absolute;
+            top:5rem;
+            left: 10rem;
+            h1 {
+                font-size: 6.5rem;
+                text-transform: uppercase;
+                color:gv.$white-color;
+            }
+            h2 {
+                text-transform: uppercase;
+                font-size: 4.2rem;
+                letter-spacing: 3px;
+                color:gv.$main-color
+            }
+            p {
+                text-transform: uppercase;
+                font-size: 2.75rem;
+                color:gv.$white-color;
+            }
+            &_down {
+                top:unset;
+                bottom: 5rem;
+            }
+        }
+    }
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 8rem;
+    }
+}

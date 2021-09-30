@@ -1,32 +1,28 @@
 const lists = [    
     [
         {
-            title:'Explore',
-            link:''
-        },
-        {
             title:'immo off',
-            link:''
+            link:'/products?type=immo'
         },
         {
             title:'hardware tools',
-            link:''
+            link:'/products?type=hardware'
         },
         {
             title:'tunning',
-            link:''
+            link:'/products?type=tunning'
         },
         {
             title:'courses',
-            link:''
+            link:'/courses'
         },
         {
             title:'The Blog',
-            link:''
+            link:'/blogs'
         },
         {
             title:'ECU PROGRAMMERS',
-            link:''
+            link:'/products?type=ecu'
         }
     ],
     [
@@ -50,40 +46,16 @@ const lists = [
     [
         {
             title:'Support',
-            link:''
-        },
-        {
-            title:'FAQs',
-            link:''
+            link:'/contact-us'
         },
         {
             title:'Privacy Policy',
             link:'/privacy-policy'
         },
-        {
-            title:'Refund Policy',
-            link:''
-        },
-        {
-            title:'Cookies',
-            link:''
-        }
     ],
     [
         {
-            title:'Company',
-            link:''
-        },
-        {
-            title:'Press',
-            link:''
-        },
-        {
             title:'About us',
-            link:''
-        },
-        {
-            title:'Our Story',
             link:''
         },
         {

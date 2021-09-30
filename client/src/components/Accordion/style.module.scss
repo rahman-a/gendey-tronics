@@ -1,0 +1,94 @@
+@use '../../sass/variables' as gv;
+
+.accordion {
+    width:100%;
+    &:not(:last-of-type) {
+        border-bottom: 1.5px solid lighten(gv.$light-black, 35%);
+    }
+    &__wrapper {
+        height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    &__title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:1rem 1.5rem;
+        background-color: lighten(gv.$light-black, 75%);
+        cursor: pointer;
+        &_name {
+            font-weight: 500;
+            font-size: 1.6rem;
+            span {
+                margin-right: 1rem;
+                cursor: pointer;
+                color: lighten(gv.$light-black, 30%);
+                svg {
+                    width:1.2rem;
+                    height: 1.2rem;
+                }
+            }
+        }
+        &_info {
+            span {
+                color:lighten(gv.$light-black, 30%);
+                font-weight: 300;
+            }
+            span:not(:last-child) {
+                margin-right: 1.2rem;
+            }
+        }
+    }
+    &__lecture {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        &_name {
+            height: 2.5rem;
+            overflow: hidden;
+        }
+        &_title {
+            margin:0;
+            span {
+                margin-left: 0.3rem;
+                cursor: pointer;
+                color: #8e8e8e;
+                background-color: #cbcbcb;
+                border-radius: 50%;
+                svg {
+                    height: 0.8rem; 
+                }
+            }
+            &_free {
+                color:blue;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+        &_description {
+            color: #868686;
+            font-weight: 300;
+            font-size: 1.4rem;
+            padding-left: 2rem;
+            width: 80%;
+        }
+        &_info {
+            display: flex;
+            align-items: center;
+            button {
+                all:unset;
+                color:blue;
+                text-decoration: underline;
+                margin-right:1rem;
+                cursor: pointer;
+            }
+            span {
+                color:lighten(gv.$light-black, 30%);
+                font-weight: 300;
+                width:6rem;
+            }
+        }
+    }
+}

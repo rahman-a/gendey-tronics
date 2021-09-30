@@ -1,14 +1,20 @@
 import {Switch, Route} from 'react-router-dom'
 import Home from "./views/Home";
 import Account from './views/Account'
-import Credential from './views/Credential';
+import Login from './views/Login';
+import Signup from './views/Signup';
 import Blogs from './views/AllBlogs'
 import Blog from './views/Blog'
+import Products from './views/AllProducts'
+import Product from './views/Product'
 import PrivacyPolicy from "./views/PrivacyPolicy";
 import TermsAndCondition from "./views/TermsAndConditions";
 import SalesTerms from "./views/SalesTerms/indx";
 import VideoGallery from "./views/VideoGallery";
 import PhotoGallery from "./views/PhotoGallery";
+import Course from './views/Course'
+import Courses from './views/allCourses'
+import Contact from './views/ContactUs'
 
 function App() {
   return (
@@ -21,7 +27,22 @@ function App() {
           <Account/> 
         </Route>
         <Route path='/login'>
-          <Credential/> 
+          <Login/> 
+        </Route>
+        <Route path='/signup'>
+          <Signup/>
+        </Route>
+        <Route path='/products'>
+          <Products/>
+        </Route>
+        <Route path='/courses'>
+          <Courses/>
+        </Route>
+        <Route path='/course'>
+          <Course/>
+        </Route>
+        <Route path='/product/:id?'>
+          <Product/>
         </Route>
         <Route path='/blogs'>
           <Blogs/>
@@ -43,6 +64,9 @@ function App() {
         </Route>
         <Route path='/photo-gallery'>
           <PhotoGallery/> 
+        </Route>
+        <Route path='/contact-us'>
+          <Contact/> 
         </Route>
       </Switch>
     </div>

@@ -1,0 +1,15 @@
+.courses {
+    margin-top:10.4rem;
+    figure {
+        width:100%;
+        img {
+            width: 100%;
+        }
+    }
+    &__wrapper {
+        margin-top:5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+}

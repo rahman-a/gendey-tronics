@@ -1,0 +1,15 @@
+.credential {
+    margin-top: 10.4rem;
+    &__wrapper {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        figure {
+            width:50%;
+            img {
+                width:100%;
+            }
+        }
+    }
+    
+}

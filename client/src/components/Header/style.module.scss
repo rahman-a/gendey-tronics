@@ -60,6 +60,7 @@
     &__logo {
         width:10rem;
         height: 10rem;
+        cursor: pointer;
     }
     &__links {
         margin: 1rem 4rem 1rem 8rem;
@@ -108,13 +109,21 @@
         
     }
     &__signIn {
-        cursor: pointer;
         margin-bottom: 1.2rem;
+        display: flex;
+        align-items: center;
+        margin-right: 1rem;
+        span {
+            cursor: pointer;
+        }
+        span:first-child {
+            transform: translate(-3px, -4px);
+        }
         svg {
             fill:gv.$white-color;
         }
-        &:hover svg{
-            fill:gv.$main-color;
+        span:hover{
+            color:gv.$main-color;
         }
     }
     &__search {

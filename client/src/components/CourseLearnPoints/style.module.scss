@@ -1,0 +1,31 @@
+@use '../../sass/variables' as gv;
+.points {
+    width:63%;
+    background-color: lighten(gv.$light-gray, 50%);
+    padding: 1rem 3rem;
+    border-radius: 0.8rem;
+    box-shadow: -1px 1px 8px -3px rgb(0 0 0 / 30%);
+    h2 {
+        font-size: 3rem;
+        padding: 0.5rem 0;
+        font-weight: 300;
+        margin-bottom: 2rem;
+    } 
+    &__list {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 0;
+    }
+    li {
+        display: flex;
+        width:45%;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        span {
+            color:gv.$main-color;
+            margin-right:1rem;
+        }
+    }
+}

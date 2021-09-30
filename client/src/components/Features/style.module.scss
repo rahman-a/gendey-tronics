@@ -35,7 +35,7 @@
         align-items: center;
         justify-content: space-between;
         margin-left: 5rem;
-        gap:5rem;
+        gap:3rem;
     }
 
     &__item {
@@ -47,6 +47,7 @@
            align-self: center;
            color:gv.$main-color;
            margin-bottom: 1.5rem;
+           transform: translateX(-5.5rem);
            svg {
                width:4.5rem;
                height: 4.5rem;

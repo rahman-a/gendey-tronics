@@ -1,10 +1,11 @@
 @use '../../sass/variables' as gv;
 
 .productCard {
-    width:35rem;
+    width:23%;
     display: flex;
     flex-direction: column;
     margin-right: 2rem;
+    margin-bottom: 3rem;
     box-shadow: 0 -1px 12px -6px rgba(0,0,0,0.5);
     transition: all 0.5s ease-in-out;
     &:hover {
@@ -33,13 +34,13 @@
             padding:0.5rem 0;
         }
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
     }
     &__cta {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         margin-top: 1rem;
         button {
             all:unset;
@@ -47,17 +48,19 @@
             color:gv.$white-color;
             border-radius: 1.6rem;
             cursor: pointer;
+            box-shadow: -1px 0px 4px 1px rgb(0 0 0 / 30%);
         }
         button:first-child {
             width:8rem;
             background-color: gv.$main-color;
             text-align: center;
+            margin-right: 4rem;
             &:hover {
                 background-color: darken(gv.$main-color, 5%);
             }
         }
         button:last-child {
-            width:16rem;
+            width:12rem;
             background-color: gv.$black-color;
             display:flex;
             align-items: center;

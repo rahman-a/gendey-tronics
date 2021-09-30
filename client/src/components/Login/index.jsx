@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import style from './style.module.scss'
 import {Overlay} from '../Overlay'
 import {Modal} from '../Modal'
+import {Link} from 'react-router-dom'
 // import Alert from 'react-bootstrap/Alert'
 // import Loader from '../Loader'
 
-const Login = ({setPage}) => {
+const Login = () => {
     const [formData, setFormData] = useState({})
     const [resetEmail, setResetEmail] = useState('')
     const [isRemembered, setIsRemembered] = useState(false)
@@ -81,7 +82,7 @@ const Login = ({setPage}) => {
                         <img src="images/google.png" alt="google" />
                     </div>
                     <div className={style.login__signup}>
-                        Don't have account? <span onClick={setPage}>Create Account</span>
+                        Don't have account? <Link to='/signup'>Create Account</Link>
                     </div>
                 </div>
             </form>

@@ -1,0 +1,134 @@
+@use '../../sass/variables' as gv;
+
+.contact {
+    margin-top: 16rem;
+    &__wrapper {
+        
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    &__map {
+        width:55%;  
+        &_wrapper {
+            border: 5px solid gv.$bg-color;
+            border-radius: 1rem;
+            margin-right: 5rem;
+        }
+        img {
+            width: 100%;
+        }
+        button {
+            all:unset;
+            color:gv.$main-color;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    form {
+        margin-left: 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h3 {
+            color: gv.$main-color;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        input, 
+        textarea {
+            all: unset;
+            background-color: gv.$white-color;
+            box-shadow: -1px 1px 8px 1px rgb(0 0 0 / 30%);
+            border-radius: 1.6rem;
+            width: 30rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            &::placeholder {
+                color:lighten(gv.$light-gray, 30%);
+                font-size: 1.8rem;
+            }
+        }
+        button {
+            all: unset;
+            background-color: gv.$main-color;
+            padding: 1rem 1.5rem;
+            border-radius: 1.6rem;
+            width: 10rem;
+            color: gv.$white-color;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: -1px 1px 8px 1px rgb(0 0 0 / 30%);
+        }
+    }
+    &__cta {
+        width:50%;
+        display: flex;
+        align-items: center;
+        margin: 5rem 0 0 5rem;
+        button {
+            all: unset;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 3rem;
+            padding: 0.7rem 1.5rem;
+            width: 25rem;
+            margin-right: 2rem;
+            margin-bottom: 1rem;
+            color: gv.$white-color;
+            background-color: gv.$bg-color;
+            cursor: pointer;
+            svg {
+                fill:gv.$white-color;
+                margin-right: 1rem;
+                width:2.5rem;
+                height: 2.5rem;
+            }
+            &:hover {
+                background-color: darken(gv.$bg-color, 10%);
+            }
+            &:last-of-type {
+                background-color: gv.$main-color;
+            }
+        }
+        p {
+            font-size: 1.4rem;
+            color: #060690;
+        }
+    }
+    &__overlay {
+        position: fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height: 100vh;
+        background-color: rgba(gv.$white-color, 0.9);
+        z-index: 999999;
+        transform: scale(0);
+        transition: all 0.5s ease-out;
+    }
+    &__done {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:45rem;
+        height: 30rem;
+        span {
+            width:15rem;
+            height: 15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: gv.$main-color;
+            font-size: 3rem;
+            color:gv.$white-color;
+        }
+    }
+}
