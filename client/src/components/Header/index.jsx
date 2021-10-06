@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
-import DropdownMenu from '../DropdownMenu'
+// import DropdownMenu from '../DropdownMenu'
 import Navbar from './Navbar'
 import style from './style.module.scss'
 import {Envelop, PhoneAlt, FbYellow, TwYellow, YtYellow} from '../icons'
+import { Link } from 'react-router-dom' 
 
 const Header = ({elementRefs}) => {
     const [lang, setLang] = useState('English')
@@ -13,9 +14,9 @@ const Header = ({elementRefs}) => {
             <div className="container">
                 <div className={style.header__block}>
                     <div className={style.header__contact}>
-                        <a href={url} className={style.header__contact_link}>have any question?</a>
-                        <a href="mailto:mohamedgrndy@gmail.com" className={style.header__contact_link}>
-                            <Envelop className={`${style.header__icon} ${style.header__contact_link_envelop}`}/> mohamedgrndy@gmail.com
+                        <Link to='/contact-us' className={style.header__contact_link}>have any question?</Link>
+                        <a href="mailto:mohamedgendy@gmail.com" className={style.header__contact_link}>
+                            <Envelop className={`${style.header__icon} ${style.header__contact_link_envelop}`}/> mohamedgendy@gmail.com
                         </a>
                         <a href="tel:012345678901" className={style.header__contact_link}>
                             <PhoneAlt  className={`${style.header__icon} ${style.header__contact_link_phone}`}/> 012345678901

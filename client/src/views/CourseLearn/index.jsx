@@ -7,11 +7,14 @@ import { CloseSquare } from '../../components/icons'
 import Overview from './Overview'
 import Notes from './Notes'
 import Announcements from './Announcements'
+import { useLocation, useHistory } from 'react-router'
 
 const CourseLearn = () => {
   const curriculumRef = useRef(null)
   const [isCurriculumCollapse, setIsCurriculumCollapse] = useState(false)
-  const [infoSelected, setInfoSelected] = useState('overview')
+  const infoSelected = useLocation().hash.substr(1)
+  const history = useHistory()
+  const path = useLocation().pathname
   return (
     <Template elementRefs={{ curriculum: curriculumRef }}>
       <div className={style.courseLearn}>
@@ -38,7 +41,7 @@ const CourseLearn = () => {
                                   infoSelected === 'overview' &&
                                   style.courseLearn__info_selected
                                 }`}
-                  onClick={() => setInfoSelected('overview')}
+                  onClick={() => history.push(`${path}#overview`)}
                 >
                   Overview
                 </li>
@@ -48,7 +51,7 @@ const CourseLearn = () => {
                                   infoSelected === 'notes' &&
                                   style.courseLearn__info_selected
                                 }`}
-                  onClick={() => setInfoSelected('notes')}
+                  onClick={() => history.push(`${path}#notes`)}
                 >
                   Notes
                 </li>
@@ -58,7 +61,7 @@ const CourseLearn = () => {
                                   infoSelected === 'announcement' &&
                                   style.courseLearn__info_selected
                                 }`}
-                  onClick={() => setInfoSelected('announcement')}
+                  onClick={() => history.push(`${path}#announcement`)}
                 >
                   Announcements
                 </li>

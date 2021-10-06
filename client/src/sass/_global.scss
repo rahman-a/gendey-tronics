@@ -4,14 +4,17 @@
 html {
     font-size: 62.5%;
     scroll-behavior: smooth;
-    @include mq(lg){
+    @include mq(xl) {
         font-size: 60%;
     }
-    @include mq(md) {
+    @include mq(lg){
         font-size: 58%;
     }
-    @include mq(sm) {
+    @include mq(md) {
         font-size: 56%;
+    }
+    @include mq(sm) {
+        font-size: 54%;
     }
 }
 

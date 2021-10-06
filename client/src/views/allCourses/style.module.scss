@@ -1,3 +1,4 @@
+@use '../../sass/mq' as media;
 .courses {
     margin-top:10.4rem;
     figure {
@@ -11,5 +12,8 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        @include media.mq(xxl){
+            justify-content: center;
+        }
     }
 }

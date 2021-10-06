@@ -64,7 +64,9 @@ const Nav = ({elementRefs}) => {
                                 <Search/>
                             </span>
                         </div>
-                        <span><ShoppingCart/></span>
+                        <span onClick={() => history.push('/order?process=cart')}>
+                            <ShoppingCart/>
+                        </span>
                     </div>
                 </div>   
             </div>

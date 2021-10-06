@@ -12,8 +12,7 @@ const Course = ({num, fav, width}) => {
     }
     return (
         <div className={style.courseCard} 
-        onClick={() => history.push('/course')}
-        style={{width: width ?width :'23%'}}>
+        onClick={() => history.push('/course')}>
           <figure>
               <img src="images/img-1.png" alt="engine" />
               {fav && <span onClick={(e) => setLikeHandler(e)}>

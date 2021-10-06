@@ -1,4 +1,5 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .videoGallery {
     margin-top: 10.4rem;
@@ -39,5 +40,8 @@
         align-items: center;
         flex-wrap: wrap;
         gap:2rem;
+        @include media.mq(xxl) {
+            justify-content: center;
+        }
     }
 }

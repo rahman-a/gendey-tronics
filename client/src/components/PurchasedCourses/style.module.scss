@@ -1,13 +1,16 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .purchasedCourse {
     &__courses {
-        width:80%;
+        width:85%;
         display:flex; 
         flex-wrap:wrap; 
         align-items:center;
         margin:5rem auto;
-        transform:translateX(5rem);
+        @include media.mq(xxl) {
+            justify-content: center;
+        }
     }
     &__none {
         width:100%;

@@ -5,10 +5,12 @@ import AccountInfo from '../../components/AccountInfo'
 import Orders from '../../components/Orders'
 import PurchasedCourses from '../../components/PurchasedCourses'
 import FavouriteList from '../../components/FavouriteList'
+import { useLocation, useHistory } from 'react-router-dom'
 
 const Account = () => {
-    const [accountAction, setAccountAction] = useState('info')
-
+    const accountAction = useLocation().hash.substr(1)
+    const path = useLocation().pathname
+    const history = useHistory() 
     return (
         <Template>
             <div className={style.account}>
@@ -16,22 +18,22 @@ const Account = () => {
                     <div className={style.account__action}>
                         <button 
                         className={style.account__btn}
-                        onClick={() => setAccountAction('info')}>
+                        onClick={() => history.push(`${path}#info`)}>
                             My Info
                         </button>
                         <button 
                         className={style.account__btn}
-                        onClick={() => setAccountAction('order')}>
+                        onClick={() => history.push(`${path}#order`)}>
                             Orders
                         </button>
                         <button 
                         className={style.account__btn}
-                        onClick={() => setAccountAction('course')}>
+                        onClick={() =>history.push(`${path}#course`)}>
                             Courses
                         </button>
                         <button 
                         className={style.account__btn}
-                        onClick={() => setAccountAction('favourites')}>
+                        onClick={() => history.push(`${path}#favourites`)}>
                             Favourites
                         </button>
                     </div>

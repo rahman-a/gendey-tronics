@@ -28,19 +28,15 @@ const lists = [
     [
         {
             title:'Account',
-            link:'/account'
-        },
-        {
-            title:'Manage Account',
-            link:'/account'
+            link:'/account#info'
         },
         {
             title:'My Favorites',
-            link:'/account'
+            link:'/account#favourites'
         },
         {
             title:'My Cart',
-            link:''
+            link:'/order?process=cart'
         }
     ],
     [

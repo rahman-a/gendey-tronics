@@ -1,13 +1,14 @@
 @use '../../sass/variables' as gv;
 
 .courseCard {
+    width: 30rem;
     box-shadow: 0 -1px 12px -6px rgba(0,0,0,0.5);
     cursor: pointer;
     transition: all 0.5s ease;
     background-color: gv.$white-color;
     margin-bottom: 3.5rem;
     &:not(:last-child) {
-        margin-right: 2rem;
+        margin-right: 1.5rem;
     }
     &:hover {
         transform: translateY(-5px);

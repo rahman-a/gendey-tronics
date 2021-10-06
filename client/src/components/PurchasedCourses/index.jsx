@@ -9,7 +9,7 @@ const PurchasedCourses = () => {
             {isCourses
             ?<div className={style.purchasedCourse__courses}>
                 {
-                    [...Array(3)].map((_, idx) => (
+                    [...Array(6)].map((_, idx) => (
                         <CourseCard num={idx + 1}/>
                     ))
                 }

@@ -3,12 +3,14 @@ import style from './style.module.scss'
 import { Mastercard, Visa, Paypal, PaypalText, ChevronDown } from '../icons'
 import { Link } from 'react-router-dom'
 import {months, years} from './date'
+import {useHistory} from 'react-router-dom'
 
-const PaymentCard = () => {
+const PaymentCard = ({type}) => {
   const [paymentOption, setPaymentOption] = useState('mc')
   const [formError, setFormError] = useState(null)
   const [paymentInfo, setPaymentInfo] = useState({})
   const [isAgreeTerm, setIsAgreeTerm] = useState(true)
+  const history = useHistory()
   const setError = error => {
     setFormError(error)
     setTimeout(() => {
@@ -47,7 +49,8 @@ const PaymentCard = () => {
     e.preventDefault()
     setFormError(null)
     if (isFormValidated()) {
-      console.log('payment info', paymentInfo)
+      type === 'course' 
+      && history.push('/course/learn#overview')
     }
   }
   return (
@@ -185,7 +188,9 @@ const PaymentCard = () => {
             </label>
           </div>
           <button type='submit' className={style.coursePayment__complete}>
-            complete payment
+            {
+              type === 'course' ? 'complete payment' : 'BUY NOW'
+            }
           </button>
         </form>
       </div>

@@ -10,7 +10,7 @@ const CoursePayment = () => {
     <Template>
       <div className={style.coursePayment}>
         <div style={{width:'30%'}}>
-          <PaymentCard/>
+          <PaymentCard type='course'/>
         </div>
         <CoursePaymentDescription/>
       </div>
