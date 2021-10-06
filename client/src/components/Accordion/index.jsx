@@ -3,7 +3,7 @@ import style from './style.module.scss'
 import { AccordionArrow } from '../icons'
 import AccordionItem from './AccordionItem'
 
-const Accordion = ({ chapter }) => {
+const Accordion = ({ chapter,verticalTitle }) => {
   const [isCollapse, setIsCollapse] = useState(true)
   const wrapperRef = useRef(null)
   const holderRef = useRef(null)
@@ -20,7 +20,9 @@ const Accordion = ({ chapter }) => {
   return (
     <div className={style.accordion}>
       <div className={style.accordion__item}>
-        <div className={style.accordion__title} onClick={toggleCollapseLecture}>
+        <div className={style.accordion__title}
+        style={{display: verticalTitle ? 'block': 'flex'}}
+        onClick={toggleCollapseLecture}>
           <div className={style.accordion__title_name}>
             <span onClick={toggleCollapseLecture}>
               <AccordionArrow
@@ -44,6 +46,7 @@ const Accordion = ({ chapter }) => {
                 lecture={lecture}
                 wrapperRef={wrapperRef}
                 holderRef={holderRef}
+                verticalTitle={verticalTitle}
                 key={lecture._id}
               />
             ))}

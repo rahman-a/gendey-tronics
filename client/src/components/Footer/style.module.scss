@@ -2,7 +2,8 @@
 
 .footer {
     background-color: gv.$bg-color;
-    margin-top: 3rem;
+    position: relative;
+    z-index: 9999999;
     &__block {
         display: flex;
         align-items: center;

@@ -1,0 +1,57 @@
+@use '../../sass/variables' as gv;
+.order  {
+    margin-top: 10.4rem;
+    display: flex;
+    &__payment {
+        width:30%;
+    }
+    &__content {
+        width:70%;
+    }
+    &__progress {
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        &_unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 99;
+            cursor: pointer;
+            span {
+                width:3rem;
+                height: 3rem;
+                border-radius: 50%;
+                background-color: gv.$light-black;
+                color:gv.$white-color;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border:1px solid #004990;
+            }
+            p {
+                font-weight: 300;
+                font-size: 1.4rem;
+                margin-top:0.2rem;
+            }
+        }
+        &_active {
+            span {
+                background-color: gv.$main-color;
+                color:gv.$white-color;
+            }
+        }
+        &::after {
+            content:'';
+            position: absolute;
+            width:99%;
+            height: 2px;
+            top:25%;
+            background-color: #004990;
+        }
+    }
+}

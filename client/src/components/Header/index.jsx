@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 import style from './style.module.scss'
 import {Envelop, PhoneAlt, FbYellow, TwYellow, YtYellow} from '../icons'
 
-const Header = () => {
+const Header = ({elementRefs}) => {
     const [lang, setLang] = useState('English')
     // eslint-disable-next-line no-script-url
     let url ='javascript:void(0)';
@@ -36,7 +36,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            <Navbar/>
+            <Navbar elementRefs={elementRefs}/>
         </header>
     )
 }

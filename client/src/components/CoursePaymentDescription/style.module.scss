@@ -1,0 +1,77 @@
+@use '../../sass/variables' as gv;
+
+.coursePayment {
+    &__course {
+        width:70%;
+        display: flex;
+        margin: 3rem 10rem 5rem 5rem;
+        padding:1.5rem;
+        // height: 60vh;
+        box-shadow: 1px 0px 6px 0px rgb(0 0 0 / 30%);
+    }
+
+    &__summery {
+        display: flex;
+        flex-direction: column;
+        figure {
+            width:40rem;
+            img {
+                width:100%
+            }
+        }    
+    }
+
+    &__separator {
+        margin:1rem 0 3rem 1rem;
+        width:30rem;
+        height: 2px;
+        background-color: lighten(gv.$light-gray, 35%);
+    }
+    &__price {
+        h3 {
+            font-size: 2.5rem;
+        }
+    }
+    &__value {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 2rem;
+        width:30rem;
+        color:lighten(gv.$light-black, 15%);
+        &:first-of-type {
+            margin:2rem 0 0.5rem 2rem;
+        }
+        &:last-of-type {
+            font-size: 1.8rem;
+            color:gv.$light-black;
+            font-weight: 600;
+        }
+        &_total {
+            margin-top: 2rem;
+            p {
+                font-weight: 600;
+            }
+        }
+    }
+    &__description {
+        margin-left: 2.5rem;
+        width:40%;
+        h2 {
+            margin-top: 2rem;
+        }
+        p {
+            margin:2rem 0 2rem 0;
+            height: 20rem;
+            overflow: hidden;
+            color:lighten(gv.$light-black, 15%);
+        }
+        button {
+            all:unset;
+            color:gv.$main-color;
+            font-weight: 500;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    }
+}

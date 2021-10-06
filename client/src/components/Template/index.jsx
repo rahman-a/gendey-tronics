@@ -2,10 +2,10 @@ import React from 'react'
 import Header from '../Header'
 import Footer from '../Footer'
 
-const Template = ({children}) => {
+const Template = ({children, elementRefs}) => {
     return (
         <>
-         <Header/>
+         <Header elementRefs={elementRefs}/>
             {children}
          <Footer/>   
         </>

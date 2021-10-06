@@ -73,7 +73,7 @@ const Course = () => {
                     <h2 className={style.course__header}>Course Content</h2>
                     <div className={style.course__content_wrapper}>
                         {
-                            content.map(chapter => <Accordion chapter={chapter}/>)
+                            content.map(chapter => <Accordion chapter={chapter} key={chapter._id}/>)
                         }
                     </div>
                 </div>

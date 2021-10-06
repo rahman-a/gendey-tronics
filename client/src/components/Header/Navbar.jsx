@@ -4,7 +4,7 @@ import {Logo, Person, Search, ShoppingCart, ArrowUp} from '../icons'
 import {items} from './links'
 import {Link, useHistory} from 'react-router-dom'
 
-const Nav = () => {
+const Nav = ({elementRefs}) => {
     const searchRef = useRef(null)
     const navRef = useRef(null)
     const arrowRef = useRef(null)
@@ -23,9 +23,15 @@ const Nav = () => {
         if(window.pageYOffset > 65) {
             navRef.current.classList.add(style.header__onScroll)
             arrowRef.current.style.display = 'block'
+            if(elementRefs?.curriculum) {
+                elementRefs.curriculum.current.style.top =  '10.4rem'
+            } 
         }else{
             navRef.current.classList.remove(style.header__onScroll)
             arrowRef.current.style.display = 'none'
+            if(elementRefs?.curriculum){
+                elementRefs.curriculum.current.style.top =  'unset'
+            } 
         }
     }
     return (

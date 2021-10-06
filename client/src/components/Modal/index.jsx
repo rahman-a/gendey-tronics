@@ -1,7 +1,6 @@
 import React from 'react'
 import style from './style.module.scss'
-import CloseSquare from './CloseSquare'
-
+import { CloseSquare } from '../icons'
 
 export const Modal = ({children, toggle, closeHandler, styling}) => {
     const getStyle = {

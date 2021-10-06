@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import style from './style.module.scss'
 import { AccordionArrow, Play, File } from '../icons'
 
-const AccordionItem = ({ lecture, wrapperRef, holderRef }) => {
+const AccordionItem = ({ lecture, wrapperRef, verticalTitle}) => {
   const [isLectureDesc, setIsLectureDesc] = useState(false)
   const descriptionRef = useRef(null)
 
@@ -20,15 +20,20 @@ const AccordionItem = ({ lecture, wrapperRef, holderRef }) => {
     }
   }
   return (
-    <div className={style.accordion__lecture}>
+    <div className={`${style.accordion__lecture} 
+    ${verticalTitle && style.accordion__lecture_purchased}`}
+    style={{display: verticalTitle ? 'block':'flex'}}>
       <div
         className={style.accordion__lecture_name}
         style={{ height: isLectureDesc ? 'fit-content' : '2.5rem' }}
       >
         <p
-          className={`${style.accordion__lecture_title} 
-            ${lecture.isPaid ? '' : style.accordion__lecture_title_free}`}
+          className={`${style.accordion__lecture_title}
+            ${lecture.isPaid 
+              ? '' 
+              :!verticalTitle && style.accordion__lecture_title_free}`}
         >
+          {verticalTitle && <input type='checkbox' style={{marginRight:'0.5rem'}}/>}
           {lecture.type === 'video' ? (
             <Play width='10' height='10' />
           ) : (
@@ -56,7 +61,7 @@ const AccordionItem = ({ lecture, wrapperRef, holderRef }) => {
         )}
       </div>
       <div className={style.accordion__lecture_info}>
-        {!lecture.isPaid && (
+        {!lecture.isPaid && !verticalTitle && (
           <button className={style.accordion__lecture_preview}>Preview</button>
         )}
         {lecture.duration && (

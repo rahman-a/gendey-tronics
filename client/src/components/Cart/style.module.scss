@@ -1,0 +1,90 @@
+@use '../../sass/variables' as gv;
+.cart {
+    width:90%;
+    margin:3rem auto 0;
+    table {
+        width:100%;
+        margin-top: 3rem;
+        thead {
+            border-bottom: 1px solid lighten(gv.$light-black, 50%);
+            tr {
+                color:lighten(gv.$light-black, 50%);
+                font-weight: 300;
+                font-size: 1.7rem;
+            }
+            td:first-child {
+                display: block;
+                margin-left: 3rem;
+            }
+        }
+        tbody {
+            tr {
+                width:100%;
+                border-bottom: 1px solid lighten(gv.$light-black, 50%);
+                padding:1rem 0;
+            }
+            td {
+                padding: 2.5rem 0;
+                font-weight: 300;
+                color:lighten(gv.$light-black, 20%);
+                font-weight: 400;
+            }
+            td:not(:first-child) {
+                span {
+                    background-color: gv.$white-color;
+                    box-shadow: -2px -1px 5px 0px rgb(0 0 0 / 30%);
+                    padding: 0.5rem 0;
+                    border-radius: 1.6rem;
+                    max-width: 5rem;
+                    display: flex;
+                    justify-content: center;
+                    border: 1px solid lighten(gv.$light-black, 50%);
+                }
+            }
+            td:first-child {
+                display: block;
+                margin-left: 3rem;
+            }
+            td:last-child {
+                span {
+                    box-shadow: unset;
+                    width:fit-content;
+                    padding: 0;
+                    border:unset;
+                    cursor: pointer;
+                    
+                }
+                svg {
+                    width:2rem;
+                    height: 2rem;
+                    fill:lighten(gv.$light-black, 20%);
+                }
+            }
+        }
+    }
+
+    &__footer {
+        border-bottom: unset !important;
+        border-top: 2px solid #004990;
+        button {
+            all:unset;
+            background-color: darken(gv.$main-color, 2%);
+            padding: 1rem 1.5rem;
+            color:gv.$white-color;
+            border-radius: 5rem;
+            cursor: pointer;
+            &:hover {
+                background-color: gv.$main-color;
+            }
+        }
+        td:nth-child(2),
+        td:nth-child(3) {
+            font-size: 3rem;
+            font-weight: 500;
+            color:#000;
+        }
+        td:nth-child(2) {
+            font-size: 2.5rem;
+        }
+    }
+}

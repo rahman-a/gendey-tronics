@@ -46,5 +46,10 @@ export { default as DemandVideo } from './DemandVideo'
 export { default as Mobile } from './Mobile'
 export { default as Earth } from './Earth'
 export { default as AccordionArrow } from './AccordionArrow'
-
-
+export { default as Visa } from './Visa'
+export { default as Mastercard } from './Mastercard'
+export { default as PaypalText } from './PaypalText'
+export { default as Paypal } from './Paypal'
+export {default as ChevronDown} from './ChevronDown'
+export {default as CloseSquare} from './CloseSquare'
+export {default as Trash} from './Trash'

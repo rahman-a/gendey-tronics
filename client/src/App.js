@@ -15,6 +15,9 @@ import PhotoGallery from "./views/PhotoGallery";
 import Course from './views/Course'
 import Courses from './views/allCourses'
 import Contact from './views/ContactUs'
+import CoursePayment from './views/CoursePayment';
+import CourseLearn from './views/CourseLearn';
+import OrderProcess from './views/OrderProcess';
 
 function App() {
   return (
@@ -38,11 +41,20 @@ function App() {
         <Route path='/courses'>
           <Courses/>
         </Route>
-        <Route path='/course'>
+        <Route path='/course' exact>
           <Course/>
+        </Route>
+        <Route path='/course/payment'>
+          <CoursePayment/>
+        </Route>
+        <Route path='/course/learn'>
+          <CourseLearn/>
         </Route>
         <Route path='/product/:id?'>
           <Product/>
+        </Route>
+        <Route path='/order'>
+          <OrderProcess/>
         </Route>
         <Route path='/blogs'>
           <Blogs/>

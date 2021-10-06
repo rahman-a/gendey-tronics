@@ -11,7 +11,6 @@
         transition: all 0.3s ease;
     }
     &__title {
-        display: flex;
         align-items: center;
         justify-content: space-between;
         padding:1rem 1.5rem;
@@ -41,16 +40,23 @@
         }
     }
     &__lecture {
-        display: flex;
         align-items: flex-start;
         justify-content: space-between;
         padding: 1rem 1.5rem;
+        &_purchased {
+            cursor: pointer;
+            &:hover {
+                background-color: lighten(gv.$light-gray, 50%);
+            }
+        }
         &_name {
             height: 2.5rem;
             overflow: hidden;
         }
         &_title {
             margin:0;
+            display: flex;
+            align-items: center;
             span {
                 margin-left: 0.3rem;
                 cursor: pointer;
