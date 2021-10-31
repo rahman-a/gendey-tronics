@@ -1,12 +1,20 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
 .cart {
     width:90%;
     margin:3rem auto 0;
+    @include media.mq(sm){
+        width:100%;
+    }
     table {
         width:100%;
         margin-top: 3rem;
         thead {
             border-bottom: 1px solid lighten(gv.$light-black, 50%);
+            @include media.mq(xs){
+                text-align: center;
+            }
             tr {
                 color:lighten(gv.$light-black, 50%);
                 font-weight: 300;
@@ -28,6 +36,7 @@
                 font-weight: 300;
                 color:lighten(gv.$light-black, 20%);
                 font-weight: 400;
+                max-width: 20rem;
             }
             td:not(:first-child) {
                 span {
@@ -39,6 +48,12 @@
                     display: flex;
                     justify-content: center;
                     border: 1px solid lighten(gv.$light-black, 50%);
+                    @include media.mq(xs) {
+                        margin: 0 2.5rem;
+                        padding:unset;
+                        max-width: unset;
+                        width: 5rem;
+                    }
                 }
             }
             td:first-child {
@@ -75,6 +90,12 @@
             cursor: pointer;
             &:hover {
                 background-color: gv.$main-color;
+            }
+            @include media.mq(xs){
+                padding: 1rem;
+                margin-right: 2rem;
+                font-size: 1.2rem;
+                border-radius: 1rem;
             }
         }
         td:nth-child(2),

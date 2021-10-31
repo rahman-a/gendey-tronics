@@ -1,8 +1,18 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .account {
     position: relative;
     top:10.4rem;
+    @include media.mq(md){
+        top: 7rem;
+     }
+    @include media.mq(sm){
+       top: 4rem;
+    }
+    @include media.mq(xs){
+        top: 4.1rem;
+     }
     &__header {
         display: grid;
         place-items: center;
@@ -24,7 +34,19 @@
             }
             &:not(:last-child) {
                 margin-right:4.5rem;
+                @include media.mq(xs){
+                   margin-right: 0;
+                }
             }
+            @include media.mq(xs){
+                width:38%;
+                margin: 0 2rem 2rem 0 !important;
+            }
+        }
+    }
+    &__action {
+        @include media.mq(xs){
+            text-align: center;
         }
     }
     &__content {

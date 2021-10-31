@@ -1,15 +1,23 @@
 import React from 'react'
 import style from './style.module.scss'
 import Rating from '../rating'
-import {CertificateStar, Earth} from '../icons'
+import {CertificateStar, Earth, PlayCircle} from '../icons'
 const CourseHeader = () => {
     return (
         <div className={style.header}>
-            <figure>
+            <figure className={style.header__figure}>
                 <img src="/images/repair.jpg" alt="course background" />
             </figure>
             <div className={style.header__content}>
                 <div className="container">
+                    <div className={style.header__content_video}>
+                        <figure>
+                            <img src="/images/learn.jpg" alt="learn" />
+                            <span>
+                                <PlayCircle />
+                            </span>
+                        </figure>
+                    </div>
                     <h1>engine management system</h1>
                     <p  className={style.header__description}>Lorem ipsum dolor sit amet, 
                         consetetur sadipscing elitr, sed diam nonumy eirmod 
@@ -40,6 +48,10 @@ const CourseHeader = () => {
                         <button>wishlist</button>
                         <button>share</button>
                         <button>gift this course</button>
+                    </div>
+                    <div className={style.header__coupon}>
+                        <input type='text' name='coupon' placeholder='enter coupon' />
+                        <button>Apply</button>
                     </div>
                 </div>
             </div>

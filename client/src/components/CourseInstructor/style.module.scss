@@ -1,4 +1,5 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .instructor {
     margin-top: 3rem;
@@ -42,6 +43,9 @@
             overflow: hidden;
             color:lighten(gv.$light-black, 25%);
             font-weight: 300;
+            @include media.mq(xs){
+                font-size: 1.5rem;
+            }
         }
         button {
             all:unset;

@@ -70,7 +70,7 @@ const PhotoGallery = () => {
         isRightArrow = {isRightArrow}
         isLeftArrow = {isLeftArrow}/>
         <Modal toggle={showImage} closeHandler={closeModalHandler} >
-            <figure style={{minWidth:'40rem', maxHeight:'100vh'}}>
+            <figure style={{minWidth:'40rem', maxHeight:'100vh', margin:'0'}}>
                 <img src={`images/gallery/${imageSrc}`} alt="" 
                 style={{width:'100%', height:'100%', objectFit:'cover'}}/>
             </figure>

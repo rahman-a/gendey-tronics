@@ -1,14 +1,34 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .accountInfo {
     display: flex;
+    @include media.mq(sm){
+     flex-direction: column;
+    }
     &__action {
         flex-grow: 1;
     }
+    &__info {
+        @include media.mq(sm){
+            align-items: center;
+        }
+    }
     &__info, &__pass {
         margin: 6rem 0 0 6rem;
+        @include media.mq(sm){
+           display: flex;
+           flex-wrap: wrap;
+        }
         &_group {
             margin-bottom: 4rem;
+            @include media.mq(sm){
+               width:40%;
+               margin: 0 2rem 4rem 0;
+            }
+            @include media.mq(xs){
+                margin: 0 5rem 4rem 0;
+            }
             h3 {
                 font-size: 1.4rem;
                 font-weight: 600;
@@ -19,6 +39,9 @@
             display:flex;
             flex-direction: column;
             margin-right: 5rem;
+            @include media.mq(sm){
+               margin-bottom: 2rem;
+            }
             input:not([type=submit]) {
                 all:unset;
                 border:1px solid rgba(gv.$light-gray, 0.4);
@@ -64,13 +87,23 @@
         &_new {
             display: flex;
             align-items: center;
+            @include media.mq(sm){
+                flex-direction: column;
+            }
         }
         &_cta {
             margin-right:5rem;
             text-align: center;
+            @include media.mq(sm){
+                margin-right: 0;
+                order:2;
+            }
             p {
                 font-size: 1.8rem;
                 margin-bottom: 1.5rem;
+                @include media.mq(sm){
+                    margin-bottom: 0;
+                }
             }
             button {
                 all:unset;
@@ -92,6 +125,10 @@
                 width:20rem;
                 height: 20rem;
                 fill:lighten(gv.$light-gray, 20%);
+                @include media.mq(sm){
+                    width: 10rem;
+                    height: 12rem;
+                }
             }
         }
     }

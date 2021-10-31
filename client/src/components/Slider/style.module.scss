@@ -1,4 +1,5 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .carousel {
     position: relative;
@@ -6,8 +7,29 @@
     max-height: calc(100vh - 15rem);
     top:10.4rem;
     margin-bottom: 8rem;
+    @include media.mq(md){
+        top:7.4rem;
+    }
+    @include media.mq(sm){
+        top:4rem;
+    }
+    @include media.mq(xs){
+        margin-bottom: 5rem;
+        height: calc(100vh - 15rem);//t
+    }
     img {
         max-height: calc(100vh - 15rem);
+        @include media.mq(xs){
+            height: calc(100vh - 15rem);//t
+            object-fit: cover;
+        }
+    }
+    &__info {
+        position:relative;
+        width:40rem;
+        @include media.mq(xs){
+            text-align: -webkit-center;
+        }
     }
     &__desc {
         width: 40rem;
@@ -15,6 +37,18 @@
         bottom: 2rem;
         left: 15rem;
         text-align: left;
+        @include media.mq(md){
+            bottom: 5rem;
+        }
+        @include media.mq(xs){
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 1rem;
+            padding:1rem;
+            left:50%;
+            bottom: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
     }
 
     &__header {
@@ -22,6 +56,15 @@
         font-weight: 400;
         color: #fff;
         letter-spacing: 3px;
+        @include media.mq(md){
+            font-size: 8rem;
+        }
+        @include media.mq(sm){
+            font-size: 6rem;
+        }
+        @include media.mq(xs){
+            font-size: 5rem;
+        }
     }
     &__subheader {
         width:60%;
@@ -30,6 +73,16 @@
         color: #F8C600;
         line-height: 1.2;
         margin-top: -1.5rem;
+        @include media.mq(md){
+            font-size: 4rem;
+        }
+        @include media.mq(sm){
+            font-size: 3rem;
+        }
+        @include media.mq(xs){
+            font-size: 2rem;
+            margin: 0.5rem 0;
+        }
     }
 
     &__more {
@@ -46,6 +99,12 @@
         font-weight: 300;
         cursor: pointer;
         z-index: 999;
+        @include media.mq(md){
+            right:15rem;
+        }
+        @include media.mq(sm){
+            position: static;
+        }
         svg {
             margin-left: 0.5rem;
             transform: translate(0, 3.5px);

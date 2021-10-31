@@ -19,10 +19,11 @@ const Courses = () => {
                         {[...Array(10)].map((card, idx) => (
                             <CourseCard num={idx + 1} fav/>
                         ))}
-                    </CardSlider>
+                </CardSlider>
             </div>
         </div>
     )
 }
 
 export default Courses
+// 

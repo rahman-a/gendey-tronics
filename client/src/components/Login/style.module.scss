@@ -1,8 +1,20 @@
 @use '../../sass/variables' as gv;
-
+@use '../../sass/mq' as media;
 .login {
     width:50%;
     margin-top: 5rem;
+    @include media.mq(md){
+        width:100%;
+        margin-bottom: 5rem;
+    }
+    form {
+        @include media.mq(md){
+            margin-left: 15rem;
+        }
+        @include media.mq(xs){
+            margin-left: 0;
+        }
+    }
     &__group {
         display: flex;
         flex-direction: column;
@@ -20,6 +32,9 @@
             border-radius: 1.2rem;
             color:lighten(gv.$light-black, 20%);
             font-size: 1.5rem;
+            @include media.mq(xs){
+                width:95%;
+            }
             &::placeholder{
                 color:lighten(gv.$light-black, 30%);
                 font-size: 1.2rem;
@@ -38,6 +53,9 @@
             cursor: pointer;
             &:hover {
                 text-decoration: underline;
+            }
+            @include media.mq(xs){
+                margin:0 !important;
             }
         }
         &_remember {

@@ -1,12 +1,33 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
 .order  {
     margin-top: 10.4rem;
     display: flex;
+    @include media.mq(md){
+        // display: block;
+        flex-direction: column;
+    }
     &__payment {
         width:30%;
+        @include media.mq(md){
+            width: 50%; 
+            margin: 0 auto; 
+            order:2;
+            margin-bottom: 5rem;
+        }
+        @include media.mq(sm){
+            width:75%;
+        }
+        @include media.mq(xs){
+            width: 95%;
+        }
     }
     &__content {
         width:70%;
+        @include media.mq(md){
+            width: 95%;
+        }
     }
     &__progress {
         margin-top: 3rem;
@@ -14,6 +35,9 @@
         align-items: center;
         justify-content: space-between;
         position: relative;
+        @include media.mq(sm){
+            margin-top: 0;
+        }
         &_unit {
             display: flex;
             flex-direction: column;

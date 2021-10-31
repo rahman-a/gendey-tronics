@@ -1,17 +1,40 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .blog {
     width:90%;
+    height: 20rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 3rem;
+    margin-bottom: 6rem;
+    @include media.mq(md){
+        width:100%;
+        box-shadow: 1px 4px 11px 2px rgb(0 0 0 / 30%);
+        overflow: hidden;
+        border-radius: 5rem;
+    }
+    @include media.mq(sm){
+        flex-direction: column;
+        width:65%;
+        height: unset;
+    }
+    @include media.mq(xs){
+        width: 95%;
+    }
     figure {
         width:50rem;
-        height:22rem;
+        height:100%;
         margin-right: 3rem;
         overflow: hidden;
         border-radius: 0.5rem;
+        @include media.mq(md){
+            margin: 0;
+            border-radius: unset;
+        }
+        @include media.mq(sm){
+            width: 100%;
+        }
         img {
             width:100%;
             height: 100%;
@@ -24,6 +47,11 @@
         box-shadow: 1px 4px 11px 2px rgb(0 0 0 / 30%);
         padding:2rem 5rem;
         font-family: gv.$second-font;
+        @include media.mq(md){
+            box-shadow: unset;
+            border-radius: unset;
+            padding:1.5rem 3rem;
+        }
         h3 {
             margin-top:2rem;
             font-weight: 400;
@@ -48,6 +76,9 @@
             text-transform: uppercase;
             font-weight: 900;
             margin-right: 5rem;
+            @include media.mq(md){
+                margin-right: 0;
+            }
             &:hover {
                 background-color: darken(gv.$white-color, 5%);
             }

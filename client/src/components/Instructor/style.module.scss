@@ -1,37 +1,75 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .instructor {
     position: relative;
     height: 60rem;
-    background-image: url('../../img/instructor.png');
-    background-position: right;
-    background-size: 80rem;
-    background-repeat: no-repeat;
-    margin:5rem 0;
+    margin-bottom: 10rem;
+    @include media.mq(md){
+        height: unset;
+        margin-bottom: 0;
+    }
     h2 {
         text-align: center;
         font-size: 4rem;
         font-weight: 500;
         letter-spacing: 3px;
        padding: 3rem 0;
+       @include media.mq(sm){
+           font-size: 3rem;
+       }
     }
     &__content {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @include media.mq(md){
+            flex-direction: column;
+        }
+        figure {
+            width: 65%;
+            position: absolute;
+            right: -12rem;
+            @include media.mq(md){
+                position: relative;
+                right:5rem;
+            }
+            @include media.mq(xs){
+                width:65rem;
+            }
+            img {
+                width:100%;
+            }
+        }
     }
 
     &__about {
-        width:50%;
+        width:35%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         padding: 5rem 0;
+        @include media.mq(md){
+            padding: 2rem 0;
+            order:2;
+            width:65%;
+        }
+        @include media.mq(sm){
+            width:80%;
+        }
+        @include media.mq(sm){
+            width:90%;
+        }
         h3 {
             font-size: 3rem;
             font-weight: 400;
             padding: 2rem 0;
             color:gv.$light-gray;
+            @include media.mq(md){
+                width:100%;
+                text-align: center;
+            }
         }
         p {
             font-size: 1.4rem;

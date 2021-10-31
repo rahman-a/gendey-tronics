@@ -1,11 +1,9 @@
 import React from 'react'
 import { Carousel } from 'react-responsive-carousel';
 import style from './style.module.scss'
-import {useHistory} from 'react-router-dom'
 import {ArrowRight} from '../icons'
 
 const Slider = () => {
-    const history = useHistory()
 
     const sliders = [
         {
@@ -42,7 +40,7 @@ const Slider = () => {
                     <img alt="" src={slide.image}/>
                     <div className={style.carousel__desc}>
                         <h2 className={style.carousel__header}>{slide.header.toLocaleUpperCase()}</h2>
-                        <div style={{position:'relative', width:'40rem'}}>
+                        <div className={style.carousel__info}>
                             <h3 className={style.carousel__subheader}>{slide.sub_header.toLocaleUpperCase()}</h3>
                             <button className={style.carousel__more}>
                                 show more <ArrowRight/>

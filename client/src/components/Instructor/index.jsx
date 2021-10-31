@@ -24,6 +24,9 @@ const Instructor = () => {
                         </p>
                         <button>READ MORE</button>
                     </div>
+                    <figure data-aos='fade-right'>
+                        <img src="/images/instructor.png" alt="instructor" />
+                    </figure>
                 </div>
             </div>
         </div>

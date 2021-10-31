@@ -1,16 +1,34 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .courseLearn {
     margin-top: 10.4rem;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    @include media.mq(md){
+        margin-top:8.1rem;
+    }
+    @include media.mq(sm){
+        margin-top: 4.3rem;
+    }
     &__area {
-        width:70%;
+        &_full {
+            width:100%;
+        }
+        &_70 {
+            width:70%;
+            @include media.mq(md){
+                width:100%;
+            }
+        }
     }
     &__video {
         height: calc(100vh - 25rem);
         position: relative;
+        @include media.mq(xs){
+            height: calc(100vh - 40rem);
+        }
         figure {
             width:100%;
             height: 100%;
@@ -36,18 +54,41 @@
         &_wrapper {
             width: 80%;
             margin: 0 auto;
+            position: relative;
+            @include media.mq(sm){
+                width:95%;
+            }
         }
         &_list {
             display: flex;
             align-items: center;
             border-bottom: 1px solid lighten(gv.$light-gray, 20%);
             margin: 3rem 0;
+            // &::after {
+            //     content: ">";
+            //     display: none;
+            //     color: #F8C600;
+            //     position: absolute;
+            //     top: 0rem;
+            //     right: 1rem;
+            //     font-size: 3rem;
+            // }
         }
         &_item {
             margin-right: 2.5rem;
             cursor: pointer;
             padding: 1rem;
             font-weight: 500;
+            &:first-child {
+                display: none;
+                @include media.mq(md){
+                    display: block;
+                }
+            }
+            @include media.mq(xs){
+                margin-right: 2rem;
+                font-size: 1.4rem;
+            }
         }
         &_selected {
             color:gv.$main-color;
@@ -59,6 +100,18 @@
         width:30%;
         position: relative;
         z-index: 99;
+        @include media.mq(md){
+            display: none;
+        }
+        &_show {
+            display: block;
+            @include media.mq(md){
+                display: none;
+            }
+        }
+        &_hide {
+            display: none;
+        }
         &_wrapper {
             position: fixed;
             height: 55rem;
@@ -79,6 +132,9 @@
                     width:2rem;
                     height: 2rem;
                 }
+                @include media.mq(lg){
+                    transform: translateX(-5rem);
+                }
             }
         }
     }
@@ -95,6 +151,14 @@
                 font-size: 2.5rem;
                 font-weight: 400;
                 padding-bottom: 1rem;
+                @include media.mq(xs){
+                    font-size: 2rem;
+                }
+            }
+            p {
+                @include media.mq(xs){
+                    font-size: 1.4rem;   
+                }
             }
         }
         &_numbers,
@@ -115,6 +179,9 @@
             li{
                 margin: 0 1.5rem 1rem 0;
                 width:22rem;
+                @include media.mq(xs){
+                    font-size: 1.4rem;
+                }
             }
         }
         &_description {
@@ -123,6 +190,10 @@
             }
             p {
                 padding: 1.5rem 0;
+                @include media.mq(xs){
+                    padding:0;
+                    font-size: 1.4rem;
+                }
             }
         }
     }
@@ -151,6 +222,9 @@
             display: flex;
             align-items: center;
             margin:8rem 0;
+            @include media.mq(xs){
+                margin: 4rem 0;
+            }
             select {
                 border: 1px solid lighten(gv.$light-black, 70%);
                 padding: 5px 0;
@@ -159,6 +233,9 @@
                 margin-right: 5rem;
                 cursor: pointer;
                 outline: none;
+                @include media.mq(xs){
+                    margin-right: 2rem;
+                }
             }
         }
         &_note {
@@ -274,5 +351,9 @@
                 padding: 0.5rem;
             }
         }
+    }
+
+    &__content {
+        margin-bottom: 5rem;
     }
 }

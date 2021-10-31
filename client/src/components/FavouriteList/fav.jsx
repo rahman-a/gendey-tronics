@@ -8,7 +8,7 @@ const Fav = () => {
             <div className={style.favList__product}>
                 <HeartOutline/>
                 <img src="images/product-1.png" alt="item" />
-                <a href="#">The perfect classic</a>
+                <a href="/product">The perfect classic</a>
             </div>
             <p className={style.favList__price}>99<sup>$</sup></p>
             <CartPlus className={style.favList__fav_icon}/>

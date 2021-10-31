@@ -1,4 +1,5 @@
-import {Switch, Route} from 'react-router-dom'
+import {useEffect} from 'react'
+import {Switch, Route, useLocation} from 'react-router-dom'
 import Home from "./views/Home";
 import Account from './views/Account'
 import Login from './views/Login';
@@ -20,6 +21,10 @@ import CourseLearn from './views/CourseLearn';
 import OrderProcess from './views/OrderProcess';
 
 function App() {
+  const {pathname} = useLocation()
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [pathname])
   return (
     <div className="App">
       <Switch>

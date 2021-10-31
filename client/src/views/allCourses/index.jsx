@@ -10,7 +10,7 @@ const Courses = () => {
                 <figure>
                     <img src="images/repair.jpg" alt="learn" />
                 </figure>
-                <div className='container'>
+                <div className={`container ${style.courses__container}`}>
                     <div className={style.courses__wrapper}>
                         {
                             [...Array(6)].map((_, idx) => (

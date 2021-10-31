@@ -3,13 +3,13 @@ import style from './style.module.scss'
 import {Check} from '../icons'
 
 const points = [
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
 ]
 
 const LearnPoints = () => {

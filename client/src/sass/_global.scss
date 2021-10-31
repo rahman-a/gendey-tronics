@@ -30,10 +30,24 @@ body {
     font-family: gv.$main-font;
     font-size: 1.6rem;
     line-height: 1.6;
+
+}
+
+#root {
+ overflow-x:hidden;
+
 }
 .container {
-    width:85%;
+    max-width:85% !important;
     margin:0 auto;
+    @include mq(xl){
+        max-width: 90% !important;
+    }
+    @include mq(md) {
+        max-width: 100% !important;
+        margin:0 !important;
+        height: 100%;
+    }
 }
 ul {
     list-style: none;
@@ -48,11 +62,27 @@ a {
     align-items: center;
 }
 
+.order_item {
+    svg {
+        @include mq(xs){
+            margin-top:1rem;
+            margin-bottom: 0 !important;
+            order:2;
+            transform: rotate(90deg);
+        }
+    }
+}
+
 // customize carousel
 .control-dots {
     .dot {
         width: 2rem !important;
         height: 2rem !important;
+        @include mq(xs){
+            width:1.5rem !important;
+            height: 1.5rem !important;
+            margin:0 5px !important;
+        }
     }
     .selected {
         background-color: gv.$main-color !important;
@@ -64,3 +94,4 @@ a {
     width:100% !important;
     height: 100% !important;
 }
+

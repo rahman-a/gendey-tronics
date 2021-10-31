@@ -22,7 +22,7 @@ const Products = () => {
                    </div>
                    <img src={`images/${[type]}_bg.jpg`} alt="immo files" />
                </figure>
-               <div className="container">
+               <div className={`container ${style.products__container}`}>
                    <div className={style.products__wrapper}>
                         {products.[type].cards.map(crd => <ProductCard card={crd} key={crd._id}/>)}
                    </div>

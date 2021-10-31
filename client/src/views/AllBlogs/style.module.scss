@@ -1,5 +1,10 @@
+@use '../../sass/mq' as media;
+
 .blogs {
     margin-top: 15rem;
+    @include media.mq(sm){
+        margin-top: 10rem;
+    }
     &__wrapper {
         display: flex;
         flex-direction: column;

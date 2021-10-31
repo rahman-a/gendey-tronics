@@ -1,11 +1,27 @@
+@use '../../sass/mq' as media;
+
 .credential {
     margin-top: 10.4rem;
+    position: relative;
     &__wrapper {
         display:flex;
         justify-content: space-between;
         align-items: center;
         figure {
             width:50%;
+            @include media.mq(md){
+                width:18rem;
+                position: absolute;
+                top:-1rem;
+                right:-1rem;
+            }
+            @include media.mq(xs){
+                width:16rem;
+                top:-6rem;
+                right:unset;
+                left:50%;
+                transform:translateX(-50%)
+            }
             img {
                 width:100%;
             }

@@ -27,7 +27,6 @@ const DropdownMenu = ({children, placeholder, value}) => {
             <Select 
             toggleHandler={toggleMenuHandler} 
             name='select' 
-            width='15' height='15' 
             className={style.dropdown__icon}/>
                 <div className={style.dropdown__wrapper} ref={wrapperRef}>
                     <ul className={style.dropdown__list} ref={listRef}>

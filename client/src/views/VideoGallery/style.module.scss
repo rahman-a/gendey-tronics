@@ -2,7 +2,13 @@
 @use '../../sass/mq' as media;
 
 .videoGallery {
-    margin-top: 10.4rem;
+    margin: 10.4rem 0 5rem 0;
+    @include media.mq(md){
+        margin-top: 7.4rem;
+    }
+    @include media.mq(sm){
+        margin:4rem 0 3rem 0;
+    }
     figure {
         position: relative;
         width:100%;
@@ -17,10 +23,20 @@
         right: 5rem;
         display: flex;
         flex-direction: column;
+        @include media.mq(md){
+            top:50%;
+            transform: translateY(-50%);
+         }
         h2 {
             font-size: 10rem;
             color:gv.$main-color;
             font-weight: 900;
+            @include media.mq(sm){
+                font-size: 7rem;
+            }
+            @include media.mq(xs){
+                font-size: 4rem;
+            }
         }
         button {
             all:unset;
@@ -32,6 +48,10 @@
             color:gv.$white-color;
             &:hover {
                 background-color: gv.$light-black;
+            }
+            @include media.mq(xs){
+                padding:0.5rem 1rem;
+                font-size: 1.2rem;
             }
         }
     }

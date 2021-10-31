@@ -2,15 +2,22 @@
 @use '../../sass/mq' as media;
 
 .purchasedCourse {
+    width:110rem;
+    @include media.mq(lg){
+        width:85rem;
+    }
+    @include media.mq(sm){
+        width:58rem;
+    }
+    @include media.mq(xs){
+        width: 25rem;
+    }
     &__courses {
-        width:85%;
+        width:100%;
         display:flex; 
         flex-wrap:wrap; 
         align-items:center;
         margin:5rem auto;
-        @include media.mq(xxl) {
-            justify-content: center;
-        }
     }
     &__none {
         width:100%;

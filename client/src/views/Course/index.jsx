@@ -7,6 +7,7 @@ import CourseLearnPoints from '../../components/CourseLearnPoints'
 import Accordion from '../../components/Accordion'
 import CourseInstructor from '../../components/CourseInstructor'
 import CourseRating from '../../components/CourseRating'
+import CourseInfoTab from '../../components/CourseInfoTab'
 import {content} from './contentData'
 const Course = () => {
     const [showContent, setShowContent] = useState(false)
@@ -16,7 +17,8 @@ const Course = () => {
             <div className={style.course}>
                <CourseHeader/>
                <CourseOverview/>
-               <div className='container'>
+               <CourseInfoTab/>
+               <div className={`container ${style.course__container}`}>
                 <CourseLearnPoints/>
                 <div className={style.course__requirements}>
                     <h2 className={style.course__header}>Requirements</h2>

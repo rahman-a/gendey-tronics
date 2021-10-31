@@ -7,6 +7,7 @@ import { CloseSquare } from '../../components/icons'
 import Overview from './Overview'
 import Notes from './Notes'
 import Announcements from './Announcements'
+import CourseContent from './Content'
 import { useLocation, useHistory } from 'react-router'
 
 const CourseLearn = () => {
@@ -19,8 +20,10 @@ const CourseLearn = () => {
     <Template elementRefs={{ curriculum: curriculumRef }}>
       <div className={style.courseLearn}>
         <div
-          className={style.courseLearn__area}
-          style={{ width: isCurriculumCollapse ? '100%' : '70%' }}
+          className={`${style.courseLearn__area} 
+          ${isCurriculumCollapse 
+            ?style.courseLearn__area_full 
+            :style.courseLearn__area_70 }`}
         >
           <div className={style.courseLearn__video}>
             {isCurriculumCollapse && (
@@ -35,6 +38,16 @@ const CourseLearn = () => {
           <div className={style.courseLearn__info}>
             <div className={style.courseLearn__info_wrapper}>
               <ul className={style.courseLearn__info_list}>
+              <li
+                  className={`${style.courseLearn__info_item} 
+                                ${
+                                  infoSelected === 'content' &&
+                                  style.courseLearn__info_selected
+                                }`}
+                  onClick={() => history.push(`${path}#content`)}
+                >
+                  Content
+                </li>
                 <li
                   className={`${style.courseLearn__info_item} 
                                 ${
@@ -73,15 +86,19 @@ const CourseLearn = () => {
                       : infoSelected === 'notes'
                       ? <Notes/>
                       : infoSelected === 'announcement'
-                      && <Announcements/>
+                      ? <Announcements/>
+                      : infoSelected === 'content'
+                      && <CourseContent/>
                     }
               </div>
             </div>
           </div>
         </div>
         <div
-          className={style.courseLearn__curriculum}
-          style={{ display: isCurriculumCollapse ? 'none' : 'block' }}
+          className={`${style.courseLearn__curriculum} 
+          ${isCurriculumCollapse 
+            ? style.courseLearn__curriculum_hide 
+            : style.courseLearn__curriculum_show}`}
         >
           <div
             className={style.courseLearn__curriculum_wrapper}

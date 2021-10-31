@@ -1,18 +1,22 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .courseCard {
-    width: 30rem;
+    width: 26rem;
     box-shadow: 0 -1px 12px -6px rgba(0,0,0,0.5);
     cursor: pointer;
     transition: all 0.5s ease;
     background-color: gv.$white-color;
     margin-bottom: 3.5rem;
     &:not(:last-child) {
-        margin-right: 1.5rem;
+        margin-right: 2rem;
     }
     &:hover {
         transform: translateY(-5px);
         box-shadow: 5px 1px 16px 0px rgba(0,0,0,0.5);
+    }
+    @include media.mq(sm){
+        min-width: 26rem;
     }
     figure {
         position: relative;
@@ -40,7 +44,7 @@
     }
 
     &__content {
-        padding:2rem 2rem 4rem;
+        padding:2rem 4rem 4rem 2rem;
         h3 {
             padding-bottom: 1.5rem;
             margin:0;

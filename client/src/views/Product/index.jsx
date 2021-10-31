@@ -163,9 +163,8 @@ const Product = () => {
                                    </div>
                                </div>
                                <div className={style.product__video}>
-                                    <iframe 
-                                    width="560" 
-                                    height="315" 
+                                    <iframe
+                                    className={style.product__video_frame}
                                     src="https://www.youtube.com/embed/TYSD5VMoEjY" 
                                     title="YouTube video player" 
                                     frameborder="0" 

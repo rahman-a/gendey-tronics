@@ -1,4 +1,5 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .header {
     &__block {
@@ -6,12 +7,25 @@
         align-items: center;
         justify-content: space-between;
         padding: 1.6rem 0;
+        @include media.mq(md) {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
     }
     &__contact_link {
         margin-right: 2.5rem;
         color: gv.$light-gray !important;
         font-size: 1.6rem;
         font-weight: 300;
+        @include media.mq(sm){
+            font-size: 1.4rem;
+        }
+        @include media.mq(xs){
+            font-size: 1.1rem;
+            margin-right: 1.5rem;
+            transform: translateX(1rem);
+            display: inline-block;
+        }
         &:hover {
             text-decoration: underline;
         }
@@ -25,6 +39,14 @@
     &__options {
         display: flex;
         align-items: center;
+        @include media.mq(md) {
+            margin:2rem 0;
+        }
+        @include media.mq(xs){
+            transform: translateX(-2rem);
+            position: relative;
+            z-index: 999999;
+        }
     }
     &__social {
         margin-right: 4rem;
@@ -51,24 +73,127 @@
         background-color: gv.$bg-color;
         height: 10.4rem;
         transition: all 0.2s ease;
+        @include media.mq(md) {
+            top:10.5rem;
+        }
+        @include media.mq(sm) {
+            height: 6.4rem;
+        }
     }
     &__navBlock {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @include media.mq(lg) {
+           align-items: unset;
+        }
+        @include media.mq(md){
+            height: 100%;
+        }
+    }
+    &__hamMenu {
+        display: none;
+        width:7rem;
+        flex-direction: column;
+        justify-content: center;
+        cursor: pointer;
+        span {
+            height: 2px;
+            background-color:gv.$white-color;
+            position: relative;
+            width: 5rem;
+            transition: all 0.5s ease;
+            @include media.mq(sm){
+                width:3rem;
+                height: 1px;
+            }
+            &::before {
+                content: "";
+                width: 7rem;
+                height: 100%;
+                background-color: inherit;
+                position: absolute;
+                top: -1.8rem;
+                @include media.mq(sm){
+                    width:4rem;
+                    top:-1rem
+                }
+            }
+            &::after {
+                content: "";
+                width: 3rem;
+                height: 100%;
+                background-color: inherit;
+                position: absolute;
+                bottom: -1.8rem;
+                transition: all 0.5s ease;
+                @include media.mq(sm){
+                    width:1.5rem;
+                    bottom: -1rem;
+                }
+            }
+        }
+        &:hover span,
+        &:hover span::after{
+            width:7rem;
+            @include media.mq(sm){
+                width:4rem;
+            }
+        }
+        @include media.mq(md){
+            display: flex;
+        }
     }
     &__logo {
-        width:10rem;
-        height: 10rem;
+        width:9rem;
+        height: 9rem;
         cursor: pointer;
+        @include media.mq(xxl){
+            width:10rem;
+            height: 10rem;
+        }
+        @include media.mq(sm) {
+            width:5rem;
+            height: 7rem;
+        }
     }
     &__links {
         margin: 1rem 4rem 1rem 8rem;
+        @include media.mq(md){
+            display: flex;
+            align-items: flex-start;
+            position: absolute;
+            background-color: gv.$bg-color;
+            left: 0rem;
+            transition: all 0.5s ease;
+            margin:0;
+        }
+        @include media.mq(sm) {
+            z-index:9999999;
+        }
+        button {
+            all:unset;
+            display: none;
+            margin:1.5rem;
+            cursor: pointer;
+            svg {
+                width:2rem;
+                height: 2rem;
+                fill:gv.$white-color;
+            }
+            @include media.mq(md){
+                display: inline;
+            }
+        }
     }
     &__list {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        @include media.mq(md){
+            align-items: flex-start;
+            flex-direction: column;
+        }
     }
     &__item {
         margin: 1rem 3.5rem 1rem 0;
@@ -85,19 +210,39 @@
         &:hover::before {
             width:100%;
         }
+        @include media.mq(lg) {
+            margin: 1rem 2.5rem 1rem 0;
+        }
+        @include media.mq(md){
+            margin: 2rem 2rem 1rem 0;
+        }
     }
     &__link {
         color:gv.$white-color !important;
         font-size: 1.6rem;
         font-weight: 300 !important;
+        @include media.mq(lg){
+            font-size: 1.5rem;
+        }
     }
     &__actions {
         display: flex;
         flex-wrap: wrap;
         align-self: flex-start;
-        width:15rem;
+        width:11rem;
         margin-top: 2rem;
         color:gv.$white-color;
+        @include media.mq(xxl){
+            width:15rem;
+        }
+        @include media.mq(md){
+            width:10rem;
+        }
+        @include media.mq(sm) {
+            margin-top: 1rem;
+            align-self: unset;
+            width: 8rem;
+        }
         svg {
             width:1.6rem;
             height: 1.6rem;
@@ -113,6 +258,11 @@
         display: flex;
         align-items: center;
         margin-right: 1rem;
+        @include media.mq(sm) {
+            margin-bottom: 0;
+           position: relative;
+           z-index: 999999;
+        }
         span {
             cursor: pointer;
         }
@@ -129,18 +279,41 @@
     &__search {
         position: relative;
         margin-right: 2rem;
+        @include media.mq(md){
+            position: unset;
+        }
+        &_input {
+            position: absolute;
+            left: -19rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease-in-out; 
+            @include media.mq(md){
+                left: 0;
+                top: 0;
+                width: 76vw;
+                height: 10.5rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;   
+            }
+            @include media.mq(sm) {
+                height: 6.4rem;
+            }
+        }
         input {
             all: unset;
-            position: absolute;
             background-color: rgba(0,0,0,0.5);
             padding: 0.2rem 1rem;
-            left: -19rem;
-            opacity: 0; 
-            transition: all 0.5s ease-in-out; 
             font-size: 1.4rem;
             &::placeholder {
                 font-size: 1.4rem;
-            } 
+            }
+            @include media.mq(md){
+                background-color: rgb(224 223 223);
+                height: 100%;
+                color:gv.$bg-color;
+            }
         }
     }
 

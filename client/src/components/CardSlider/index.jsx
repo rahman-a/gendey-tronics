@@ -9,7 +9,7 @@ const CardSlider = ({children, length, containerRef, title}) => {
 
     const slideCardsHandler = direction => {
         const containerWidth = containerRef.current.getBoundingClientRect().width
-        const cardsShownInContainerWidth = containerWidth / 370
+        const cardsShownInContainerWidth = containerWidth / 259.5
         if(direction === 'prev') {
             if(slideTrack <= (-length + cardsShownInContainerWidth) ) {
                 slideRef.current.style.left = 0
@@ -17,14 +17,14 @@ const CardSlider = ({children, length, containerRef, title}) => {
                 setLeftOffset(0)                
                 return
             } 
-            slideRef.current.style.left = `${leftOffset - 370}px`
+            slideRef.current.style.left = `${leftOffset - 259.5}px`
             setSlideTrack(slideTrack - 1)
-            setLeftOffset(leftOffset - 370)
+            setLeftOffset(leftOffset - 259.5)
         }else if (direction === 'next') {
             if(slideTrack >= 0) return
-            slideRef.current.style.left = `${leftOffset + 370}px`
+            slideRef.current.style.left = `${leftOffset + 259.5}px`
             setSlideTrack(slideTrack + 1)
-            setLeftOffset(leftOffset + 370)
+            setLeftOffset(leftOffset + 259.5)
         }
 
     }

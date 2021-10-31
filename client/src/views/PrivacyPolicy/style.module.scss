@@ -1,4 +1,6 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
 .privacy {
     figure {
         position: relative;
@@ -15,6 +17,10 @@
             left:5rem;
             font-size: 10rem;
             color:gv.$white-color;
+            @include media.mq(xs){
+                left:50%;
+                transform: translate(-50%, -50%);
+            }
         }
     }
     &__content {

@@ -1,13 +1,17 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .footer {
     background-color: gv.$bg-color;
     position: relative;
-    z-index: 9999999;
+    z-index: 999999;
     &__block {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @include media.mq(sm){
+            flex-direction: column;
+        }
     } 
     &__logo {
         flex-grow: 3;
@@ -64,13 +68,32 @@
         background-color: gv.$white-color;
         width: 1px;
         height: 25rem;
-        transform: translate(-5rem, 1rem)
+        transform: translate(-5rem, 1rem);
+        @include media.mq(md){
+            transform: translate(0, 1rem);
+        }
+        @include media.mq(sm){
+            width:75vw;
+            height: 1px;
+            transform:unset;
+            margin:2rem 0;
+        }
     }
     &__details {
         flex-grow: 7;
         display: flex;
         align-items: flex-start;
         justify-content: space-around;
+        @include media.mq(sm){
+            width:75vw;
+            flex-wrap: wrap;
+            align-items: unset;
+            justify-content: space-between;
+            ul {
+                padding-left: 0 !important;
+                margin-right: 2rem;
+            }
+        }
     }
     &__link {
         display: inline-block;
@@ -87,6 +110,9 @@
         text-align: end;
         margin:2rem 5rem;
         color:gv.$white-color;
+        @include media.mq(sm){
+            text-align: center;
+        }
         svg {
             width:2.5rem;
             height: 2.5rem;

@@ -1,12 +1,22 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .photoGallery {
-    margin-top: 10.4rem;
+    margin: 10.4rem 0 5rem 0;
+    @include media.mq(md){
+        margin-top: 7.4rem;
+    }
+    @include media.mq(sm){
+        margin: 4rem 0 3rem 0;
+    }
     figure {
         position: relative;
         width:100%;
         img {
             width:100%;
+        }
+        @include media.mq(md){
+            margin:0;
         }
     }
     &__switch {
@@ -15,9 +25,19 @@
         left: 5rem;
         display: flex;
         flex-direction: column;
+        @include media.mq(md){
+           top:50%;
+           transform: translateY(-50%);
+        }
         h2 {
             font-size: 10rem;
             color:gv.$white-color;
+            @include media.mq(sm){
+                font-size: 7rem;
+            }
+            @include media.mq(xs){
+                font-size: 4rem;
+            }
         }
         button {
             all:unset;
@@ -29,6 +49,10 @@
             &:hover {
                 background-color: gv.$main-color;
             }
+            @include media.mq(xs){
+                padding:0.5rem 1rem;
+                font-size: 1.2rem;
+            }
         }
     }
     &__wrapper {
@@ -37,5 +61,8 @@
         grid-template-rows: repeat(7, 8vw);
         gap:1rem;
         margin-top: 5rem;
+        @include media.mq(md){
+            margin-top:3rem;
+        }
     }
 }

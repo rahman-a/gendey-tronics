@@ -12,19 +12,23 @@ const Orders = () => {
     return (
         <div className={style.orders}>
             <AccountSideMenu>
-                <li onClick={() => setListType('order')}>
+                <li onClick={() => setListType('order')}
+                className='order_item'>
                     <ChevronRight/>
                     ORDER HISTORY 
                 </li>
-                <li onClick={() => setListType('download')}>
+                <li onClick={() => setListType('download')}
+                className='order_item'>
                     <ChevronRight/>
                     DOWNLOADS
                 </li>
-                <li onClick={() => setListType('return')}>
+                <li onClick={() => setListType('return')}
+                className='order_item'>
                     <ChevronRight/>
                     RETURNS 
                 </li>
-                <li onClick={() => setListType('payment')}>
+                <li onClick={() => setListType('payment')}
+                className='order_item'>
                     <ChevronRight/>
                     PAYMENT PROFILE
                 </li>

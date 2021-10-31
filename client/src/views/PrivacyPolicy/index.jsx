@@ -125,7 +125,7 @@ const PrivacyPolicy = () => {
                         <p className={style.privacy__content_header}>For more information:</p> 
 
                         <p>If you have any questions about this privacy policy, we are happy to contact you 
-                        via: <a>Contact us</a> </p>
+                        via: <a href='/contact-us'>Contact us</a> </p>
                     </div>
                 </div>
             </div>

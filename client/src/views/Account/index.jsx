@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import style from './style.module.scss'
 import Template from '../../components/Template'
 import AccountInfo from '../../components/AccountInfo'

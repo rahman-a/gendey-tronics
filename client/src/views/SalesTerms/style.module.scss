@@ -1,4 +1,5 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .sales {
     figure {
@@ -17,6 +18,11 @@
             transform:translate(-50%, -50%);
             font-size: 8rem;
             color:gv.$main-color;
+            @include media.mq(xs){
+                right:unset;
+                left:50%;
+            }
+
         }
     }
     &__content {

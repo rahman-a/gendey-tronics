@@ -1,4 +1,5 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .overview {
     position: absolute;
@@ -7,6 +8,18 @@
     width:45rem;
     z-index: 9999;
     box-shadow: -1px 1px 8px 4px rgb(0 0 0 / 30%);
+    @include media.mq(xxl){
+        right:5rem;
+    }
+    @include media.mq(xl){
+        right:2rem;
+    }
+    @include media.mq(lg) {
+        right:1rem;
+    }
+    @include media.mq(md){
+        display: none;
+    }
     figure {
         width:100%;
         position: relative;

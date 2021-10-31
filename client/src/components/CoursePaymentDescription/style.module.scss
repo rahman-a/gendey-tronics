@@ -1,4 +1,5 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .coursePayment {
     &__course {
@@ -8,6 +9,13 @@
         padding:1.5rem;
         // height: 60vh;
         box-shadow: 1px 0px 6px 0px rgb(0 0 0 / 30%);
+        @include media.mq(md){
+            width: 95%;
+            margin:5rem auto;
+        }
+        @include media.mq(sm){
+           flex-direction: column;
+        }
     }
 
     &__summery {
@@ -15,6 +23,9 @@
         flex-direction: column;
         figure {
             width:40rem;
+            @include media.mq(sm){
+                width: unset;
+            }
             img {
                 width:100%
             }
@@ -26,6 +37,9 @@
         width:30rem;
         height: 2px;
         background-color: lighten(gv.$light-gray, 35%);
+        @include media.mq(sm){
+            width:95%;
+        }
     }
     &__price {
         h3 {
@@ -39,6 +53,9 @@
         margin-left: 2rem;
         width:30rem;
         color:lighten(gv.$light-black, 15%);
+        @include media.mq(sm){
+            width: 95%;
+        }
         &:first-of-type {
             margin:2rem 0 0.5rem 2rem;
         }
@@ -57,6 +74,9 @@
     &__description {
         margin-left: 2.5rem;
         width:40%;
+        @include media.mq(sm){
+            width: 95%;
+        }
         h2 {
             margin-top: 2rem;
         }

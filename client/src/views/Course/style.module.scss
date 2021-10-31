@@ -1,16 +1,41 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
 .course {
     position: relative;
     margin-top: 10.4rem;
+    @include media.mq(md){
+        margin-top: 8.4rem;
+    }
+    @include media.mq(sm){
+        margin-top: 4.4rem;
+    }
+    &__container {
+        @include media.mq(lg){
+            max-width: 100% !important;
+            margin-left:1rem !important;
+        }
+    }
     &__requirements {
         margin-top: 8rem;
         width: 55%;
+        @include media.mq(md){
+            width:80%;
+            margin:8rem 0 0 5rem;
+        }
+        @include media.mq(xs){
+            width:100%;
+            margin: 8rem 0 0 0;
+        }
         ul {
             list-style-type: disc;
         }
         li {
             font-size: 1.8rem;
-            color:lighten(gv.$light-black, 30%)
+            color:lighten(gv.$light-black, 30%);
+            @include media.mq(xs){
+                font-size: 1.5rem;
+            }
         }
     }
     &__header {
@@ -20,13 +45,24 @@
     &__description {
         margin-top: 8rem;
         width: 55%;
+        @include media.mq(md){
+            width:80%;
+            margin:8rem 0 0 5rem;
+        }
+        @include media.mq(xs){
+            width:95%;
+            margin: 8rem 0 0 0;
+        }
         &_content {
             max-height: 10rem;
             margin-bottom: 1rem;
             overflow: hidden;
         }
         p {
-            color:lighten(gv.$light-black, 30%)
+            color:lighten(gv.$light-black, 30%);
+            @include media.mq(xs){
+                font-size: 1.5rem;
+            }
         }
         button {
             all:unset;
@@ -39,6 +75,14 @@
     &__learner {
         margin-top: 4rem;
         width: 55%;
+        @include media.mq(md){
+            width:80%;
+            margin:4rem 0 0 5rem;
+        }
+        @include media.mq(xs){
+            width:100%;
+            margin: 4rem 0 0 0;
+        }
         h3 {
             font-weight: 300;
             margin-bottom: 1rem;
@@ -64,6 +108,14 @@
     &__content {
         width: 55%;
         margin-top: 4rem;
+        @include media.mq(md){
+            width:80%;
+            margin:4rem 0 0 5rem;
+        }
+        @include media.mq(xs){
+            width:100%;
+            margin: 4rem 0 0 -1rem;
+        }
         &_wrapper {
             box-shadow: 1px 0px 2px 0px rgb(0 0 0 / 30%);
             border-radius: 1.6rem;
@@ -74,9 +126,25 @@
     &__instructor {
         width:35%;
         margin-top: 4rem;
+        @include media.mq(md){
+            width:80%;
+            margin:8rem 0 0 5rem;
+        }
+        @include media.mq(xs){
+            width:95%;
+            margin: 8rem 0 0 0;
+        }
     }
     &__rating {
         width:45%;
         margin: 4rem 0;
+        @include media.mq(md){
+            width:70%;
+            margin:4rem 0 5rem 5rem;
+        }
+        @include media.mq(xs){
+            width:100%;
+            margin: 4rem 0 5rem 0;
+        }
     }
 }

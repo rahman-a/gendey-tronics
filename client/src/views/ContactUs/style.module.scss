@@ -1,4 +1,5 @@
 @use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
 
 .contact {
     margin-top: 16rem;
@@ -7,14 +8,28 @@
         display: flex;
         align-items: center;
         justify-content: space-evenly;
+        @include media.mq(md){
+            flex-direction: column;
+            position: relative;
+        }
     }
 
     &__map {
-        width:55%;  
+        width:55%;
+        @include media.mq(md){
+            width:100%;
+            margin-top:5rem;
+        }  
+        @include media.mq(sm){
+            margin: 0;
+        }
         &_wrapper {
             border: 5px solid gv.$bg-color;
             border-radius: 1rem;
             margin-right: 5rem;
+            @include media.mq(md){
+                margin-right: 0;
+            }
         }
         img {
             width: 100%;
@@ -33,11 +48,29 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        @include media.mq(md){
+            margin:5rem 0;
+        }
+        @include media.mq(xs){
+            margin:3rem 0;
+        }
         h3 {
             color: gv.$main-color;
             font-size: 2.3rem;
             margin-bottom: 2rem;
             font-weight: 600;
+            @include media.mq(md){
+                font-size: 4.3rem;
+                font-weight: 300;
+                position: absolute;
+                top:-5rem;
+            }
+            @include media.mq(sm){
+                top:-9rem;
+            }
+            @include media.mq(xs){
+                font-size: 4rem;
+            }
         }
         input, 
         textarea {
@@ -51,6 +84,12 @@
             &::placeholder {
                 color:lighten(gv.$light-gray, 30%);
                 font-size: 1.8rem;
+            }
+            @include media.mq(md){
+                width:50rem;
+            }
+            @include media.mq(xs){
+                width:35rem;
             }
         }
         button {
@@ -70,6 +109,21 @@
         display: flex;
         align-items: center;
         margin: 5rem 0 0 5rem;
+        @include media.mq(xl){
+            width:52%
+        }
+        @include media.mq(lg){
+            width:58%;
+            margin:-5rem 0 0 2rem;
+        }
+        @include media.mq(md){
+            width:90%;
+            margin: 2rem 5rem 5rem 5rem;
+        }
+        @include media.mq(xs){
+            flex-direction: column;
+            margin:2rem auto;
+        }
         button {
             all: unset;
             display: flex;
@@ -84,6 +138,9 @@
             color: gv.$white-color;
             background-color: gv.$bg-color;
             cursor: pointer;
+            @include media.mq(xs){
+                order:2;
+            }
             svg {
                 fill:gv.$white-color;
                 margin-right: 1rem;
@@ -100,6 +157,9 @@
         p {
             font-size: 1.4rem;
             color: #060690;
+            @include media.mq(xs){
+                order:1;
+            }
         }
     }
     &__overlay {
@@ -109,7 +169,7 @@
         width:100%;
         height: 100vh;
         background-color: rgba(gv.$white-color, 0.9);
-        z-index: 999999;
+        z-index: 9999999;
         transform: scale(0);
         transition: all 0.5s ease-out;
     }

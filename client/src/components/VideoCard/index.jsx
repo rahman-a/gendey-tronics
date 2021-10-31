@@ -10,9 +10,8 @@ const VideoCard = () => {
         <>
         <Overlay toggle={playVideo}/>
         <Modal toggle={playVideo} closeHandler={() => setPlayVideo(false)} color='#fff'>
-            {playVideo && <iframe 
-            width="560" 
-            height="315" 
+            {playVideo && <iframe
+            className={style.videoCard__frame}
             src="https://www.youtube.com/embed/oe70Uhjc_F4" 
             title="YouTube video player" 
             frameBorder="0" 

@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Fav from './fav'
 import style from './style.module.scss'
 
 const FavouriteList = () => {
-    const [isFav, setIsFav] = useState(true)
+    // const [isFav, setIsFav] = useState(true)
+    const isFav = true
     return (
         <div className={style.favList}>
             {isFav 
