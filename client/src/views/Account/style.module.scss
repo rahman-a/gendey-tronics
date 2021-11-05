@@ -29,6 +29,8 @@
             cursor: pointer;
             font-size: 1.4rem;
             font-weight: 500;
+            width:8rem;
+            text-align: center;
             &:hover {
                 color:gv.$main-color;
             }

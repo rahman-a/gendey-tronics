@@ -96,6 +96,12 @@
                 margin-right: 2rem;
                 font-size: 1.2rem;
                 border-radius: 1rem;
+                text-align: center;
+            }
+        }
+        &_continue {
+            @include media.mq(xs){
+                margin-left: 0 !important;
             }
         }
         td:nth-child(2),

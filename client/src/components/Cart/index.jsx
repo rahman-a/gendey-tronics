@@ -21,7 +21,7 @@ const Cart = ({process}) => {
             <CartItem key={idx} />
           ))}
           <tr className={style.cart__footer}>
-            <td>
+            <td className={style.cart__footer_continue}>
               <button>Continue Shipping</button>
             </td>
             <td>Total</td>

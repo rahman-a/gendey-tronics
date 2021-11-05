@@ -84,30 +84,8 @@
         }
     }
     &__wrapper {
-        width:100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        position: relative;
         margin-top: 8rem;
-        margin-left: 3rem;
-        & > div {
-            margin-right: 0;
-        }
-        @include media.mq(xl){
-            margin-left:5rem;
-            justify-content: flex-start;
-            & > div {
-                margin-right: 4rem;
-            }
-        }
-        @include media.mq(md){
-            justify-content: center;
-            margin-left: 0;
-        }
-        @include media.mq(xs){
-            & > div {
-                margin-right: 0;
-            }
-        }
+        overflow: hidden;
     }
 }

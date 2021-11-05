@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import style from './style.module.scss'
 import Template from '../../components/Template'
 import ProductCard from '../../components/ProductCard'
 import {products} from '../../data'
 import {useLocation} from 'react-router-dom'
+import CardSlider from '../../components/CardSlider'
 
 const Products = () => {
+    const wrapperRef = useRef(null)
     const location = useLocation()
     const query = new URLSearchParams(location.search)
     const type = query.get('type')
@@ -23,8 +25,14 @@ const Products = () => {
                    <img src={`images/${[type]}_bg.jpg`} alt="immo files" />
                </figure>
                <div className={`container ${style.products__container}`}>
-                   <div className={style.products__wrapper}>
-                        {products.[type].cards.map(crd => <ProductCard card={crd} key={crd._id}/>)}
+                   <div className={style.products__wrapper} ref={wrapperRef}>
+                       <CardSlider
+                       length={5}
+                       containerRef={wrapperRef}>
+                            {
+                            products.[type].cards.map(crd => <ProductCard card={crd} key={crd._id}/>)
+                            }
+                       </CardSlider>
                    </div>
                </div>
             </div>

@@ -13,7 +13,7 @@ const Nav = ({elementRefs}) => {
     window.onscroll = () => {
         if(window.pageYOffset > 65) {
             navRef.current.classList.add(style.header__onScroll)
-            arrowRef.current.style.display = 'none'
+            arrowRef.current.style.display = 'block'
             if(elementRefs?.curriculum) {
                 elementRefs.curriculum.current.style.top =  '10.4rem'
             } 

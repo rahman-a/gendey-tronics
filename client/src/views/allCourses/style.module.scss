@@ -23,19 +23,8 @@
         }
     }
     &__wrapper {
-        width:100%;
-        display: flex;
-        flex-wrap: wrap;
         margin-top: 8rem;
-        margin-left:5rem;
-        @include media.mq(md){
-            justify-content: center;
-            margin-left: 0;
-        }
-        @include media.mq(xs){
-            & > div {
-                margin-right: 0;
-            }
-        }
+        position: relative; 
+        overflow: hidden;
     }
 }
