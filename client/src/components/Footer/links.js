@@ -1,11 +1,11 @@
 const lists = [    
     [
         {
-            title:'immo off',
+            title:'immo',
             link:'/products?type=immo'
         },
         {
-            title:'hardware tools',
+            title:'hardware',
             link:'/products?type=hardware'
         },
         {
@@ -17,49 +17,45 @@ const lists = [
             link:'/courses'
         },
         {
-            title:'The Blog',
+            title:'blog',
             link:'/blogs'
         },
         {
-            title:'ECU PROGRAMMERS',
+            title:'ecu',
             link:'/products?type=ecu'
         }
     ],
     [
         {
-            title:'Account',
+            title:'account',
             link:'/account#info'
         },
         {
-            title:'My Favorites',
+            title:'fav',
             link:'/account#favourites'
         },
         {
-            title:'My Cart',
+            title:'cart',
             link:'/order?process=cart'
         }
     ],
     [
         {
-            title:'Support',
+            title:'support',
             link:'/contact-us'
         },
         {
-            title:'Privacy Policy',
+            title:'privacy',
             link:'/privacy-policy'
         },
     ],
     [
         {
-            title:'About us',
-            link:''
-        },
-        {
-            title:'Video Gallery',
+            title:'video',
             link:'/videos-gallery'
         },
         {
-            title:'Photo Gallery',
+            title:'photo',
             link:'/photo-gallery'
         }
     ]

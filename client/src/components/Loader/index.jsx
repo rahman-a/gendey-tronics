@@ -1,7 +1,7 @@
 import React from 'react'
 import {Spinner} from 'react-bootstrap'
 
-const loader = ({children, size, center}) => {
+const loader = ({children, size, center, custom}) => {
     const getStyle = _ => {
         let centerStyle = {}
         if(center) {
@@ -12,7 +12,9 @@ const loader = ({children, size, center}) => {
                 transform:'translate(-50%, -50%)'
             }
         }
-
+        if(custom) {
+            centerStyle = {...centerStyle, ...custom}
+        }
         return {
             textAlign:'center',
             padding:'1rem',

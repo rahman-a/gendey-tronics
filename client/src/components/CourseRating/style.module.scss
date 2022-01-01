@@ -10,6 +10,7 @@
             font-size: 5.5rem;
             color: gv.$main-color;
             margin:0;
+            text-align: center;
         }
         p {
             font-size: 1.3rem;
@@ -37,6 +38,10 @@
             & > div {
                 height: 0.8rem;
                 background-color: lighten(gv.$light-gray, 20%);
+            }
+            &_ar {
+                margin-right: unset;
+                margin-left: 1rem;
             }
         }
         &_stars {

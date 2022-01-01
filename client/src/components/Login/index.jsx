@@ -2,65 +2,108 @@ import React, { useState } from 'react'
 import style from './style.module.scss'
 import {Overlay} from '../Overlay'
 import {Modal} from '../Modal'
-import {Link} from 'react-router-dom'
-// import Alert from 'react-bootstrap/Alert'
-// import Loader from '../Loader'
+import GoogleSignin from '../GoogleSignin'
+import FacebookSignIn from '../FacebookSignIn'
+import {Link, useHistory, useLocation} from 'react-router-dom'
+import Alert from 'react-bootstrap/Alert'
+import Loader from '../Loader'
+import {useSelector, useDispatch} from 'react-redux'
+import actions from '../../actions'
+import constants from '../../constants'
+import { useEffect } from 'react'
+import strings from '../../localization'
 
 const Login = () => {
     const [formData, setFormData] = useState({})
     const [resetEmail, setResetEmail] = useState('')
     const [isRemembered, setIsRemembered] = useState(false)
     const [isPasswordForget, setIsPasswordForget] = useState(false)
+    const [errorMessage, setErrorMessage] = useState(null)
+    const {lang} = useSelector(state => state.language)
+    const {loading, error, info} = useSelector(state => state.client)
+    const {loading:re_loading, error:re_error, message} = useSelector(state => state.resetLinkPass)
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const redirect = new URLSearchParams(useLocation().search).get('redirect')
     const getFormData = e => {
         const data = {[e.target.name]:e.target.value}
         setFormData({...formData, ...data})
     }
     const submitFormHandler = e => {
         e.preventDefault()
-        console.log({...formData, isRemembered})
+        dispatch(actions.client.login(formData))
     }
-    const resetPasswordHandler = e => {
-        e.preventDefault()
-        console.log(resetEmail)
+    
+    const submitResetPassword = () => {
+        dispatch(actions.client.resetLink({email:resetEmail}))
     }
+
+    const clearResetPassAlerts = () => {
+        setErrorMessage(null)
+        dispatch({type:constants.client.RESET_PASSWORD_LINK_RESET})
+    }
+    useEffect(() => {
+        error && setErrorMessage(error)
+        re_error && setErrorMessage(re_error)
+        if(info) {
+            if(redirect) {
+             history.push(redirect)
+             return
+            }
+            history.push('/')
+        } 
+    },[error, info, history, re_error, redirect])
     return (
         <>
         <Overlay toggle={isPasswordForget}/>
         <Modal toggle={isPasswordForget} 
         closeHandler={() => setIsPasswordForget(false)}>
-            {/* <Loader size='15' center/> */}
-            {/* <Alert></Alert> */}
-            <form onSubmit={resetPasswordHandler} className={style.login__reset}>
+            {
+                errorMessage 
+                ? <Alert variant='danger' dismissible
+                onClose={clearResetPassAlerts}>{errorMessage}</Alert>
+                : re_loading ? <Loader size='10' center/>
+                : message && <Alert variant='success' dismissible
+                onClose={clearResetPassAlerts}>{message}</Alert>
+            }
+            <form className={style.login__reset}>
                 <div className={style.login__group}>
-                    <label htmlFor="reset">Enter your E-mail here</label>
+                    <label htmlFor="reset">{strings.client[lang].email_enter}</label>
                     <input 
                     type="email" 
                     name='email' 
                     id='reset' 
                     onChange={(e) => setResetEmail(e.target.value)}/>
                 </div>
-                <button type='submit' className={style.login__submit}>Send Reset Link</button>
+                <button type='submit'
+                 className={style.login__submit}
+                 onClick={submitResetPassword}
+                 disabled={re_loading ? true : false}
+                 style={{pointerEvents:re_loading ? 'none':'visible'}}>{strings.client[lang].reset_link}</button>
             </form>
         </Modal>
         <div className={style.login}>
+            {
+                errorMessage && <Alert style={{width:'70%', textAlign:'center'}} variant='danger'>{errorMessage}</Alert>
+            }
             <form onSubmit={submitFormHandler}>
                 <div className={style.login__group}>
-                    <label htmlFor="email">E-mail Address</label>
+                    <label htmlFor="email">{strings.client[lang].email_address}</label>
                     <input 
                     type="email" 
                     name='email' 
                     id='email'
                     onChange={(e) => getFormData(e)}
-                    placeholder='enter your email address'/>
+                    placeholder={strings.client[lang].email_holder}/>
                 </div>
                 <div className={style.login__group}>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">{strings.client[lang].pass}</label>
                     <input 
                     type="password" 
                     name='password' 
                     id='password'
                     onChange={(e) => getFormData(e)}
-                    placeholder='enter your password '/>
+                    placeholder={strings.client[lang].pass_holder}/>
                 </div>
                 <div className={style.login__options}>
                     <div className={style.login__options_remember}>
@@ -70,19 +113,29 @@ const Login = () => {
                         id="remember"
                         checked={isRemembered}
                         onChange={(e) =>setIsRemembered(!isRemembered)}/>
-                        <label htmlFor="remember">Remember me</label>
+                        <label htmlFor="remember"
+                        style={{marginRight:lang === 'ar' ? '0.5rem':'0'}}>{strings.client[lang].remember_me}</label>
                     </div>
-                    <p onClick={() => setIsPasswordForget(true)}>Forget your password?</p>
+                    <p onClick={() => setIsPasswordForget(true)}>{strings.client[lang].pass_forget}</p>
                 </div>
-                <button className={style.login__submit}>Sign in</button>
+                <div style={{display:'flex', alignItems:'center'}}>
+                    <button disabled={loading ? true : false} className={style.login__submit}>{strings.client[lang].sign_in}</button>
+                    {loading && <Loader size='5'/>}
+                </div>
                 <div className={style.login__alt}>
-                    <p>Or sign in with <span></span></p>
-                    <div className={style.login__int}>
-                        <img src="images/fb.png" alt="facebook" />
-                        <img src="images/google.png" alt="google" />
+                    <p>{strings.client[lang].or_signin} <span></span></p>
+                    <div className={`${style.login__int} ${lang === 'ar' ? style.login__int_ar:''}`}>
+                        <FacebookSignIn text='Sign in with Facebook'/>
+                        <GoogleSignin text='Sign in with Google'/>
                     </div>
                     <div className={style.login__signup}>
-                        Don't have account? <Link to='/signup'>Create Account</Link>
+                    {strings.client[lang].no_account} 
+                    <Link to='/signup' style={{
+                        marginLeft:lang === 'ar' ? 'unset' :'1.5rem',
+                        marginRight:lang==='ar' ? '1.5rem':'unset'
+                        }}>
+                        {strings.client[lang].new_account}
+                    </Link>
                     </div>
                 </div>
             </form>

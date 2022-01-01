@@ -1,8 +1,8 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import style from  './style.module.scss'
 import Select from './selectIcon'
 
-const DropdownMenu = ({children, placeholder, value}) => {
+const DropdownMenu = ({children, placeholder, value, loading}) => {
     const wrapperRef = useRef(null)
     const listRef = useRef(null)
     const [isToggle, setIsToggle] = useState(false)
@@ -17,13 +17,17 @@ const DropdownMenu = ({children, placeholder, value}) => {
             setIsToggle(false)
         }
     }
+    useEffect(() => {
+        loading && toggleMenuHandler()
+    }, [loading])
     return (
         <div className={style.dropdown}>
             <input 
             type="text" 
             className={style.dropdown__input} 
             placeholder={placeholder} 
-            value={value ? value : ''}/>
+            value={value ? value : ''}
+            readOnly/>
             <Select 
             toggleHandler={toggleMenuHandler} 
             name='select' 

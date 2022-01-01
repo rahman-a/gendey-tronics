@@ -11,4 +11,14 @@
         align-items: center;
         justify-content: center;
     }
+    &_ar {
+        figure {
+            margin-right: unset;
+            margin-left: 3rem;
+        }
+        button {
+            margin-right: unset;
+            margin-left: 5rem !important;
+        }
+    }
 }

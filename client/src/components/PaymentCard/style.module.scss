@@ -3,7 +3,6 @@
 .coursePayment {
     &__payment {
         width:100%;
-        position: relative;
         background-color: lighten(gv.$light-gray, 50%);
         height: 100%;
         box-shadow: 1px 0px 6px 0px rgb(0 0 0 / 30%);
@@ -144,6 +143,7 @@
 
     &__complete {
         all: unset;
+        position: relative;
         margin: 5rem;
         align-self: center;
         background-color: darken(gv.$main-color, 2%);

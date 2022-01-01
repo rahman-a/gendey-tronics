@@ -1,9 +1,12 @@
 import React from 'react'
+import style from './style.module.scss'
 
-const DownloadList = () => {
+const DownloadList = ({lang}) => {
     return (
-        <div>
-            <h1>This is Download List</h1>
+        <div className={style.orders__message}>
+            <h2>
+               {lang === 'en' ? 'No Download History To Display' : 'لا يوجد هنا سجل للتحميلات'}
+            </h2>
         </div>
     )
 }

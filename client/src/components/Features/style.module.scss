@@ -49,6 +49,25 @@
                 font-size: 6rem;
             }
         }
+        &_ar {
+            width: 100%;
+            h2 {
+                @include media.mq(lg){
+                    font-size: 5rem;
+                }
+            }
+            h3 {
+                @include media.mq(lg){
+                    font-size: 6rem;
+                } 
+            }
+            p {
+                font-size: 4rem;
+                @include media.mq(lg){
+                    font-size: 3rem;
+                }
+            }
+        }
     }
     &__list {
         display: flex;

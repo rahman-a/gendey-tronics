@@ -1,5 +1,6 @@
 import {useEffect} from 'react'
-import {Switch, Route, useLocation} from 'react-router-dom'
+import {Switch, Route, useLocation, Redirect} from 'react-router-dom'
+import { useSelector } from 'react-redux';
 import Home from "./views/Home";
 import Account from './views/Account'
 import Login from './views/Login';
@@ -19,26 +20,34 @@ import Contact from './views/ContactUs'
 import CoursePayment from './views/CoursePayment';
 import CourseLearn from './views/CourseLearn';
 import OrderProcess from './views/OrderProcess';
+import VerifyEmail from './views/VerifyEmail';
+import ResetEmail from './views/ResetEmail';
+import NotFound from './views/Notfound';
 
 function App() {
   const {pathname} = useLocation()
+  const {lang} = useSelector(state => state.language)
+  const {isAuth} = useSelector(state => state.client)
+  
   useEffect(() => {
     window.scrollTo(0,0)
-  }, [pathname])
+  }, [pathname, lang])
   return (
-    <div className="App">
+    <div className="App"
+    style={{fontFamily:lang === 'en' ? 'Roboto, sans-serif': 'Cairo, sans-serif',
+    direction:lang === 'en' ?'ltr' :'rtl'}}>
       <Switch>
         <Route path='/' exact>
           <Home/> 
         </Route>
         <Route path='/account'>
-          <Account/> 
+          {isAuth ? <Account/> : <Home/>} 
         </Route>
         <Route path='/login'>
-          <Login/> 
+          {isAuth ? <Home/> :<Login/>} 
         </Route>
         <Route path='/signup'>
-          <Signup/>
+         {isAuth ?  <Home/> :<Signup/>}
         </Route>
         <Route path='/products'>
           <Products/>
@@ -46,25 +55,25 @@ function App() {
         <Route path='/courses'>
           <Courses/>
         </Route>
-        <Route path='/course' exact>
+        <Route path='/course/:id' exact>
           <Course/>
         </Route>
-        <Route path='/course/payment'>
-          <CoursePayment/>
+        <Route path='/course/:id/payment' exact>
+         {isAuth ? <CoursePayment/> : <Login/>}
         </Route>
-        <Route path='/course/learn'>
-          <CourseLearn/>
+        <Route path='/course/:id/learn'>
+          {isAuth ? <CourseLearn/> : <Login/>}
         </Route>
         <Route path='/product/:id?'>
           <Product/>
         </Route>
         <Route path='/order'>
-          <OrderProcess/>
+         {isAuth ? <OrderProcess/> : <Login/>}
         </Route>
         <Route path='/blogs'>
           <Blogs/>
         </Route>
-        <Route path='/blog'>
+        <Route path='/blog/:id'>
           <Blog/> 
         </Route>
         <Route path='/privacy-policy'>
@@ -84,6 +93,15 @@ function App() {
         </Route>
         <Route path='/contact-us'>
           <Contact/> 
+        </Route>
+        <Route path='/activate'>
+          <VerifyEmail/>
+        </Route>
+        <Route path='/reset'>
+            <ResetEmail/>
+        </Route>
+        <Route path='*'>
+            <NotFound/>
         </Route>
       </Switch>
     </div>

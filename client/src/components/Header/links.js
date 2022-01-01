@@ -8,35 +8,35 @@ export const items = [
         link:'/courses'
     },
     {
-        title:'tunning files',
-        link:'/products?type=tunning'
+        title:'tunning',
+        link:'/products?type=tunning-files'
     },
     {
-        title:'our blog',
+        title:'blog',
         link:'/blogs'
     },
     {
-        title:'immo off files',
-        link:'/products?type=immo'
+        title:'immo',
+        link:'/products?type=immo-off-files'
     },
     {
-        title:'hardwares tools',
-        link:'/products?type=hardware'
+        title:'hardware',
+        link:'/products?type=hardware-tools'
     },
     {
         title:'gallery',
         link:'/photo-gallery'
     },
     {
-        title:'airbag clear crash',
-        link:'/products?type=airbag'
+        title:'airbag',
+        link:'/products?type=air-bag-clear-crash'
     },
     {
-        title:'ecu programmers',
-        link:'/products?type=ecu'
+        title:'ecu',
+        link:'/products?type=ecu-programming'
     },
     {
-        title:'contact us',
+        title:'contact',
         link:'/contact-us'
     }
 ]

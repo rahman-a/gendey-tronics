@@ -6,6 +6,8 @@ import {Overlay} from '../../components/Overlay'
 import {Modal} from '../../components/Modal'
 import {gallery} from '../../data'
 import {useHistory} from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import strings from '../../localization'
 
 const PhotoGallery = () => {
     const [showImage, setShowImage] = useState(false)
@@ -14,6 +16,7 @@ const PhotoGallery = () => {
     const [isRightArrow, setIsRightArrow] = useState(true)
     const [isLeftArrow, setIsLeftArrow] = useState(true)
     const history = useHistory()
+    const {lang} = useSelector(state => state.language)
     
     const showImageHandler = (img, idx) => {
         setShowImage(true)
@@ -80,8 +83,8 @@ const PhotoGallery = () => {
                     <figure>
                         <img src="images/screen.jpg" alt="screen" />
                         <div className={style.photoGallery__switch}>
-                            <h2>Photo Gallery</h2>
-                            <button onClick={() => history.push('/videos-gallery')}>Switch to Video Gallery</button>
+                            <h2>{strings.gallery[lang].photo_gallery}</h2>
+                            <button onClick={() => history.push('/videos-gallery')}>{strings.gallery[lang].video_switch}</button>
                         </div>
                     </figure>
 

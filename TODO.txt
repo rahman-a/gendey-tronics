@@ -1,0 +1,5 @@
+- authorization by facebook and google
+- connect to external file hosting service
+- payment process through paypal
+- account on mailgun
+- 

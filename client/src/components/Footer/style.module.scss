@@ -44,7 +44,6 @@
             font-size: 1.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transform: translateX(-3rem);
             color: gv.$white-color;
         }
         &_logo {
@@ -78,6 +77,12 @@
             transform:unset;
             margin:2rem 0;
         }
+        &_ar {
+            transform: translate(5rem, 1rem);
+            @include media.mq(sm){
+                transform:unset;
+            }
+        }
     }
     &__details {
         flex-grow: 7;
@@ -101,6 +106,7 @@
         font-size: 1.4rem;
         transition: all 0.5s ease;
         transform:scale(1);
+        text-transform: capitalize;
         &:hover {
             color:gv.$white-color;
             transform:scale(1.1)
@@ -129,5 +135,14 @@
         padding:1rem 0;
         text-align: center;
         color:gv.$white-color;
+        p {
+            margin: 0;
+        }
+        p:last-child {
+            font-size: 1rem;
+            a {
+                color:#fad203
+            }
+        }
     }
 }

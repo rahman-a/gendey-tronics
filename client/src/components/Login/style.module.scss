@@ -75,6 +75,10 @@
         margin:2rem 0;
         padding:0.5rem 2rem;
         cursor: pointer;
+        &:disabled {
+            background-color: #d8d8d8;
+            pointer-events: none;
+        }
         &:hover {
             background-color: gv.$main-color;
         }
@@ -97,10 +101,16 @@
     }
     &__int {
         padding: 2rem 0;
+        display: flex;
+        align-items: center;
         img {
             width:10rem;
             margin-right:2rem;
             cursor:pointer;
+        }
+        &_ar {
+            direction: ltr;
+            justify-content: flex-end;
         }
     }
 
@@ -110,6 +120,7 @@
         color:lighten(gv.$light-black, 30%);
         font-size: 1.4rem;
         font-weight: 300;
+        margin-bottom: 1.5rem;
         a {
             margin-left: 1.5rem;
             color:blue;

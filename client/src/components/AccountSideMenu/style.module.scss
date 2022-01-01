@@ -57,5 +57,14 @@
                 text-align: center;
             }
         }
+
+        &_ar {
+            li {
+                svg {
+                    margin-right: unset;
+                    margin-left: 1rem;
+                }
+            }
+        }
     }
 }

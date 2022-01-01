@@ -1,12 +1,11 @@
 import React from 'react'
 import style from './style.module.scss'
-import { content } from '../Course/contentData'
 import Accordion from '../../components/Accordion'
-const Content = () => {
+const Content = ({chapters, setLesson}) => {
     return (
         <div className={style.courseLearn__content}>
-            {content.map((chapter) => (
-              <Accordion chapter={chapter} key={chapter._id} verticalTitle />
+            {chapters.map((chapter) => (
+              <Accordion chapter={chapter} key={chapter._id} setLesson={setLesson} verticalTitle />
             ))}
         </div>
     )

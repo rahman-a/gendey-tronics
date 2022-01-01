@@ -2,6 +2,7 @@ import React from 'react'
 import { Carousel } from 'react-responsive-carousel';
 import style from './style.module.scss'
 import {ArrowRight} from '../icons'
+import {v4 as uuidv4} from 'uuid'
 
 const Slider = () => {
 
@@ -36,7 +37,7 @@ const Slider = () => {
         
         {
             sliders.map(slide => (
-                <div style={{cursor:'pointer'}}>
+                <div style={{cursor:'pointer'}} key={uuidv4()}>
                     <img alt="" src={slide.image}/>
                     <div className={style.carousel__desc}>
                         <h2 className={style.carousel__header}>{slide.header.toLocaleUpperCase()}</h2>

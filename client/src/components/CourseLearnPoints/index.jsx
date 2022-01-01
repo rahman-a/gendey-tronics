@@ -1,28 +1,32 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
 import style from './style.module.scss'
 import {Check} from '../icons'
+import strings from '../../localization'
+import { useSelector } from 'react-redux'
 
-const points = [
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr dolor sit amet',
-]
+const LearnPoints = ({data}) => {
+    const [points, setPoints] = useState(null)
+    const {lang} = useSelector(state => state.language)
 
-const LearnPoints = () => {
+    useEffect(() => {
+        if(data) {
+            const sortedData = data.sort((a, b) => a.order - b.order)
+            setPoints(sortedData)
+        }
+    }, [data])
     return (
-        <div className={style.points}>
-            <h2>What You will learn</h2>
+        <div className={
+            `${style.points}
+            ${lang === 'ar' ? style.points_ar :''}`
+        }>
+            <h2>{strings.course[lang].points}</h2>
             <ul className={style.points__list}>
                 
                 {
-                    points.map((point, idx) => (
-                     <li className={style.points__item} key={idx}>
+                    points && points.map(point => (
+                     <li className={style.points__item} key={point._id}>
                          <span> <Check/> </span>
-                         {point}
+                         {point.point + point.order}
                     </li>
                     ))
                 }

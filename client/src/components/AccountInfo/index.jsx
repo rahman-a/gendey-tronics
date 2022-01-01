@@ -6,31 +6,31 @@ import Info from './info'
 import Password from './password'
 import Address from './address'
 
-const AccountInfo = () => {
+const AccountInfo = ({lang, strings}) => {
     const [infoAction, setAccountInfoAction] = useState('info')
     return (
         <div className={style.accountInfo}>
             <AccountSideMenu>
                 <li onClick={() => setAccountInfoAction('info')}>
                     <Person/>
-                    BASIC INFORMATION
+                    {strings.client[lang].basic_info}
                 </li>
                 <li onClick={() => setAccountInfoAction('pass')}>
                     <Unlock/>
-                    CHANGE YOUR PASSWORD
+                    {strings.client[lang].change_pass}
                 </li>
                 <li onClick={() => setAccountInfoAction('address')}>
                     <MapMarked/>
-                    MODIFY YOUR ADDRESS BOOK ENTIRES
+                    {strings.client[lang].update_address}
                 </li>
             </AccountSideMenu>
             <div className={style.accountInfo__action}>
                 {
                     infoAction === 'info' 
-                    ? <Info/>
+                    ? <Info lang={lang} strings={strings}/>
                     : infoAction === 'pass'
-                    ? <Password/> 
-                    : infoAction === 'address' && <Address/>
+                    ? <Password lang={lang} strings={strings}/> 
+                    : infoAction === 'address' && <Address lang={lang} strings={strings}/>
                     
                 }
             </div>

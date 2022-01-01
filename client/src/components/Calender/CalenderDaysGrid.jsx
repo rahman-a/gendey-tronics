@@ -46,7 +46,8 @@ const CalenderDaysGrid = ({today, getDayHandler, month, year}) => {
     
       const previousMonth = dayjs(`${year}-${month}-01`).subtract(1, "month");
       
-      const visibleNumberOfDaysFromPreviousMonth = firstDayOfTheMonthWeekday ? firstDayOfTheMonthWeekday : 6
+      const visibleNumberOfDaysFromPreviousMonth = firstDayOfTheMonthWeekday 
+      ? firstDayOfTheMonthWeekday : 6
     
       const previousMonthLastMondayDayOfMonth = dayjs(currentMonthDays[0].date).subtract(visibleNumberOfDaysFromPreviousMonth, "day").date();
       return [...Array(visibleNumberOfDaysFromPreviousMonth)].map((day, index) => {    
@@ -61,7 +62,9 @@ const CalenderDaysGrid = ({today, getDayHandler, month, year}) => {
     function createDaysForNextMonth(year, month) {
       const lastDayOfTheMonthWeekday = getWeekday(`${year}-${month}-${currentMonthDays.length}`)
     
-      const visibleNumberOfDaysFromNextMonth = lastDayOfTheMonthWeekday ? 6 - lastDayOfTheMonthWeekday : lastDayOfTheMonthWeekday
+      const visibleNumberOfDaysFromNextMonth = lastDayOfTheMonthWeekday 
+      ? 6 - lastDayOfTheMonthWeekday 
+      : lastDayOfTheMonthWeekday
     
       return [...Array(visibleNumberOfDaysFromNextMonth)].map((day, index) => {
         return {

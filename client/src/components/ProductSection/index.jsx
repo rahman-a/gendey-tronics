@@ -2,12 +2,20 @@ import React, {useRef} from 'react'
 import ProductCard from '../ProductCard'
 import style from './style.module.scss'
 import CardSlider from '../CardSlider'
+import Loader from '../Loader'
+import Alert from 'react-bootstrap/Alert'
 
-const ProductSection = ({data}) => {
+const ProductSection = ({data, loading, error}) => {
     const containerRef = useRef(null)
     return (
-        <div className={style.productSection}>
-            <div className="container" 
+        <div className={style.productSection}
+        style={{
+            marginBottom:loading ? '10rem' :'unset'
+        }}>
+            {loading 
+            ?<Loader size='20' center custom={{color:'#d0ae0b'}}/>
+            : error ?  <Alert style={{textAlign:'center'}} variant='danger'>{error}</Alert>
+            :<div className="container" 
             ref={containerRef}
             style={{position:'relative', overflow:'hidden'}}
             data-aos='fade-left'>
@@ -19,7 +27,7 @@ const ProductSection = ({data}) => {
                     }
                 </CardSlider>
 
-            </div>
+            </div>}
         </div>
     )
 }

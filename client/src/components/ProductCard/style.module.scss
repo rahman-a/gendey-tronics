@@ -78,5 +78,12 @@
                 background-color: lighten(gv.$black-color, 20%);
             }
         }
+
+        &_ar {
+            button:first-child {
+                margin-right: unset;
+                margin-left: 4rem;
+            }
+        }
     }
 }

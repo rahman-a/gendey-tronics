@@ -27,6 +27,10 @@
             border: 5px solid gv.$bg-color;
             border-radius: 1rem;
             margin-right: 5rem;
+            &_ar {
+                margin-right: unset;
+                margin-left: 5rem;
+            }
             @include media.mq(md){
                 margin-right: 0;
             }
@@ -161,6 +165,17 @@
                 order:1;
             }
         }
+
+        &_ar {
+            button {
+                margin-right: unset;
+                margin-left: 2rem;
+                svg {
+                    margin-right: unset;
+                    margin-left: 1rem;
+                }
+            }
+        }
     }
     &__overlay {
         position: fixed;
@@ -173,6 +188,25 @@
         transform: scale(0);
         transition: all 0.5s ease-out;
     }
+    &__done {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:45rem;
+        height: 30rem;
+        span {
+            width:15rem;
+            height: 15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: gv.$main-color;
+            font-size: 3rem;
+            color:gv.$white-color;
+        }
+    }
+
     &__done {
         display: flex;
         align-items: center;

@@ -1,33 +1,34 @@
 import React, {useState} from 'react'
 import style from './style.module.scss'
 import SingleComment from './SingleComment'
+import strings from '../../localization'
 
-const SingleAnnouncement = () => { 
+const SingleAnnouncement = ({data, lang}) => { 
     const [toggleComment, setToggleComment] = useState(false)
     return (
         <div className={style.courseLearn__announcements_announcement}>
 
           {/* announcements Header */}
-          <div className={style.courseLearn__announcements_header}>
+          <div className={`
+          ${style.courseLearn__announcements_header}
+          ${lang === 'ar'? style.courseLearn__announcements_header_ar:''}`}>
             <figure>
-              <img src='/images/instructor_info.png' alt='instructor' />
+              <img src={
+                data.image 
+                ? `/api/images/${data.image}`
+                : '/images/instructor_info.png'
+              } alt='instructor' />
             </figure>
             <div>
-              <h3>Mohamed Elgendy</h3>
-              <p>Posted an announcement. 1 hour ago</p>
+              <h3>{`${data.instructor.firstName} ${data.instructor.lastName}`}</h3>
+              <p>{strings.course[lang].announcement_date} {strings.course[lang].since} (1 {strings.course[lang].hour})</p>
             </div>
           </div>
 
           {/* Announcements Body */}
           <div className={style.courseLearn__announcements_body}>
-            <p>New section had added to the course check it now</p>
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-              sanctus est Lorem ipsum dolor
-            </p>
+            <p>{data.title}</p>
+            <p>{data.announcement}</p>
           </div>
 
           {/* Write a comment */}
@@ -40,14 +41,16 @@ const SingleAnnouncement = () => {
 
           <button className={style.courseLearn__announcements_toggle}
           onClick={() => setToggleComment(prev => !prev)}>
-              {toggleComment ?'hide' : 'show'} all comments
+              {toggleComment 
+              ? strings.course[lang].hide 
+              : strings.course[lang].show} {strings.course[lang].all_comments}
           </button>
           
           {/* All Comments */}
-          {toggleComment && <div className={style.courseLearn__announcements_comments}>
+          {data && data.comments.length > 0 && toggleComment && <div className={style.courseLearn__announcements_comments}>
                 {
-                    [...Array(3)].map((_, idx) => (
-                        <SingleComment key={idx}/>
+                    data.comments.map((comment) => (
+                        <SingleComment key={comment._id} comment={comment}/>
                     ))
                 }
           </div>}

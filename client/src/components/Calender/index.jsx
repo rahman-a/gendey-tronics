@@ -1,29 +1,43 @@
 import React, {useState, useEffect} from 'react'
 import style from './style.module.scss'
 import dayjs from 'dayjs'
+import objectSupport from 'dayjs/plugin/objectSupport'
 import CalenderDaysGrid from './CalenderDaysGrid'
+import strings from '../../localization'
+import { useSelector } from 'react-redux'
 
 const months = ['January','February','March','April','May','June','July',
 'August','September','October','November','December'];
 const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
 
-const Calender = ({setContactType}) => {
+
+const Calender = ({setContactType, setCallDate}) => {
     const [month, setMonth] = useState(dayjs().format("M"))
-    const [dayTime, setDayTime ] = useState('')
+    const [dayTime, setDayTime ] = useState('AM')
     const [date, setDate] = useState({})
-    const minute = dayjs().minute()
-    const hour = dayjs().hour()
-    const today = dayjs().date()
+    const [minute, setMinute]= useState(dayjs().minute())
+    const [hour, setHour] = useState(dayjs().hour()) 
+    const day = dayjs().date()
     const year = dayjs().format("YYYY")
     const currentDate = dayjs().format('YYYY-MM-DD')
+    const {lang} = useSelector(state => state.language)
     
     const getDateHandler = e => {
+        if(e.target.name === 'hour') {
+            if(e.target.value > 12 || e.target.value < 1) return
+            setHour(e.target.value)
+        }
+        if(e.target.name === 'minute'){
+            if(e.target.value > 60 || e.target.value < 0) return 
+            setMinute(e.target.value)
+        }
         const value = {[e.target.name]: e.target.value} 
         setDate({...date, ...value})
     }
     const getDayHandler = today => {
-        setDate({...date, today})
+        setDate({...date, day:today})
     }
+    
     const setMonthHandler = action => {
         if(action  === 'prev') {
             if(parseInt(month) > 1){
@@ -37,6 +51,7 @@ const Calender = ({setContactType}) => {
             }
         }
     }
+    
     const setDayTimeHandler = _ => {
         if(dayTime === 'PM') {
             setDayTime('AM')
@@ -47,48 +62,61 @@ const Calender = ({setContactType}) => {
         }
     }
     const submitDateHandler = _ => {
+        dayjs.extend(objectSupport)
         let copyDate = {...date}
         if(!copyDate.minute) copyDate = {...copyDate, minute}
         if(!copyDate.hour) copyDate = {...copyDate, hour}
-        if(!copyDate.today) copyDate = {...copyDate, today}
+        if(!copyDate.day) copyDate = {...copyDate, day}
         if(!copyDate.dayTime) copyDate = {...copyDate, dayTime}
         if(!copyDate.month) copyDate = {...copyDate, month}
         if(!copyDate.year) copyDate = {...copyDate, year}
+        if(parseInt(copyDate.month) > 0) {
+            copyDate.month = parseInt(copyDate.month) - 1
+        } 
+        if(copyDate.dayTime === 'PM') {
+            copyDate.hour  = parseInt(copyDate.hour) + 12
+        }
+        
+        delete copyDate.dayTime       
+        
+        const date_format = dayjs(copyDate).$d.toISOString()
+        setCallDate(date_format)
         setContactType('option')
-        console.log(copyDate);
     }
     useEffect(() => {
-        hour >= 12 
-        ? setDayTime('PM')
-        : setDayTime('AM')
+        if(hour > 12) {
+            console.log(dayjs().hour());
+            setHour(prev => prev - 12)
+            setDayTime('PM')
+        }
     }, [hour])
     return (
         <div className={style.calender}>
             <div className={style.calender__header}>
-                <p>Pick Date & Time</p>
-                <p>Book a Call</p>
+                <p>{strings.product[lang].pick}</p>
+                <p>{strings.product[lang].book}</p>
             </div>
             <div className={style.calender__time}>
-                <p>Time</p>
+                <p>{strings.product[lang].time}</p>
                 <div className={style.calender__time_inputs}>
                     <input 
                     type="number" 
                     name='hour'
-                    defaultValue={hour}
+                    value={hour}
                     onChange={(e) => getDateHandler(e)}/>
                     <span className={style.calender__time_separator}>:</span>
                     <input 
                     type="number" 
                     name='minute' 
-                    defaultValue={minute}
+                    value={minute}
                     onChange={(e) => getDateHandler(e)}/>
                     <span className={style.calender__time_period}
                     onClick={setDayTimeHandler}>{dayTime}</span>
                 </div>
-                <button onClick={submitDateHandler}>submit</button>
+                <button onClick={submitDateHandler}>{strings.product[lang].set_date}</button>
             </div>
             <div className={style.calender__date}>
-                <p>Date</p>
+                <p>{strings.product[lang].date}</p>
                 <div className={style.calender__date_inputs}>
                    <span onClick={() => setMonthHandler('prev')}>&#x0003C;</span>
                    <input 
@@ -111,6 +139,8 @@ const Calender = ({setContactType}) => {
                 getDayHandler={getDayHandler} 
                 month={month}
                 year={year}
+                lang={lang}
+                strings={strings}
                 />
             </div>
         </div>

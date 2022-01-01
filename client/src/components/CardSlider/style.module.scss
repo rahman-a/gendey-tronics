@@ -3,6 +3,7 @@
 
 .slider {
     position: relative;
+    direction: ltr;
     &__control {
         display: flex;
         align-items: center;

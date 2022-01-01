@@ -95,3 +95,15 @@ a {
     height: 100% !important;
 }
 
+@media only print {
+    .header,
+    .footer,
+    .progressBar,
+    .printerIcon {
+        display: none !important;
+    }
+    .orderInvoice,
+    .header--logo{
+        display: block;
+    }
+}

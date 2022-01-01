@@ -18,6 +18,12 @@
     @include media.mq(sm){
         min-width: 26rem;
     }
+    &_ar {
+        &:not(:last-child) {
+            margin-right: unset;
+            margin-left: 2rem;
+        }
+    }
     figure {
         position: relative;
         margin:0;

@@ -24,6 +24,10 @@
             position: absolute;
             top:5rem;
             left: 10rem;
+            direction: ltr;
+            background: rgb(0 0 0 / 50%);
+            padding: 0 0.5rem;
+            border-radius: 0.5rem;
             @include media.mq(sm){
                 top:3rem;
             }

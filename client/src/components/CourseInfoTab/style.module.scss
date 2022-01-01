@@ -49,6 +49,14 @@
             &_value {
                 margin-right: 0.5rem;
             }
+            &_ar {
+                margin-right: unset;
+                margin-left: 1rem;
+                &_value {
+                    margin-right: unset;
+                    margin-left: 0.5rem;
+                }
+            }
         }
         &_student {
             span {
@@ -73,6 +81,10 @@
                 @include media.mq(xs){
                     font-size: 2.2rem;
                 }
+            }
+            &_ar {
+                margin-right: unset;
+                margin-left: 1rem;
             }
         }
         button {

@@ -28,7 +28,7 @@
             }
         }
     }
-    form {
+    &__form {
         @include media.mq(md){
             margin-left: 15rem;
         }
@@ -37,6 +37,20 @@
         }
         @include media.mq(xs){
             margin-left: 0;
+        }
+        &_ar {
+            @include media.mq(md){
+                margin-left: 0;
+                margin-right: 20rem;
+            }
+            @include media.mq(sm){
+                margin-left: 0;
+                margin-right: 10rem;
+            }
+            @include media.mq(xs){
+                margin-left: 0;
+                margin-right: 0;
+            } 
         }
     }
     &__group {
@@ -66,6 +80,17 @@
             }
 
         }
+        &_mute {
+            font-size: 1rem;
+            max-width: 45rem;
+            color: #747474;
+            margin-top: 1rem;
+        }
+        &_invalid {
+            input {
+                border:1px solid #fa0202
+            }
+        }
         &_name {
             display: flex;
             align-items: center;
@@ -75,6 +100,14 @@
                 @include media.mq(xs){
                     width:17rem !important;
                     margin-right: 2rem;
+                }
+            }
+            &_ar {
+                input{
+                    margin:0;
+                }
+                & input:first-child {
+                    margin-left: 4rem;
                 }
             }
         }
@@ -119,6 +152,10 @@
         margin:2rem 0;
         padding:0.5rem 2rem;
         cursor: pointer;
+        &:disabled {
+            background-color: #d8d8d8;
+            pointer-events: none;
+        }
         &:hover {
             background-color: gv.$main-color;
         }
@@ -141,10 +178,19 @@
     }
     &__int {
         padding: 2rem 0;
+        display: flex;
+        align-items: center;
         img {
             width:10rem;
             margin-right:2rem;
             cursor:pointer;
+        }
+        &_ar {
+            justify-content: flex-end;
+            direction: ltr;
+        }
+        @include media.mq(sm) {
+            font-size: 1.4rem;
         }
     }
 }

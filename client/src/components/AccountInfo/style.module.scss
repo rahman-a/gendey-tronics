@@ -72,6 +72,9 @@
                 color:gv.$main-color;
             }
         }
+        &_ar {
+            margin:6rem 6rem 0 0
+        }
     }
 
     &__pass {
@@ -130,6 +133,19 @@
                     height: 12rem;
                 }
             }
+        }
+        &_add {
+            width:38rem;
+            position: relative;
+        }
+        &_overlay {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255 255 255 / 50%);
         }
     }
 }

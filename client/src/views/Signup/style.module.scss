@@ -8,7 +8,7 @@
         justify-content: space-between;
         align-items: center;
         figure {
-            width:50%;
+            width:45%;
             @include media.mq(md){
                 width:20rem;
                 position: absolute;

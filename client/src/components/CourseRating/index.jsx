@@ -2,6 +2,8 @@ import React from 'react'
 import style from './style.module.scss'
 import Rating from '../rating'
 import {Star} from '../icons'
+import {v4 as uuidv4} from 'uuid'
+import strings from '../../localization'
 
 const RatingStar = ({repeat}) => {
     return (
@@ -13,20 +15,23 @@ const RatingStar = ({repeat}) => {
     )
 }
 
-const CourseRating = () => {
+const CourseRating = ({data, lang}) => {
     const rating = [83, 10, 5, 2, 0]
     return (
         <div className={style.rating}>
             <div className={style.rating__overall}>
-                <h2>4.5</h2>
-                <Rating rating={4.5}/>
-                <p>Course Rating</p>
+                <h2>{data.rating}</h2>
+                <Rating rating={data.rating}/>
+                <p>{strings.course[lang].course_rating}</p>
             </div>
             <div className={style.rating__progress}>
                 {
-                    rating.map((r, idx) => (
-                        <div className={style.rating__progress_wrapper}>
-                            <div className={style.rating__progress_bar} key={idx}>
+                    data.ratingValues.map((r, idx) => (
+                        <div className={style.rating__progress_wrapper} key={uuidv4()}>
+                            <div className={
+                                `${style.rating__progress_bar}
+                                ${lang === 'ar' ?style.rating__progress_bar_ar :''}`
+                            } key={idx}>
                                 <div style={{width:`${r}%`}}></div>
                             </div>
                             <div className={style.rating__progress_stars}>

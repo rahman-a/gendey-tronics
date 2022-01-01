@@ -35,6 +35,15 @@
         &:hover &_envelop {
             animation: envelopMove 1s ease-in-out infinite;
         }
+        &_ar {
+            margin-right: 1rem;
+            display: inline-flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            svg {
+                margin-right: 0.5rem;
+            }
+        }
     }
     &__options {
         display: flex;
@@ -64,6 +73,7 @@
     }
     &__lang {
         width:16rem;
+        position: relative;
     }
     &__navbar {
         width:100vw;
@@ -77,7 +87,7 @@
             top:10.5rem;
         }
         @include media.mq(sm) {
-            height: 6.4rem;
+            height: 7.2rem;
         }
     }
     &__navBlock {
@@ -183,6 +193,14 @@
             }
             @include media.mq(md){
                 display: inline;
+            }
+        }
+        &_ar {
+            margin: 1rem 10rem 1rem 4rem;
+            left:unset;
+            right:0;
+            @include media.mq(md) {
+                margin:0;
             }
         }
     }
@@ -341,6 +359,14 @@
             padding: 1.3rem;
             clip-path: circle();
         }
+    }
+    &__cart {
+        position: absolute;
+        top: -1.2rem;
+        right: 1px;
+        color: #f8c600;
+        transition: all 0.3s ease;
+        font-size: 1.4rem;
     }
 }
 

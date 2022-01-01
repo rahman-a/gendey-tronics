@@ -1,42 +1,44 @@
-import React, {useState} from 'react'
+import React from 'react'
 import style from './style.module.scss'
 import {PhoneRing, Zoom, Whats, Check} from '../../components/icons'
+import strings from '../../localization'
 
-const Contact = ({setContactType}) => {
-    const [contactOption, setContactOption] = useState('')
+const Contact = ({setContactType, setCallMethod, callMethod, lang}) => {
     return (
         <div className={style.product__contact}>
-            <h2>choose your contact method ?</h2>
+            <h2>{strings.product[lang].contact_method}</h2>
             <div className={style.product__contact_options}>
                 <div className={style.product__contact_item}
-                onClick={() => setContactOption('phone')}>
+                onClick={() => setCallMethod('phone')}>
                     <div className={style.product__contact_item_check}
-                    style={{display: contactOption === 'phone' ?'flex' : 'none'}}>
+                    style={{display: callMethod === 'phone' ?'flex' : 'none'}}>
                         <Check/>
                     </div>
                     <PhoneRing/>
-                    <p>phone call</p>
+                    <p>{strings.product[lang].phone}</p>
                 </div>
                 <div className={style.product__contact_item}
-                onClick={() => setContactOption('zoom')}>
+                onClick={() => setCallMethod('zoom')}>
                     <div className={style.product__contact_item_check}
-                    style={{display: contactOption === 'zoom' ?'flex' : 'none'}}>
+                    style={{display: callMethod === 'zoom' ?'flex' : 'none'}}>
                         <Check/>
                     </div>
                     <Zoom/>
-                    <p>zoom meeting</p>
+                    <p>{strings.product[lang].zoom}</p>
                 </div>
                 <div className={style.product__contact_item} 
-                onClick={() => setContactOption('whats')}>
+                onClick={() => setCallMethod('whats')}>
                     <div className={style.product__contact_item_check}
-                    style={{display: contactOption === 'whats' ?'flex' : 'none'}}>
+                    style={{display: callMethod === 'whats' ?'flex' : 'none'}}>
                         <Check/>
                     </div>
                     <Whats/>
-                    <p>WhatsApp Chat</p>
+                    <p>{strings.product[lang].whats}</p>
                 </div>
             </div>
-            <button onClick={() => setContactType('phone')}>submit</button>
+            <button onClick={() => setContactType('phone')}>{
+                lang === 'en' ? 'submit': 'تم'
+            }</button>
         </div>
     )
 }

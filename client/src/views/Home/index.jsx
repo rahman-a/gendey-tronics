@@ -7,12 +7,19 @@ import Feature from '../../components/Features'
 import CourseSection from '../../components/CourseSection'
 import Instructor from '../../components/Instructor'
 import ProductSection from '../../components/ProductSection'
-import productData from './data';
+import { useSelector, useDispatch } from 'react-redux';
+import actions from '../../actions';
+import mappingProducts from './data';
 
-const Home = () => {    
+const Home = () => {
+    const dispatch = useDispatch()
+    const {loading, error, products} = useSelector(state => state.listProducts)
+    
+    
     useEffect(() => {
+        dispatch(actions.products.listProducts())
         AOS.init({duration:2000})
-    })
+    },[])
     return (
         <>
          <Template>
@@ -21,8 +28,11 @@ const Home = () => {
             <CourseSection/>
             <Instructor/>
             {
-                productData.map(data => (
-                    <ProductSection data={data} key={data._id}/>
+               products && mappingProducts(products).map(data => (
+                    <ProductSection data={data} 
+                    key={data._id} 
+                    loading={loading}
+                    error={error}/>
                 ))
             }
         </Template> 

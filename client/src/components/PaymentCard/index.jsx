@@ -1,60 +1,81 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './style.module.scss'
-import { Mastercard, Visa, Paypal, PaypalText, ChevronDown } from '../icons'
-import { Link } from 'react-router-dom'
-import {months, years} from './date'
-import {useHistory} from 'react-router-dom'
+import { Paypal, PaypalText} from '../icons'
+import {Overlay} from '../Overlay'
+import Loader from '../Loader'
+import PaypalButtons from './paypal'
+import {useHistory, useParams, useLocation} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import constants from '../../constants'
+import actions from '../../actions'
+import strings from '../../localization'
 
-const PaymentCard = ({type}) => {
-  const [paymentOption, setPaymentOption] = useState('mc')
+const PaymentCard = ({type, course}) => {
   const [formError, setFormError] = useState(null)
-  const [paymentInfo, setPaymentInfo] = useState({})
-  const [isAgreeTerm, setIsAgreeTerm] = useState(true)
+  const [loadingState, setLoadingState] = useState(false)
+  const path = useLocation().pathname
+  const {items} =  useSelector(state => state.cartItems)
+  const {lang} =  useSelector(state => state.language)
+  const {error, order} = useSelector(state => state.newOrder)
+  const {error:error_cart, message:clearCart} = useSelector(state => state.clearCart) 
+  const {error:enroll_error, enrollId} = useSelector(state => state.newEnrollment)
+  const {message} = useSelector(state => state.removeItem)
+
+
+  const {id} = useParams()
+  const dispatch = useDispatch()
   const history = useHistory()
+  
+  // Capture Errors and Display it 
   const setError = error => {
     setFormError(error)
     setTimeout(() => {
       setFormError(null)
     }, 5000)
   }
-  const isFormValidated = (_) => {
-    const paymentData = Object.keys(paymentInfo)
-    const requiredData = {
-      cardName:'Card Holder Name', 
-      cardNumber:'Card Number', 
-      expiryMonth:'Expiration Month', 
-      expiryYear:'Expiration Year', 
-      cvv:'CVV number'}
-    if (paymentData.length === 0) {
-      setError('Please Provide the Required Data')
-      return false
-    }
-    for(let key in requiredData) {
-      if(!(paymentData.includes(key))) {
-        setError(`please provide the ${requiredData[key]}`)
-        return false
-      }
-    }
-    if(!isAgreeTerm) {
-      setError('Please Agree the Sales Terms')
-      return false
-    }
-    return true
+  
+  // complete Course Payment
+  const completeCoursePayment = _ => {
+    dispatch(actions.courses.newEnrollment(course._id))
   }
-  const getPaymentInfoHandler = (e) => {
-    const value = { [e.target.name]: e.target.value }
-    setPaymentInfo({ ...paymentInfo, ...value })
+
+  // complete Product Payment
+  const completeProductPayment = (orderDetails) => {
+    dispatch(actions.products.newOrder(orderDetails))
   }
-  const submitFormHandler = (e) => {
-    e.preventDefault()
-    setFormError(null)
-    if (isFormValidated()) {
-      type === 'course' 
-      && history.push('/course/learn#overview')
+
+  
+
+  useEffect(() => {
+    if(order && items) {
+      dispatch(actions.products.clearCart())
     }
-  }
+    error && setError(error)
+    error_cart && setError(error_cart)
+    enroll_error && setError(enroll_error)
+    if(clearCart) {
+      setLoadingState(true)
+      setTimeout(() => {
+        setLoadingState(false)
+        history.push(`${path}?process=delivery`) 
+        dispatch({type:constants.product.CLEAR_CART_RESET})
+      }, 2000);
+    } 
+    if(enrollId) {
+      setLoadingState(true)
+      setTimeout(() => {
+        setLoadingState(false)
+        history.push(`/course/${id}/learn?enroll=${enrollId}#overview`)
+        dispatch({type:constants.courses.NEW_ENROLLMENT_RESET})
+      }, 2000);  
+    } 
+  }, [order,path, error, clearCart, error_cart,enroll_error, enrollId, message])
+
   return (
-    <div className={style.coursePayment__payment}>
+    <div className={style.coursePayment__payment}
+    style={{position:loadingState ? 'static' :'relative' }}>
+      <Overlay toggle={loadingState}/>
+      {loadingState && <Loader size='25' center custom={{color:'#F8C600',zIndex:'9999999'}}/>}
       <div
         className={style.coursePayment__error}
         style={{ top: formError ? '5%' : '-10%', opacity:formError ? '1' : '0' }}
@@ -71,128 +92,25 @@ const PaymentCard = ({type}) => {
       </div>
       <div className={style.coursePayment__payment_wrapper}>
         <div className={style.coursePayment__options}>
-          <p>Payment Information</p>
+          <p>{strings.general[lang].payment_info}</p>
           <div className={style.coursePayment__options_icons}>
             <span
-              className={style.coursePayment__options_mc}
-              style={{ opacity: paymentOption === 'mc' ? '1' : '0.3' }}
-              onClick={() => setPaymentOption('mc')}
-            >
-              <Mastercard />
-              <span style={{ opacity: paymentOption === 'mc' ? '1' : '0.3' }}>
-                mastercard
-              </span>
-            </span>
-            <span
-              onClick={() => setPaymentOption('vs')}
-              style={{ opacity: paymentOption === 'vs' ? '1' : '0.3' }}
-            >
-              <Visa />
-            </span>
-            <span
-              onClick={() => setPaymentOption('pp')}
-              style={{ opacity: paymentOption === 'pp' ? '1' : '0.3' }}
+              style={{ opacity:'1'}}
             >
               <Paypal style={{ width: '3rem' }} />
               <PaypalText />
             </span>
           </div>
         </div>
-        <form onSubmit={submitFormHandler}>
-          <div className={style.coursePayment__data}>
-            <label htmlFor='cardName'>Name</label>
-            <input
-              type='text'
-              id='cardName'
-              name='cardName'
-              onChange={getPaymentInfoHandler}
-              placeholder='Card holder name'
-            />
-          </div>
-          <div className={style.coursePayment__data}>
-            <label htmlFor='cardNumber'>Card Number</label>
-            <input
-              type='text'
-              id='cardNumber'
-              name='cardNumber'
-              onChange={getPaymentInfoHandler}
-              placeholder='Card number'
-            />
-          </div>
-          <div className={style.coursePayment__info}>
-            <div className={style.coursePayment__expiry}>
-              <p>Expiry</p>
-              <div className={style.coursePayment__expiry_wrapper}>
-                <div
-                  className={`${style.coursePayment__data} ${style.coursePayment__info_data}`}
-                >
-                  <div className={style.coursePayment__select}>
-                    <span>
-                      <ChevronDown />
-                    </span>
-                    <select
-                      name='expiryMonth'
-                      id='cardNumber'
-                      onChange={getPaymentInfoHandler}
-                    >
-                      {months.map((month) => (
-                        <option value={month.name}>{month.abbr}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <div
-                  className={`${style.coursePayment__data} ${style.coursePayment__info_data}`}
-                >
-                  <div className={style.coursePayment__select}>
-                    <span>
-                      <ChevronDown />
-                    </span>
-                    <select
-                      name='expiryYear'
-                      id='cardNumber'
-                      onChange={getPaymentInfoHandler}
-                    >
-                      {years.map((year) => (
-                        <option value={year}>{year}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className={style.coursePayment__data}
-              style={{ width: '5rem' }}
-            >
-              <p>CVV</p>
-              <input
-                type='text'
-                placeholder='CVV'
-                defaultValue='955'
-                name='cvv'
-                onChange={getPaymentInfoHandler}
-              />
-            </div>
-          </div>
-          <div className={style.coursePayment__terms}>
-            <input
-              type='checkbox'
-              id='agreeTerms'
-              checked={isAgreeTerm}
-              name='isAgreed'
-              onChange={() => setIsAgreeTerm((prev) => !prev)}
-            />
-            <label htmlFor='agreeTerms'>
-              I Accept all <Link to='/sales-terms'>sales terms</Link>
-            </label>
-          </div>
-          <button type='submit' className={style.coursePayment__complete}>
-            {
-              type === 'course' ? 'complete payment' : 'BUY NOW'
-            }
-          </button>
-        </form>
+        <PaypalButtons
+        type={type}
+        setError={setError}
+        cartItems={items}
+        completeProductPayment={completeProductPayment}
+        completeCoursePayment={completeCoursePayment}
+        course={course}
+        lang={lang}
+        strings={strings}/>
       </div>
     </div>
   )

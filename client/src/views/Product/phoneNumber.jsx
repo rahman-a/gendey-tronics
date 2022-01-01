@@ -1,13 +1,20 @@
 import React from 'react'
 import style from './style.module.scss'
+import strings from '../../localization'
 
-const PhoneNumber = ({setContactType}) => {
+const PhoneNumber = ({setContactType, setCallPhone, callPhone, BookCallHandler, lang}) => {
     return (
         <div className={style.product__phoneNumber}>
-            <h2>enter your phone number</h2>
-            <input type="text" placeholder='00000000000000'/>
+            <h2>{strings.product[lang].phone_number}</h2>
+            <input 
+            type="text"
+             placeholder='00000000000000'
+             value={callPhone}
+             onChange={(e) => setCallPhone(e.target.value)}/>
             <button
-            onClick={() => setContactType('done')}>submit</button>
+            onClick={BookCallHandler}>{
+                lang === 'en' ? 'submit': 'تم'
+            }</button>
         </div>
     )
 }

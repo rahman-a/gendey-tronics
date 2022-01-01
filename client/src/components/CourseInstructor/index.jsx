@@ -1,18 +1,23 @@
 import React, {useState} from 'react'
 import style from './style.module.scss'
 import {CertificateStar, Star, DemandVideo, Person} from '../icons'
+import strings from '../../localization'
 
-const CourseInstructor = () => {
+const CourseInstructor = ({instructor, lang}) => {
     const [isInfo, setIsInfo] = useState(false)
     return (
         <div className={style.instructor}>
             <div className={style.instructor__name}>
-                <h3>Mohamed Elgendy</h3>
-                <p>senior mechanical automotive engineer</p>
+                <h3>{instructor.name}</h3>
+                <p>{instructor.role}</p>
             </div>
-            <div className={style.instructor__overview}>
+            <div className={`${style.instructor__overview} ${lang === 'ar' ?style.instructor__overview_ar:''}`}>
                 <figure>
-                    <img src="/images/instructor_info.png" alt="instructor" />
+                    <img src={
+                        instructor.avatar 
+                        ? `/api/images/${instructor.avatar}`
+                        :"/images/instructor_info.png"
+                    } alt="instructor" />
                 </figure>
                 <div className={style.instructor__overview_info}>
                     <ul>
@@ -20,50 +25,46 @@ const CourseInstructor = () => {
                             <span>
                                 <Star/> 
                             </span>
-                            <p>4.6 Instructor Rating</p>
+                            <p>{instructor.averageRating} Instructor Rating</p>
                         </li>
                         <li>
                             <span>
                                 <CertificateStar/> 
                             </span>
-                            <p>5,565 Reviews</p>
+                            <p>{
+                            instructor.reviewsNumber > 1
+                            ?`${instructor.reviewsNumber} ${lang === 'en' ? 'Reviews': 'تقييمات'}`
+                            :`${instructor.reviewsNumber} ${lang === 'en' ? 'Review': 'تقييم'}`
+                            }</p>
                         </li>
                         <li>
                             <span>
                                 <Person/> 
                             </span>
-                            <p>41,971 Students</p>
+                            <p>{
+                            instructor.studentsNumber > 1
+                            ? `${instructor.studentsNumber} ${lang === 'en' ? 'Students': 'طلبة'}`
+                            : `${instructor.studentsNumber} ${lang === 'en' ? 'Student': 'طالب'}`
+                            }</p>
                         </li>
                         <li>
                             <span>
                                 <DemandVideo/> 
                             </span>
-                            <p>5 Courses</p>
+                            <p>{
+                            instructor.coursesNumber > 1
+                            ? `${instructor.coursesNumber} ${lang === 'en' ? 'Courses': 'دورات تدريبية'}`
+                            : `${instructor.coursesNumber} ${lang === 'en' ? 'Course': 'دورة تدريبية'}`}</p>
                         </li>
                     </ul>
                 </div>
             </div>
             <div className={style.instructor__info}>
                 <p style={{height: isInfo ? 'fit-content': '12rem'}}>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                    sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                    magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                    et justo duo dolores et ea rebum. Stet clita kasd gubergren, 
-                    no sea takimata sanctus est r sit amet. Lorem ipsum dolor sit 
-                    amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita 
-                    kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                    sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et 
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea 
-                    takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor 
-                    sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
-                    invidunt ut labore et dolore magna aliquyam erat 
+                    {instructor.about} 
                 </p>
                 <button onClick={() => setIsInfo(prev =>!prev)}>
-                    show {isInfo ?'less' : 'more'}
+                    {isInfo ? strings.course[lang].read_less : strings.course[lang].read_more}
                 </button>
             </div>
         </div>

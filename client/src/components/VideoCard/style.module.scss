@@ -53,6 +53,12 @@
             width:2rem;
             height:2rem;
         }
+        &_ar {
+            h4 {
+                margin-left: unset;
+                margin-right:1rem
+            }
+        }
     }
     &__views {
         display: flex;

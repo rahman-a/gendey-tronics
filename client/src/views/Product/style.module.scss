@@ -120,9 +120,16 @@
             }
 
         }
+        &_ar {
+            p {
+                margin-right: unset;
+                margin-left: 3rem;
+            }
+        }
     }
 
-    &__price {
+    &__price,
+    &__stock {
         display: flex;
         align-items: center;
         margin-top: 2rem;
@@ -133,7 +140,22 @@
             margin-bottom:0;
         }
     }
+    &__stock {
+        margin-bottom: 1rem;
+        p {
+            margin-right: 5.5rem;
+        }
+    }
 
+    &__stock,
+    &__price {
+        &_ar {
+            p {
+                margin-right: unset;
+                margin-left: 2rem;
+            }
+        }
+    }
     &__cta {
         margin: 3rem  0;
         @include media.mq(sm){
@@ -157,10 +179,11 @@
             text-align: center;
             border-radius: 3rem;
             padding: 0.7rem 1.5rem;
-            width:15rem;
+            width:19rem;
             margin-right: 10rem;
             margin-bottom: 1rem;
             color:gv.$white-color;
+            font-size: 1.4rem;
             cursor: pointer;
             svg {
                 fill:gv.$white-color;
@@ -187,6 +210,17 @@
             background-color: gv.$main-color !important;
             &:hover {
                 background-color: lighten(gv.$main-color,15%) !important;
+            }
+        }
+
+        &_ar {
+            button {
+                margin-right: unset;
+                margin-left: 10rem;
+                svg {
+                    margin-right: unset;
+                    margin-left: 1rem;
+                }
             }
         }
     }
@@ -279,6 +313,10 @@
                 &:hover span{
                     transform: translateX(3px);
                 }
+            }
+            &_ar {
+                right:unset;
+                left:1rem
             }
         }
     }

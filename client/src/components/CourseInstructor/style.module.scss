@@ -36,6 +36,14 @@
                 font-weight: 300;
             }
         }
+        &_ar {
+            li {
+                p {
+                    margin-left: unset;
+                    margin-right: 0.8rem;
+                }
+            }
+        }
     }
     &__info {
         p {

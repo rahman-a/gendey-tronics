@@ -2,6 +2,7 @@
 @use '../../sass/mq' as media;
 
 .privacy {
+    direction: ltr;
     figure {
         position: relative;
         height: 70vh;

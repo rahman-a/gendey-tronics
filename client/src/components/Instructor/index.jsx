@@ -1,10 +1,13 @@
 import React from 'react'
 import style from './style.module.scss'
+import { useSelector } from 'react-redux'
+import strings from '../../localization'
 
 const Instructor = () => {
+    const {lang} = useSelector(state => state.language)
     return (
         <div className={style.instructor}>
-            <h2 data-aos='fade-down'>Meet our instructor</h2>
+            <h2 data-aos='fade-down'>{strings.main[lang].instructor}</h2>
             <div className="container">
                 <div className={style.instructor__content}>
                     <div className={style.instructor__about} data-aos='fade-up'>

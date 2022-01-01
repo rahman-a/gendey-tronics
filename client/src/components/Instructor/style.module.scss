@@ -5,6 +5,7 @@
     position: relative;
     height: 60rem;
     margin-bottom: 10rem;
+    direction: ltr;
     @include media.mq(md){
         height: unset;
         margin-bottom: 0;

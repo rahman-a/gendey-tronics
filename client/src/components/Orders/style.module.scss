@@ -8,4 +8,25 @@
     &__content {
         flex-grow: 1;
     }
+    &__list {
+        position: relative;
+        padding:5rem;
+        @include media.mq(md){
+            padding:3rem
+        }
+        @include media.mq(sm){
+            padding:0.5rem
+        }
+    }
+    &__message {
+        height: 100%;
+        display: grid;
+        place-items: center;
+        h2 {
+            color: #cfae0b;
+            font-weight: 300;
+            font-size: 3rem;
+            letter-spacing: 2px
+        }
+    }
 }

@@ -6,48 +6,56 @@ import Orders from '../../components/Orders'
 import PurchasedCourses from '../../components/PurchasedCourses'
 import FavouriteList from '../../components/FavouriteList'
 import { useLocation, useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import strings from '../../localization'
 
 const Account = () => {
     const accountAction = useLocation().hash.substr(1)
     const path = useLocation().pathname
-    const history = useHistory() 
+    const history = useHistory()
+    const {lang} = useSelector(state => state.language) 
+
     return (
         <Template>
             <div className={style.account}>
                 <div className={style.account__header}>
                     <div className={style.account__action}>
                         <button 
-                        className={style.account__btn}
+                        className={`${style.account__btn} 
+                        ${lang === 'ar' ? style.account__btn_ar :''}`}
                         onClick={() => history.push(`${path}#info`)}>
-                            My Info
+                            {strings.client[lang].info}
                         </button>
                         <button 
-                        className={style.account__btn}
+                        className={`${style.account__btn} 
+                        ${lang === 'ar' ? style.account__btn_ar :''}`}
                         onClick={() => history.push(`${path}#order`)}>
-                            Orders
+                            {strings.client[lang].orders}
                         </button>
                         <button 
-                        className={style.account__btn}
+                        className={`${style.account__btn} 
+                        ${lang === 'ar' ? style.account__btn_ar :''}`}
                         onClick={() =>history.push(`${path}#course`)}>
-                            Courses
+                            {strings.client[lang].courses}
                         </button>
                         <button 
-                        className={style.account__btn}
+                        className={`${style.account__btn} 
+                        ${lang === 'ar' ? style.account__btn_ar :''}`}
                         onClick={() => history.push(`${path}#favourites`)}>
-                            Favourites
+                            {strings.client[lang].favourite}
                         </button>
                     </div>
                 </div>
                 <div className={style.account__content}>
                     {
                         accountAction === 'info'
-                        ? <AccountInfo/>
+                        ? <AccountInfo lang={lang} strings={strings}/>
                         : accountAction === 'order'
-                        ? <Orders/>
+                        ? <Orders lang={lang} strings={strings}/>
                         : accountAction === 'course'
-                        ? <PurchasedCourses/>
+                        ? <PurchasedCourses lang={lang} strings={strings}/>
                         : accountAction === 'favourites'
-                        && <FavouriteList/>
+                        && <FavouriteList lang={lang} strings={strings}/>
                     }
                    
                 </div>

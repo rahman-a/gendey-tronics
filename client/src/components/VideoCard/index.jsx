@@ -4,8 +4,9 @@ import {PlayCircle, Logo} from '../icons'
 import {Modal} from '../Modal'
 import {Overlay} from '../Overlay'
 
-const VideoCard = () => {
+const VideoCard = ({lang, strings}) => {
     const [playVideo, setPlayVideo] = useState(false)
+    
     return (
         <>
         <Overlay toggle={playVideo}/>
@@ -31,13 +32,13 @@ const VideoCard = () => {
             <div className={style.videoCard__content}>
                 <h3>car repairing system mini courses</h3>
                 <div className={style.videoCard__options}>
-                    <div className={style.videoCard__maker}>
+                    <div className={`${style.videoCard__maker} ${lang === 'ar' ? style.videoCard__maker_ar:''}`}>
                         <Logo/>
                         <h4>gendytronics</h4>
                     </div>
                     <div className={style.videoCard__views}>
                         <span className={style.videoCard__views_tube}></span>
-                        <span>3,222 views</span>
+                        <span>3,222 {strings.gallery[lang].views}</span>
                     </div>
                 </div>
             </div>

@@ -45,7 +45,6 @@
             justify-content: center;
             position: relative;
             z-index: 99;
-            cursor: pointer;
             span {
                 width:3rem;
                 height: 3rem;
@@ -76,6 +75,13 @@
             height: 2px;
             top:25%;
             background-color: #004990;
+        }
+
+        &_ar {
+            &::after {
+                width:97%;
+                right:2rem
+            }
         }
     }
 }

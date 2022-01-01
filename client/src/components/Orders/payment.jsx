@@ -1,9 +1,12 @@
 import React from 'react'
+import style from './style.module.scss'
 
-const PaymentProfile = () => {
+const PaymentProfile = ({lang}) => {
     return (
-        <div>
-            <h1>This is Payment Profile</h1>
+        <div className={style.orders__message}>
+            <h2>
+                {lang === 'en' ? 'No Payment Profile has been added' : 'لا يوجد سجل لبيانات الدفع'}
+            </h2>
         </div>
     )
 }

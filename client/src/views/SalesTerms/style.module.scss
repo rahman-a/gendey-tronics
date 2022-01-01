@@ -2,6 +2,7 @@
 @use '../../sass/mq' as media;
 
 .sales {
+    direction: ltr;
     figure {
         position: relative;
         height: 70vh;
