@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import style from './style.module.scss'
 import Template from '../../components/Template'
 import Loader from '../../components/Loader'
