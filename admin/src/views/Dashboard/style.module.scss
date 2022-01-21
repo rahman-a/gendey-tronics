@@ -1,0 +1,8 @@
+@use '../../sass/variables' as var;
+@use '../../sass/media' as media;
+
+.dashboard {
+    background-color: #F5F5F5;
+    min-height: 100vh;
+    overflow: hidden;
+}

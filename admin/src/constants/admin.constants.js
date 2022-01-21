@@ -1,0 +1,9 @@
+
+const constants = {
+     ADMIN_LOGIN_REQUEST: 'ADMIN_LOGIN_REQUEST',
+     ADMIN_LOGIN_SUCCESS: 'ADMIN_LOGIN_SUCCESS',
+     ADMIN_LOGIN_FAIL: 'ADMIN_LOGIN_FAIL',
+     ADMIN_LOGIN_RESET: 'ADMIN_LOGIN_RESET',
+}
+
+export default constants
