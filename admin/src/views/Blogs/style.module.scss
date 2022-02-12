@@ -1,0 +1,13 @@
+@use '../../sass/variables' as var;
+@use '../../sass/media' as media;
+
+
+.blogs {
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+    text-align: -webkit-center;
+    h1 {
+        padding:5rem 0;
+    }
+}

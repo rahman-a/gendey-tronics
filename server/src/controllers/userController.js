@@ -49,10 +49,6 @@ export const userAuthentication = async (req, res, next) => {
             throw new Error(strings.user[lang].require_pass)
         }
         const user = await User.AuthUser(email, password, res, lang)
-        if(!(user.isEmailVerified)) {
-            res.status(400)
-            throw new Error(strings.user[lang].email_verify)
-        }
         const token = user.generateToken()
         res.cookie('token', token, {httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7})
         res.json({
@@ -63,6 +59,51 @@ export const userAuthentication = async (req, res, next) => {
         })
     } catch (error) {
         next(error)
+    }
+}
+
+export const adminLogin = async (req, res, next) => {
+    const {email, password} = req.body 
+    try {
+        if(!email) {
+            res.status(400)
+            throw new Error('Please, Provide Your E-mail Address')
+        }
+        if(!password) {
+            res.status(400)
+            throw new Error('Please, Provide Your Password')
+        }
+        const user = await User.AuthUser(email, password, res, 'en')
+        if(!(user.isAdmin)) {
+            res.status(401)
+            throw new Error('invalid login or password')
+        }
+        const token = user.generateToken('1d')
+        res.cookie('tokenAd', token, {
+            httpOnly: true, 
+            maxAge: 1000 * 60 * 60 * 24 * 1,
+            secure:process.env.NODE_ENV !== 'development'
+        })
+        res.json({
+            success:true, 
+            code:200,
+            id: user._id,
+            expiryAt: expireAt(1)
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const adminLogout = async (req, res, next) => {
+    try {
+        res.clearCookie('tokenAd')
+        res.json({
+            success:true,
+            code:200
+        })
+    } catch (error) {
+     next(error)   
     }
 }
 
@@ -189,33 +230,41 @@ export const getUserDataById = async (req, res, next) => {
 }
 
 export const listAllUsers =  async (req, res, next) => {
-    const {name,page, skip} = req.query
+    const {name,page,skip} = req.query
     const {lang} = req.headers
 
-    let searchFilter = {}
+    let searchFilter = {isAdmin:{$ne:true}}
+    
     try {
         if(name) {
             searchFilter = {
+                ...searchFilter,
                 firstName: {
                     $regex:name,
-                    $option:'i'
+                    $options:'i'
                 }
             }
         }
-        const count = await User.find({...searchFilter})
+        console.log({searchFilter});
+        const count = await User.count({...searchFilter})
+        console.log({count});
         const users = await User.find({...searchFilter})
         .limit(parseInt(page) || 10).skip(parseInt(skip) || 0)
+        
         if(!users || users.length < 1) {
             res.status(404)
             throw new Error(strings.user[lang].no_user)
         }
+        
         res.json({
             success:true,
             code:200,
             users,
             count
         })
+        
     } catch (error) {
+        console.log(error);
         next(error)
     }
 }
@@ -274,7 +323,6 @@ export const facebookSignIn = async(req, res, next) => {
 
 export const deleteUserAccount = async (req, res, next) => {
     const {lang} = req.headers
-
     try {
         await req.user.remove()
         res.json({
@@ -282,6 +330,27 @@ export const deleteUserAccount = async (req, res, next) => {
             code:200,
             message:strings.user[lang].account_delete,
             user:req.user._id
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const deleteUserById = async (req, res, next) => {
+    const {id} = req.params 
+
+    try {
+        const user = await User.findById(id) 
+        
+        if(!user) {
+            res.status(404)
+            throw new Error('No User Found')
+        }
+        await user.remove() 
+        res.json({
+            success:true,
+            code:200,
+            message:'user has been removed'
         })
     } catch (error) {
         next(error)

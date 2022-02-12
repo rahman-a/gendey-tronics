@@ -1,5 +1,6 @@
 import Order from '../models/orderModal.js'
 import strings from '../localization.js'
+import {ObjectId} from 'mongoose/lib/types/index.js'
 
 export const createOrder = async (req, res, next) => {
     const order = new Order({
@@ -80,19 +81,172 @@ export const getAllUserOrders = async(req, res, next) => {
 
 export const getAllOrders = async (req, res, next) => {
     const {lang} = req.headers
-
+    const {firstName, _id, createdAt, totalPrice, skip} = req.query
     try {
-        const orders = await Order.find({}).populate('user','firstName lastName email')
+        let searchFilter = {}
+        if(firstName) {
+            searchFilter = {
+                ...searchFilter,
+                "user.firstName": {
+                    $regex:firstName,
+                    $options:'i'
+                }
+            }
+        }
+        if(_id) {
+            searchFilter = {
+                ...searchFilter,
+                _id:ObjectId(_id)
+            }
+        }
+        if(createdAt) {
+           const date = new Date(createdAt) 
+           date.setDate(date.getDate() + 1)
+            searchFilter = {
+                ...searchFilter,
+                createdAt:{
+                    $gte:new Date(createdAt),
+                    $lt:new Date(date)
+                }
+            }
+        }
+        if(totalPrice) {
+            const priceRange = totalPrice.split('-')
+            if(priceRange.length > 1) {
+                const firstRange = parseInt(priceRange[0])
+                const secondRange = parseInt(priceRange[1])
+                
+                searchFilter = {
+                    ...searchFilter,
+                    totalPrice: {
+                        $gte:firstRange,
+                        $lte:secondRange
+                    }
+                }
+            } else {
+                searchFilter = {
+                    ...searchFilter,
+                    totalPrice:parseInt(priceRange[0])
+                } 
+            }
+        }
+        
+        console.log({...searchFilter});
+        
+     
+        const aggregateOption = [
+            {
+                $lookup: {
+                    from:'users',
+                    let:{userId:"$user"},
+                    pipeline:[
+                        {
+                            $match: {
+                                $expr: {
+                                    $eq:["$_id", "$$userId"]
+                                }
+                            }
+                        },
+                        {
+                            $project: {
+                                firstName:1,
+                                lastName:1,
+                                phoneNumber:1,
+                                email:1
+                            }
+                        }
+                    ],
+                    as:'user'
+                }
+            },
+            {
+                $unwind:"$user"
+            },
+            {
+                $unwind:'$orderItems'
+            },
+            {
+                $lookup: {
+                    from:'products',
+                    let:{productId:"$orderItems.product"},
+                    pipeline:[
+                        {
+                            $match: {
+                                $expr:{
+                                    $eq:["$_id", "$$productId"]
+                                }
+                            }
+                        },
+                        {
+                            $project:{
+                                name:1,
+                                price:1,
+                                type:1,
+                                image:1
+                            }
+                        }
+                    ],
+                    as:"product"
+                }
+            },
+            {
+                $set:{"orderItems.product":"$product"}
+            },
+            {
+                $unwind:"$orderItems.product"
+            },
+            {
+                $group:{
+                    _id:"$_id",
+                    user:{$first:"$user"},
+                    orderItems:{$push:"$orderItems"},
+                    shippingAddress:{$first:"$shippingAddress"},
+                    paymentMethod:{$first:"$paymentMethod"},
+                    paymentResult:{$first:"$paymentResult"},
+                    totalPrice:{$first:"$totalPrice"},
+                    isPaid:{$first:"$isPaid"},
+                    isDelivered:{$first:"$isDelivered"},
+                    createdAt:{$first:"$createdAt"}
+                }
+            },
+            {
+                $match:{...searchFilter}
+            }
+        ]
+
+        const orders = await Order.aggregate([
+            ...aggregateOption,
+            {$sort:{createdAt:-1}},
+            {$skip:skip || 0},
+            {$limit:10},
+        ])
+        
+        
         if(!orders || orders.length === 0){
             res.status(404)
             throw new Error(strings.product[lang].no_order)
         }
+
+        
+        const documentCount = await Order.aggregate([
+            ...aggregateOption,
+            {$count:"document_count"}
+         ])
+         
+         let count = 0;
+ 
+         if(documentCount[0]) {
+             count =  documentCount[0]['document_count']
+         }
+        
         res.json({
             success:true,
             code:200,
-            orders
+            orders,
+            count
         })
     } catch (error) {
+        console.log(error);
         next(error)
     }
 }
@@ -143,3 +297,104 @@ export const updateOrder = async (req, res, next) => {
     }
 }
 
+
+// {
+//     _id:ObjectId('61c45d25bdf9c1389879db9f'),
+//     orderItems: [
+//         {
+//             options:[
+//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
+//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
+//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
+//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
+//             ],
+//             quantity:4,
+//             product:{
+//                 name:'lorem ipsum dolor set',
+//                 image:'1452877_product.png',
+//                 type:'immo file',
+//                 price:20
+//             }
+//         },
+//         {
+//             options:[
+//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
+//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
+//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
+//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
+//             ],
+//             quantity:4,
+//             product:{
+//                 name:'lorem ipsum dolor set',
+//                 image:'1452877_product.png',
+//                 type:'immo file',
+//                 price:20
+//             }
+//         }
+//     ]
+// }
+
+
+/**
+ * 
+ * .aggregate([
+            {
+                $lookup: {
+                    from:'users',
+                    let:{userId:'$user'},
+                    pipeline:[
+                        {
+                            $match: {$expr:{ $eq:['$_id', '$$userId'] }}
+                        },
+                        {
+                            $project:{
+                                firstName:1,
+                                lastName:1,
+                                email:1,
+                                phoneNumber:1
+                            }
+                        }
+                    ],
+                    as:'user'
+                }
+            },
+            {
+                $lookup: {
+                    from:'products',
+                    let:{
+                        productId:'$orderItems.product',
+                        options:"$orderItems.options",
+                        quantity:"$orderItems.quantity",
+                        itemsId:'$orderItems._id'
+                    },
+                    pipeline:[
+                        {
+                            $match: {
+                                $expr: {$in: ["$_id", "$$productId"]}
+                            }
+                        },
+                        {
+                            $project:{
+                                name:1,
+                                price:1,
+                                image:1,
+                                type:1,
+                                options:"$$options",
+                                quantity:"$$quantity"
+                            }
+                        },
+                    ],
+                    as:'orderItems.product'
+                }
+            },
+            {
+                $unwind:'$user'
+            },
+            {
+                $match: {...searchFilter}
+            }
+        ])
+        
+ * 
+ * 
+ */

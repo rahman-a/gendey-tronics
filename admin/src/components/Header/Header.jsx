@@ -1,10 +1,10 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useRef} from 'react'
 import style from './style.module.scss'
 import {v4 as uuidv4} from 'uuid'
-import {Link, useHistory, useLocation} from 'react-router-dom'
+import {useHistory, useLocation} from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { HandDollar, MenuBars, Bell, Envelope } from '../../icons'
-import { Loader,SideNavbar, NotificationContainer } from '../../components'
+import { HandDollar, MenuBars,Envelope, Headset } from '../../icons'
+import {SideNavbar, NotificationContainer } from '../../components'
 
 const notifyData = [
     {
@@ -39,30 +39,18 @@ const Header = () => {
     const [showSideMenu, setSideMenu] = useState(false)
     const [toggleNotification, setToggleNotification] = useState(false)
     const [toggleMessages, setToggleMessages] = useState(false)
-    const [isNavFixed, setIsNavFixed] = useState(false)
     const headerBgRef = useRef(null)
     const {isAuth} = useSelector(state => state.login)
     const navigate = useHistory().push
     const page = useLocation().pathname
     
     const toggleNotifyData = type => {    
-        if(type === 'notification'){
+        if(type === 'Calls'){
             setToggleMessages(false)
             setToggleNotification(prev => !prev)
         }else {
             setToggleNotification(false)
             setToggleMessages(prev => !prev)
-        }
-    }
-
-    window.onscroll = () => {
-        if(window.scrollY > 120) {
-            headerBgRef.current.style.marginTop = 0
-        }  
-        if(window.scrollY > 200) {
-            setIsNavFixed(true)
-        }else {
-            setIsNavFixed(false)  
         }
     }
 
@@ -93,7 +81,6 @@ const Header = () => {
             
             <div className={style.header}
             style={{
-                position: isNavFixed ? 'fixed' : 'absolute',
                 display: page === '/login'  ?'none' :'block'
                 }}>
                
@@ -117,6 +104,7 @@ const Header = () => {
                         {isAuth && 
                         <SideNavbar 
                         showSideMenu={showSideMenu}
+                        setSideMenu={setSideMenu}
                        />}
                         
                         {/* display the actions buttons */}
@@ -125,9 +113,9 @@ const Header = () => {
                             <div className={style.header__notify}>
 
                                 <div className={style.header__notify_list}></div>
-                                <span onClick={() => toggleNotifyData('notification')}>
+                                <span onClick={() => toggleNotifyData('Calls')}>
                                     <span className={style.header__notify_num}>10</span>
-                                    <Bell/>
+                                    <Headset/>
                                 </span>
                                 <span onClick={() => toggleNotifyData('messages')}>
                                     <span className={style.header__notify_num}>4</span>
@@ -142,7 +130,7 @@ const Header = () => {
                                 && <NotificationContainer 
                                 setToggleNotification={setToggleNotification}
                                 setToggleMessages={setToggleMessages}
-                                title='Notification' 
+                                title='Calls' 
                                 data={notifyData}/>}
                                 
                                 {/* Messages List */}

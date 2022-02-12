@@ -1,24 +1,93 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import style from './style.module.scss'
 import { useHistory } from 'react-router-dom'
-import {LoginForm} from '../../components'
-import {ArrowRight} from '../../icons'
+import {useSelector, useDispatch} from 'react-redux'
+import {Alert} from 'react-bootstrap'
+import {Lock, AtSymbol} from '../../icons'
+import {Loader} from '../../components'
+import actions from '../../actions'
+import constants from '../../constants'
 
 const Login = () => {
+   const [email, setEmail] = useState('')
+   const [password, setPassword] = useState('')
+   const [errors, setErrors] = useState(null)
+   const navigate = useHistory().push
+   const dispatch = useDispatch()
+   const {loading, error, isAuth} = useSelector(state => state.login)
 
-    const navigate = useHistory().push
+   const loginHandler = _ => {
+        if(!email) {
+            setErrors('Please Provide E-mail Address')
+            return 
+        }
+
+        if(!password) {
+            setErrors('Please Provide Password')
+            return 
+        }
+
+        dispatch(actions.admin.login({email, password}))
+   }
+
+   const loginOnKeyDown = e => {
+        if(e.keyCode === 13 || e.which === 13) {
+            loginHandler()
+        }
+   }
+
+   const clearAlert = _ => {
+       dispatch({type:constants.admin.ADMIN_LOGIN_RESET})
+       setErrors(null)
+   }
+
+   useEffect(() => {
+        error && setErrors(error)
+        isAuth && navigate('/')
+   },[error, isAuth])
 
     return (
         <div className={style.login}>
-            {/* <button className={style.login__back} onClick={() => navigate('/')}>
-                <span>
-                    <ArrowRight/>
-                </span>
-                back to home
-            </button> */}
            <div className={style.login__wrapper}>
-             <LoginForm/>
-           </div>
+                <div className={style.login__Form}
+                onKeyDown={loginOnKeyDown}>
+                   {errors 
+                   && <Alert 
+                    variant='danger'
+                    onClose={clearAlert}
+                    dismissible>
+                        {errors}
+                    </Alert> }
+
+                    <div className={style.login__group}>
+                        <span>
+                            <AtSymbol/>
+                        </span>
+                        <input 
+                        type="email" 
+                        name='email'
+                        placeholder='Enter Your E-mail'
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    </div>
+                    <div className={style.login__group}>
+                        <span>
+                            <Lock/>
+                        </span>
+                        <input 
+                        type="password" 
+                        placeholder='Enter Your Password'
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    </div>
+                    <button 
+                    className={style.login__submit}
+                    onClick={loginHandler}
+                    disabled={loading}>
+                       {loading ?  <Loader size='4' options={{animation:'border'}}/> : 'submit'}
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }

@@ -8,6 +8,13 @@ import {Header, Footer} from './components'
 import { 
   Login, 
   Dashboard,
+  Users,
+  Products,
+  Product,
+  NewProduct,
+  Blogs,
+  NewBlog,
+  Orders,
   Notifications,
   Messages,
   Profile,
@@ -20,12 +27,34 @@ function App() {
   return (
     <div className='App'>
       <Header/>
+      <div className='wrapper'>
         <Switch>
             <Route path='/login'>
-              {isAuth ? <Dashboard/> : <Login/>}
+              {isAuth ? <Redirect to='/'/> : <Login/>}
             </Route>
             <Route path='/' exact>
               {isAuth ? <Dashboard/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/users'>
+              {isAuth ? <Users/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/products' exact>
+              {isAuth ? <Products/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/products/new' exact>
+              {isAuth ? <NewProduct/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/products/orders' exact>
+              {isAuth ? <Orders/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/products/:id'>
+              {isAuth ? <Product/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/blogs' exact>
+              {isAuth ? <Blogs/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/blogs/new'>
+              {isAuth ? <NewBlog/> : <Redirect to='/login'/>}
             </Route>
             <Route path='/profile'>
                 {isAuth ? <Profile/> :<Redirect to='/login'/>}
@@ -39,7 +68,8 @@ function App() {
             <Route path='*'>
                 <NotFound/>
             </Route>
-        </Switch>
+          </Switch>
+      </div>
       <Footer/>
     </div>
   );

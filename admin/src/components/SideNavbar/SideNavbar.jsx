@@ -1,111 +1,233 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import style from './style.module.scss'
 import { useHistory } from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import actions from '../../actions'
 import {Loader} from '../../components'
 import {
-    Cogs, 
-    File, 
-    Logout, 
-    AddressCard, 
-    CashRegister,
-    HandshakeSlash
+    Home,
+    Users,
+    GraduationCap,
+    Chalkboard,
+    Car,
+    TruckLoading,
+    Newspaper,
+    PlusSquare,
+    Table,
+    Logout
 } from '../../icons'
 
 
 const SideNavbar = ({
-    showSideMenu
+    showSideMenu,
+    setSideMenu
     }) => {
     const navigate = useHistory().push
     const [isReportMenu, setIsReportMenu] = useState(false)
-    const [error, setError] = useState(false) // for test
-    const [loading, setLoading] = useState(false) // for test
-    const reportRef = useRef(null)
-
+    const productRef = useRef(null)
+    const courseRef = useRef(null)
+    const blogRef = useRef(null)
+    const {loading, error , isLogout} = useSelector(state => state.logout)
+    const dispatch = useDispatch()
 
     const logoutHandler = e => {
-        
+        e.stopPropagation()
+        dispatch(actions.admin.logout())
     }
     
-    const showReportsMenu = e => {
+    const showReportsMenu = (e,ref) => {
         e.stopPropagation()
         if(!isReportMenu) {
-            const menuHeight = reportRef.current.getBoundingClientRect().height 
-            reportRef.current.parentNode.style.height = `${menuHeight}px`
+            const menuHeight = ref.current.getBoundingClientRect().height 
+            ref.current.parentNode.style.height = `${menuHeight}px`
             setIsReportMenu(true) 
         }else {
-            reportRef.current.parentNode.style.height = 0 
+            ref.current.parentNode.style.height = 0 
             setIsReportMenu(false)
         }
     }
 
+    useEffect(() => {
+       if( isLogout ) {
+        setSideMenu(false)
+        navigate('/login')
+       } 
+    },[isLogout])
+
     return (
         <>
-        {error 
-        && <div className={style.navbar__logout_alert}
+        <div className={style.navbar__logout_alert}
         style={{left:error ?'1rem':'-25rem'}}>
-            <p>This is Error From Server</p>
-        </div> }
+            <p>{error}</p>
+        </div> 
 
         <div className={style.navbar__menu}
         style={{left: showSideMenu ? '0' : '-30rem'}}>
             <ul className={style.navbar__menu_list}>
+                
+                
+                
+                {/* MAIN PAGE */}
                 <li className={style.navbar__menu_item}
                 >
                     <div onClick={() => navigate('/')}>
                         <span>
-                            <Cogs/>
+                            <Home/>
                         </span>
                         <span>
-                            Dashboard
+                            HOME
                         </span>
                     </div>
                 </li>
+
+                {/* USERS PAGE */}
                 <li className={style.navbar__menu_item}
                 >
-                    <div onClick={showReportsMenu}>
+                    <div onClick={() => navigate('/users')}>
                         <span>
-                            <File/>
+                            <Users/>
                         </span>
                         <span>
-                            Announcement
+                            Users
+                        </span>
+                    </div>
+                </li>
+                
+                
+                {/* PRODUCTS MENU */}
+                <li className={style.navbar__menu_item}
+                >
+                    <div onClick={(e) => showReportsMenu(e,productRef)}>
+                        <span>
+                            <Car/>
+                        </span>
+                        <span>
+                            Products
                         </span>
                     </div>
                     {/* ///////////////////////////////////// */}
-                    <ul className={style.navbar__menu_reports}>
-                        <div ref={reportRef}>
-                            <li className={style.navbar__menu_reports_item}
-                            onClick={() => navigate('/messages')}>
+                    <ul className={style.navbar__menu_dropdown}>
+                        <div ref={productRef}>
+                            <li className={style.navbar__menu_dropdown_item}
+                            onClick={() => navigate('/products')}>
                                 <span>
-                                    <CashRegister/>
+                                    <Table/>
                                 </span>
                                 <span>
-                                    Messages
+                                    Products
                                 </span>
                             </li>
-                            <li className={style.navbar__menu_reports_item}
-                            onClick={() => navigate('/notifications')}>
+                            <li className={style.navbar__menu_dropdown_item}
+                            onClick={() => navigate('/products/orders')}>
                                 <span>
-                                    <HandshakeSlash/>
+                                    <TruckLoading/>
                                 </span>
                                 <span>
-                                    Notifications
+                                    Orders
+                                </span>
+                            </li>
+                            <li className={style.navbar__menu_dropdown_item}
+                            onClick={() => navigate('/products/new')}>
+                                <span>
+                                    <PlusSquare/>
+                                </span>
+                                <span>
+                                    New Product
                                 </span>
                             </li>
                         </div>
                     </ul>
                     {/* ///////////////////////////////////// */}
                 </li>
+
+
+
+
+               {/* COURSES MENU */}
+               <li className={style.navbar__menu_item}
+                >
+                    <div onClick={(e) => showReportsMenu(e,courseRef)}>
+                        <span>
+                            <Chalkboard/>
+                        </span>
+                        <span>
+                            Courses
+                        </span>
+                    </div>
+                    {/* ///////////////////////////////////// */}
+                    <ul className={style.navbar__menu_dropdown}>
+                        <div ref={courseRef}>
+                            <li className={style.navbar__menu_dropdown_item}
+                            onClick={() => navigate('/messages')}>
+                                <span>
+                                    <Table/>
+                                </span>
+                                <span>
+                                    Courses
+                                </span>
+                            </li>
+                            <li className={style.navbar__menu_dropdown_item}
+                            onClick={() => navigate('/notifications')}>
+                                <span>
+                                    <GraduationCap/>
+                                </span>
+                                <span>
+                                    Enrollments
+                                </span>
+                            </li>
+                            <li className={style.navbar__menu_dropdown_item}
+                            onClick={() => navigate('/notifications')}>
+                                <span>
+                                    <PlusSquare/>
+                                </span>
+                                <span>
+                                    New Course
+                                </span>
+                            </li>
+                        </div>
+                    </ul>
+                    {/* ///////////////////////////////////// */}
+                </li>
+
+                
+                {/* BLOGS MENU */}
                 <li className={style.navbar__menu_item}
                 >
-                   <div onClick={() => navigate('/profile')}>
+                    <div onClick={(e) => showReportsMenu(e,blogRef)}>
                         <span>
-                            <AddressCard/>
+                            <Newspaper/>
                         </span>
                         <span>
-                            Profile
+                            Blogs
                         </span>
-                   </div>
+                    </div>
+                    {/* ///////////////////////////////////// */}
+                    <ul className={style.navbar__menu_dropdown}>
+                        <div ref={blogRef}>
+                            <li className={style.navbar__menu_dropdown_item}
+                            onClick={() => navigate('/blogs')}>
+                                <span>
+                                    <Table/>
+                                </span>
+                                <span>
+                                    Blogs
+                                </span>
+                            </li>
+                            <li className={style.navbar__menu_dropdown_item}
+                            onClick={() => navigate('/blogs/new')}>
+                                <span>
+                                    <PlusSquare/>
+                                </span>
+                                <span>
+                                    New Blog
+                                </span>
+                            </li>
+                        </div>
+                    </ul>
+                    {/* ///////////////////////////////////// */}
                 </li>
+
+                
                 <li className={style.navbar__menu_item}
                 >
                     <div onClick={logoutHandler}>

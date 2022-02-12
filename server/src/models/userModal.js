@@ -113,8 +113,8 @@ userSchema.statics.AuthUser = async function (email, password, res, lang) {
 }
 
 
-userSchema.methods.generateToken = function () {
-    const token = jwt.sign({_id:this._id.toString(),}, process.env.JWT_TOKEN, {expiresIn:'7 days'})
+userSchema.methods.generateToken = function (days = '7 days') {
+    const token = jwt.sign({_id:this._id.toString(),}, process.env.JWT_TOKEN, {expiresIn:days})
     return token 
 }
 

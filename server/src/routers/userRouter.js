@@ -17,17 +17,23 @@ import {
     facebookSignIn,
     sendEmailActivationLink,
     sendRestPasswordLink,
-    verifyAuthLink
+    verifyAuthLink,
+    adminLogin,
+    adminLogout,
+    deleteUserById
 } from '../controllers/userController.js'
 
 router.post('/new', createNewUser)
 router.post('/login', userAuthentication)
 router.post('/login/google', googleSignIn)
 router.post('/login/facebook', facebookSignIn)
+router.post('/login/admin', adminLogin)
 router.post('/logout',isAuth, userLogout)
+router.post('/logout/admin',isAuth, isAdmin, adminLogout)
 router.patch('/', isAuth, updateUserData)
 router.patch('/credential', isAuth, updatePassword)
 router.delete('/', isAuth, deleteUserAccount)
+router.delete('/:id', isAuth,isAdmin, deleteUserById)
 router.get('/me', isAuth, getUserData)
 router.get('/:id', isAuth, isAdmin, getUserDataById)
 router.get('/', isAuth, isAdmin, listAllUsers)

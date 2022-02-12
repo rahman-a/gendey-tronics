@@ -7,22 +7,22 @@ const middlewares = [thunk]
 
 const reducer = combineReducers(globalReducer)
 
-const admin = localStorage.getItem('adminId')
-? JSON.parse(localStorage.getItem('adminId'))
+const admin = localStorage.getItem('aid')
+? localStorage.getItem('aid')
 : null
 
 const isAdminAuth = () => {
     if(admin) {
         const today = new Date()
-        const expiryDateLocalStorage = JSON.parse(localStorage.getItem('expiryAt'))
+        const expiryDateLocalStorage = JSON.parse(localStorage.getItem('expiryAd'))
         const expiryDate = new Date(expiryDateLocalStorage)
         if(today < expiryDate) {
             return true
         }
     }
-    localStorage.removeItem('admin')
-    localStorage.removeItem('expiryAt')
-    return true // FOR TEST
+    localStorage.removeItem('aid')
+    localStorage.removeItem('expiryAd')
+    return false
 }
 
 const initState = {

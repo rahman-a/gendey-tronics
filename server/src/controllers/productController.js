@@ -6,8 +6,10 @@ import strings from '../localization.js'
 
 export const createNewProduct = async (req, res, next) => {
     const {lang} = req.headers
+    const {options} = req.body 
     const newProduct = new Product({
         ...req.body,
+        options:JSON.parse(options),
         image:req.fileName
     })
     try {
@@ -21,37 +23,89 @@ export const createNewProduct = async (req, res, next) => {
             success:true,
             code:201,
             message:strings.product[lang].create_product,
-            product:product._id
+            product
         })
     } catch (error) {
+        console.log(error);
         next(error)   
     }
 }
 
 export const listAllProduct =  async (req, res, next) => {
-    const {name, type, page, skip} = req.query
+    const {name, type, price, quantity, page, skip} = req.query
     const {lang} = req.headers
     let searchFilter = {}
     try {
+        console.log({query:req.query});
         if(type) {
-            searchFilter = {type:type.split('-').join(' ')}
+            searchFilter = {
+                ...searchFilter,
+                type: {
+                    $regex:type.split('-').join(' '),
+                    $options:'i'
+                }
+            }
         }
         if(name) {
             searchFilter = {
                 ...searchFilter,
                 name: {
                     $regex:name,
-                    $option:'i'
+                    $options:'i'
                 }
             }
         }
+        if(price) {
+            const priceRange = price.split('-')
+            if(priceRange.length > 1) {
+                const firstRange = parseInt(priceRange[0])
+                const secondRange = parseInt(priceRange[1])
+                
+                searchFilter = {
+                    ...searchFilter,
+                    price: {
+                        $gte:firstRange,
+                        $lte:secondRange
+                    }
+                }
+            } else {
+                searchFilter = {
+                    ...searchFilter,
+                    price:parseInt(priceRange[0])
+                } 
+            }
+        }
+        if(quantity) {
+            const quantityRange = quantity.split('-')
+            if(quantityRange.length > 1) {
+                const firstRange = parseInt(quantityRange[0])
+                const secondRange = parseInt(quantityRange[1])
+                
+                searchFilter = {
+                    ...searchFilter,
+                    quantity: {
+                        $gte:firstRange,
+                        $lte:secondRange
+                    }
+                }
+            } else {
+                searchFilter = {
+                    ...searchFilter,
+                    quantity:parseInt(quantityRange[0])
+                } 
+            }
+        }
+
         const count = await Product.count({...searchFilter})
+        
         const products = await Product.find({...searchFilter})
-        // .limit(parseInt(page) || 10).skip(parseInt(skip) || 0)
+        .limit(parseInt(page) || 0).skip(parseInt(skip) || 0).sort({createdAt:-1})
+        
         if(!products || products.length < 1) {
             res.status(404)
             throw new Error(strings.product[lang].no_product)
         }
+        
         res.json({
             success:true,
             code:200,
@@ -91,16 +145,20 @@ export const updateProduct = async (req, res, next) => {
     const {id} = req.params
     try {
         const product = await Product.findById(id) 
+        
         if(!product) {
             res.status(404)
             throw new Error(strings.product[lang].no_product)
         }
+        
         const allowedKeys = ['name', 'description', 'price', 
-        'quantity', 'type', 'video', 'short']
+        'quantity', 'type', 'video', 'short', 'options']
+        
         if(Object.keys(updatedData).length < 1) {
             res.status(400)
             throw new Error(strings.user[lang].require_data)
         }
+        
         for(let key in updatedData) {
             if(allowedKeys.includes(key)) {
                 if(updatedData[key]) {
@@ -114,12 +172,14 @@ export const updateProduct = async (req, res, next) => {
                 throw new Error (`${key} is Unknown, please choose a verified key`) 
             }
         }
-        await product.save()
+        
+       const newProduct  = await product.save()
+        
         res.json({
             success:true,
             code:200,
             message:strings.product[lang].product_update,
-            product: product._id
+            product: newProduct
         })
     } catch (error) {
         next(error)
@@ -146,6 +206,8 @@ export const updateProductImage = async (req, res, next) => {
             res.json({
                 success:true, 
                 code:200,
+                id:product._id,
+                image:req.fileName,
                 message:strings.product[lang].image_upload
             })
         })
@@ -168,7 +230,7 @@ export const deleteProduct = async (req, res, next) => {
         res.json({
             success:true,
             code:200,
-            message:strings.product[lang].product_delete,
+            message:`${product.name} ${strings.product[lang].product_delete}`,
             product:product._id
         })
     } catch (error) {

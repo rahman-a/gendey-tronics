@@ -16,6 +16,7 @@ const Input = ({
     direction,
     className,
     custom,
+    options,
     disabled
 }) => {
  
@@ -44,15 +45,17 @@ const Input = ({
                 onChange={onChange}
                 ref={inputRef}
                 disabled={disabled}
+                {...options}
                 className={error ? style.input__error : ''}
                 style={{
                     border: type === 'file' ? '2px dashed #fff' :'',
                     backgroundColor: type === 'file' ? 'transparent' : '#fff',
                     padding: type === 'date' 
                     ? '1rem' 
-                    : direction !== 'right' 
-                    && '1.5rem 1.5rem 1.5rem 5.5rem',
-                    color:'#1A374D'
+                    : icon 
+                    ? '1.5rem 1.5rem 1.5rem 5.5rem'
+                    :'0.3rem 1rem',
+                    color:'#333'
                     }}
             />
            

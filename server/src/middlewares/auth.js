@@ -5,12 +5,16 @@ import strings from '../localization.js'
 export const isAuth = async(req, res, next) => {
     const {lang} = req.headers
     try {
-        if(req.cookies['token']){
-            const token =  req.cookies['token'] 
+        if(req.cookies['token'] || req.cookies['tokenAd']){
+
+            const token =  req.cookies['token'] || req.cookies['tokenAd']
             const decode = jwt.verify(token, process.env.JWT_TOKEN, (err, decode) => {
-                if(err) throw new Error(strings.auth[lang].log_first)
+                if(err) {
+                    throw new Error(strings.auth[lang].log_first)
+                } 
                 return decode
             })
+
             const user = await User.findOne({_id:decode._id})
             if(!user) {
                 res.status(401)

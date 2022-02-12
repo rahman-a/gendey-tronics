@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import style from './style.module.scss'
-import {OperationDecision} from '../../components'
+import {Modal} from 'react-bootstrap'
 
 const Notification = ({data}) => {
     const [isStateOn, setIsStateOn] = useState(false)
@@ -25,10 +25,12 @@ const Notification = ({data}) => {
 
     return (
         <>
-            <OperationDecision 
-            show={isStateOn} 
+            <Modal
+            onShow={isStateOn}
             onHide={() => setIsStateOn(false)}
-            />
+            >
+
+            </Modal>
             <div className={style.notification}
                 onClick={takeDecisionHandler}>
                 <img src={data.image} alt={data.title}/>
