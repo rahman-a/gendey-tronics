@@ -31,7 +31,7 @@ export const createNewBlog = async (req, res, next) => {
 
 export const listAllBlogs =  async (req, res, next) => {
     const {lang}  = req.headers
-    const {title, page, skip} = req.query
+    const {title, views, page, skip} = req.query
     let searchFilter = {}
     console.log('Language', req.headers.lang);
     try {
@@ -39,17 +39,48 @@ export const listAllBlogs =  async (req, res, next) => {
             searchFilter = {
                 title: {
                     $regex:title,
-                    $option:'i'
+                    $options:'i'
                 }
             }
         }
+        if(views) {
+            const viewRange = views.split('-')
+            if(viewRange.length > 1) {
+                const firstRange = parseInt(viewRange[0])
+                const secondRange = parseInt(viewRange[1])
+                
+                searchFilter = {
+                    ...searchFilter,
+                    seen: {
+                        $gte:firstRange,
+                        $lte:secondRange
+                    }
+                }
+            } else {
+                searchFilter = {
+                    ...searchFilter,
+                    seen:parseInt(viewRange[0])
+                } 
+            }
+        }
         const count = await Blog.count({...searchFilter})
+        
         const blogs = await Blog.find({...searchFilter})
+        .populate('author','firstName lastName email phoneNumber')
+        .populate({
+            path:'comments',
+            populate: {
+                path:'user',
+                select:'firstName lastName'
+            }
+        })
         .limit(parseInt(page) || 10).skip(parseInt(skip) || 0)
+        
         if(!blogs || blogs.length < 1) {
             res.status(404)
             throw new Error(strings.blog[lang].no_blogs)
         }
+        
         res.json({
             success:true,
             code:200,
@@ -117,12 +148,12 @@ export const updateBlog = async (req, res, next) => {
                 throw new Error (`${key} is Unknown, please choose a verified key`) 
             }
         }
-        await blog.save()
+        const updatedBlog = await blog.save()
         res.json({
             success:true,
             code:200,
             message:strings.blog[lang].blog_update,
-            blog: blog._id
+            blog: updatedBlog
         })
     } catch (error) {
         next(error)
@@ -169,6 +200,7 @@ export const updateBlogImage = async (req, res, next) => {
             res.json({
                 success:true, 
                 code:200,
+                image:req.fileName,
                 message:strings.product[lang].image_upload
             })
         })
@@ -272,25 +304,43 @@ export const addBlogComment = async (req, res, next) => {
 
  export const deleteComment = async (req, res, next) => {
     const {lang}  = req.headers 
-    const {id} = req.params 
+    const {id,commentId} = req.params 
      try {
+        
+        console.log({id, commentId});
+        
         const blog = await Blog.findById(id)
+        
         if(!blog) {
             res.status(404)
             throw new Error(strings.blog[lang].no_blog)
         }
-        const comment = blog.comments.find(comment => comment.user.toString() === req.user._id.toString()) 
-        if(!comment) {
-            res.status(404)
-            throw new Error(strings.blog[lang].blog_no_comments)
+        let comment_id = null
+        if(commentId) {
+            blog.comments = blog.comments.filter(comment => comment._id.toString() !== commentId.toString())
+            comment_id = commentId
         }
-        blog.comments = blog.comments.filter(comment => comment.user.toString() !== req.user._id.toString())
+        else {
+            
+           const comment = blog.comments.find(comment => comment.user.toString() === req.user._id.toString())   
+            
+            if(!comment) {
+                res.status(404)
+                throw new Error(strings.blog[lang].blog_no_comments)
+            }
+
+            comment_id = comment._id
+            
+            blog.comments = blog.comments.filter(comment => comment.user.toString() !== req.user._id.toString())
+        }
+    
         await blog.save()
+        
         res.json({
             success:true,
             code:200,
             message:strings.blog[lang].blog_comment_delete,
-            comment: comment._id
+            comment: comment_id
         })
      } catch (error) {
          next(error)

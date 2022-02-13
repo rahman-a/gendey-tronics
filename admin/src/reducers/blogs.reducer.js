@@ -61,6 +61,21 @@ const updateBlog = (state, action) => {
     }
 }
 
+const updateBlogImage = (state, action) => {
+    switch(action.type){
+        case constants.blogs.UPDATE_BLOG_IMAGE_REQUEST: 
+            return {loading:true, error:null} 
+        case constants.blogs.UPDATE_BLOG_IMAGE_SUCCESS: 
+            return {loading:false, error:null, message:action.payload} 
+        case constants.blogs.UPDATE_BLOG_IMAGE_FAIL: 
+            return {loading:false, error:action.payload} 
+        case constants.blogs.UPDATE_BLOG_IMAGE_RESET: 
+            return {loading:false, error:null, message:null} 
+        default: 
+            return {...state}
+    }
+}
+
 const deleteBlog = (state, action) => {
     switch(action.type){
         case constants.blogs.DELETE_BLOG_REQUEST: 
@@ -76,13 +91,30 @@ const deleteBlog = (state, action) => {
     }
 }
 
+const deleteBlogComment = (state, action) => {
+    switch(action.type){
+        case constants.blogs.DELETE_BLOG_COMMENT_REQUEST: 
+            return {loading:true, error:null} 
+        case constants.blogs.DELETE_BLOG_COMMENT_SUCCESS: 
+            return {loading:false, error:null, message:action.payload} 
+        case constants.blogs.DELETE_BLOG_COMMENT_FAIL: 
+            return {loading:false, error:action.payload} 
+        case constants.blogs.DELETE_BLOG_COMMENT_RESET: 
+            return {loading:false, error:null, message:null} 
+        default: 
+            return {...state}
+    }
+}
+
 
 const reducer = {
     listAllBlogs,
     getBlog,
     createNewBlog,
     updateBlog,
-    deleteBlog
+    updateBlogImage,
+    deleteBlog,
+    deleteBlogComment
 }
 
 export default reducer

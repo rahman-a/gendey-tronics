@@ -16,8 +16,14 @@ const blogsAPI = {
     update(id, data) {
         return service().patch(`blogs/${id}`, data)
     },
+    updateImage(id, data) {
+        return service().patch(`blogs/image/${id}`, data)
+    },
     delete(id) {
         return service().delete(`blogs/${id}`)
+    },
+    deleteComment(blog, comment) {
+        return service().delete(`blogs/${blog}/comments/${comment}`)
     }
 }
 

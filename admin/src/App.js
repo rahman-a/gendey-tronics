@@ -14,6 +14,7 @@ import {
   NewProduct,
   Blogs,
   NewBlog,
+  Blog,
   Orders,
   Notifications,
   Messages,
@@ -53,8 +54,11 @@ function App() {
             <Route path='/blogs' exact>
               {isAuth ? <Blogs/> : <Redirect to='/login'/>}
             </Route>
-            <Route path='/blogs/new'>
+            <Route path='/blogs/new' exact>
               {isAuth ? <NewBlog/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/blogs/:id'>
+              {isAuth ? <Blog/> : <Redirect to='/login'/>}
             </Route>
             <Route path='/profile'>
                 {isAuth ? <Profile/> :<Redirect to='/login'/>}

@@ -25,6 +25,6 @@ router.patch('/image/:id', isAuth, isAdmin,uploadHandler.single('image'), update
 router.delete('/:id', isAuth, isAdmin, deleteBlog)
 router.get('/:id/comments', listAllComments)
 router.post('/:id/comments/add', isAuth, addBlogComment)
-router.delete('/:id/comments', isAuth, deleteComment)
+router.delete('/:id/comments/:commentId?', isAuth, deleteComment)
 
 export default router
