@@ -30,3 +30,16 @@ export const uploadHandler = multer({
     }
 })
 
+
+export const ChunkUploadHandler = multer({
+    // limits:{
+    //     fileSize:3 *1024 *1024 
+    // },
+    // fileFilter(req, file, cb){
+    //     if(!file.originalname.match(/\.(rar|RAR|zip|ZIP|tar|TAR|gz|GZ|7z|7Z)$/)) {
+    //         cb(new Error('please upload the following extension (RAR | ZIP | TAR | GZ | 7Z)'))
+    //     }
+    //     cb(undefined, true)
+    // }
+})
+

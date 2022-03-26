@@ -59,7 +59,7 @@ const Orders = () => {
 
   return <div className={style.orders}>
         
-        <h1>Orders List</h1>
+        <h1 className='main-header'>Orders List</h1>
 
         <div className={style.orders__search}>
           <Input

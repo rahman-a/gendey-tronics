@@ -12,10 +12,11 @@ export const createNewLesson = async (req, res, next) => {
             res.status(400)
             throw new Error(strings.course[lang].lesson_title_exist)
         } 
-        await newLesson.save()
+        const lesson = await newLesson.save()
         res.status(201).json({
             success:true,
             code:201,
+            lesson,
             message:strings.course[lang].lesson_create
         })
     } catch (error) {
@@ -28,12 +29,15 @@ export const updateLesson = async (req, res, next) => {
     const updatedData = req.body
     const {id} = req.params
     try {
+        
+        
         const lesson = await Lesson.findById(id) 
         if(!lesson) {
             res.status(404)
             throw new Error(strings.course[lang].no_lesson)
         }
-        const allowedKeys = ['title', 'description', 'video', 'document', 'isPaid', 'duration']
+        const allowedKeys = ['title', 'description', 'video', 
+        'document', 'isPaid', 'duration']
         if(Object.keys(updatedData).length < 1) {
             res.status(400)
             throw new Error(strings.course[lang].require_data)
@@ -55,12 +59,12 @@ export const updateLesson = async (req, res, next) => {
                 throw new Error (`${key} is Unknown, please choose a verified key`) 
             }
         }
-        await lesson.save()
+        const updatedLesson = await lesson.save()
         res.json({
             success:true,
             code:200,
             message:strings.course[lang].lesson_update,
-            lesson: lesson._id
+            lesson: updatedLesson
         })
     } catch (error) {
         next(error)

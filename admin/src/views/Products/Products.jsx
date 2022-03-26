@@ -2,8 +2,16 @@ import React, {useState, useEffect} from 'react';
 import style from './style.module.scss'
 import {Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
-import {Table, Input, SideAlert, Loader, HeaderAlert, Pagination} from '../../components'
-import {} from '../../icons'
+import {useLocation} from 'react-router-dom'
+import {
+  Table,
+  Input,
+  SideAlert,
+  Loader,
+  HeaderAlert,
+  Pagination,
+  CreateOrder
+} from '../../components'
 import actions from '../../actions';
 import constants from '../../constants';
 import Row from './Row';
@@ -11,9 +19,12 @@ import Row from './Row';
 const Products = () => {
   const [filter, setFilter] = useState(null)
   const [skipValue, setSkipValue] = useState(0)
+  const [isOrder, setIsOrder] = useState(false)
   const dispatch = useDispatch()
   const {loading, error, products, count} = useSelector(state => state.listAllProducts)
   const {message, error:delete_error} = useSelector(state => state.deleteProduct)
+  const location = useLocation()
+  const productName = new URLSearchParams(location.search).get('name')
   
   const fetchNextRowsHandler = (skip) => {
     setSkipValue(skip.skip)
@@ -32,12 +43,16 @@ const Products = () => {
   }
 
   useEffect(() => {
+    productName && dispatch(actions.products.listAllProducts({name:productName, page:10}))
+  },[productName])
+
+  useEffect(() => {
     return () => dispatch({type: constants.products.DELETE_PRODUCT_RESET})
   },[])
 
   
   useEffect(() => {
-    dispatch(actions.products.listAllProducts({page:10}))
+   !productName && dispatch(actions.products.listAllProducts({page:10}))
   },[message])
 
   return <div className={style.products}>
@@ -50,8 +65,21 @@ const Products = () => {
         type='success' 
         text={message}
         isOn={message ? true : false}/>
+
+        <CreateOrder
+        isOrder={isOrder}
+        setIsOrder={setIsOrder}
+        />
         
-        <h1>Products List</h1>
+        <h1 className='main-header'>Products List</h1>
+
+        <Button 
+        variant='warning' 
+        size='lg'
+        className={style.products__order}
+        onClick={() => setIsOrder(true)}>
+           Create Order 
+          </Button>
 
         <div className={style.products__filter}>
             <Input

@@ -10,20 +10,20 @@ export const createOrder = async (req, res, next) => {
     })
     try {
         const newOrder = await order.save()
-        const populatedOrder = await Order.findById(newOrder._id).populate({
+        const populatedOrder = await Order.findById(newOrder._id).populate({       
             path:'orderItems',
             populate:{
                 path:'product',
-                select:'name price'
+                select:'name price driveFile'
             }
         })
-        setTimeout(() => {
-            res.status(201).json({
-                success:true,
-                code:201,
-                order:populatedOrder
-            })
-        },1000)
+        console.log('populatedOrder: ', populatedOrder);
+        res.status(201).json({
+            success:true,
+            code:201,
+            message:'New Order has Created Successfully',
+            order:populatedOrder
+        })
     } catch (error) {
         next(error)
     }
@@ -206,7 +206,9 @@ export const getAllOrders = async (req, res, next) => {
                     totalPrice:{$first:"$totalPrice"},
                     isPaid:{$first:"$isPaid"},
                     isDelivered:{$first:"$isDelivered"},
-                    createdAt:{$first:"$createdAt"}
+                    createdAt:{$first:"$createdAt"},
+                    paidAt:{$first:"$paidAt"},
+                    deliveredAt:{$first:"$deliveredAt"}
                 }
             },
             {
@@ -298,103 +300,4 @@ export const updateOrder = async (req, res, next) => {
 }
 
 
-// {
-//     _id:ObjectId('61c45d25bdf9c1389879db9f'),
-//     orderItems: [
-//         {
-//             options:[
-//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
-//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
-//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
-//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
-//             ],
-//             quantity:4,
-//             product:{
-//                 name:'lorem ipsum dolor set',
-//                 image:'1452877_product.png',
-//                 type:'immo file',
-//                 price:20
-//             }
-//         },
-//         {
-//             options:[
-//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
-//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
-//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
-//                 {_id:ObjectId('61fd914d4a236b94f816c27d'),question:'lorem ipsum dolor set amet', answer:'lorem'},
-//             ],
-//             quantity:4,
-//             product:{
-//                 name:'lorem ipsum dolor set',
-//                 image:'1452877_product.png',
-//                 type:'immo file',
-//                 price:20
-//             }
-//         }
-//     ]
-// }
 
-
-/**
- * 
- * .aggregate([
-            {
-                $lookup: {
-                    from:'users',
-                    let:{userId:'$user'},
-                    pipeline:[
-                        {
-                            $match: {$expr:{ $eq:['$_id', '$$userId'] }}
-                        },
-                        {
-                            $project:{
-                                firstName:1,
-                                lastName:1,
-                                email:1,
-                                phoneNumber:1
-                            }
-                        }
-                    ],
-                    as:'user'
-                }
-            },
-            {
-                $lookup: {
-                    from:'products',
-                    let:{
-                        productId:'$orderItems.product',
-                        options:"$orderItems.options",
-                        quantity:"$orderItems.quantity",
-                        itemsId:'$orderItems._id'
-                    },
-                    pipeline:[
-                        {
-                            $match: {
-                                $expr: {$in: ["$_id", "$$productId"]}
-                            }
-                        },
-                        {
-                            $project:{
-                                name:1,
-                                price:1,
-                                image:1,
-                                type:1,
-                                options:"$$options",
-                                quantity:"$$quantity"
-                            }
-                        },
-                    ],
-                    as:'orderItems.product'
-                }
-            },
-            {
-                $unwind:'$user'
-            },
-            {
-                $match: {...searchFilter}
-            }
-        ])
-        
- * 
- * 
- */

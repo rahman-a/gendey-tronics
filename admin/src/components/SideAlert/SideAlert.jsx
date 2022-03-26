@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import style from './style.module.scss'
 import {Info, Check} from '../../icons'
 
-const SideAlert = ({type, text, isOn, position, time}) => {
+const SideAlert = ({type, text, isOn, position, time, reset}) => {
     const [isToggle, setIsToggle] = useState(false)
   
   const getStyle = _ => {
@@ -21,11 +21,11 @@ const SideAlert = ({type, text, isOn, position, time}) => {
     useEffect(() => {
       const period = time ? time : 10000
       if(isOn) {
-        console.log({period, type, text});
         setIsToggle(true)
         setTimeout(() => {
           setIsToggle(false)
         },period)
+        reset && setTimeout(() => reset(), period + 500)
       }
   },[isOn])
   

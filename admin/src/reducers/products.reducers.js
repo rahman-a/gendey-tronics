@@ -120,6 +120,49 @@ const getOrder = (state, action) => {
     }
 }
 
+const toggleListing = (state, action) => {
+    switch(action.type){
+        case constants.products.TOGGLE_PRODUCT_LISTING_REQUEST: 
+            return {loading: true, error:null}
+        case constants.products.TOGGLE_PRODUCT_LISTING_SUCCESS: 
+            return {loading:false, error:null}
+        case constants.products.TOGGLE_PRODUCT_LISTING_FAIL: 
+            return {loading:false, error:action.payload}
+        default:
+            return {...state}
+    }
+}
+
+const createOrder = (state, action) => {
+    switch(action.type){
+        case constants.products.CREATE_ORDER_REQUEST: 
+            return {loading: true, error:null}
+        case constants.products.CREATE_ORDER_SUCCESS: 
+            return {loading:false, error:null, message:action.payload}
+        case constants.products.CREATE_ORDER_FAIL: 
+            return {loading:false, error:action.payload}
+        case constants.products.CREATE_ORDER_RESET: 
+            return {loading:false, error:null, message:null}
+        default:
+            return {...state}
+    }
+}
+
+const deleteProductLink = (state, action) => {
+    switch(action.type){
+        case constants.products.DELETE_LINK_REQUEST: 
+            return {loading: true, error:null}
+        case constants.products.DELETE_LINK_SUCCESS: 
+            return {loading:false, error:null, message:action.payload}
+        case constants.products.DELETE_LINK_FAIL: 
+            return {loading:false, error:action.payload}
+        case constants.products.DELETE_LINK_RESET: 
+            return {loading:false, error:null, message:null}
+        default:
+            return {...state}
+    }
+}
+
 const reducer = {
     listAllProducts,
     getProduct,
@@ -128,7 +171,10 @@ const reducer = {
     createProduct,
     deleteProduct,
     listAllOrders,
-    getOrder
+    getOrder,
+    toggleListing,
+    createOrder,
+    deleteProductLink
 }
 
 export default reducer

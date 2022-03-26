@@ -30,22 +30,22 @@ const Row = ({order, idx}) => {
       setTimeout(() => {
           setIsCopied(false)
       },500)
-  }
+  } 
 
-  const showPaymentDate = data => {
-      setPaymentData(data)
+  const showPaymentResult = () => {
+      setPaymentData(order.paymentResult)
       setTogglePayment(true)
   }
 
-  const showItemsData = (data, id) => {
-    setItems({_id:id, data})  
+  const showItemsData = _ => {
+    setItems({data:order.orderItems, _id:order._id})  
     setItemsToggle(true)
   }
 
-  const showUserData = (user, address) => {
-   address 
-   ? setUserData({...user, ...address})
-   : setUserData(user)
+  const showUserData = _ => {
+    order.shippingAddress 
+   ? setUserData({...order.user, ...order.shippingAddress})
+   : setUserData(order.user)
     setToggleUser(true)
   }
   
@@ -85,7 +85,7 @@ const Row = ({order, idx}) => {
             }</td>
             <td className={style.orders__name}>
                 {
-                    <span onClick={() => showUserData(order.user, order.shippingAddress)}> 
+                    <span onClick={showUserData}> 
                         {order.user.firstName + ' ' + order.user.lastName} 
                     </span>  
                 }
@@ -103,7 +103,7 @@ const Row = ({order, idx}) => {
             }</td>
             <td className={style.orders__name}>
                 {
-                   <span onClick={() => showPaymentDate(order.paymentResult)}> {order.paymentMethod}  </span> 
+                   <span onClick={showPaymentResult}> {order.paymentMethod}  </span> 
                 }
             </td>
             <td>
@@ -112,7 +112,7 @@ const Row = ({order, idx}) => {
                 }
             </td>
             <td className={style.orders__show}>
-                <span onClick={() => showItemsData(order.orderItems, order._id)}>
+                <span onClick={showItemsData}>
                     <Eye/>
                 </span>
             </td>

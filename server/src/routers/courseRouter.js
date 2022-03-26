@@ -11,7 +11,9 @@ import {
     updateCourseImage,
     listAllCourses,
     deleteCourse,
-    listPurchasedCourses
+    listPurchasedCourses,
+    toggleCoursePublish,
+    deleteLink
 } from '../controllers/courseController.js'
 
 import {
@@ -32,7 +34,8 @@ import {
     createEnrollment, 
     getEnrollmentData,
     increaseEnrollmentProgress,
-    decreaseEnrollmentProgress
+    decreaseEnrollmentProgress,
+    listCourseEnrollments
 } from "../controllers/enrollmentController.js"
 
 import {
@@ -58,12 +61,13 @@ import {
 router.post('/new', isAuth, isAdmin,uploadHandler.single('image'), createNewCourse)
 router.delete('/:id', isAuth, isAdmin, deleteCourse)
 router.patch('/:id', isAuth, isAdmin, updateCourseData)
+router.patch('/:id/publish', isAuth, isAdmin, toggleCoursePublish)
 router.patch('/:id/image', isAuth, isAdmin, uploadHandler.single('image'), updateCourseImage)
 router.get('/purchased', isAuth, listPurchasedCourses)
-router.get('/', isAuth, listAllCourses)
-router.get('/public', listAllCourses)
+router.get('/', listAllCourses)
 router.get('/:id', isAuth, getTheCourseData)
 router.get('/:id/public', getTheCourseData)
+router.delete('/:id/link/:link', isAuth, isAdmin, deleteLink)
 
 // Chapters Routers
 router.post('/:id/chapters/new', isAuth, isAdmin, createNewChapter)
@@ -80,6 +84,7 @@ router.delete('/chapters/lessons/:id', isAuth, isAdmin, deleteLesson)
 // Enrollment Router
 router.post('/:id/enrollment/new', isAuth, createEnrollment)
 router.get('/:id/enrollment/:enroll', isAuth, getEnrollmentData)
+router.get('/:id/enrollments', isAuth, isAdmin, listCourseEnrollments)
 router.patch('/:id/enrollment/:enroll/chapters/:chapter/lessons/:lesson/add', isAuth, increaseEnrollmentProgress)
 router.patch('/:id/enrollment/:enroll/chapters/:chapter/lessons/:lesson/sub', isAuth, decreaseEnrollmentProgress)
 

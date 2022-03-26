@@ -32,7 +32,7 @@ export const createNewProduct = async (req, res, next) => {
 }
 
 export const listAllProduct =  async (req, res, next) => {
-    const {name, type, price, quantity, page, skip} = req.query
+    const {name, type, price, quantity, page, skip, isPublic} = req.query
     const {lang} = req.headers
     let searchFilter = {}
     try {
@@ -96,6 +96,14 @@ export const listAllProduct =  async (req, res, next) => {
             }
         }
 
+        if(isPublic) {
+            const value = isPublic === 'true'
+            searchFilter = {
+                ...searchFilter,
+                isListed:value
+            }
+        }
+
         const count = await Product.count({...searchFilter})
         
         const products = await Product.find({...searchFilter})
@@ -109,8 +117,8 @@ export const listAllProduct =  async (req, res, next) => {
         res.json({
             success:true,
             code:200,
-            products,
-            count
+            count,
+            products
         })
     } catch (error) {
         next(error)
@@ -152,7 +160,7 @@ export const updateProduct = async (req, res, next) => {
         }
         
         const allowedKeys = ['name', 'description', 'price', 
-        'quantity', 'type', 'video', 'short', 'options']
+        'quantity', 'type', 'video', 'short', 'options', 'link']
         
         if(Object.keys(updatedData).length < 1) {
             res.status(400)
@@ -162,8 +170,12 @@ export const updateProduct = async (req, res, next) => {
         for(let key in updatedData) {
             if(allowedKeys.includes(key)) {
                 if(updatedData[key]) {
-                    product[key] = updatedData[key]
-                }else {
+                    if(key === 'link') {
+                        product.driveFile = product.driveFile.concat(updatedData[key])
+                    } else {
+                        product[key] = updatedData[key]
+                    }
+                } else {
                     res.status(400)
                     throw new Error (`please provide a value for ${key}`)
                 }
@@ -216,6 +228,26 @@ export const updateProductImage = async (req, res, next) => {
     }
 }
 
+export const deleteProductLink = async (req, res, next) => {
+    const {id, link} = req.params 
+
+    try {
+        const product = await Product.findById(id) 
+        if(!product) {
+            res.status(404)
+            throw new Error(strings.product[lang].no_product)
+        }
+        product.driveFile = product.driveFile.filter(lk => lk._id.toString() !== link) 
+        await product.save()
+        res.send({
+            success:true,
+            code:200
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
 export const deleteProduct = async (req, res, next) => {
     const {id} = req.params
     const {lang} = req.headers
@@ -232,6 +264,25 @@ export const deleteProduct = async (req, res, next) => {
             code:200,
             message:`${product.name} ${strings.product[lang].product_delete}`,
             product:product._id
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const toggleProductListing = async (req, res, next) => {
+    const {id} = req.params 
+
+    try {
+        const product = await Product.findById(id) 
+        product.isListed = !product.isListed
+        
+        const updatedProduct = await product.save()
+        
+        res.send({
+            success:true,
+            code:200,
+            isListed:updatedProduct.isListed
         })
     } catch (error) {
         next(error)

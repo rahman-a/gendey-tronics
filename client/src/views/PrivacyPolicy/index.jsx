@@ -17,8 +17,7 @@ const PrivacyPolicy = () => {
                         that is received, used and exchanged within the framework of the business 
                         and services provided to our valued customers.</p>
 
-                        <p>In the event that you (the user) use the website www.alqudspiant.com and / or the 
-                        mobile application (collectively referred to as the "online store"), this means 
+                        <p>In the event that you (the user) use the website https://www.gendyecu.com, this means 
                         your final and unconditional approval of this privacy policy.</p>
 
                         <p>Please note that this privacy policy is updated from time to time, 

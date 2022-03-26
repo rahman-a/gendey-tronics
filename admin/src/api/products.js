@@ -31,8 +31,17 @@ const productsAPI = {
         const queryString = new URLSearchParams(query).toString() 
         return service().get(`orders/all?${queryString}`)
     },
+    newOrder(data) {
+        return service().post('orders/new', data)
+    },
     getOrder(id) {
         return service().get(`orders/${id}`)
+    },
+    toggleListing(id) {
+        return service().patch(`products/${id}/listing`)
+    },
+    deleteLink(id, link){
+        return service().delete(`products/${id}/link/${link}`)
     }
 }
 

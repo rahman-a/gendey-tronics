@@ -16,9 +16,14 @@ import {
   NewBlog,
   Blog,
   Orders,
+  Courses,
+  Course,
+  NewCourse,
   Notifications,
-  Messages,
+  Contacts,
   Profile,
+  Drive,
+  Calls,
   NotFound
 } from './views'
 
@@ -60,14 +65,26 @@ function App() {
             <Route path='/blogs/:id'>
               {isAuth ? <Blog/> : <Redirect to='/login'/>}
             </Route>
+            <Route path='/courses' exact>
+              {isAuth ? <Courses/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/courses/new'>
+              {isAuth ? <NewCourse/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/courses/:id'>
+              {isAuth ? <Course/> : <Redirect to='/login'/>}
+            </Route>
             <Route path='/profile'>
                 {isAuth ? <Profile/> :<Redirect to='/login'/>}
             </Route>
-            <Route path='/messages'>
-                {isAuth ? <Messages/> : <Redirect to='/login'/>}
+            <Route path='/drive'>
+                {isAuth ? <Drive/> :<Redirect to='/login'/>}
             </Route>
-            <Route path='/notifications'>
-                {isAuth ? <Notifications/> : <Redirect to='/login'/>}
+            <Route path='/calls'>
+                {isAuth ? <Calls/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/contacts'>
+                {isAuth ? <Contacts/> : <Redirect to='/login'/>}
             </Route>
             <Route path='*'>
                 <NotFound/>

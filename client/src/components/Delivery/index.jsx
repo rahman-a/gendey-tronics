@@ -1,12 +1,13 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import style from './style.module.scss'
 import {Printer} from '../icons'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
+import DownloadAsset from './DownloadAsset'
 import constants from '../../constants'
 import strings from '../../localization'
+
 
 const Delivery = () => {
     const history = useHistory()
@@ -18,10 +19,12 @@ const Delivery = () => {
     const printOrderHandler = () => {
         window.print()
     }
+
     useEffect(() => {
         !order && history.push(`${path}?process=cart`)
         return () => dispatch({type:constants.product.CREATE_ORDER_RESET})
     },[order,history, path])
+    
     return (
         <>
         {order && <div className={`${style.delivery} orderInvoice`}
@@ -57,9 +60,7 @@ const Delivery = () => {
                             <td>{item.product.name}</td>
                             <td>{item.quantity}</td>
                             <td>{item.product.price * item.quantity}$</td>
-                            <td>
-                                <Button variant='primary'>Action</Button>
-                            </td>
+                            <DownloadAsset id={item.product.driveFile}/>
                             </tr>
                         })
                     }

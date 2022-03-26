@@ -141,6 +141,70 @@ const getOrder = (id) => async (dispatch) => {
     }
 }
 
+const toggleProductListing = (id) => async (dispatch, getState) => {
+    dispatch({type: constants.products.TOGGLE_PRODUCT_LISTING_REQUEST}) 
+    try {
+        const {data} = await api.products.toggleListing(id)
+        
+        const {product} = getState().getProduct
+        if(product) {
+            const copiedProduct = {...product} 
+            copiedProduct.isListed = data.isListed
+            dispatch({
+                type:constants.products.GET_PRODUCT_SUCCESS,
+                payload:copiedProduct
+            })
+        }
+        dispatch({type:constants.products.TOGGLE_PRODUCT_LISTING_SUCCESS,})
+    } catch (error) {
+        dispatch({
+            type: constants.products.TOGGLE_PRODUCT_LISTING_FAIL,
+            payload:error.response && error.response.data.message
+        })
+    }
+}
+
+const createOrder = (order) => async (dispatch) => {
+    dispatch({type: constants.products.CREATE_ORDER_REQUEST}) 
+    try {
+        const {data} = await api.products.newOrder(order)
+        dispatch({type:constants.products.CREATE_ORDER_SUCCESS, payload:data.message})
+    } catch (error) {
+        dispatch({
+            type: constants.products.CREATE_ORDER_FAIL,
+            payload:error.response && error.response.data.message
+        })
+    }
+}
+
+const deleteLink = (id, link) => async(dispatch, getState) => {
+    dispatch({type:constants.courses.DELETE_LINK_REQUEST})
+
+    try {
+        const {data} = await api.products.deleteLink(id, link)
+        const {product} = getState().getProduct
+        if(product) {
+            const copiedProduct = {...product}
+            copiedProduct.driveFile = copiedProduct.driveFile.filter(lk => lk._id.toString() !== link)
+            dispatch({
+                type:constants.products.GET_PRODUCT_SUCCESS,
+                payload:copiedProduct
+            })
+        }
+
+        dispatch({
+            type:constants.courses.DELETE_LINK_SUCCESS,
+            payload:data.message
+        })
+    
+    } catch (error) {
+        dispatch({
+            type:constants.courses.DELETE_LINK_FAIL,
+            payload:error.response && error.response.data.message
+        })
+    }
+}
+
 const actions = {
     listAllProducts,
     listAllOrders,
@@ -149,18 +213,10 @@ const actions = {
     getOneProduct,
     updateProduct,
     updateProductImage,
-    deleteProduct
+    deleteProduct,
+    toggleProductListing,
+    createOrder,
+    deleteLink
 }
 
 export default actions
-
-// let {products} = getState().listAllProducts 
-        // if(products) {
-        //     const {count} = getState().listAllProducts 
-        //     products = [...products, data.product]
-        //     dispatch({
-        //         type:constants.products.LIST_PRODUCTS_SUCCESS,
-        //         products:products,
-        //         count:count + 1
-        //     })
-        // }

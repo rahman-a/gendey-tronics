@@ -80,7 +80,7 @@ const Product = () => {
                     : blog && 
                     <>  
                         <div className={style.blog__header}> 
-                            <h1> {blog.title} </h1>
+                            <h1 className='main-header'> {blog.title} </h1>
                             <p> <strong> blog id: </strong> 
                                 {blog._id}
                                 <CopyToClipboard text={blog._id}

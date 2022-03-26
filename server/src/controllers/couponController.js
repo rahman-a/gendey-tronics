@@ -16,6 +16,7 @@ export const createNewCoupon = async (req, res, next) => {
         res.status(201).json({
             success:true, 
             code:201,
+            coupon,
             message:strings.course[lang].coupon_create
         })
     } catch (error) {
@@ -104,7 +105,8 @@ export const listAllCoupon = async (req, res, next) => {
     const {page, skip} = req.query
     try {
         const coupons = await Coupon.find({...req.body})
-        .limit(parseInt(page) || 10).skip(parseInt(skip) || 0)
+        // .limit(parseInt(page) || 25).skip(parseInt(skip) || 0)
+        const count = await Coupon.count({})
 
         if(!coupons || coupons.length < 1) {
             res.status(404)
@@ -113,7 +115,8 @@ export const listAllCoupon = async (req, res, next) => {
         res.json({
             success:true, 
             code:200,
-            coupons
+            coupons,
+            count
         })
     } catch (error) {
         next(error)

@@ -49,7 +49,7 @@ const Users = () => {
         text={message}
         isOn={message ? true : false}/>
         
-        <h1>Users List</h1>
+        <h1 className='main-header'>Users List</h1>
 
         <Input
          type="text" 

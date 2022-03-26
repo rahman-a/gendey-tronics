@@ -1,0 +1,88 @@
+@use '../../sass/variables' as var;
+@use '../../sass/media' as media;
+
+
+.calls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: -webkit-center;
+    h1 {
+        padding:5rem 0;
+    }
+
+    &__action {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    &__delete,
+    &__edit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:3rem;
+        height: 3rem;
+        border-radius: 50%;
+        border:1px solid red;
+        color:red;
+    }
+
+    &__edit {
+        border: 1px solid #0dcaf0;
+        color:#0dcaf0;
+    }
+
+    &__confirmDelete {
+        text-align: center;
+        padding: 0.2rem;
+        font-weight: 300
+    }
+
+    &__filter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        & > div {
+            width:25rem;
+            margin-right: 2rem;
+        }
+        button {
+            margin-left:2rem
+        }
+    }
+
+    &__search {
+        all: unset;
+        text-align: left !important;
+        margin:0 1rem 1rem 0;
+        width: 40rem;
+    }
+
+    &__name {
+        span {
+            border-bottom:1px dashed #333;
+            cursor: pointer;
+            &:hover {
+                border-bottom: 1px solid #333;
+            }
+        }
+    }
+
+    &__data {
+        td {
+            padding:1rem 0;
+            width:20rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    &__method {
+        svg {
+            width:2.5rem;
+            height: 2.5rem;
+        }
+    }
+}

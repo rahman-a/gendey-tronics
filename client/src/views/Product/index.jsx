@@ -35,7 +35,7 @@ const Product = () => {
     const type = new URLSearchParams(useLocation().search).get('type')
     const path = useLocation().pathname
     const dispatch = useDispatch()
-    const {isAuth} = useSelector(state => state.client)
+    const {isAuth, info} = useSelector(state => state.client)
     const {lang} = useSelector(state => state.language)
     const {loading, error, product} = useSelector(state => state.productData)
     const {loading:loading_p, error:error_p, products} = useSelector(state => state.listProducts)
@@ -105,6 +105,9 @@ const Product = () => {
             method:callMethod,
             phone:callPhone
         }
+        if(info) {
+            bookingInfo.user = info._id
+        } 
         dispatch(actions.products.bookCall(bookingInfo))
         setContactType('done')
     }

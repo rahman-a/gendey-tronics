@@ -78,7 +78,7 @@ const Blog = () => {
             <div className={style.blog__wrapper}> 
             
                 <div className={style.blog__header}> 
-                    <h1> Create New Blog... </h1>
+                    <h1 className='main-header'> Create New Blog... </h1>
                     <span  className={style.blog__header_date}> 
                         created At: {new Date().toLocaleDateString('en-US', dateOptions)} 
                     </span>

@@ -53,7 +53,7 @@ export const listAllInstructors = async (req, res, next) => {
     const {page, skip} = req.query 
     try {
         const count = await Instructor.count({})
-        const instructors = await Instructor.find({}).populate('info')
+        const instructors = await Instructor.find({}).populate('info', 'firstName lastName')
         .limit(parseInt(page) || 10).skip(parseInt(skip) || 0)
         if(!instructors || instructors.length < 1) {
             res.status(404)

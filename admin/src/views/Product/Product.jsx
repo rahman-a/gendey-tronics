@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import style from './style.module.scss'
+import { Button } from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
@@ -9,19 +10,24 @@ import actions from '../../actions';
 import constants from '../../constants';
 import ProductData from './ProductData';
 import ProductOptions from './ProductOptions'
+import ProductLinks from './ProductLinks'
 
 const Product = () => {
     const [isCopied, setIsCopied] = useState(false)
     const dispatch = useDispatch()
     const {loading, error, product} = useSelector(state => state.getProduct)
     const {loading:image_loading, error:image_error, message} = useSelector(state => state.editProductImage)
-
+    const {loading:list_loading, error:list_error} = useSelector(state => state.toggleListing)
     const {id} = useParams()
     
     const dateOptions = {
         month:'long',
         year:'numeric',
         day:'numeric'
+    }
+
+    const toggleProductListing = _ => {
+        dispatch(actions.products.toggleProductListing(product._id))
     }
 
     const changeImageHandler = e => {
@@ -67,6 +73,12 @@ const Product = () => {
         />
 
         <SideAlert
+            type='danger'
+            text={list_error}
+            isOn={list_error ? true : false} 
+        />
+
+        <SideAlert
             type='success'
             text={message}
             isOn={message ? true : false} 
@@ -80,7 +92,20 @@ const Product = () => {
                     : product && 
                     <>  
                         <div className={style.product__header}> 
-                            <h1> {product.name} </h1>
+                        <div className={style.product__listing}>
+                               {
+                               list_loading 
+                                ? <Loader size='4' options={{animation:'border'}}/>
+                                : <Button 
+                                    size='lg' 
+                                    variant={product.isListed? 'danger' :'success' } 
+                                    onClick={toggleProductListing}> 
+                                        {product.isListed ? 'Unlist Product' : 'List Product'} 
+                                  </Button>
+                               } 
+                                
+                            </div>
+                            <h1 className='main-header'> {product.name} </h1>
                             <p> <strong> product id: </strong> 
                                 {product._id}
                                 <CopyToClipboard text={product._id}
@@ -103,37 +128,40 @@ const Product = () => {
                         <div className={style.product__body}> 
                             <div className={style.product__content}>
                                 <ProductData data={product}/>
-                                <ProductOptions data={product}/>
-                            </div>
-                            <figure className={style.product__image}>
-                                <div className={style.product__image_backdrop}
-                                style={{display: image_loading && 'block'}}>
-                                    
-                                    <label htmlFor="product-image">
-                                       {
-                                           image_loading 
-                                           ? <Loader size='5' center options={{animation:'border'}}/>
-                                           : 
-                                           <>
-                                             <span> <Upload/> </span>
-                                             <span> upload a new image </span>
-                                           </>
-                                       } 
+                                <figure className={style.product__image}>
+                                    <div className={style.product__image_backdrop}
+                                    style={{display: image_loading && 'block'}}>
                                         
-                                    </label>
+                                        <label htmlFor="product-image">
+                                        {
+                                            image_loading 
+                                            ? <Loader size='5' center options={{animation:'border'}}/>
+                                            : 
+                                            <>
+                                                <span> <Upload/> </span>
+                                                <span> upload a new image </span>
+                                            </>
+                                        } 
+                                            
+                                        </label>
 
-                                    <input 
-                                    type="file" 
-                                    id='product-image' 
-                                    onChange={changeImageHandler}
-                                    style={{display:'none'}}/>
+                                        <input 
+                                        type="file" 
+                                        id='product-image' 
+                                        onChange={changeImageHandler}
+                                        style={{display:'none'}}/>
 
-                                </div>
-                                <img src={`/api/images/${product.image}`} alt={product.name} />
-                            </figure>
-                        </div>
-                    </>
-                }
+                                    </div>
+                                    <img src={`/api/images/${product.image}`} alt={product.name} />
+                                </figure>
+                            </div>
+                            <div className={style.product__content}>
+                                <ProductOptions data={product}/>
+                                <ProductLinks id={product._id} name={product.name} links={product.driveFile}/>
+                            </div>
+                            </div>
+                        </>
+                    }
                 
             </div>
         </div>

@@ -89,7 +89,7 @@ const Blogs = () => {
         text={comment_message}
         isOn={comment_message ? true : false}/>
        
-       <h1>Blogs List</h1>
+       <h1 className='main-header'>Blogs List</h1>
     
        <div className={style.blogs__filter}>
             <Input

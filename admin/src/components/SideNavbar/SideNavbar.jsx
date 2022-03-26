@@ -7,14 +7,14 @@ import {Loader} from '../../components'
 import {
     Home,
     Users,
-    GraduationCap,
     Chalkboard,
     Car,
     TruckLoading,
     Newspaper,
     PlusSquare,
     Table,
-    Logout
+    Logout,
+    HardDrive
 } from '../../icons'
 
 
@@ -158,7 +158,7 @@ const SideNavbar = ({
                     <ul className={style.navbar__menu_dropdown}>
                         <div ref={courseRef}>
                             <li className={style.navbar__menu_dropdown_item}
-                            onClick={() => navigate('/messages')}>
+                            onClick={() => navigate('/courses')}>
                                 <span>
                                     <Table/>
                                 </span>
@@ -167,16 +167,7 @@ const SideNavbar = ({
                                 </span>
                             </li>
                             <li className={style.navbar__menu_dropdown_item}
-                            onClick={() => navigate('/notifications')}>
-                                <span>
-                                    <GraduationCap/>
-                                </span>
-                                <span>
-                                    Enrollments
-                                </span>
-                            </li>
-                            <li className={style.navbar__menu_dropdown_item}
-                            onClick={() => navigate('/notifications')}>
+                            onClick={() => navigate('/courses/new')}>
                                 <span>
                                     <PlusSquare/>
                                 </span>
@@ -227,6 +218,22 @@ const SideNavbar = ({
                     {/* ///////////////////////////////////// */}
                 </li>
 
+                {/* ////////////// Website Assets //////////// */}
+
+
+                <li className={style.navbar__menu_item}
+                >
+                    <div onClick={() => navigate('/drive')}>
+                        <span>
+                            <HardDrive/>
+                        </span>
+                        <span>
+                            Drive
+                        </span>
+                    </div>
+                </li>
+
+                {/* ////////////////////////////////////////// */}
                 
                 <li className={style.navbar__menu_item}
                 >

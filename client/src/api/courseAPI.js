@@ -1,11 +1,8 @@
 import {service} from './service'
 
 export const courseApi = {
-    list(type){
-        const url = type === 'public'
-        ? 'courses/public'
-        : 'courses'
-        return service().get(url)
+    list(){
+        return service().get('courses?isPublic=true')
     },
     get(id, type){
         const url = type === 'public' 
@@ -74,5 +71,11 @@ export const courseApi = {
     },
     updateReview(id, review) {
         return service().patch(`reviews/${id}`, review)
+    },
+    downloadFile(id) {
+        return service().get(`drive/download/${id}`)
+    },
+    deletePermission(id) {
+        return service().delete(`drive/permission/${id}`)
     }
 } 

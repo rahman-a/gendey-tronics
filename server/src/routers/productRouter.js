@@ -9,7 +9,9 @@ import {
     getOneProduct,
     deleteProduct,
     updateProduct,
-    updateProductImage
+    updateProductImage,
+    toggleProductListing,
+    deleteProductLink
 } from '../controllers/productController.js'
 
 import {
@@ -30,8 +32,10 @@ router.get('/:id/public', getOneProduct)
 router.get('/:id',isAuth, getOneProduct)
 router.get('/', listAllProduct)
 router.patch('/:id', isAuth, isAdmin, updateProduct)
+router.patch('/:id/listing', isAuth, isAdmin, toggleProductListing)
 router.patch('/image/:id', isAuth, isAdmin,uploadHandler.single('image'), updateProductImage)
 router.delete('/:id', isAuth, isAdmin, deleteProduct)
+router.delete('/:id/link/:link', isAuth, isAdmin, deleteProductLink)
 
 
 

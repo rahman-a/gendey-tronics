@@ -7,31 +7,43 @@ import strings from "../localization.js";
 export const createEnrollment = async (req, res, next) => {
     const {lang} = req.headers
     const {id} = req.params
-    const newEnrollment = new Enrollment({user:req.user._id, course:id})
+    const {user, payment} = req.body
+ 
+    const targetUser = user ? user :req.user._id
+
+    console.log({id, user, payment});
+    
+    const newEnrollment = new Enrollment({user:targetUser, course:id, payment})
     try {
-        const isEnrolled = await Enrollment.findOne({course:id, user:req.user._id})
+        const isEnrolled = await Enrollment.findOne({course:id, user:targetUser})
         if(isEnrolled) {
             res.status(400)
             throw new Error(strings.course[lang].already_enrolled)
         }
         const targetedCourse = await Course.findById(id)
-        
+        console.log('targetedCourse: ', targetedCourse._id);
+
         // find the first chapter
         const firstChapter = await Chapter.findOne({course:id, order:0})
-        
         // find the first lesson in first chapter
-        const firstLesson = await Lesson.findOne({chapter:firstChapter._id, order:0})
+        const firstLesson = firstChapter ? await Lesson.findOne({chapter:firstChapter._id, order:0}) : undefined
         
         // assign lesson id if to currentLesson property
-        newEnrollment.currentLesson = firstLesson._id
-        newEnrollment.completedLesson = newEnrollment.completedLesson.concat(firstLesson._id)
-        if(targetedCourse.isPaid) {
-            const payment = await handlePayment ()
-            const asset = await downloadCourseAssets()
-            console.log(payment)
-            console.log(asset)
-        }
+        newEnrollment.currentLesson = firstLesson ?  firstLesson._id : undefined
+        newEnrollment.completedLesson = firstLesson ? newEnrollment.completedLesson.concat(firstLesson._id) : []
         const enroll = await newEnrollment.save()
+        
+        if(targetedCourse.isPaid) {
+            
+            res.status(201).json({
+                success:true,
+                code:201,
+                asset:targetedCourse.driveFile,
+                message:strings.course[lang].new_enroll,
+            })
+
+            return
+        }
         res.status(201).json({
             success:true,
             code:201,
@@ -171,10 +183,21 @@ export const decreaseEnrollmentProgress = async (req, res, next) => {
     }
 }
 
-async function handlePayment () {
-    return "Processing Payment...."
-}
+export const listCourseEnrollments = async (req, res, next) => {
+    const {id} = req.params 
 
-async function downloadCourseAssets () {
-    return "Downloading The Course Assets..."
+    try {
+        const enrollments = await Enrollment.find({course:id})
+        .populate('user', 'firstName lastName email phoneNumber')
+        .select('user createdAt')
+
+        res.send({
+            success:true,
+            code:200,
+            enrollments
+        })
+
+    } catch (error) {
+        next(error)
+    }
 }

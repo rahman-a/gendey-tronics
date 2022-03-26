@@ -23,7 +23,7 @@
     }
     
     &__label {
-        color:var.$full-light-color;
+        color:#333;
         font-size: 1.4rem;
     }
 
@@ -56,7 +56,7 @@
             }
 
             &:hover span {
-                color:var.$main-color;
+                color:#333;
             }
             span {
                 margin-right:1rem;
@@ -67,7 +67,7 @@
                 }
             }
             div {
-                color:var.$main-color;
+                color:#333;
             }
         }
         

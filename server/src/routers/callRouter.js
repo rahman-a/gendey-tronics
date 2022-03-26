@@ -7,12 +7,14 @@ import {
     bookingCall,
     toggleCallActiveState,
     deleteCall,
-    listAllActiveCalls
+    listAllCalls,
+    latestCalls
 } from '../controllers/callController.js'
 
 router.post('/book',isAuth, bookingCall)
 router.patch('/:id', isAuth, isAdmin, toggleCallActiveState)
-router.get('/', isAuth, isAdmin, listAllActiveCalls)
+router.get('', isAuth, isAdmin, listAllCalls)
+router.get('/latest', isAuth, isAdmin, latestCalls)
 router.delete('/:id', isAuth, isAdmin, deleteCall)
 
 export default router

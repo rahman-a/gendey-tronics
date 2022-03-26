@@ -93,7 +93,7 @@ const Product = () => {
             <div className={style.product__wrapper}> 
             
                 <div className={style.product__header}> 
-                    <h1> Create New Product... </h1>
+                    <h1 className='main-header'> Create New Product... </h1>
                     <span  className={style.product__header_date}> 
                         created At: {new Date().toLocaleDateString('en-US', dateOptions)} 
                     </span>

@@ -1,0 +1,55 @@
+@use '../../sass/variables' as var;
+@use '../../sass/media' as media;
+
+.instructor {
+    &__name {
+        margin-bottom: 2rem;
+        h3 {
+            color:var.$main-color;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0;
+        }
+        p {
+            color:lighten(var.$light-black, 30%)
+        }
+    }
+    &__overview {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        figure {
+            width:12rem;
+            img {width:100%}
+        }
+        li {
+            display: flex;
+            margin-bottom: 0.5rem;
+            span {
+                color:var.$main-color;
+            }
+            p {
+                margin:0;
+                margin-left:0.8rem;
+                color:lighten(var.$light-black, 25%);
+                font-weight: 300;
+            }
+        }
+    }
+    &__info {
+        p {
+            height: 15rem;
+            overflow: hidden;
+            color:lighten(var.$light-black, 25%);
+            font-weight: 300;
+            @include media.mq(xs){
+                font-size: 1.5rem;
+            }
+        }
+        button {
+            all:unset;
+            color:var.$main-color;
+            cursor: pointer;
+        }
+    }
+}

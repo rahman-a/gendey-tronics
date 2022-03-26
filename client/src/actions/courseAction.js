@@ -51,10 +51,50 @@ const createNewEnrollment = (id) => async (dispatch) => {
     dispatch({type: constants.courses.NEW_ENROLLMENT_REQUEST})
     try {
         const {data} = await api.courses.newEnrollment(id)
-        dispatch({type: constants.courses.NEW_ENROLLMENT_SUCCESS, payload:data.enroll})
+        dispatch({
+            type: constants.courses.NEW_ENROLLMENT_SUCCESS, 
+            enroll:data.enroll,
+            asset:data.asset
+        })
     } catch (error) {
         dispatch({
             type:constants.courses.NEW_ENROLLMENT_FAIL,
+            payload:error.response && error.response.data.message
+        })
+    }
+}
+
+const downloadFile = id => async (dispatch) => {
+    dispatch({type:constants.courses.DOWNLOAD_ASSET_REQUEST}) 
+
+    try {
+        const {data} = await api.courses.downloadFile(id)
+
+        dispatch({
+            type:constants.courses.DOWNLOAD_ASSET_SUCCESS,
+            payload:data.file
+        })
+
+    } catch (error) {
+        dispatch({
+            type:constants.courses.DOWNLOAD_ASSET_FAIL,
+            payload:error.response && error.response.data.message
+        })
+    }
+}
+
+const deletePermission = id => async (dispatch) => {
+    dispatch({type:constants.courses.DELETE_ASSET_PERMISSION_REQUEST}) 
+
+    try {
+        
+        await api.courses.deletePermission(id)
+    
+        dispatch({type:constants.courses.DELETE_ASSET_PERMISSION_SUCCESS,})
+
+    } catch (error) {
+        dispatch({
+            type:constants.courses.DELETE_ASSET_PERMISSION_FAIL,
             payload:error.response && error.response.data.message
         })
     }
@@ -354,7 +394,9 @@ const courseActions = {
     applyCoupon,
     addReview,
     getReview,
-    updateReview
+    updateReview,
+    downloadFile,
+    deletePermission
 }
 
 export default courseActions

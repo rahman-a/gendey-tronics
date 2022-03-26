@@ -1,8 +1,9 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import style from './style.module.scss'
 import {v4 as uuidv4} from 'uuid'
 import {useHistory, useLocation} from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import {useDispatch, useSelector } from 'react-redux'
+import actions from '../../actions'
 import { HandDollar, MenuBars,Envelope, Headset } from '../../icons'
 import {SideNavbar, NotificationContainer } from '../../components'
 
@@ -40,10 +41,16 @@ const Header = () => {
     const [toggleNotification, setToggleNotification] = useState(false)
     const [toggleMessages, setToggleMessages] = useState(false)
     const headerBgRef = useRef(null)
+    const dispatch = useDispatch()
     const {isAuth} = useSelector(state => state.login)
+    const {count, calls} = useSelector(state => state.latestCalls)
+    const {count:contact_count, contacts} = useSelector(state => state.latestContacts)
     const navigate = useHistory().push
     const page = useLocation().pathname
     
+
+
+
     const toggleNotifyData = type => {    
         if(type === 'Calls'){
             setToggleMessages(false)
@@ -72,6 +79,13 @@ const Header = () => {
         document.body.style.height = 'unset'
         document.body.style.overflow = 'unset'
     })
+
+    useEffect(() => {
+       if(isAuth) {
+         dispatch(actions.calls.latestCalls())
+         dispatch(actions.contacts.latestContacts())
+       }
+    },[isAuth])
 
     return (
         <>
@@ -114,11 +128,13 @@ const Header = () => {
 
                                 <div className={style.header__notify_list}></div>
                                 <span onClick={() => toggleNotifyData('Calls')}>
-                                    <span className={style.header__notify_num}>10</span>
+                                   {count && <span className={style.header__notify_num}>
+                                        {count}
+                                    </span>}
                                     <Headset/>
                                 </span>
                                 <span onClick={() => toggleNotifyData('messages')}>
-                                    <span className={style.header__notify_num}>4</span>
+                                   {contact_count && <span className={style.header__notify_num}>{contact_count}</span>} 
                                     <Envelope/>
                                 </span>
                                 <span style={{bottom:'5px'}}>
@@ -131,15 +147,15 @@ const Header = () => {
                                 setToggleNotification={setToggleNotification}
                                 setToggleMessages={setToggleMessages}
                                 title='Calls' 
-                                data={notifyData}/>}
+                                data={calls}/>}
                                 
                                 {/* Messages List */}
                                 {toggleMessages 
                                 && <NotificationContainer 
                                 setToggleNotification={setToggleNotification}
                                 setToggleMessages={setToggleMessages}
-                                title='Messages' 
-                                data={notifyData}/>}
+                                title='Contacts' 
+                                data={contacts}/>}
                             </div>
                         </div>
                     </div>

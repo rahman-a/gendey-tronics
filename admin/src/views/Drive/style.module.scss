@@ -1,0 +1,200 @@
+@use '../../sass/variables' as var;
+@use '../../sass/media' as media;
+
+.drive {
+    min-height: calc(100vh - 10rem);
+    text-align: -webkit-center;
+    margin-bottom: 5rem;
+    position: relative;
+    &__welcome {
+        height: calc(100vh - 10rem);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        h1 {
+            margin-bottom: 1rem;
+            font-size: 4rem;
+            font-weight: 200;
+        }
+    }
+
+    &__error {
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    &__content {
+        &_wrapper {
+            border:1px solid #ccc;
+            h2 {
+                height: 50vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-weight: 300;
+                span {
+                    font-size: 5rem;
+                    margin-bottom: 0.5rem;
+                    color:var.$light-color
+                }
+            }
+        }
+    
+        &_header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: var.$light-color;
+            span:first-child {
+                margin-right: 1rem;
+                font-size: 1.3rem;
+                color: var.$white-color;
+            }
+            button {
+                all: unset;
+                border: 1px solid var.$light-color;
+                cursor: pointer;
+                padding: 0.5rem 2rem;
+                background-color: var.$bg-color;
+                color:var.$white-color;
+                box-shadow: 0px 3px 6px 1px rgb(0 0 0 / 30%);
+                &:hover {
+                    box-shadow: unset;
+                }
+                &:disabled {
+                    background-color: #c9c9c9;
+                    color:#959595;
+                    cursor:not-allowed;
+                    box-shadow: unset;
+                    span {
+                        color:#959595;
+                    }
+                }
+            }
+        }
+
+        &_files {
+            min-height: 30vh;
+            padding: 2rem 2rem 2rem 10rem;
+        }
+
+        &_actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &_search {
+            display: flex;
+            align-items: center;
+            margin: 2rem 0;
+            & > div {
+                margin-right: 2rem;
+            }
+            div:nth-of-type(2) {
+                width:30rem;
+            }
+        }
+
+        &_layout {
+            button:first-child {
+                margin-right:1rem;
+            }
+            svg {
+                width:2rem;
+                height: 2rem;
+            }
+        }
+
+        &_container {
+            display: flex;
+            flex-wrap: wrap;
+            &_horizontal {
+                display: block;
+            }
+        }
+
+        &_file {
+            margin: 0 5rem 2rem 0;
+            text-align: start;
+            figure {
+                width:12rem;
+                height: 12rem;
+                margin:0;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            p {
+                width: fit-content;
+                font-size: 1.2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            & > div {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        &_horizontal {
+            display: flex;
+            align-items: center;
+            figure {
+                height: 6rem;
+            }
+            p {
+                margin-right:auto;
+                background-color: #e8e8e8;
+                padding: 0.5rem;
+                width: -webkit-fill-available;
+                border-radius: 0.3rem;
+            }
+
+            & > div {
+                margin-left:1.5rem;
+            }
+
+            button:not(last-child) {
+                margin-right:1rem;
+            }
+        }
+    
+    }
+
+    &__noFiles {
+        min-height: 30vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: #ccc;
+        svg {
+            width:6rem;
+            height: 6rem;
+        }
+        h3 {
+            margin: 1rem 0;
+            letter-spacing: 1px;
+            font-size: 2.5rem;
+            font-weight: 400
+        }
+        h4 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            font-style: italic;
+        }
+    }
+
+    &__pagination {
+        display: flex;
+        justify-content: center;
+    }
+}

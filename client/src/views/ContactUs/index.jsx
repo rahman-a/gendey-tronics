@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import style from './style.module.scss'
 import Template from '../../components/Template'
 import {PhoneAlt, Schedule} from '../../components/icons'
@@ -25,7 +25,7 @@ const ContactPage = () => {
     const path = useLocation().pathname
     const history = useHistory()
     const dispatch = useDispatch()
-    const {isAuth} = useSelector(state => state.client)
+    const {isAuth, info} = useSelector(state => state.client)
     const {lang} = useSelector(state => state.language)
     const {loading, error, message} = useSelector(state => state.newContact)
     const {loading:call_loading, error:call_error, message:call_message} = useSelector(state => state.bookCall)
@@ -49,6 +49,9 @@ const ContactPage = () => {
             method:callMethod,
             phone:callPhone
         }
+        if(info) {
+            bookingInfo.user = info._id
+        }
         dispatch(actions.products.bookCall(bookingInfo))
         setContactType('done')
     }
@@ -59,8 +62,14 @@ const ContactPage = () => {
     }
     const submitFormHandler = e => {
         e.preventDefault()
-            dispatch(actions.contact.newContact(contactDetails))
+        dispatch(actions.contact.newContact(contactDetails))
     }
+
+    useEffect(() => {
+        if(info) {
+            setContactDetails({...contactDetails, user:info._id})
+        }
+    },[info])
     return (
         <Template>
             <Modal toggle={toggle} 

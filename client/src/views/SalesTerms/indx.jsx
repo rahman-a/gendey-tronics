@@ -12,13 +12,13 @@ const PrivacyPolicy = () => {
                 </figure>
                  <div className="container">
                     <div className={style.sales__content}>
-                        <p className={style.sales__content_start}>First of all, we welcome you to the online store of (Gendy Tronics Company), 
+                        <p className={style.sales__content_start}>
+                        First of all, we welcome you to the online store of (Gendy Tronics Company), 
                         and we are pleased to present this privacy policy regarding the information 
                         that is received, used and exchanged within the framework of the business 
                         and services provided to our valued customers.</p>
 
-                        <p>In the event that you (the user) use the website www.gendytronics.com and / or the 
-                        mobile application (collectively referred to as the "online store"), this means 
+                        <p>In the event that you (the user) use the website https://www.gendyecu.com, this means 
                         your final and unconditional approval of this privacy policy.</p>
 
                         <p>Please note that this privacy policy is updated from time to time, 
@@ -30,11 +30,11 @@ const PrivacyPolicy = () => {
                         personal information, please inform us so that we can make the necessary updates 
                         or adjustments.</p>
 
-                        <p className={style.sales__content_header}>First: the information that is collected from you.</p>
+                        <p className={style.sales__content_header}>
+                            First: the information that is collected from you.</p>
                         <ul>
                             <li>Personal data: This data includes name, gender, nationality, date of birth, address, 
-                            mobile number, e-mail, payment and billing data, credit card data, bank account data, 
-                            marketing preferences and your products, in addition to the data you provide to obtain
+                            mobile number, e-mail and your products, in addition to the data you provide to obtain
                             membership in our loyalty program "for you" and / or any data Necessary to fulfill 
                             the requests specified by you and all the data we see as necessary.</li>
                             <li>General information: This includes information that we receive from you as 

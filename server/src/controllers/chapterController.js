@@ -13,10 +13,11 @@ export const createNewChapter = async (req, res, next) => {
             res.status(400)
             throw new Error(strings.course[lang].chapter_title_exist)
         } 
-        await newChapter.save()
+        const chapter = await newChapter.save()
         res.status(201).json({
             success:true,
             code:201,
+            chapter,
             message:strings.course[lang].chapter_create
         })
     } catch (error) {
@@ -100,12 +101,12 @@ export const updateChapter = async (req, res, next) => {
                 throw new Error (`${key} is Unknown, please choose a verified key`) 
             }
         }
-        await chapter.save()
+        const updatedChapter = await chapter.save()
         res.json({
             success:true,
             code:200,
             message:strings.course[lang].chapter_update,
-            chapter: chapter._id
+            chapter: {title:updatedChapter.title, isPaid:updatedChapter.isPaid}
         })
     } catch (error) {
         next(error)

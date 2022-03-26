@@ -47,11 +47,41 @@ const createEnrollmentReducer = (state, action) => {
         case constants.courses.NEW_ENROLLMENT_REQUEST: 
             return {loading:true, error:null}
         case constants.courses.NEW_ENROLLMENT_SUCCESS: 
-            return {loading:false, error:null, enrollId:action.payload}
+            return {loading:false, error:null, enrollId:action.enroll, asset:action.asset}
         case constants.courses.NEW_ENROLLMENT_FAIL: 
             return {loading:false, error:action.payload}
         case constants.courses.NEW_ENROLLMENT_RESET: 
             return {loading:false, error:null, message:null}
+        default:
+            return {...state}
+    }
+}
+
+const downloadAsset = (state, action) => {
+    switch(action.type){
+        case constants.courses.DOWNLOAD_ASSET_REQUEST: 
+            return {loading:true, error:null}
+        case constants.courses.DOWNLOAD_ASSET_SUCCESS: 
+            return {loading:false, error:null, fileData:action.payload}
+        case constants.courses.DOWNLOAD_ASSET_FAIL: 
+            return {loading:false, error:action.payload}
+        case constants.courses.DOWNLOAD_ASSET_RESET: 
+            return {loading:false, error:null, fileData:null}
+        default:
+            return {...state}
+    }
+}
+
+const deletePermission = (state, action) => {
+    switch(action.type){
+        case constants.courses.DELETE_ASSET_PERMISSION_REQUEST: 
+            return {loading:true, error:null}
+        case constants.courses.DELETE_ASSET_PERMISSION_SUCCESS: 
+            return {loading:false, error:null, isDeleted:true}
+        case constants.courses.DELETE_ASSET_PERMISSION_FAIL: 
+            return {loading:false, error:action.payload}
+        case constants.courses.DELETE_ASSET_PERMISSION_RESET: 
+            return {loading:false, error:null, isDeleted:false}
         default:
             return {...state}
     }
@@ -323,5 +353,7 @@ const courseReducers = {
     addReview:addReviewReducer,
     getReview:getReviewReducer,
     updateReview:updateReviewReducer,
+    downloadAsset,
+    deletePermission
 }
 export default courseReducers

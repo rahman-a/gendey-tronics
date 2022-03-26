@@ -11,20 +11,28 @@ import strings from '../localization.js'
 
 export const createNewCourse = async (req, res, next) => {
     const {lang} = req.headers
-    const newCourse = new Course({
-        ...req.body,
-        image:req.fileName
-    }) 
-
+    
     try {
-        const course = await newCourse.save()
+        const course = JSON.parse(req.body.course)
+        const chapters = JSON.parse(req.body.chapters)
+        const lessons = JSON.parse(req.body.lessons)
+        
+        const newCourse = new Course({...course, image:req.fileName})
+        
+        const savedCourse = await newCourse.save()
+        
+        await Chapter.insertMany(chapters)
+        
+        await Lesson.insertMany(lessons)
+        
         res.status(201).json({
             success:true,
             code:201,
             message:strings.course[lang].course_create,
-            course:course._id
+            course:savedCourse._id
         })
     } catch (error) {
+        console.log({error});
         next(error)
     }
 }
@@ -119,42 +127,193 @@ export const getTheCourseData = async (req, res, next) => {
 
 export const listAllCourses = async (req, res, next) => {
     const {lang} = req.headers
-    const {name, page, skip, sort} = req.query 
-    let searchFilter = req.user ? {user:req.user._id} :{}
+    const {name,price, rating, students,isPaid, page, skip, isPublic} = req.query 
+    let searchFilter = {}
     try {
         if(name) {
             searchFilter = {
                 name : {
                     $regex:name,
-                    $option:'i'
+                    $options:'i'
                 }
             }
         }
-        const count = await Course.count({...searchFilter})
-        const courses = await Course.find({...searchFilter})
-        .limit(parseInt(page) || 10).skip(parseInt(skip) || 0).sort({_id:parseInt(sort)})
+
+        if(price) {
+            const priceRange = price.split(':')
+            if(priceRange.length > 1) {
+                const firstRange = parseInt(priceRange[0])
+                const secondRange = parseInt(priceRange[1])
+                
+                searchFilter = {
+                    ...searchFilter,
+                    price: {
+                        $gte:firstRange,
+                        $lte:secondRange
+                    }
+                }
+            } else {
+                searchFilter = {
+                    ...searchFilter,
+                    price:parseInt(priceRange[0])
+                } 
+            }
+        }
+
+        if(rating) {
+            console.log({rating});
+            searchFilter = {
+                ...searchFilter,
+                rating:{
+                    $lte:parseFloat(rating),
+                    $gte:parseFloat(rating) - 0.25
+                }
+            }
+        }
+        
+        if(students) {
+            const studentRange = students.split(':')
+            if(studentRange.length > 1) {
+                const firstRange = parseInt(studentRange[0])
+                const secondRange = parseInt(studentRange[1])
+                
+                searchFilter = {
+                    ...searchFilter,
+                    students: {
+                        $gte:firstRange,
+                        $lte:secondRange
+                    }
+                }
+            } else {
+                searchFilter = {
+                    ...searchFilter,
+                    students:parseInt(studentRange[0])
+                } 
+            }
+        }
+
+        if(isPaid) {
+            const condition = isPaid === 'true'
+            searchFilter = {
+                ...searchFilter,
+                isPaid:condition
+            }
+        }
+
+        if(isPublic) {
+            const value = isPublic === 'true'
+            searchFilter = {
+                ...searchFilter,
+                isPublished:value
+            }
+        }
+                
+        const aggregationOptions = [
+            {
+                $lookup:{
+                    from:'reviews',
+                    let:{courseId:"$_id"},
+                    pipeline:[
+                        {
+                            $match: {
+                                $expr: {$eq:["$course", "$$courseId"]}
+                            }
+                        },
+                        {
+                            $project:{
+                                rating:1,
+                                comment:1,
+                                user:1,
+                            }
+                        },
+                    ],
+                    as:"reviews"
+                }
+            },
+            {
+                $lookup:{
+                    from:'enrollments',
+                    let:{courseId:"$_id"},
+                    pipeline:[
+                        {
+                            $match: {
+                                $expr: {$eq:["$course", "$$courseId"]}
+                            }
+                        },
+                        {
+                            $project:{
+                                progress:1
+                            }
+                        }
+                    ],
+                    as:"students"
+                }
+            },
+            {
+                $group: {
+                    _id:"$_id",
+                    name:{$first:"$name"},
+                    image:{$first:"$image"},
+                    description:{$first:"$description"},
+                    price:{$first:"$price"},
+                    students:{$first:"$students"},
+                    isPaid:{$first:"$isPaid"},
+                    createdAt:{$first:"$createdAt"},
+                    updatedAt:{$first:"$updatedAt"},
+                    isPublished:{$first:"$isPublished"},
+                    numReviews:{$last:{$map:{
+                        input:"$reviews",
+                        as:"r",
+                        in:"$$r.rating"
+                    }}},
+                } 
+            },
+            {
+                $project:{
+                    name:1,
+                    image:1,
+                    description:1,
+                    price:1,
+                    isPaid:1,
+                    createdAt:1,
+                    updatedAt:1,
+                    isPublished:1,
+                    rating:{$ifNull:[{$avg:"$numReviews"}, 0]},
+                    students:{$size:"$students"}
+                }
+            },
+            {
+                $match:searchFilter
+            }
+        ]
+
+        const courses = await Course.aggregate([
+            ...aggregationOptions,
+            {$sort:{createdAt:-1}},
+            {$skip:parseInt(skip) || 0},
+            {$limit:parseInt(page) || 10}
+        ])
+
         if(!courses || courses.length < 1) {
             res.status(404)
             throw new Error(strings.course[lang].no_course)
         }
-        const allCourses = []
-        for(const course of courses){
-            const isFav = req.user
-            ?await Wishlist.findOne({itemType:'course', item:course._id})
-            :null
-            
-            allCourses.push({
-                _id:course._id, 
-                name:course.name, 
-                description:course.description, 
-                image:course.image,
-                isFav:isFav ? true :false
-            })
+        
+        const courseCount = await Course.aggregate([
+            ...aggregationOptions,
+            {$count:"course_count"}
+        ])
+
+        let count = 0 
+
+        if(courseCount) {
+            count = courseCount[0]['course_count']
         }
+
         res.json({
             success:true,
             code:200,
-            courses:allCourses,
+            courses,
             count
         })
     } catch (error) {
@@ -205,7 +364,7 @@ export const updateCourseData = async (req, res, next) => {
         }
         const allowedKeys = ['name', 'description', 'price', 
         'language', 'instructor', 'points', 
-        'requirements', 'targets', 'isPaid', 'trailer','discount']
+        'requirements', 'targets', 'isPaid', 'trailer','discount', 'link']
         if(Object.keys(updatedData).length < 1) {
             res.status(400)
             throw new Error(strings.user[lang].require_data)
@@ -216,6 +375,8 @@ export const updateCourseData = async (req, res, next) => {
                     course.isPaid = updatedData.isPaid
                 }else if(key === 'price') {
                     course.price = updatedData.price
+                } else if (key === 'link') {
+                    course.driveFile = course.driveFile.concat(updatedData[key])
                 }else {
                     if(updatedData[key] ) {
                         course[key] = updatedData[key]
@@ -229,12 +390,12 @@ export const updateCourseData = async (req, res, next) => {
                 throw new Error (`${key} is Unknown, please choose a verified key`) 
             }
         }
-        await course.save()
+        const updatedCourse = await course.save()
         res.json({
             success:true,
             code:200,
             message:strings.course[lang].course_update,
-            course: course._id
+            course: updatedCourse
         })
     } catch (error) {
         next(error)
@@ -260,6 +421,7 @@ export const updateCourseImage = async (req, res, next) => {
             res.json({
                 success:true, 
                 code:200,
+                image:req.fileName,
                 message:strings.product[lang].image_upload
             })
         })
@@ -290,6 +452,43 @@ export const deleteCourse = async (req, res, next) => {
             code:200,
             message:strings.course[lang].course_delete,
             course: course._id
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const toggleCoursePublish =  async (req, res, next) => {
+    const {id} = req.params 
+
+    try {
+        const course = await Course.findById(id) 
+        course.isPublished = !course.isPublished 
+        const updatedCourse = await course.save()
+        res.send({
+            success:true,
+            isPublished:updatedCourse.isPublished
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const deleteLink = async (req, res, next) => {
+    const {id, link} = req.params 
+
+    try {
+        const course = await Course.findById(id)
+        if(!course) {
+            res.status(404)
+            throw new Error(strings.course[lang].no_course)
+        }
+        course.driveFile = course.driveFile.filter(lk => lk._id.toString() !== link)
+        await course.save()
+        res.send({
+            success:true,
+            code:200,
+            message:'Link has Removed'
         })
     } catch (error) {
         next(error)

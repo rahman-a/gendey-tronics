@@ -23,13 +23,80 @@ export const bookingCall = async (req, res, next) => {
     }
 }
 
-export const listAllActiveCalls = async (req, res, next) => {
-    const {lang} = req.headers
-    const {page, skip} = req.query
+export const latestCalls = async (req, res, next) => {
     try {
-        const calls = await Call.find({...req.body})
+        const calls = await Call.find({isDone:false}).sort({createdAt:-1}).limit(5) 
+        const count = await Call.count({isDone:false})
+        const mappedCalls = calls.map(call => {
+            return {
+                id:call._id,
+                title:`A new booking from ${call.phone}`,
+                content:`${call.phone} ask for call using ${call.method}`,
+                phone:call.phone
+            }
+        })
+          
+        res.send({
+            code:200,
+            success:true,
+            count,
+            calls:mappedCalls
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const listAllCalls = async (req, res, next) => {
+    const {lang} = req.headers
+    const {page, skip, phone, method, isDone, date} = req.query
+    
+    console.log('Calling Calls...');
+    try {
+        let searchFilter = {} 
+        console.log(req.query);
+        if(phone) {
+            searchFilter = {
+                ...searchFilter,
+                phone
+            }
+        }
+        
+        if(method) {
+            searchFilter = {
+                ...searchFilter,
+                method
+            }
+        }
+
+        if(isDone) {
+            const value = isDone === 'true'
+            console.log({value});
+            searchFilter = {
+                ...searchFilter,
+                isDone:value
+            }
+        }
+
+        if(date) {
+            const offsetDate = new Date(date) 
+            offsetDate.setDate(offsetDate.getDate() + 1)
+            searchFilter = {
+                ...searchFilter,
+                date: {
+                    $gte:new Date(date),
+                    $lte:new Date(offsetDate)
+                }
+            } 
+        }
+
+        const calls = await Call.find(searchFilter)
+        .sort({createdAt:-1})
         .limit(parseInt(page) || 10).skip(parseInt(skip) || 0)
-        .populate('user', 'firstName lastName')
+        .populate('user', 'firstName lastName phoneNumber email')
+        .populate('product', 'name')
+
+        const count = await Call.count({})
 
         if(!calls || calls.length < 1) {
             res.status(404)
@@ -38,6 +105,7 @@ export const listAllActiveCalls = async (req, res, next) => {
         res.json({
             success:true, 
             code:200,
+            count,
             calls
         })
     } catch (error) {

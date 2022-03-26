@@ -3,8 +3,8 @@ import {service} from './service'
 export const productApi = {
     listProducts(type){
        const url =  type 
-        ? `products?type=${type}`
-        :`products`
+        ? `products?type=${type}&isPublic=true`
+        :`products?isPublic=true`
         return service().get(url)
     },
     getProduct(id, type){

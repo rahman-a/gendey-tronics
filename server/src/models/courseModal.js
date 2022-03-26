@@ -12,14 +12,12 @@ const courseSchema = new mongoose.Schema({
     language: {
         type:String,
         default:'arabic',
-        required:[true,'Course Language is Required']
     },
     price: {
         type:Number,
     },
     instructor: {
         type:mongoose.Schema.Types.ObjectId,
-        required:[true,'Course Instructor Id is Required'],
         ref:'Instructor'
     },
     points:[
@@ -53,10 +51,15 @@ const courseSchema = new mongoose.Schema({
         type:Number,
         default:0
     },
-    trailer: {
-        type:String,
-        required:[true,'Course Trailer Link is Required']
+    driveFile:[{
+        link:String,
+        part:Number
+    }],
+    isPublished:{
+        type:Boolean,
+        default:false
     },
+    trailer: String
 
 },{timestamps:true})
 

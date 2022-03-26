@@ -62,6 +62,19 @@ body {
     margin:0 auto;
 }
 
+.main-header {
+    text-align: center;
+    font-size: 5rem;
+    padding: 3rem 0;
+    font-weight: 200;
+    @include mq(md) {
+        font-size: 4rem;
+    }
+    @include mq(sm) {
+        font-size: 3rem;
+    }
+}
+
 
 // Table Row 
 
@@ -139,6 +152,39 @@ body {
     .selected {
         background-color: var(--main-color) !important;
     }
+}
+
+.lesson-enter {
+    opacity:0;
+}
+
+.lesson-enter-active {
+    opacity:1;
+    transition: opacity 700ms ease-in;
+}
+.lesson-exit {
+    opacity:1;
+}
+
+.lesson-exit-active {
+    opacity:0;
+    transition: opacity 700ms ease-in;
+}
+
+.chapter-enter {
+    opacity:0;
+}
+.chapter-enter-active {
+    opacity:1;
+    transition: opacity 700ms ease-in;
+}
+
+.chapter-exit {
+    opacity:1;
+}
+.chapter-exit-active {
+    opacity:0;
+    transition: opacity 700ms ease-in;
 }
 
 @media (min-width:576px) {

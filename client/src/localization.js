@@ -356,8 +356,8 @@ const strings = {
             hour:'hour',
             courses_load:'Loading Courses.....',
             add_wishlist:'add to wishlist',
-            remove_wishlist:'remove from wishlist'
-
+            remove_wishlist:'remove from wishlist',
+            prepare_download_link:'Preparing Download Link...'
         },
         ar: {
             read_more: 'قراءة المزيد',
@@ -420,7 +420,8 @@ const strings = {
             hour:'ساعة',
             courses_load:'جارى تحميل الدورات التدريبية.....',
             add_wishlist:'أضف الى قائمة التفضيلات',
-            remove_wishlist:'حذف من قائمة التفضيلات'
+            remove_wishlist:'حذف من قائمة التفضيلات',
+            prepare_download_link:'تجهيز رابط التحميل الآن...'
         }
     },
     product: {
@@ -458,7 +459,8 @@ const strings = {
             items_list:'Here are a list of your purchased products',
             purchase_thank:'Thank You for Purchasing our Products',
             order_no:'Order NO :',
-            products_load:'Loading Products....'
+            products_load:'Loading Products....',
+            download_product:'Download File'
         },
         ar: {
             details: 'التفاصيل',
@@ -494,7 +496,8 @@ const strings = {
             items_list:'قائمة بالمنتجات التى تم شرائها',
             purchase_thank:'شكراً على شرائك منتجاتنا',
             order_no:'رقم الطلب :',
-            products_load:'جارى تحميل المنتجات....'
+            products_load:'جارى تحميل المنتجات....',
+            download_product:'تحميل الملف'
         }
     },
     blog:{

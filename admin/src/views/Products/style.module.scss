@@ -3,6 +3,7 @@
 
 
 .products {
+    position: relative;
     display: -ms-grid;
     display: grid;
     place-items: center;
@@ -52,4 +53,9 @@
         width: 25rem;
     }
 
+    &__order {
+        position: absolute;
+        top:5rem;
+        right:15rem;
+    }
 }

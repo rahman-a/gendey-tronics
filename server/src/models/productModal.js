@@ -30,6 +30,14 @@ const productSchema = new mongoose.Schema({
         type:Number,
         required:[true,'Product Quantity is Required']
     },
+    isListed: {
+        type:Boolean,
+        default:false
+    },
+    driveFile:[{
+        link:String,
+        part:Number
+    }],
     options:[{
         question:String,
         elements:Array
