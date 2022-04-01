@@ -11,7 +11,7 @@ const Note = ({isNoteOn, setIsNoteOn, note}) => {
             >
             <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Operation Note
+                     Message
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>

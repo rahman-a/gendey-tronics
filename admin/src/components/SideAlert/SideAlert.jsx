@@ -7,6 +7,7 @@ const SideAlert = ({type, text, isOn, position, time, reset}) => {
   
   const getStyle = _ => {
     let style = {
+      height:'auto',
       backgroundColor: type === 'danger' ? '#ffc6c6' : '#9ff9a0',
       right: isToggle ? '2rem' : '-50rem'
     }

@@ -1,10 +1,16 @@
 import User from '../models/userModal.js'
+import Course from '../models/courseModal.js'
+import Product from '../models/productModal.js'
+import Blog from '../models/blogModel.js'
+import Enrollment from '../models/enrollmentModal.js'
+import Order from '../models/orderModal.js'
 import randomstring from 'randomstring'
 import sendEmail from '../../emails/send.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import {OAuth2Client} from 'google-auth-library';
 import fetch from 'node-fetch'
+import crypto from 'crypto'
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID
 import strings from '../localization.js'
 
@@ -445,6 +451,128 @@ export const verifyAuthLink = async (req, res, next) => {
         }
     } catch (error) {
        next(error) 
+    }
+}
+
+export const getCourseAndProductDownloadLink = async (req, res, next) => {
+    
+    try {
+        const enrollments = await Enrollment.find({user:req.user._id}, {course:1})
+        .populate('course', 'name driveFile')
+        const orders = await Order.find({user:req.user._id}, {orderItems:1})
+        .populate({
+            path:'orderItems',
+            populate:{
+                path:'product',
+                select:'name driveFile'
+            }
+        })
+
+        const courseLinks = []
+
+        for(const enrollment of enrollments) {
+            if(enrollment.course.driveFile.length) {
+                courseLinks.push({
+                    _id:enrollment.course._id,
+                    name:enrollment.course.name,
+                    links:enrollment.course.driveFile,
+                    type:'course'
+                })
+            }
+        }
+
+        const productLinks = []
+
+        for(const order of orders)  {
+            for(const item of order.orderItems) {
+                if(item.product.driveFile.length) {
+                    productLinks.push({
+                        _id:crypto.randomBytes(16).toString('hex'),
+                        name:item.product.name,
+                        links:item.product.driveFile,
+                        type:'product'
+                    })
+                }
+            }
+        }
+
+        res.send({
+            code:200, 
+            success:true,
+            links : [...courseLinks, ...productLinks]
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const generalSearchHandler = async (req, res, next) => { 
+    const {keyword} = req.query
+
+    console.log({keyword})
+    console.log('this is search endpoint');
+    try {
+        const result  = []
+
+        const courses = await Course.find({
+            isPublished:true,
+            $or:[
+                {name:new RegExp(keyword, 'i')},
+                {description:new RegExp(keyword, 'i')}
+            ]
+        }, {name:1, description:1, _id:1})
+
+        for(const course of courses) {
+            result.push({
+                _id:course._id,
+                title:course.name,
+                description:course.description,
+                type:'course'
+            })
+        }
+
+
+        const products = await Product.find({
+            isListed:true,
+            $or:[
+                {name:new RegExp(keyword, 'i')},
+                {description:new RegExp(keyword, 'i')}
+            ]
+        }, {name:1, description:1, _id:1})
+
+        for(const product of products) { 
+            result.push({
+                _id:product._id,
+                title:product.name,
+                description:product.description,
+                type:'product'
+            })
+        }
+
+        const blogs = await Blog.find({
+            $or:[
+                {title:new RegExp(keyword, 'i')},
+                {body:new RegExp(keyword, 'i')}
+            ]
+        }, {title:1, body:1, _id:1})
+
+        for(const blog of blogs) {
+            result.push({
+                _id:blog._id,
+                title:blog.title,
+                description:blog.body,
+                type:'blog'
+            })
+        }
+        
+        
+        res.send({
+            code:200,
+            success:true,
+            result
+        })
+    } catch (error) {
+        next(error)
     }
 }
 

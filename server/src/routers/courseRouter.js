@@ -13,7 +13,7 @@ import {
     deleteCourse,
     listPurchasedCourses,
     toggleCoursePublish,
-    deleteLink
+    deleteLink,
 } from '../controllers/courseController.js'
 
 import {
@@ -64,7 +64,8 @@ router.patch('/:id', isAuth, isAdmin, updateCourseData)
 router.patch('/:id/publish', isAuth, isAdmin, toggleCoursePublish)
 router.patch('/:id/image', isAuth, isAdmin, uploadHandler.single('image'), updateCourseImage)
 router.get('/purchased', isAuth, listPurchasedCourses)
-router.get('/', listAllCourses)
+router.get('/', isAuth, listAllCourses)
+router.get('/public', listAllCourses)
 router.get('/:id', isAuth, getTheCourseData)
 router.get('/:id/public', getTheCourseData)
 router.delete('/:id/link/:link', isAuth, isAdmin, deleteLink)

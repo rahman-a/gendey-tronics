@@ -4,7 +4,7 @@
 .footer {
     background-color: gv.$bg-color;
     position: relative;
-    z-index: 999999;
+    z-index: 999;
     &__block {
         display: flex;
         align-items: center;
@@ -119,11 +119,15 @@
         @include media.mq(sm){
             text-align: center;
         }
+        a {
+            color:inherit;
+            margin-left: 1rem;
+            cursor:pointer;
+            
+        }
         svg {
             width:2.5rem;
             height: 2.5rem;
-            margin-left: 1rem;
-            cursor:pointer;
             transition: all 0.3s ease-in;
             &:hover {
                 transform:translateY(-3px)

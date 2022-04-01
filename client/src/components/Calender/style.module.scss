@@ -25,6 +25,10 @@
        &_inputs {
            flex-grow: 2;
            margin-left: 5rem;
+           &_ar {
+                margin-right:5rem;
+                margin-left:unset;
+           }
        }
        input {
         width: 4rem;
@@ -85,6 +89,7 @@
            border-radius: 1.6rem;
            width:20rem;
            padding: 0.5rem 0.2rem;
+           direction: ltr;
            input {
                border:unset;
                background-color: transparent;
@@ -113,6 +118,7 @@
        align-items: center;
        color:lighten(gv.$light-black, 50%);
        margin-bottom: 0.5rem;
+       direction: ltr;
        span:not(:last-child) {
            margin-right:4.5rem;
        }
@@ -123,6 +129,7 @@
        display: flex;
        align-items: center;
        flex-wrap: wrap;
+       direction: ltr;
        span {
         width: 3rem;
         height: 3rem;

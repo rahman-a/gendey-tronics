@@ -3,6 +3,7 @@ import path from 'path'
 import Product from '../models/productModal.js'
 import Wishlist from '../models/wishlistModal.js'
 import strings from '../localization.js'
+import mappingProducts from '../mappingProducts.js'
 
 export const createNewProduct = async (req, res, next) => {
     const {lang} = req.headers
@@ -32,7 +33,7 @@ export const createNewProduct = async (req, res, next) => {
 }
 
 export const listAllProduct =  async (req, res, next) => {
-    const {name, type, price, quantity, page, skip, isPublic} = req.query
+    const {name, type, price, quantity, page, skip, isPublic, isMainPage} = req.query
     const {lang} = req.headers
     let searchFilter = {}
     try {
@@ -113,12 +114,12 @@ export const listAllProduct =  async (req, res, next) => {
             res.status(404)
             throw new Error(strings.product[lang].no_product)
         }
-        
+        const mappedProducts = isMainPage ? mappingProducts(products) : products
         res.json({
             success:true,
             code:200,
             count,
-            products
+            products:mappedProducts
         })
     } catch (error) {
         next(error)

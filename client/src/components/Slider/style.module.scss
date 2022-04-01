@@ -16,12 +16,12 @@
     }
     @include media.mq(xs){
         margin-bottom: 5rem;
-        height: calc(100vh - 15rem);//t
+        height: calc(100vh - 15rem);
     }
     img {
         max-height: calc(100vh - 15rem);
         @include media.mq(xs){
-            height: calc(100vh - 15rem);//t
+            height: calc(100vh - 15rem);
             object-fit: cover;
         }
     }
@@ -116,6 +116,14 @@
         }
         &:hover {
             background-color: rgba(gv.$light-black, 0.9);
+        }
+    }
+
+    &__placeholder {
+        height: calc(100vh - 15rem);
+        @include media.mq(xs){
+            height: calc(100vh - 15rem);
+            object-fit: cover;
         }
     }
 }

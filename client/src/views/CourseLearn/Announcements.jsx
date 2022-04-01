@@ -21,7 +21,7 @@ const Announcement = ({lang}) => {
     <div className={style.courseLearn__announcements}>
       <div className='container'
       style={{padding:error ? '12rem' :'0'}}>
-        {loading ? <Loader size='15' center/>
+        {loading ? <Loader size='8' center/>
         : error ? <Message type='error' center message={error}/>
         :  announcements && announcements.map((announcement) => (
             <SingleAnnouncement data={announcement} key={announcement._id} lang={lang}/>

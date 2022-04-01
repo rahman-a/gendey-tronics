@@ -23,7 +23,7 @@
         display: flex;
         flex-direction: column;
         figure {
-            width:40rem;
+            width:25rem;
             @include media.mq(sm){
                 width: unset;
             }

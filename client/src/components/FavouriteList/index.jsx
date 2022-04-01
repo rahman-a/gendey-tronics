@@ -29,8 +29,8 @@ const FavouriteList = () => {
             minHeight:(loading || error) ? '35rem': '0',
             paddingTop:(loading || error) ? '3rem': '0'}}>
             {loading 
-            ?<Loader size='25' center/>
-            :error 
+            ?<Loader size='8' center/>
+            :error  || (products && !products.length)
             ? <div className={style.favList__none}>
                 <p>{strings.client[lang].no_favourite}</p>
                 <button onClick={() => history.push('/')}>{strings.client[lang].browse_product}</button>

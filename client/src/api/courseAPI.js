@@ -1,8 +1,11 @@
 import {service} from './service'
 
 export const courseApi = {
-    list(){
-        return service().get('courses?isPublic=true')
+    list(isPublic){
+        const url = isPublic
+        ? 'courses/public?isPublic=true'
+        :'courses?isPublished=true'
+        return service().get(url)
     },
     get(id, type){
         const url = type === 'public' 

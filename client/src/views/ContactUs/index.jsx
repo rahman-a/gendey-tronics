@@ -13,6 +13,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import actions from '../../actions'
 import { useLocation, useHistory } from 'react-router-dom'
 import strings from '../../localization'
+import Map from './Map'
 
 const ContactPage = () => {
     const [toggle, setToggle] = useState(false)
@@ -84,17 +85,20 @@ const ContactPage = () => {
                     ?<Contact 
                     setContactType={setContactType}
                     setCallMethod={setCallMethod}
-                    callMethod={callMethod}/>
+                    callMethod={callMethod}
+                    lang={lang}/>
                 : contactType === 'phone' 
                     ?<PhoneNumber 
                     setContactType={setContactType}
                     setCallPhone={setCallPhone}
                     callPhone={callPhone}
-                    BookCallHandler={BookCallHandler}/>
+                    BookCallHandler={BookCallHandler}
+                    lang={lang}/>
                 : contactType === 'calender'
                     ?<Calender 
                     setContactType={setContactType}
-                    setCallDate={setCallDate}/>
+                    setCallDate={setCallDate}
+                    lang={lang}/>
                 : contactType === 'done' 
                     &&
                     <div className={style.contact__done}>
@@ -116,9 +120,13 @@ const ContactPage = () => {
                                 ${style.contact__map_wrapper}
                                 ${lang === 'ar' ? style.contact__map_wrapper_ar:''}
                             `}>
-                                <img src="images/map.png" alt="map" />
+                                {/* <img src="images/map.png" alt="map" /> */}
+                                <Map/>
                             </div>
-                            <button>{strings.contact[lang].location}</button>
+                            <a target='_blank' rel="noreferrer" 
+                            href='https://www.google.com/maps/place/elgendy+autotronics+center/@30.0119032,31.2026221,17z/data=!3m1!4b1!4m5!3m4!1s0x1458471af66be909:0x44ad4252caae1158!8m2!3d30.0119031!4d31.2048034'>
+                                {strings.contact[lang].location}
+                            </a>
                         </div>
                         <form onSubmit={submitFormHandler}>
                             <h3>{strings.contact[lang].send}</h3>
@@ -156,9 +164,7 @@ const ContactPage = () => {
                             onClick={activateBookingHandler}>
                                 <Schedule/> {strings.contact[lang].book}
                         </button>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                            Illum, facilis deleniti corporis tenetur eos reiciendis.
-                        </p>
+                        <p> {strings.contact[lang].contact_message} </p>
                     </div>
                 </div>
                 

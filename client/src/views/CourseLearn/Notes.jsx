@@ -106,7 +106,7 @@ const Notes = ({lesson, course, lang}) => {
                </div> */}
                <div className={style.courseLearn__notes_content}>
                     {loading 
-                    ? <Loader size='15' center/>
+                    ? <Loader size='8' center/>
                     : error 
                     ? <Message type='error' center message={error}/>
                     :    notes && notes.map(note => (

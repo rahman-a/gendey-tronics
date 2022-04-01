@@ -126,6 +126,8 @@
         color:rgb(158, 4, 4);
         img {
             width:7rem;
+            min-height: 8.5rem;
+            object-fit: cover;
             margin: 0 3rem;
             @include media.mq(sm){
                 margin:0 1.5rem;

@@ -157,6 +157,45 @@ const sendResetLink = (info) => async (dispatch) => {
     }
 }
 
+const downloadLinks = _ => async (dispatch) => {
+    dispatch({type:constants.client.DOWNLOAD_LINKS_REQUEST}) 
+    try {
+        const {data} = await api.client.links()
+        dispatch({type:constants.client.DOWNLOAD_LINKS_SUCCESS, payload:data.links})
+    } catch (error) {
+        dispatch({
+            type:constants.client.DOWNLOAD_LINKS_FAIL,
+            payload:error.response && error.response.data.message 
+        })
+    }
+}
+
+const clientSearch = keyword => async (dispatch) => {
+    dispatch({type:constants.client.USER_SEARCH_REQUEST}) 
+    try {
+        const {data} = await api.client.search(keyword)
+        dispatch({type:constants.client.USER_SEARCH_SUCCESS, payload:data.result})
+    } catch (error) {
+        dispatch({
+            type:constants.client.USER_SEARCH_FAIL,
+            payload:error.response && error.response.data.message 
+        })
+    }
+}
+
+const pageSliders = _ => async (dispatch) => {
+    dispatch({type:constants.client.PAGE_SLIDERS_REQUEST}) 
+    try {
+        const {data} = await api.client.sliders()
+        dispatch({type:constants.client.PAGE_SLIDERS_SUCCESS, payload:data.sliders})
+    } catch (error) {
+        dispatch({
+            type:constants.client.PAGE_SLIDERS_FAIL,
+            payload:error.response && error.response.data.message 
+        })
+    }
+}
+
 const clientActions = {
     register:clientRegister,
     login:clientLogin,
@@ -167,7 +206,10 @@ const clientActions = {
     resetPass:clientResetPass,
     resetLink:sendResetLink,
     googleSignIn:clientGoogleSignIn,
-    facebookSignIn:clientFacebookSignIn
+    facebookSignIn:clientFacebookSignIn,
+    downloadLinks,
+    clientSearch,
+    pageSliders
 }
 
 export default clientActions

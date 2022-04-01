@@ -1,31 +1,35 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Carousel } from 'react-responsive-carousel';
+import {useSelector, useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import {v4 as uuidv4} from 'uuid'
+import actions from '../../actions'
 import style from './style.module.scss'
 import {ArrowRight} from '../icons'
-import {v4 as uuidv4} from 'uuid'
 
 const Slider = () => {
-
-    const sliders = [
-        {
-            image:'images/img-1.png',
-            header:'engine',
-            sub_header:'management system',
-            target:'/engine',
-        },
-        {
-            image:'images/img-2.png',
-            header:'fuel',
-            sub_header:'fuel system',
-            target:'/fuel',
-        },
-        {
-            image:'images/img-3.png',
-            header:'maintenance',
-            sub_header:'maintenance system',
-            target:'/maintenance',
-        },
-    ]
+    const {sliders} = useSelector(state => state.pageSliders)
+    const dispatch = useDispatch()
+    const navigate = useHistory().push
+    useEffect(() => {
+        dispatch(actions.client.pageSliders())
+    },[])
+    
+    const navigateTo = (type, id) => {
+        switch(type){
+            case 'blog':
+                navigate(`/blog/${id}`)
+                break
+            case 'product':
+                navigate(`/product/${id}`)
+                break
+            case 'course':
+                navigate(`/course/${id}`)
+                break
+            default:
+                break
+        }
+    }
     return (
         <Carousel
         showThumbs={false}
@@ -36,20 +40,23 @@ const Slider = () => {
         className={style.carousel}>
         
         {
-            sliders.map(slide => (
-                <div style={{cursor:'pointer'}} key={uuidv4()}>
-                    <img alt="" src={slide.image}/>
+          sliders ? sliders.map(slide => (
+                <div style={{cursor:'pointer'}} key={uuidv4()} 
+                onClick={() => navigateTo(slide.target.type, slide.target.itemId)}>
+                    <img alt="" src={`/api/images/${slide.image}`}/>
                     <div className={style.carousel__desc}>
                         <h2 className={style.carousel__header}>{slide.header.toLocaleUpperCase()}</h2>
                         <div className={style.carousel__info}>
-                            <h3 className={style.carousel__subheader}>{slide.sub_header.toLocaleUpperCase()}</h3>
-                            <button className={style.carousel__more}>
+                            <h3 className={style.carousel__subheader}>{slide.subHeader.toLocaleUpperCase()}</h3>
+                            <button className={style.carousel__more}
+                            onClick={() => navigateTo(slide.target.type, slide.target.itemId)}>
                                 show more <ArrowRight/>
                             </button>
                         </div>
                     </div>
                 </div>
             ))
+            : <div className={style.carousel__placeholder}> </div>
         }
         </Carousel>
     )

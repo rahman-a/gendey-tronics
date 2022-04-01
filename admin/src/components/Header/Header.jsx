@@ -1,55 +1,39 @@
 import React, {useState, useRef, useEffect} from 'react'
 import style from './style.module.scss'
-import {v4 as uuidv4} from 'uuid'
 import {useHistory, useLocation} from 'react-router-dom'
 import {useDispatch, useSelector } from 'react-redux'
 import actions from '../../actions'
-import { HandDollar, MenuBars,Envelope, Headset } from '../../icons'
+import { HandDollar, MenuBars,Envelope, Headset, AtSymbol, Logout, User } from '../../icons'
 import {SideNavbar, NotificationContainer } from '../../components'
-
-const notifyData = [
-    {
-        id:uuidv4(),
-        title:'Lorem ipsum dolor sit amet',
-        content:'labore et dolore magna aliquyam erat, sed diam voluptua',
-    },
-    {
-        id:uuidv4(),
-        title:'Lorem ipsum dolor sit amet',
-        content:'labore et dolore magna aliquyam erat, sed diam voluptua',
-    },
-    {
-        id:uuidv4(),
-        title:'Lorem ipsum dolor sit amet',
-        content:'labore et dolore magna aliquyam erat, sed diam voluptua',
-    },
-    {
-        id:uuidv4(),
-        title:'Lorem ipsum dolor sit amet',
-        content:'labore et dolore magna aliquyam erat, sed diam voluptua',
-    },
-    {
-        id:uuidv4(),
-        title:'Lorem ipsum dolor sit amet',
-        content:'labore et dolore magna aliquyam erat, sed diam voluptua',
-    }
-]
 
 
 const Header = () => {
     const [showSideMenu, setSideMenu] = useState(false)
     const [toggleNotification, setToggleNotification] = useState(false)
     const [toggleMessages, setToggleMessages] = useState(false)
+    const [logoutDisplay, setLogoutDisplay] = useState('none')
     const headerBgRef = useRef(null)
     const dispatch = useDispatch()
     const {isAuth} = useSelector(state => state.login)
     const {count, calls} = useSelector(state => state.latestCalls)
     const {count:contact_count, contacts} = useSelector(state => state.latestContacts)
+    const {isLogout} = useSelector(state => state.logout)
     const navigate = useHistory().push
     const page = useLocation().pathname
     
 
+    const toggleLogoutDisplay = _ => {
+        if(logoutDisplay === 'none'){
+            setLogoutDisplay('flex')
+        }else{
+            setLogoutDisplay('none')
+        }
+    }
 
+    const logoutHandler = e => {
+        e.preventDefault()
+        dispatch(actions.admin.logout())
+    }
 
     const toggleNotifyData = type => {    
         if(type === 'Calls'){
@@ -86,6 +70,13 @@ const Header = () => {
          dispatch(actions.contacts.latestContacts())
        }
     },[isAuth])
+
+    useEffect(() => {
+        if( isLogout ) {
+         setSideMenu(false)
+         navigate('/login')
+        } 
+     },[isLogout])
 
     return (
         <>
@@ -127,6 +118,10 @@ const Header = () => {
                             <div className={style.header__notify}>
 
                                 <div className={style.header__notify_list}></div>
+                                {/* <span>
+                                    <span className={style.header__notify_num}>10</span>
+                                    <AtSymbol/>
+                                </span> */}
                                 <span onClick={() => toggleNotifyData('Calls')}>
                                    {count && <span className={style.header__notify_num}>
                                         {count}
@@ -137,8 +132,14 @@ const Header = () => {
                                    {contact_count && <span className={style.header__notify_num}>{contact_count}</span>} 
                                     <Envelope/>
                                 </span>
-                                <span style={{bottom:'5px'}}>
+                                <span style={{bottom:'5px'}} 
+                                className={style.header__logout}
+                                onClick={toggleLogoutDisplay}>
                                     <img src="/images/avatar.png" alt="personal avatar" />
+                                    <div style={{display:logoutDisplay}}>
+                                        <span> Profile <User/> </span>
+                                        <span  onClick={logoutHandler}>  Logout  <Logout/> </span>
+                                    </div>
                                 </span>
                                 
                                 {/* Notification List */}

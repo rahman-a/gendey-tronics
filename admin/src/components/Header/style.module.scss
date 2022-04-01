@@ -213,4 +213,33 @@
       margin-top: 6.5rem;
     }
   }
+
+  &__logout {
+    position: relative;
+    div {
+      display: none;
+      flex-direction: column;
+      width: max-content;
+      position: absolute;
+      color: #fff;  
+      margin: 0;
+      cursor: pointer;
+      top: 4.9rem;
+      left: -2rem;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+      overflow: hidden;
+      span {
+        margin:0;
+        padding: 1rem 2rem;
+        background-color:var.$bg-color;
+        svg {
+          margin-left: 1rem;
+        }
+        &:hover {
+          background-color: lighten(var.$bg-color, 10);
+        }
+      }
+    }
+  }
 }

@@ -4,13 +4,28 @@ const strings = {
             payment_info: 'Payment Information',
             not_found_page:'Sorry, The Page Not Found',
             not_found_text:'The page you are looking for may have been removed or not exist',
-            not_found_action:'back to homepage'
+            not_found_action:'back to homepage',
+            no_result_found_text:'No result found for your search',
+            search_result:'Search Result',
+            close:'Close',
+            
         },
         ar: {
             payment_info: 'بيانات الدفع',
             not_found_page:'عذراً الصفحة غير موجودة',
             not_found_text:'ربما يكون قد تم حذفها أو غير موجودة أصلاً',
-            not_found_action:'العودة إلى الصفحة الرئيسية'
+            not_found_action:'العودة إلى الصفحة الرئيسية',
+            no_result_found_text:'لا يوجد نتائج للبحث الخاص بك',
+            search_result:'نتائج البحث',
+            close:'غلق',
+            overview_online_courses_header:"دورات تدريبية مسجلة عن بعد",
+            overview_books_included_header:"كتب وبرامج",
+            overview_discount_included_header:"خصومات",
+            overview_support_included_header:"دعم فنى",
+            overview_online_courses:"تستطيع أن تحضر الدورات أون لاين مسجلة عن بعد من أي مكان بالعالم بجودة عالية الدقة صوتًا وصورة.",
+            overview_books_included:"تستطيع الحصول على ملفات وبرامج وكتب هدايا مجانية مع الدورات التدريبية.",
+            overview_discount_included:"خصومات كبيرة على الأجهزة والمعدات للحاصلين على الدورات التدريبية",
+            overview_support_included:"دعم فني على مدار 12 ساعة يوميًا",
         }
     },
     client:{
@@ -106,7 +121,10 @@ const strings = {
             not_match_pass:'The Password isn\'t match, Please write the password again',
             reset_pass_done:'Congratulation, Your Password has been Reset',
             pass_enter:'Enter Your Password',
-            pass_enter_again:'Enter Your Password Again'
+            pass_enter_again:'Enter Your Password Again',
+            cash_message:"You can pay using vodafone cash at this number",
+            cash_contact_message:"After Payment contact us and send the receipt (if available) at",
+            fawery_soon:"Fawery will be available soon",
         },
         ar:{
             info:'المعلومات الشخصية',
@@ -199,7 +217,10 @@ const strings = {
             not_match_pass:'كلمة المرور غير متطابقة, من فضلك اعد إدخال كلمة المرور',
             reset_pass_done:'تهانينا تم إعادة ضبط كلمة المرور',
             pass_enter:'أدخل كلمة المرور',
-            pass_enter_again:'أدخل كلمة المرور مرة أخرى'
+            pass_enter_again:'أدخل كلمة المرور مرة أخرى',
+            cash_message:"يمكن الدفع باستخدام فودافون كاش عن طريق هذا الرقم",
+            cash_contact_message:"بعد إتمام عملية الدفع يمكنك التواصل معنا وإرسال الإيصال )إن وجد لهذا البريد(",
+            fawery_soon:"سيتم إضافة خدمة الدفع عن طريق فورى فى القريب العاجل",
         }
     },
     header: {
@@ -271,25 +292,36 @@ const strings = {
     },
     main: {
         en: {
-            feature_title: 'Lorem ipsum dolor sit',
+            feature_title: 'Elgendy Center',
             feature_first_header: 'Enjoy the best',
             feature_second_header: 'engineering',
             feature_text: 'courses in automotive',
-            feature_body_title: 'Over 20,640 Free Tutorials',
-            feature_body_text: `Lorem ipsum, dolor sit amet consectetur a dipisicing elit.`,
+            overview_online_courses_header:"online courses",
+            overview_books_included_header:"Programs and books",
+            overview_discount_included_header:"Big Discounts",
+            overview_support_included_header:"Technical Support",
+            overview_online_courses:"You can attend courses online from anywhere in the world with high quality videos and sound",
+            overview_books_included:"You can get files, programs, and more from our library with our online courses",
+            overview_discount_included:"Big discounts on gears and devices for you to get started",
+            overview_support_included:"24/7 support from our experts",
             courses_title: 'Explore our Latest Courses',
             courses_download: 'Loading our Latest Courses....',
             instructor: 'Meet our Instructor'
         },
         ar: {
-            feature_title: 'لورم ابسم دولار ست',
+            feature_title:"مركز الجندى",
             feature_first_header: 'إستمتع بافضل',
             feature_second_header: 'السيارات',
             feature_text: 'الدورات التدريبية فى هندسة',
-            feature_body_title: 'بأكثر من 20,640 دورة تدريبية مجانية',
-            feature_body_text: `سيت يتبي سيت فوليبتاتيم أكيسأنتييوم
-            دولاريمكيو لايودانتيوم,توتام ريم`,
             courses_title: 'اكتشف احدث الدورات التدريبية',
+            overview_online_courses_header:"دورات تدريبية مسجلة عن بعد",
+            overview_books_included_header:"كتب وبرامج",
+            overview_discount_included_header:"خصومات",
+            overview_support_included_header:"دعم فنى",
+            overview_online_courses:"تستطيع أن تحضر الدورات أون لاين مسجلة عن بعد من أي مكان بالعالم بجودة عالية الدقة صوتًا وصورة.",
+            overview_books_included:"تستطيع الحصول على ملفات وبرامج وكتب هدايا مجانية مع الدورات التدريبية.",
+            overview_discount_included:"خصومات كبيرة على الأجهزة والمعدات للحاصلين على الدورات التدريبية",
+            overview_support_included:"دعم فني على مدار 12 ساعة يوميًا",
             courses_download: '....جارى تحميل احدث الدورات التدريبية',
             instructor: 'تعرف على المدرب'
         }
@@ -357,7 +389,7 @@ const strings = {
             courses_load:'Loading Courses.....',
             add_wishlist:'add to wishlist',
             remove_wishlist:'remove from wishlist',
-            prepare_download_link:'Preparing Download Link...'
+            download_link_added:'Course Download Links has been added to your download section '
         },
         ar: {
             read_more: 'قراءة المزيد',
@@ -421,7 +453,8 @@ const strings = {
             courses_load:'جارى تحميل الدورات التدريبية.....',
             add_wishlist:'أضف الى قائمة التفضيلات',
             remove_wishlist:'حذف من قائمة التفضيلات',
-            prepare_download_link:'تجهيز رابط التحميل الآن...'
+            prepare_download_link:'تجهيز رابط التحميل الآن...',
+            download_link_added:'تم إضافة روابط التحميل فى قسم التحميلات الخاص بك'
         }
     },
     product: {
@@ -460,7 +493,9 @@ const strings = {
             purchase_thank:'Thank You for Purchasing our Products',
             order_no:'Order NO :',
             products_load:'Loading Products....',
-            download_product:'Download File'
+            download_product:'Download File',
+            download_link_added:"Product Download Links has been added to your download section",
+            item_added_to_cart:"Item has been added to your cart",
         },
         ar: {
             details: 'التفاصيل',
@@ -497,7 +532,9 @@ const strings = {
             purchase_thank:'شكراً على شرائك منتجاتنا',
             order_no:'رقم الطلب :',
             products_load:'جارى تحميل المنتجات....',
-            download_product:'تحميل الملف'
+            download_product:'تحميل الملف',
+            download_link_added:'تم إضافة روابط تحميل المنتج فى قسم التحميلات الخاص بك',
+            item_added_to_cart:'تم إضافة المنتج الى عربة التسوق',
         }
     },
     blog:{
@@ -544,6 +581,7 @@ const strings = {
             book:'Book a Call',
             submit:'submit',
             location:'find our location in google maps',
+            contact_message:'You can book a call or send us a message and we will contact you as soon as possible',
             done:'DONE'
         },
         ar:{
@@ -556,6 +594,7 @@ const strings = {
             book:'إحجز مكالمة',
             submit:'أرسل',
             location:'حدد موقعنا على خرائط جوجل',
+            contact_message:"بإمكانك حجز مكالمتك او إرسالة رسالة في أي وقت وسيتم التواصل معك مباشرة في الموعد المحدد",
             done:'تم'
         }
     }

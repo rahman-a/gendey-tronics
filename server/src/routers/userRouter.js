@@ -20,7 +20,9 @@ import {
     verifyAuthLink,
     adminLogin,
     adminLogout,
-    deleteUserById
+    deleteUserById,
+    getCourseAndProductDownloadLink,
+    generalSearchHandler
 } from '../controllers/userController.js'
 
 router.post('/new', createNewUser)
@@ -34,7 +36,9 @@ router.patch('/', isAuth, updateUserData)
 router.patch('/credential', isAuth, updatePassword)
 router.delete('/', isAuth, deleteUserAccount)
 router.delete('/:id', isAuth,isAdmin, deleteUserById)
+router.get('/search', generalSearchHandler)
 router.get('/me', isAuth, getUserData)
+router.get('/links', isAuth, getCourseAndProductDownloadLink)
 router.get('/:id', isAuth, isAdmin, getUserDataById)
 router.get('/', isAuth, isAdmin, listAllUsers)
 router.post('/email-link-activation',sendEmailActivationLink)

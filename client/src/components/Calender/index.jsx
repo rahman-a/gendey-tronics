@@ -98,7 +98,7 @@ const Calender = ({setContactType, setCallDate}) => {
             </div>
             <div className={style.calender__time}>
                 <p>{strings.product[lang].time}</p>
-                <div className={style.calender__time_inputs}>
+                <div className={`${style.calender__time_inputs} ${lang === 'ar' ? style.calender__time_inputs_ar : ''}`}>
                     <input 
                     type="number" 
                     name='hour'

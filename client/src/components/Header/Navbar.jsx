@@ -1,13 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react'
 import style from './style.module.scss'
 import {
-  Logo,
   Person,
   Search,
   ShoppingCart,
   ArrowUp,
   CloseSquare,
   Logout,
+  Whats
 } from '../icons'
 import { items } from './links'
 import { Link, useHistory } from 'react-router-dom'
@@ -15,7 +15,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import actions from '../../actions'
 import constants from '../../constants'
 import Loader from '../Loader'
+import SearchOutput from '../SearchOutput'
 import strings from '../../localization'
+import gendy_logo from '../../img/gendy_logo.png'
 
 const Nav = ({ elementRefs }) => {
   const navRef = useRef(null)
@@ -23,6 +25,8 @@ const Nav = ({ elementRefs }) => {
   const history = useHistory()
   const [isToggle, setIsToggle] = useState(false)
   const [toggleMenu, setToggleMenu] = useState(false)
+  const [searchValue, setSearchValue] = useState('')
+  const [isSearch, setIsSearch] = useState(false)
   const dispatch = useDispatch()
   const { isAuth } = useSelector((state) => state.client)
   const { loading, success } = useSelector((state) => state.logout)
@@ -46,6 +50,14 @@ const Nav = ({ elementRefs }) => {
     }
 
     return style
+  }
+
+  const inputSearchHandler = (e) => {
+    if(e.keyCode === 13 || e.which === 13) {
+        if(searchValue) {
+          setIsSearch(true)
+        }
+    }
   }
 
   window.onscroll = () => {
@@ -78,6 +90,13 @@ const Nav = ({ elementRefs }) => {
   }, [success, history, dispatch, cartItems])
   return (
     <>
+      
+      <SearchOutput
+      isSearch={isSearch}
+      setIsSearch={setIsSearch}
+      keyword={searchValue}
+      />
+      
       <div className={style.header__navbar} ref={navRef}>
         <div className='container'>
           <div className={style.header__navBlock}>
@@ -87,10 +106,9 @@ const Nav = ({ elementRefs }) => {
             >
               <span></span>
             </div>
-            <Logo
-              className={`${style.header__logo} header--logo`}
-              onClick={() => history.push('/')}
-            />
+            <div className={style.header__logo} onClick={() => history.push('/')}>
+              <img src={gendy_logo} alt='logo' />
+            </div>
             <div
               className={`${style.header__links} ${lang === 'ar' ? style.header__links_ar : ''}`}
               style={{ 
@@ -122,7 +140,7 @@ const Nav = ({ elementRefs }) => {
               </button>
             </div>
             <div className={style.header__actions}>
-              <div className={style.header__signIn}>
+              <div className={`${style.header__signIn} ${lang === 'ar' ? style.header__signIn_ar :''}`}>
                 {isAuth ? (
                   <>
                     <span
@@ -150,7 +168,7 @@ const Nav = ({ elementRefs }) => {
                       <Person />
                     </span>
                     <span
-                      style={{ margin: lang === 'ar' ? '0 1rem 0 0' : '0 0 0 0.5rem'}}
+                      style={{ margin: lang === 'ar' ? '0 2rem 0 0' : '0 0 0 0.5rem'}}
                       onClick={() => history.push('/login')}
                     >
                       {strings.header[lang].log}
@@ -163,7 +181,10 @@ const Nav = ({ elementRefs }) => {
                   style={styleSearchInput()}
                   className={style.header__search_input}
                 >
-                  <input type='text' 
+                  <input type='text'
+                  onKeyDown={inputSearchHandler}
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
                   placeholder={lang === 'en' ?' Search....' : 'بحث....'}/>
                 </div>
                 <span onClick={() => setIsToggle(!isToggle)}>
@@ -185,6 +206,14 @@ const Nav = ({ elementRefs }) => {
         <a href='#root'>
           {lang === 'en' ?'UP' :'أعلى'}
           <ArrowUp />
+        </a>
+      </div>
+      <div className={style.header__whats}>
+        <a 
+        href={`https://api.whatsapp.com/send?phone=+201064345626 &text=السلام عليكم`} 
+        target='_blank'
+        rel='noreferrer'>
+          <Whats />
         </a>
       </div>
     </>

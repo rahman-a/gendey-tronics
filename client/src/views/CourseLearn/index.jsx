@@ -66,7 +66,7 @@ const CourseLearn = () => {
               </button>
             )}
             {loading 
-            ? <Loader size='20' center/>
+            ? <Loader size='8' center/>
             : error ? <Message type='error' center message={error}/>
             :enrollment && <iframe
             className={style.courseLearn__video_frame}
@@ -139,7 +139,7 @@ const CourseLearn = () => {
               <div className={style.courseLearn__info__data}
               style={{padding:loading ? '15rem' :'0'}}>
                     {
-                      loading ? <Loader size='20' center/>
+                      loading ? <Loader size='8' center/>
                       : error ? <Message type='error' center message={error}/>
                       :infoSelected === 'overview'
                       ? course && <Overview lang={lang} data={{
@@ -172,7 +172,7 @@ const CourseLearn = () => {
             : style.courseLearn__curriculum_show}`}
         >
           {
-          loading ? <Loader size='20' center/>
+          loading ? <Loader size='8' center/>
           : error ? <Message type='error' center message={error}/>
           :<div
             className={style.courseLearn__curriculum_wrapper}

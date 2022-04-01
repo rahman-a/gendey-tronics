@@ -20,24 +20,28 @@ const Account = () => {
             <div className={style.account}>
                 <div className={style.account__header}>
                     <div className={style.account__action}>
+                        
                         <button 
                         className={`${style.account__btn} 
                         ${lang === 'ar' ? style.account__btn_ar :''}`}
                         onClick={() => history.push(`${path}#info`)}>
                             {strings.client[lang].info}
                         </button>
+                        
                         <button 
                         className={`${style.account__btn} 
                         ${lang === 'ar' ? style.account__btn_ar :''}`}
                         onClick={() => history.push(`${path}#order`)}>
                             {strings.client[lang].orders}
                         </button>
+                        
                         <button 
                         className={`${style.account__btn} 
                         ${lang === 'ar' ? style.account__btn_ar :''}`}
                         onClick={() =>history.push(`${path}#course`)}>
                             {strings.client[lang].courses}
                         </button>
+                        
                         <button 
                         className={`${style.account__btn} 
                         ${lang === 'ar' ? style.account__btn_ar :''}`}

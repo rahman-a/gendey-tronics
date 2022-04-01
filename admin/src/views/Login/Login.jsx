@@ -41,10 +41,16 @@ const Login = () => {
        setErrors(null)
    }
 
+   useEffect(() => { 
+        if(isAuth) {
+            navigate('/')
+            console.log('Navigate to Main page');
+        }
+   },[isAuth,navigate])
+
    useEffect(() => {
         error && setErrors(error)
-        isAuth && navigate('/')
-   },[error, isAuth])
+   },[error])
 
     return (
         <div className={style.login}>

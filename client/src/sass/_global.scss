@@ -107,3 +107,35 @@ a {
         display: block;
     }
 }
+
+// Beta Message  
+.beta-message {
+    position: fixed;
+    top: -50rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fad0c5f0;
+    color: #730000;
+    border-radius: 1rem;
+    padding: 2rem 3rem 2rem;
+    z-index: 9999999999;
+    text-align: center;
+    box-shadow: 1px 0px 2px 3px rgb(0 0 0 / 30%);
+    font-weight: 500;
+    transition: all 1s ease-in-out;
+    span {
+        color: inherit;
+        position: absolute;
+        right: 1rem;
+        top: 0px;
+        cursor: pointer;
+    }
+
+    svg {
+        width:1.5rem;
+        height:1.5rem;
+    }
+    @include mq(sm) {
+        width:90%;
+    }
+}

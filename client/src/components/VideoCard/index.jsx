@@ -4,7 +4,7 @@ import {PlayCircle, Logo} from '../icons'
 import {Modal} from '../Modal'
 import {Overlay} from '../Overlay'
 
-const VideoCard = ({lang, strings}) => {
+const VideoCard = ({lang, strings, video}) => {
     const [playVideo, setPlayVideo] = useState(false)
     
     return (
@@ -13,7 +13,7 @@ const VideoCard = ({lang, strings}) => {
         <Modal toggle={playVideo} closeHandler={() => setPlayVideo(false)} color='#fff'>
             {playVideo && <iframe
             className={style.videoCard__frame}
-            src="https://www.youtube.com/embed/oe70Uhjc_F4" 
+            src={video.link}
             title="YouTube video player" 
             frameBorder="0" 
             allow="accelerometer; 
@@ -30,16 +30,16 @@ const VideoCard = ({lang, strings}) => {
                <span onClick={() => setPlayVideo(true)}><PlayCircle/></span> 
             </figure>
             <div className={style.videoCard__content}>
-                <h3>car repairing system mini courses</h3>
+                <h3>{video.title}</h3>
                 <div className={style.videoCard__options}>
                     <div className={`${style.videoCard__maker} ${lang === 'ar' ? style.videoCard__maker_ar:''}`}>
                         <Logo/>
                         <h4>gendytronics</h4>
                     </div>
-                    <div className={style.videoCard__views}>
+                    {/* <div className={style.videoCard__views}>
                         <span className={style.videoCard__views_tube}></span>
                         <span>3,222 {strings.gallery[lang].views}</span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

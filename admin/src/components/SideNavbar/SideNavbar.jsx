@@ -14,7 +14,9 @@ import {
     PlusSquare,
     Table,
     Logout,
-    HardDrive
+    HardDrive,
+    AtSymbol,
+    Slider
 } from '../../icons'
 
 
@@ -64,8 +66,6 @@ const SideNavbar = ({
         <div className={style.navbar__menu}
         style={{left: showSideMenu ? '0' : '-30rem'}}>
             <ul className={style.navbar__menu_list}>
-                
-                
                 
                 {/* MAIN PAGE */}
                 <li className={style.navbar__menu_item}
@@ -139,8 +139,6 @@ const SideNavbar = ({
                     </ul>
                     {/* ///////////////////////////////////// */}
                 </li>
-
-
 
 
                {/* COURSES MENU */}
@@ -233,9 +231,35 @@ const SideNavbar = ({
                     </div>
                 </li>
 
+                {/* Support */}
+                <li className={style.navbar__menu_item}
+                >
+                    <div onClick={() => navigate('/support')}>
+                        <span>
+                            <AtSymbol/>
+                        </span>
+                        <span>
+                            Support
+                        </span>
+                    </div>
+                </li>
+
+                {/* Slider Control */}
+                <li className={style.navbar__menu_item}
+                >
+                    <div onClick={() => navigate('/sliders')}>
+                        <span>
+                            <Slider/>
+                        </span>
+                        <span>
+                            Slider
+                        </span>
+                    </div>
+                </li>
+
                 {/* ////////////////////////////////////////// */}
                 
-                <li className={style.navbar__menu_item}
+                {/* <li className={style.navbar__menu_item}
                 >
                     <div onClick={logoutHandler}>
                        {loading && <span className={style.navbar__menu_item_loading}>
@@ -248,7 +272,7 @@ const SideNavbar = ({
                             Logout
                         </span>
                     </div>
-                </li>
+                </li> */}
             </ul>
         </div>
         </>

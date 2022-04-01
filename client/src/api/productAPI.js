@@ -1,10 +1,11 @@
 import {service} from './service'
 
 export const productApi = {
-    listProducts(type){
+    listProducts(type, isMainPage){
+        console.log({type, isMainPage});
        const url =  type 
-        ? `products?type=${type}&isPublic=true`
-        :`products?isPublic=true`
+        ? `products?type=${type}&isPublic=true${isMainPage ? '&isMainPage=true' : ''}`
+        :`products?isPublic=true${isMainPage ? '&isMainPage=true' : ''}`
         return service().get(url)
     },
     getProduct(id, type){

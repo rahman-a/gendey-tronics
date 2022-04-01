@@ -327,7 +327,7 @@
         justify-content: space-evenly;
         flex-wrap: wrap;
         min-width: 45rem;
-        button {
+        a, button {
             all:unset;
             display: flex;
             align-items: center;

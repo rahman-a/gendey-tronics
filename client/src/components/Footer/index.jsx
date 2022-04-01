@@ -44,10 +44,11 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className={style.footer__social}>
-                    <WtsBlack/>
-                    <IgBlack/>
-                    <FbBlack/>
-                    <TwBlack/>
+                    <a href="https://www.facebook.com/aljazriacademy/" target='_blank' rel="noreferrer"> <FbBlack/></a> 
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a href="#"> <TwBlack/></a> 
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a href="#"> <IgBlack/></a> 
                 </div>
             </div>
             <div className={style.footer__copyright}>

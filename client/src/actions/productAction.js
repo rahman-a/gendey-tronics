@@ -3,10 +3,10 @@ import api from '../api'
 import product from '../constants/productConstant'
 
 
-const listProducts = (type) => async (dispatch) => {
+const listProducts = (type, isMainPage) => async (dispatch) => {
     dispatch({type:constants.product.LIST_PRODUCTS_REQUEST})
     try {
-        const {data} = await api.products.listProducts(type)
+        const {data} = await api.products.listProducts(type, isMainPage)
         dispatch({type: constants.product.LIST_PRODUCTS_SUCCESS, payload:data.products})
     } catch (error) {
         dispatch({
@@ -62,7 +62,17 @@ const removeProductFromWishlist = (id) => async (dispatch, getState) => {
     try {
         await api.products.removeProductFromWishlist(id)
         let {product} = getState().productData
-        product.isFav = false
+        const {products} = getState().FavProducts
+        if(product) {
+            product.isFav = false
+        }
+        if(products) {
+            const copiedProducts = [...products]
+            const index = copiedProducts.findIndex(item => item._id === id)
+            copiedProducts.splice(index, 1)
+            dispatch({type: constants.product.LIST_FAVOURITE_PRODUCTS_SUCCESS, payload:copiedProducts})
+        }
+        console.log('action remove product from wishlist');
         dispatch({type: constants.product.GET_PRODUCT_SUCCESS, payload:product})
         dispatch({type: constants.product.REMOVE_PRODUCT_FROM_WISHLIST_SUCCESS})
     } catch (error) {
@@ -143,9 +153,12 @@ const addItemToCart = (item) => async (dispatch, getState) => {
     dispatch({type:constants.product.ADD_ITEM_TO_CART_REQUEST})
     try {
         const {data} = await api.products.addToCart(item)
-        let cartItems = getState().cartItems.items ? getState().cartItems.items : []
-        cartItems = cartItems.concat(data.item)
-        dispatch({type:constants.product.LIST_CART_ITEMS_SUCCESS, payload:cartItems})
+        
+        let cartItems = getState().cartItems.items || []
+        const copiedCartItem = JSON.parse(JSON.stringify(cartItems))
+        copiedCartItem.push(data.item)
+        dispatch({type:constants.product.LIST_CART_ITEMS_SUCCESS, payload:copiedCartItem})
+
         dispatch({type:constants.product.ADD_ITEM_TO_CART_SUCCESS, payload:data.message})
     } catch (error) {
         dispatch({

@@ -3,6 +3,26 @@ import style from './style.module.scss'
 import {CertificateStar, Star, DemandVideo, Person} from '../icons'
 import strings from '../../localization'
 
+const about = {
+    en:[
+        `He has studied Automotive Engineering.`,<br/>,
+        `The Author of Autotronics Engineering which consist of four parts.`,<br/>,
+        `He has trained about 400 technicians and Engineers in field.`,<br/>,
+        `He has instructed Officers Engineers in the Armed Forces.`,<br/>,
+        `Trained over that 500 technicians and Engineers.`,<br/>,
+        `Experience over than six years in training Field.`
+    ],
+    ar:[
+    ` درس هندسة ميكانيك السيارات`,<br/>,
+    `مؤلف كتاب الكامل في هندسة الأوتوترونكس يقع في أربع أجزاء`, <br/>,
+    `درب حوالي 400 فني ومهندس تدريب ميداني`, <br/>,
+    `قدم دورات تدريبية للضباط المهندسين في القوات الجوية`,<br/>,
+    `درب أكثر من 500 مهندس وفني أون لاين.`, <br/>,
+        `خبرة لمدة ست سنوات في مجال التدريب`, <br/>
+    ]
+}
+
+
 const CourseInstructor = ({instructor, lang}) => {
     const [isInfo, setIsInfo] = useState(false)
     return (
@@ -61,7 +81,7 @@ const CourseInstructor = ({instructor, lang}) => {
             </div>
             <div className={style.instructor__info}>
                 <p style={{height: isInfo ? 'fit-content': '12rem'}}>
-                    {instructor.about} 
+                    {about[lang]} 
                 </p>
                 <button onClick={() => setIsInfo(prev =>!prev)}>
                     {isInfo ? strings.course[lang].read_less : strings.course[lang].read_more}

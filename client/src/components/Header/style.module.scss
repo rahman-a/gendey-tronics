@@ -54,7 +54,7 @@
         @include media.mq(xs){
             transform: translateX(-2rem);
             position: relative;
-            z-index: 999999;
+            z-index: 999;
         }
     }
     &__social {
@@ -62,12 +62,15 @@
         color:rgba(gv.$main-color, 0.7);
         font-size: 2rem;
         &_icon {
+            color:inherit;
             margin-left: 4rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            &:hover {
-                color:gv.$main-color;
-                transform:translateY(-3px)
+            svg {
+                transition: all 0.3s ease;
+                &:hover {
+                    color:gv.$main-color;
+                    transform:translateY(-3px)
+                }
             }
         }
     }
@@ -78,9 +81,9 @@
     &__navbar {
         width:100vw;
         position: fixed;
-        z-index: 99999;
+        z-index: 99;
         top:6.5rem;
-        background-color: gv.$bg-color;
+        background-color: gv.$alt-main-color;
         height: 10.4rem;
         transition: all 0.2s ease;
         @include media.mq(md) {
@@ -109,7 +112,7 @@
         cursor: pointer;
         span {
             height: 2px;
-            background-color:gv.$white-color;
+            background-color:gv.$bg-color;
             position: relative;
             width: 5rem;
             transition: all 0.5s ease;
@@ -155,25 +158,34 @@
         }
     }
     &__logo {
-        width:9rem;
-        height: 9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:25rem;
+        height: 10.4rem;
+        transform: translateY(-1rem);
         cursor: pointer;
         @include media.mq(xxl){
-            width:10rem;
-            height: 10rem;
+            width:20rem;
+        }
+        @include media.mq(md){
+            width:17rem;
         }
         @include media.mq(sm) {
-            width:5rem;
-            height: 7rem;
+            width:13rem;
+            height: 7.2rem;
+        }
+        img {
+            width:100%;
         }
     }
     &__links {
-        margin: 1rem 4rem 1rem 8rem;
+        margin: 1rem 4rem 1rem 4rem;
         @include media.mq(md){
             display: flex;
             align-items: flex-start;
             position: absolute;
-            background-color: gv.$bg-color;
+            background-color: gv.$alt-main-color;
             left: 0rem;
             transition: all 0.5s ease;
             margin:0;
@@ -189,7 +201,7 @@
             svg {
                 width:2rem;
                 height: 2rem;
-                fill:gv.$white-color;
+                fill:gv.$bg-color;
             }
             @include media.mq(md){
                 display: inline;
@@ -222,7 +234,7 @@
             top:-4px;
             width:0;
             height: 1px;
-            background-color: gv.$main-color;
+            background-color: gv.$bg-color;
             transition: all 0.3s ease;
         }
         &:hover::before {
@@ -236,9 +248,9 @@
         }
     }
     &__link {
-        color:gv.$white-color !important;
+        color:gv.$bg-color !important;
         font-size: 1.6rem;
-        font-weight: 300 !important;
+        font-weight: 500 !important;
         @include media.mq(lg){
             font-size: 1.5rem;
         }
@@ -249,12 +261,9 @@
         align-self: flex-start;
         width:11rem;
         margin-top: 2rem;
-        color:gv.$white-color;
-        @include media.mq(xxl){
-            width:15rem;
-        }
+        color:gv.$bg-color;
         @include media.mq(md){
-            width:10rem;
+            width:9rem;
         }
         @include media.mq(sm) {
             margin-top: 1rem;
@@ -266,7 +275,7 @@
             height: 1.6rem;
             cursor: pointer;
             &:hover {
-                color:gv.$main-color;
+                color:#505050;
             }
         }
         
@@ -275,7 +284,6 @@
         margin-bottom: 1.2rem;
         display: flex;
         align-items: center;
-        margin-right: 1rem;
         @include media.mq(sm) {
             margin-bottom: 0;
            position: relative;
@@ -286,17 +294,25 @@
         }
         span:first-child {
             transform: translate(-3px, -4px);
+            margin-right: 0.5rem;
         }
         svg {
             fill:gv.$white-color;
         }
         span:hover{
-            color:gv.$main-color;
+            color:lighten(gv.$bg-color, 10%);
+        }
+
+        &_ar {
+            span:last-child {
+                transform:rotate(180deg)
+            }
         }
     }
     &__search {
         position: relative;
-        margin-right: 2rem;
+        margin-right: 1rem;
+        margin-left: 1rem;
         @include media.mq(md){
             position: unset;
         }
@@ -305,7 +321,8 @@
             left: -19rem;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.5s ease-in-out; 
+            transition: all 0.5s ease-in-out;
+            color:#fff;
             @include media.mq(md){
                 left: 0;
                 top: 0;
@@ -323,9 +340,10 @@
             all: unset;
             background-color: rgba(0,0,0,0.5);
             padding: 0.2rem 1rem;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             &::placeholder {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
+                color:gv.$white-color;
             }
             @include media.mq(md){
                 background-color: rgb(224 223 223);
@@ -337,7 +355,7 @@
 
     &__onScroll {
         top:0;
-        background-color: rgba(gv.$bg-color, 0.95);
+        background-color: rgba(gv.$alt-main-color, 0.95);
     }
 
     &__up {
@@ -360,13 +378,34 @@
             clip-path: circle();
         }
     }
+    &__whats {
+        position: fixed;
+        left: 0;
+        bottom: 2rem;
+        width: 10rem;
+        z-index: 999999999999999;
+        cursor: pointer;
+        &:hover svg {
+            animation: envelopMove 1s ease-in-out infinite;
+        }
+        a {
+            all: unset;
+            display: inline-block;
+            padding: 1.3rem;
+        }
+        svg {
+            width:6rem;
+            height:6rem;
+        }
+    }
     &__cart {
         position: absolute;
         top: -1.2rem;
         right: 1px;
-        color: #f8c600;
+        color:gv.$bg-color;
         transition: all 0.3s ease;
         font-size: 1.4rem;
+        font-weight: 500;
     }
 }
 

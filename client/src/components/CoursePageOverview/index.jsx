@@ -12,6 +12,7 @@ import actions from '../../actions'
 import Loader from '../Loader'
 import Message from '../Message'
 import strings from '../../localization'
+import { tm } from '../../utils'
 
 const CourseOverview = ({data}) => {
   const [couponCode, setCouponCode] = useState('')
@@ -34,8 +35,10 @@ const CourseOverview = ({data}) => {
       return
     }
     
-    data.isEnrolled
+    data.isEnrolled && !data.isPaid
     ? history.push(`${location.pathname}/learn?enroll=${data.enroll}#overview`)
+    : data.isEnrolled && data.isPaid 
+    ? history.push('/account#order')
     : data.isPaid ? history.push(`${location.pathname}/payment`)
     : history.push(`${location.pathname}/learn?enroll=${data.enroll}#overview`)
     
@@ -45,15 +48,6 @@ const CourseOverview = ({data}) => {
     dispatch(actions.courses.applyCoupon(couponCode))
   }
 
-  const tm = (se) => {
-    let h = (se /60 /60)
-    if(h < 1){
-       let  t =  Math.ceil((h * 100).toFixed(2)) + ' minutes'
-        return t 
-    }
-    if(h === 1) return Math.ceil(h.toFixed(2)) + ' hour'
-    return Math.ceil(h.toFixed(2))  + ' hours'
-  }
   useEffect(() => {
       enrollId && history.push(`${location.pathname}/learn?enroll=${enrollId}#overview`)
   },[history, location, data, enrollId, coupon])
@@ -120,7 +114,7 @@ const CourseOverview = ({data}) => {
                 <span>
                   <DemandVideo />
                 </span>
-                {tm(data.duration)} {strings.course[lang].duration}
+                {tm(data.duration, lang)} {strings.course[lang].duration}
               </li>
               {/* <li>
                 <span>

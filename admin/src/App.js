@@ -19,11 +19,12 @@ import {
   Courses,
   Course,
   NewCourse,
-  Notifications,
+  Slider,
   Contacts,
   Profile,
   Drive,
   Calls,
+  Support,
   NotFound
 } from './views'
 
@@ -85,6 +86,12 @@ function App() {
             </Route>
             <Route path='/contacts'>
                 {isAuth ? <Contacts/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/sliders'>
+                {isAuth ? <Slider/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='/support/:id?'>
+                {isAuth ? <Support/> : <Redirect to='/login'/>}
             </Route>
             <Route path='*'>
                 <NotFound/>

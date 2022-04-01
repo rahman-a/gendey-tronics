@@ -44,7 +44,7 @@ const CourseHeader = ({data}) => {
 
     const shareButtonLink = _ => {
         const fbShare = 'https://www.facebook.com/plugins/share_button.php?'
-        const targetShareLink = 'href=http://gendytronics.herokuapp.com/'
+        const targetShareLink = `href=https://www.gendyecu.com/course/${id}`
         const layout = '&layout=button'
         const size = '&size=large'
         const appId = '&appId=334113855052556'

@@ -21,10 +21,14 @@ const Fav = ({product}) => {
 
     useEffect(() => {
         isRemoved && setLoadingState(false)
+        isRemoved && console.log('removed');
+    },[isRemoved])
+
+    useEffect(() => {
         return () => {
             dispatch({type:constants.product.REMOVE_PRODUCT_FROM_WISHLIST_RESET})
         }
-    },[isRemoved])
+    },[])
     
     return (
         <div className={style.favList__fav}>

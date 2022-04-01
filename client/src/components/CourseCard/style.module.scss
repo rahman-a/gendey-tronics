@@ -3,7 +3,7 @@
 
 .courseCard {
     width: 26rem;
-    box-shadow: 0 -1px 12px -6px rgba(0,0,0,0.5);
+    // box-shadow: 0 -1px 12px -6px rgba(0,0,0,0.5);
     cursor: pointer;
     transition: all 0.5s ease;
     background-color: gv.$white-color;
@@ -13,23 +13,27 @@
     }
     &:hover {
         transform: translateY(-5px);
-        box-shadow: 5px 1px 16px 0px rgba(0,0,0,0.5);
     }
     @include media.mq(sm){
         min-width: 26rem;
     }
     &_ar {
-        &:not(:last-child) {
+        &:not(:first-child) {
             margin-right: unset;
             margin-left: 2rem;
         }
     }
     figure {
         position: relative;
-        margin:0;
+        margin: 0;
+        border: 3px solid #000;
+        border-radius: 2rem;
+        overflow: hidden;
+        transform: translateY(3rem);
+        height: 30rem;
         img {
             width:100%;
-            height: 18rem;
+            height: 100%;
             object-fit: cover;
         }
         span {
@@ -50,26 +54,114 @@
     }
 
     &__content {
-        padding:2rem 4rem 3rem 2rem;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff80f;
+        padding: 5rem 1rem 0.5rem;
+        border-bottom-left-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+        border:1px solid gv.$bg-color;
+        box-shadow: 0 -1px 12px -6px rgba(0,0,0,0.5);
+        transition: all 0.5s ease;
         h3 {
             padding-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin:0;
         }
     
         p {
+            align-self: flex-end;
             padding-bottom: 1.5rem;
             color:gv.$light-gray;
             line-height: 1.3;
+            font-weight: 500;
         }
-
-        button {
-            all:unset;
-            color:gv.$main-color;
-            cursor: pointer;
-            font-weight: 400;
-            &:hover {
-                text-decoration: underline;
-            }
+        &:hover {
+            box-shadow: 5px 1px 16px 0px rgba(0,0,0,0.5);
         }
-    } 
+    }
 }
+
+
+
+
+
+
+
+
+
+// .courseCard {
+//     width: 26rem;
+//     box-shadow: 0 -1px 12px -6px rgba(0,0,0,0.5);
+//     cursor: pointer;
+//     transition: all 0.5s ease;
+//     background-color: gv.$white-color;
+//     margin-bottom: 3.5rem;
+//     &:not(:last-child) {
+//         margin-right: 2rem;
+//     }
+//     &:hover {
+//         transform: translateY(-5px);
+//         box-shadow: 5px 1px 16px 0px rgba(0,0,0,0.5);
+//     }
+//     @include media.mq(sm){
+//         min-width: 26rem;
+//     }
+//     &_ar {
+//         &:not(:last-child) {
+//             margin-right: unset;
+//             margin-left: 2rem;
+//         }
+//     }
+//     figure {
+//         position: relative;
+//         margin:0;
+//         img {
+//             width:100%;
+//             height: 18rem;
+//             object-fit: cover;
+//         }
+//         span {
+//             position: absolute;
+//             top:1rem;
+//             right: 1rem;
+//             color:gv.$main-color;
+//             cursor: pointer;
+//             transition: all 0.3s ease;
+//             svg {
+//                 width:2.2rem;
+//                 height: 2.2rem;
+//             }
+//             &:hover {
+//                 transform:scale(1.2)
+//             }
+//         }
+//     }
+
+//     &__content {
+//         padding:2rem 4rem 3rem 2rem;
+//         h3 {
+//             padding-bottom: 1.5rem;
+//             margin:0;
+//         }
+    
+//         p {
+//             padding-bottom: 1.5rem;
+//             color:gv.$light-gray;
+//             line-height: 1.3;
+//         }
+
+//         button {
+//             all:unset;
+//             color:gv.$main-color;
+//             cursor: pointer;
+//             font-weight: 400;
+//             &:hover {
+//                 text-decoration: underline;
+//             }
+//         }
+//     } 
+// }

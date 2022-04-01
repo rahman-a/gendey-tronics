@@ -10,8 +10,8 @@ const Call = () => {
                  <PhoneAlt/>
              </button>
          </div>
-         <button>079 555 5555</button>
-         <button>+962 5872147</button>
+         <a href="tel:01064345626">01064345626</a>
+         <a href="tel:01127138988">01127138988</a>
      </div>
     )
 }

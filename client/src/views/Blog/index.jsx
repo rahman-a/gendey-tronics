@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react'
 import style from './style.module.scss'
+import { useParams, useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import parser from 'html-react-parser'
 import Template from '../../components/Template'
 import AddComment from '../../components/AddComment'
 import BlogComment from '../../components/BlogComment'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
-import { useParams, useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 import actions from '../../actions'
 import constants from '../../constants'
 import strings from '../../localization'
@@ -19,6 +20,11 @@ const Blog = () => {
     const {isAuth} = useSelector(state => state.client)
     const {lang} = useSelector(state => state.language)
 
+    const renderContent = (content) => {
+        const text = parser(content)
+        return text
+    }
+    
     useEffect(() =>{
         dispatch({type: constants.blogs.CONTROL_BLOG_VIEWS_RESET})
         dispatch(actions.blogs.blog(id))
@@ -47,7 +53,7 @@ const Blog = () => {
                             <img src={`/api/images/${blog.image}`} alt={blog.title}/>
                         </figure>
                         <p className={style.blog__content}>
-                            {blog.body}
+                            {renderContent(blog.body)}
                         </p>
                         {isAuth ? <AddComment lang={lang} strings={strings}/> 
                         : <h2 className={style.blog__noComment}

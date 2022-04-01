@@ -7,6 +7,7 @@ import drive from './drive.constants'
 import calls from './calls.constants'
 import contacts from './contact.constants'
 import dashboard from './dashboard.constants'
+import support from './support.constants'
 
 const constants = {
     admin,
@@ -17,7 +18,8 @@ const constants = {
     drive,
     calls,
     contacts,
-    dashboard
+    dashboard,
+    support
 }
 
 export default constants

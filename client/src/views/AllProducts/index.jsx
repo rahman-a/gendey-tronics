@@ -47,7 +47,7 @@ const Products = () => {
                    <img src={`images/${[type]}_bg.jpg`} alt="products-files" />
                </figure>}
                {loading
-               ?<Loader size='25' center custom={{color:'#F8C600'}}>
+               ?<Loader size='10' center custom={{color:'#F8C600'}}>
                    <p>{strings.product[lang].products_load}</p>
                </Loader>        
                :error 

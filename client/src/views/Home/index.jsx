@@ -9,7 +9,6 @@ import Instructor from '../../components/Instructor'
 import ProductSection from '../../components/ProductSection'
 import { useSelector, useDispatch } from 'react-redux';
 import actions from '../../actions';
-import mappingProducts from './data';
 
 const Home = () => {
     const dispatch = useDispatch()
@@ -17,9 +16,10 @@ const Home = () => {
     
     
     useEffect(() => {
-        dispatch(actions.products.listProducts())
+        dispatch(actions.products.listProducts(undefined, 'isMainPage'))
         AOS.init({duration:2000})
     },[])
+
     return (
         <>
          <Template>
@@ -28,7 +28,7 @@ const Home = () => {
             <CourseSection/>
             <Instructor/>
             {
-               products && mappingProducts(products).map(data => (
+               products && products.map(data => (
                     <ProductSection data={data} 
                     key={data._id} 
                     loading={loading}

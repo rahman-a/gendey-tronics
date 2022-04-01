@@ -30,7 +30,7 @@
         &_item {
           position: relative;
           & > div {
-            padding: 3.5rem 3.5rem 3rem 1rem;
+            padding: 3rem 3rem 2.5rem 1rem;
             border-bottom: 1px solid var.$full-light-color;
             display: flex;
             align-items: center;
@@ -67,7 +67,7 @@
           }
     
           span {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color:var.$white-color;
           }
     

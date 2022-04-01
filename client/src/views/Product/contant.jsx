@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from './style.module.scss'
 import {PhoneRing, Zoom, Whats, Check} from '../../components/icons'
 import strings from '../../localization'
 
 const Contact = ({setContactType, setCallMethod, callMethod, lang}) => {
+    
+    useEffect(() => {
+        console.log(strings.product[lang].contact_method);
+    }, [lang])
+    
     return (
         <div className={style.product__contact}>
             <h2>{strings.product[lang].contact_method}</h2>

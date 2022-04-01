@@ -7,6 +7,7 @@ import driveReducer from './drive.reducer'
 import callReducer from './calls.reducer'
 import contactReducer from './contacts.reducer'
 import dashboardReducer from './dashboard.reducer'
+import supportReducer from './support.reducer'
 
 export const globalReducer = {
     ...adminReducers,
@@ -17,5 +18,6 @@ export const globalReducer = {
     ...driveReducer,
     ...callReducer,
     ...contactReducer,
-    ...dashboardReducer
+    ...dashboardReducer,
+    ...supportReducer
 }

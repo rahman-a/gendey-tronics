@@ -11,6 +11,11 @@ export const addInstructor = async (req, res, next) => {
             res.status(400)
             throw new Error(strings.course[lang].instructor_exist)
         }
+        if(req.files) {
+            const {heroImage, avatar} = req.files
+            newInstructor.heroImage = heroImage[0].filename
+            newInstructor.avatar = avatar[0].filename
+        }
         const savedInstructor = await newInstructor.save()
         res.status(201).json({
             success:true,

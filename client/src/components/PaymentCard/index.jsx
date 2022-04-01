@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import style from './style.module.scss'
-import { Download, Paypal, PaypalText} from '../icons'
+import {Paypal, PaypalText, Fawery, MobileCash} from '../icons'
 import {Overlay} from '../Overlay'
 import Loader from '../Loader'
 import PaypalButtons from './paypal'
@@ -12,22 +12,20 @@ import strings from '../../localization'
 
 const PaymentCard = ({type, course}) => {
   const [formError, setFormError] = useState(null)
-  const [loadingState, setLoadingState] = useState(false)
-  const [isAsset, setIsAsset] = useState(false)
+  const [purchasingProduct, setPurchasingProduct] = useState(false)
+  const [purchasingCourse, setPurchasingCourse] = useState(false)
+  const [paymentType, setPaymentType] = useState('paypal')
   const path = useLocation().pathname
   const {items} =  useSelector(state => state.cartItems)
   const {lang} =  useSelector(state => state.language)
   const {error, order} = useSelector(state => state.newOrder)
   const {error:error_cart, message:clearCart} = useSelector(state => state.clearCart) 
-  const {error:enroll_error, enrollId, asset} = useSelector(state => state.newEnrollment)
-  const {fileData} = useSelector(state => state.downloadAsset)
+  const {error:enroll_error, isCompleted} = useSelector(state => state.newEnrollment)
   const {message} = useSelector(state => state.removeItem)
 
-
-  const {id} = useParams()
   const dispatch = useDispatch()
   const history = useHistory()
-  
+
   // Capture Errors and Display it 
   const setError = error => {
     setFormError(error)
@@ -46,42 +44,11 @@ const PaymentCard = ({type, course}) => {
     dispatch(actions.products.newOrder(orderDetails))
   }
 
-  const deletePermission = () => {
-    dispatch(actions.courses.deletePermission(asset))
-  }
-
-  const initiateFileDownload = () => {
-    if(fileData) {
-        // const link = `https://www.googleapis.com/drive/v3/files/${asset}/?key=${key}&alt=media`
-        // const link = `https://drive.google.com/uc?id=${asset}&export=download`
-        const anchor = document.createElement('a')
-        anchor.href = fileData.webContentLink
-        anchor.click()
-        setLoadingState(false)
-        setIsAsset(false)
-        dispatch({type:constants.courses.NEW_ENROLLMENT_RESET})
-        setTimeout(() => {
-            deletePermission()
-        },5000)
-    }
-  }
-
-  const downloadAssetHandler = _ => {
-    setLoadingState(true)
-    setIsAsset(true)
-    // get Download Key
-    dispatch(actions.courses.downloadFile(asset))
-  }
-  
-  useEffect(() => {
-    fileData && initiateFileDownload()
-  },[fileData])
-
   useEffect(() => {
     if(clearCart) {
-      setLoadingState(true)
+      setPurchasingProduct(true)
       setTimeout(() => {
-        setLoadingState(false)
+        setPurchasingProduct(false)
         history.push(`${path}?process=delivery`) 
         dispatch({type:constants.product.CLEAR_CART_RESET})
       }, 2000);
@@ -89,19 +56,16 @@ const PaymentCard = ({type, course}) => {
   },[clearCart])
 
   useEffect(() => {
-    if(enrollId) {
-      setLoadingState(true)
+    if(isCompleted) {
+      setPurchasingCourse(true)
       setTimeout(() => {
-        setLoadingState(false)
-        history.push(`/course/${id}/learn?enroll=${enrollId}#overview`)
+        setPurchasingCourse(false)
+        history.push(`/account#order`)
         dispatch({type:constants.courses.NEW_ENROLLMENT_RESET})
-      }, 2000);  
+      }, 5000);  
     } 
-  },[enrollId])
+  },[isCompleted])
 
-  useEffect(() => {
-    asset && downloadAssetHandler()
-  },[asset])
 
   useEffect(() => {
     if(order && items) {
@@ -114,17 +78,14 @@ const PaymentCard = ({type, course}) => {
 
   return (
     <div className={style.coursePayment__payment}
-    style={{position:loadingState ? 'static' :'relative' }}>
-      <Overlay toggle={loadingState}/>
-      {loadingState && 
-          <Loader size='8' center custom={{color:'#F8C600',zIndex:'9999999'}}>
-           { isAsset && <p style={{
-                width:'22rem', 
-                transform:lang === 'ar' ? 'translateX(7rem)' :'translateX(-7rem)'
-              }}>  
-                {strings.course[lang].prepare_download_link}
-            </p> }
-          </Loader>
+    style={{position:(purchasingCourse || purchasingProduct) ? 'static' :'relative' }}>
+      <Overlay toggle={purchasingCourse || purchasingProduct}/>
+      {(purchasingCourse || purchasingProduct) 
+      && <Loader size='8' center custom={{color:'#F8C600',zIndex:'9999999'}}>
+        {purchasingCourse && <p style={{width:'25rem', transform:'translate(-10rem)'}}> 
+            {strings.course[lang].download_link_added}
+        </p> }
+      </Loader>
       }
       <div
         className={style.coursePayment__error}
@@ -146,21 +107,51 @@ const PaymentCard = ({type, course}) => {
           <div className={style.coursePayment__options_icons}>
             <span
               style={{ opacity:'1'}}
+              onClick={() => setPaymentType('paypal')}
             >
               <Paypal style={{ width: '3rem' }} />
               <PaypalText />
             </span>
+            <span
+              style={{ opacity:'1'}}
+              onClick={() => setPaymentType('fawery')}
+            >
+            <Fawery width='5em' height='5em'/>
+            </span>
+            <span
+              style={{ opacity:'1'}}
+              onClick={() => setPaymentType('cash')}
+            >
+            <MobileCash width='4em' height='2.5em'/>
+            </span>
           </div>
         </div>
-        <PaypalButtons
-        type={type}
-        setError={setError}
-        cartItems={items}
-        completeProductPayment={completeProductPayment}
-        completeCoursePayment={completeCoursePayment}
-        course={course}
-        lang={lang}
-        strings={strings}/>
+        {
+          paymentType === 'paypal'
+          ?  <PaypalButtons
+              type={type}
+              setError={setError}
+              cartItems={items}
+              completeProductPayment={completeProductPayment}
+              completeCoursePayment={completeCoursePayment}
+              course={course}
+              lang={lang}
+              strings={strings}/>
+          : paymentType === 'fawery'
+          ? <div className={style.coursePayment__fawery}> 
+                <h1> 
+                  {strings.client[lang].fawery_soon}  
+                </h1>
+             </div>
+          : paymentType === 'cash'
+          && <div className={style.coursePayment__cash}> 
+              <h3> {strings.client[lang].cash_message} <code> 01064345626 </code>  </h3>
+              <h4 style={{lineHeight: lang === 'ar' ? 1.9 : 1.6}}> 
+                {strings.client[lang].cash_contact_message}  
+                <em> support@gendyecu.com </em> 
+              </h4>
+            </div>  
+        }
       </div>
     </div>
   )

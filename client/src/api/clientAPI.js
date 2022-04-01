@@ -30,5 +30,14 @@ export const clientApi = {
     },
     facebookSignIn: (token) => {
         return service().post('users/login/facebook', token)
+    },
+    links(){
+        return service().get('users/links')
+    },
+    search(keyword) {
+        return service().get(`users/search?keyword=${keyword}`)
+    },
+    sliders() {
+        return service().get('sliders')
     }
 }

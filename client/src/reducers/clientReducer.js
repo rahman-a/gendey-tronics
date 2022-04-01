@@ -150,6 +150,55 @@ const facebookSignInReducer = (state, action) => {
     }
 }
 
+
+const downloadsLinks = (state, action) => {
+    switch(action.type){
+        case constants.client.DOWNLOAD_LINKS_REQUEST:
+            return {loading:true, error:null}
+        case constants.client.DOWNLOAD_LINKS_SUCCESS:
+            return {loading:false, error:null, links:action.payload}
+        case constants.client.DOWNLOAD_LINKS_FAIL:
+            return {loading:false, error:action.payload}
+        case constants.client.DOWNLOAD_LINKS_RESET: 
+            return {loading:false, error:null, links:null}
+        default:
+            return {...state}
+
+    }
+}
+
+const clientSearch = (state, action) => {
+    switch(action.type){
+        case constants.client.USER_SEARCH_REQUEST:
+            return {loading:true, error:null}
+        case constants.client.USER_SEARCH_SUCCESS:
+            return {loading:false, error:null, result:action.payload}
+        case constants.client.USER_SEARCH_FAIL:
+            return {loading:false, error:action.payload}
+        case constants.client.USER_SEARCH_RESET: 
+            return {loading:false, error:null, result:null}
+        default:
+            return {...state}
+
+    }
+}
+
+const pageSliders = (state, action) => {
+    switch(action.type){
+        case constants.client.PAGE_SLIDERS_REQUEST:
+            return {loading:true, error:null}
+        case constants.client.PAGE_SLIDERS_SUCCESS:
+            return {loading:false, error:null, sliders:action.payload}
+        case constants.client.PAGE_SLIDERS_FAIL:
+            return {loading:false, error:action.payload}
+        case constants.client.PAGE_SLIDERS_RESET: 
+            return {loading:false, error:null, sliders:null}
+        default:
+            return {...state}
+
+    }
+}
+
 const clientReducers = {
     client:loginReducer,
     register:registerReducer,
@@ -161,6 +210,9 @@ const clientReducers = {
     resetLinkPass:resetPasswordLinkReducer,
     googleSignIn:googleSignInReducer,
     facebookSignIn:facebookSignInReducer,
+    downloadsLinks,
+    clientSearch,
+    pageSliders
 }
 
 export default clientReducers

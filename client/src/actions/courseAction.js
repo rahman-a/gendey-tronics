@@ -54,7 +54,7 @@ const createNewEnrollment = (id) => async (dispatch) => {
         dispatch({
             type: constants.courses.NEW_ENROLLMENT_SUCCESS, 
             enroll:data.enroll,
-            asset:data.asset
+            isCompleted:data.isCompleted
         })
     } catch (error) {
         dispatch({
@@ -254,19 +254,23 @@ const addToWishlist = (info) => async (dispatch, getState) => {
         await api.courses.addCourseToWishlist(info)
         const {courses} = getState().listCourses
         const {course} = getState().courseData
-        
+    
         if(courses && courses.length) {
-            courses.forEach(course => {
+            const copiedCourses = JSON.parse(JSON.stringify(courses))
+            copiedCourses.forEach(course => {
                 if(course._id === info.item){
                     course.isFav = true
                 }
             })
-            dispatch({type: constants.courses.LIST_ALL_SUCCESS, payload:courses})
+            dispatch({type: constants.courses.LIST_ALL_SUCCESS, payload:copiedCourses})
         }
+        
         if(course) {
-            course.isFav = true
-            dispatch({type: constants.courses.GET_ONE_SUCCESS, payload:course})
+            const copiedCourse = {...course}
+            copiedCourse.isFav = true
+            dispatch({type: constants.courses.GET_ONE_SUCCESS, payload:copiedCourse})
         }
+
         dispatch({type:constants.courses.ADD_COURSE_TO_WISHLIST_SUCCESS, payload:true})
     } catch (error) {
         dispatch({
@@ -284,16 +288,18 @@ const removeFromWishlist = (id) => async (dispatch, getState) => {
         const {course} = getState().courseData
 
         if(courses && courses.length) {
-            courses.forEach(course => {
+            const copiedCourses = JSON.parse(JSON.stringify(courses))
+            copiedCourses.forEach(course => {
                 if(course._id === id){
                     course.isFav = false
                 }
             })
-            dispatch({type: constants.courses.LIST_ALL_SUCCESS, payload:courses})
+            dispatch({type: constants.courses.LIST_ALL_SUCCESS, payload:copiedCourses})
         }
         if(course) {
-            course.isFav = false
-            dispatch({type: constants.courses.GET_ONE_SUCCESS, payload:course})
+            const copiedCourse = {...course}
+            copiedCourse.isFav = false
+            dispatch({type: constants.courses.GET_ONE_SUCCESS, payload:copiedCourse})
         }
         dispatch({type:constants.courses.REMOVE_COURSE_FROM_WISHLIST_SUCCESS, payload:true})
     } catch (error) {

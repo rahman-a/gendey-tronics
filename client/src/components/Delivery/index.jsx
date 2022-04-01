@@ -4,7 +4,6 @@ import {Printer} from '../icons'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import Table from 'react-bootstrap/Table'
-import DownloadAsset from './DownloadAsset'
 import constants from '../../constants'
 import strings from '../../localization'
 
@@ -41,6 +40,9 @@ const Delivery = () => {
                     <strong>{strings.product[lang].order_no}</strong> <i>{order._id}</i>
                 </span>
             </h2>
+            <p className={style.delivery__order_links}>
+                {strings.product[lang].download_link_added}
+            </p>
             <p>{strings.product[lang].items_list}</p>
            <Table bordered hover>       
                 <thead>
@@ -49,7 +51,6 @@ const Delivery = () => {
                     <th>{strings.product[lang].item}</th>
                     <th>{strings.product[lang].qty}</th>
                     <th>{strings.product[lang].price}</th>
-                    <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +61,6 @@ const Delivery = () => {
                             <td>{item.product.name}</td>
                             <td>{item.quantity}</td>
                             <td>{item.product.price * item.quantity}$</td>
-                            <DownloadAsset id={item.product.driveFile}/>
                             </tr>
                         })
                     }

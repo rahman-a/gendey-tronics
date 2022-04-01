@@ -22,7 +22,7 @@ const lists = [
         },
         {
             title:'ecu',
-            link:'/products?type=ecu'
+            link:'/products?type=ecu-programming'
         }
     ],
     [

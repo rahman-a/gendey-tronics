@@ -47,7 +47,7 @@ const createEnrollmentReducer = (state, action) => {
         case constants.courses.NEW_ENROLLMENT_REQUEST: 
             return {loading:true, error:null}
         case constants.courses.NEW_ENROLLMENT_SUCCESS: 
-            return {loading:false, error:null, enrollId:action.enroll, asset:action.asset}
+            return {loading:false, error:null, enrollId:action.enroll, isCompleted:action.isCompleted}
         case constants.courses.NEW_ENROLLMENT_FAIL: 
             return {loading:false, error:action.payload}
         case constants.courses.NEW_ENROLLMENT_RESET: 

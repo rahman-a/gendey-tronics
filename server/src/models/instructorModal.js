@@ -28,6 +28,12 @@ const instructorSchema = new mongoose.Schema({
     about: {
         type:String
     },
+    heroImage: {
+        type:String
+    },
+    avatar: {
+        type:String
+    },
     reviews:[reviewSchema]
 },{timestamps:true})
 

@@ -31,9 +31,57 @@ const logout = (state, action) => {
     }
 }
 
+const listSliders = (state, action) => {
+    switch(action.type) {
+        case constants.admin.LIST_SLIDERS_REQUEST: 
+            return {loading:true, error:null}
+        case constants.admin.LIST_SLIDERS_SUCCESS: 
+            return {loading:false, error:null, sliders:action.payload} 
+        case constants.admin.LIST_SLIDERS_FAIL: 
+            return {loading: false, error:action.payload} 
+        case constants.admin.LIST_SLIDERS_RESET: 
+            return {loading:false, error:null, sliders:null} 
+        default:
+            return {...state}
+    }
+}
+
+const deleteSlider = (state, action) => {
+    switch(action.type) {
+        case constants.admin.DELETE_SLIDER_REQUEST: 
+            return {loading:true, error:null}
+        case constants.admin.DELETE_SLIDER_SUCCESS: 
+            return {loading:false, error:null, message:action.payload} 
+        case constants.admin.DELETE_SLIDER_FAIL: 
+            return {loading: false, error:action.payload} 
+        case constants.admin.DELETE_SLIDER_RESET: 
+            return {loading:false, error:null, message:null} 
+        default:
+            return {...state}
+    }
+}
+
+const createSlider = (state, action) => {
+    switch(action.type) {
+        case constants.admin.CREATE_SLIDER_REQUEST: 
+            return {loading:true, error:null}
+        case constants.admin.CREATE_SLIDER_SUCCESS: 
+            return {loading:false, error:null, message:action.payload} 
+        case constants.admin.CREATE_SLIDER_FAIL: 
+            return {loading: false, error:action.payload} 
+        case constants.admin.CREATE_SLIDER_RESET: 
+            return {loading:false, error:null, message:null} 
+        default:
+            return {...state}
+    }
+}
+
 const admin = {
     login,
-    logout
+    logout,
+    listSliders,
+    deleteSlider,
+    createSlider
 }
 
 export default admin

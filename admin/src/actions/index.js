@@ -7,6 +7,7 @@ import driveActions from './drive.actions'
 import callAction from './calls.action'
 import contactsActions from './contacts.actions'
 import dashboardAction from './dashboard.action'
+import supportActions from './support.actions'
 
 const actions = {
     admin:adminActions,
@@ -17,7 +18,8 @@ const actions = {
     drive:driveActions,
     calls: callAction,
     contacts:contactsActions,
-    dashboard:dashboardAction
+    dashboard:dashboardAction,
+    support:supportActions
 }
 
 export default actions

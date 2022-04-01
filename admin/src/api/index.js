@@ -7,6 +7,7 @@ import driveAPI from './drive'
 import callAPI from "./calls"
 import contactsAPI from './contacts'
 import dashboardAPI from "./dashboard"
+import supportAPI from "./support"
 
 const api = {
     admin:adminAPI,
@@ -17,7 +18,8 @@ const api = {
     drive:driveAPI,
     calls: callAPI,
     contacts:contactsAPI,
-    dashboard:dashboardAPI
+    dashboard:dashboardAPI,
+    support:supportAPI
 }
 
 export default api

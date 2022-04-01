@@ -20,6 +20,8 @@ import contactRouter      from  './server/src/routers/contactRouter.js'
 import couponRouter       from  './server/src/routers/couponRouter.js'
 import driveRouter        from  './server/src/routers/driveRouter.js'
 import dashboardRouter    from  './server/src/routers/Dashboard.js'
+import sliderRouter       from  './server/src/routers/sliderRouter.js'
+import supportRouter       from  './server/src/routers/supportRouter.js'
 
 import {
     notFound, 
@@ -55,6 +57,7 @@ if(process.env.NODE_ENV === 'production') {
     })
 }
 
+
 app.use('/api/images', express.static(path.resolve(__dirname, 'server/uploads')))
 app.use(checkApiKey)
 app.use('/api/users', userRouter)
@@ -70,6 +73,8 @@ app.use('/api/contacts', contactRouter)
 app.use('/api/coupons', couponRouter)
 app.use('/api/drive', driveRouter)
 app.use('/api/dashboard', dashboardRouter)
+app.use('/api/sliders', sliderRouter)
+app.use('/api/support', supportRouter)
 app.use(notFound)
 app.use(errorHandler)
 
@@ -79,3 +84,5 @@ const port  =  process.env.PORT || 5000
 app.listen(port, () => {
     console.log(`Server is running at port ${port}`);
 })
+
+console.log(path.resolve(__dirname, 'test.js'))

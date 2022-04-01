@@ -30,6 +30,19 @@ export const uploadHandler = multer({
     }
 })
 
+export const uploadSliderImageHandler = multer({
+    storage,
+    limits:{
+        fileSize:10000000
+    },
+    fileFilter(req, file, cb){
+        if(!file.originalname.match(/\.(png|jpg|jpeg|PNG|JPG|JPEG)$/)) {
+            cb(new Error(strings.product[req.headers.lang].image_upload_formats))
+        }
+        cb(undefined, true)
+    }
+})
+
 
 export const ChunkUploadHandler = multer({
     // limits:{

@@ -18,15 +18,37 @@
             padding:0.5rem
         }
     }
-    &__message {
+    &__message { 
         height: 100%;
-        display: grid;
-        place-items: center;
-        h2 {
+        width:100%;  
+        position: relative;
+        h2 { 
+            height: 100%;     
+            display: grid;
+            place-items: center;
             color: #cfae0b;
             font-weight: 300;
             font-size: 3rem;
             letter-spacing: 2px
+        }
+        &_type {
+            padding:2rem;
+            button {
+                margin-right:1rem;
+            }
+        }
+        &_content {
+            padding:5rem;
+        }
+        &_title {
+            button {
+                font-size: 1.6rem;
+            }
+        }
+        &_item {
+            font-size:1.4rem;
+            color:#333;
+            font-weight: 300;       
         }
     }
 }

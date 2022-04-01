@@ -19,23 +19,23 @@ const Feature = () => {
                     <ul className={style.feature__list} data-aos='fade-up'>
                         <li className={style.feature__item}>
                             <span> <PriceTags/> </span>
-                            <h3>{strings.main[lang].feature_body_title}</h3>
-                            <p>{strings.main[lang].feature_body_text}</p>
+                            <h3>{strings.main[lang].overview_online_courses_header}</h3>
+                            <p>{strings.main[lang].overview_online_courses}</p>
                         </li>
                         <li className={style.feature__item}>
                             <span> <Timer/> </span>
-                            <h3>{strings.main[lang].feature_body_title}</h3>
-                            <p>{strings.main[lang].feature_body_text}</p>
+                            <h3>{strings.main[lang].overview_support_included_header}</h3>
+                            <p>{strings.main[lang].overview_support_included}</p>
                         </li>
                         <li className={style.feature__item}>
                             <span> <BookOpen/> </span>
-                            <h3>{strings.main[lang].feature_body_title}</h3>
-                            <p>{strings.main[lang].feature_body_text}</p>
+                            <h3>{strings.main[lang].overview_books_included_header}</h3>
+                            <p>{strings.main[lang].overview_books_included}</p>
                         </li>
                         <li className={style.feature__item}>
                             <span> <Car/> </span>
-                            <h3>{strings.main[lang].feature_body_title}</h3>
-                            <p>{strings.main[lang].feature_body_text}</p>
+                            <h3>{strings.main[lang].overview_discount_included_header}</h3>
+                            <p>{strings.main[lang].overview_discount_included}</p>
                         </li>
                     </ul>
                 </div>

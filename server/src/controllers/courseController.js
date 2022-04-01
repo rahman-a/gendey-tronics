@@ -7,6 +7,8 @@ import Review from '../models/reviewsModal.js'
 import Instructor from '../models/instructorModal.js'
 import Enrollment from '../models/enrollmentModal.js'
 import Wishlist from '../models/wishlistModal.js'
+import Product from '../models/productModal.js'
+import Order from '../models/orderModal.js'
 import strings from '../localization.js'
 
 export const createNewCourse = async (req, res, next) => {
@@ -127,7 +129,7 @@ export const getTheCourseData = async (req, res, next) => {
 
 export const listAllCourses = async (req, res, next) => {
     const {lang} = req.headers
-    const {name,price, rating, students,isPaid, page, skip, isPublic} = req.query 
+    const {name,price, rating, students,isPaid, page, skip, isPublished} = req.query 
     let searchFilter = {}
     try {
         if(name) {
@@ -200,8 +202,8 @@ export const listAllCourses = async (req, res, next) => {
             }
         }
 
-        if(isPublic) {
-            const value = isPublic === 'true'
+        if(isPublished) {
+            const value = isPublished === 'true'
             searchFilter = {
                 ...searchFilter,
                 isPublished:value
@@ -294,6 +296,7 @@ export const listAllCourses = async (req, res, next) => {
             {$limit:parseInt(page) || 10}
         ])
 
+
         if(!courses || courses.length < 1) {
             res.status(404)
             throw new Error(strings.course[lang].no_course)
@@ -308,6 +311,18 @@ export const listAllCourses = async (req, res, next) => {
 
         if(courseCount) {
             count = courseCount[0]['course_count']
+        }
+        
+        for(const course of courses) {
+            
+            let courseDuration = 0
+            const chapters = await Chapter.find({course:course._id})
+            const allChapters = await getChaptersAndLessons(chapters) 
+            allChapters.forEach(chapter => courseDuration += chapter.duration)
+            course.time = courseDuration
+            
+            const isFavourite = await Wishlist.findOne({user:req.user?._id, item:course._id})
+            isFavourite ? course.isFav = true : course.isFav = false
         }
 
         res.json({
@@ -333,12 +348,17 @@ export const listPurchasedCourses = async (req, res, next) => {
         const courses = []
         for(const enrollment of enrollments) {
             const course = await Course.findById(enrollment.course)
+            const chapters = await Chapter.find({course:course._id})
+            const allChapters = await getChaptersAndLessons(chapters) 
+            let courseDuration = 0
+            allChapters.forEach(chapter => courseDuration += chapter.duration)
             courses.push({
                 _id:course._id,
                 enroll:enrollment._id,
                 name:course.name,
-                description:course.description,
-                image:course.image
+                image:course.image,
+                time:courseDuration,
+                isPaid:course.isPaid,
             })
         }
 

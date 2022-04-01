@@ -38,7 +38,7 @@ export const createEnrollment = async (req, res, next) => {
             res.status(201).json({
                 success:true,
                 code:201,
-                asset:targetedCourse.driveFile,
+                isCompleted:true,
                 message:strings.course[lang].new_enroll,
             })
 

@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useEffect, useRef} from 'react'
 import ProductCard from '../ProductCard'
 import style from './style.module.scss'
 import CardSlider from '../CardSlider'
@@ -6,6 +6,11 @@ import Loader from '../Loader'
 import Alert from 'react-bootstrap/Alert'
 
 const ProductSection = ({data, loading, error}) => {
+    
+    useEffect(() => {
+        data && console.log({data});
+    },[data])
+
     const containerRef = useRef(null)
     return (
         <div className={style.productSection}
@@ -19,9 +24,9 @@ const ProductSection = ({data, loading, error}) => {
             ref={containerRef}
             style={{position:'relative', overflow:'hidden'}}
             data-aos='fade-left'>
-                <CardSlider length={data.cards.length} containerRef={containerRef} title={data.title}>
+                <CardSlider length={data.cards?.length} containerRef={containerRef} title={data.title}>
                     {
-                        data.cards.map(card => (
+                        data.cards?.map(card => (
                             <ProductCard card={card} key={card._id}/>
                         ))
                     }
