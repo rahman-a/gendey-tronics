@@ -1,16 +1,20 @@
 import React from 'react'
 import style from './style.module.scss'
 
-const ImageCard = ({src,name,showImage, idx}) => {
-    
-    return (
-        <figure className={`${style['imageCard__item_' + (idx+1)]} ${style.imageCard__item}`} 
-        title={name ? name : ''}
-        onClick={() => showImage(src, idx)}>
-            <img src={`images/gallery/${src}`} alt={name ? name : ''} 
-            className={style.imageCard__img} />
-        </figure>
-    )
+const ImageCard = ({ src, showImage, idx }) => {
+  return (
+    <figure
+      className={`${style['imageCard__item_' + (idx + 1)]} ${
+        style.imageCard__item
+      }`}
+      onClick={() => showImage(src, idx)}
+    >
+      <div className={style.imageCard__image}>
+        <img src={`/api/images/${src}`} alt={`imageCard-${idx}`} />
+      </div>
+      <span></span>
+    </figure>
+  )
 }
 
 export default ImageCard

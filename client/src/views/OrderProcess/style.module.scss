@@ -1,87 +1,87 @@
 @use '../../sass/variables' as gv;
 @use '../../sass/mq' as media;
 
-.order  {
-    margin-top: 10.4rem;
+.order {
+  margin-top: 10.4rem;
+  display: flex;
+  @include media.mq(md) {
+    // display: block;
+    flex-direction: column;
+  }
+  &__payment {
+    width: 30%;
+    @include media.mq(md) {
+      width: 50%;
+      margin: 0 auto;
+      order: 2;
+      margin-bottom: 5rem;
+    }
+    @include media.mq(sm) {
+      width: 75%;
+    }
+    @include media.mq(xs) {
+      width: 95%;
+    }
+  }
+  &__content {
+    width: 70%;
+    @include media.mq(md) {
+      width: 95%;
+    }
+  }
+  &__progress {
+    margin-top: 3rem;
     display: flex;
-    @include media.mq(md){
-        // display: block;
-        flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    @include media.mq(sm) {
+      margin-top: 0;
     }
-    &__payment {
-        width:30%;
-        @include media.mq(md){
-            width: 50%; 
-            margin: 0 auto; 
-            order:2;
-            margin-bottom: 5rem;
-        }
-        @include media.mq(sm){
-            width:75%;
-        }
-        @include media.mq(xs){
-            width: 95%;
-        }
-    }
-    &__content {
-        width:70%;
-        @include media.mq(md){
-            width: 95%;
-        }
-    }
-    &__progress {
-        margin-top: 3rem;
-        display: flex;
+    &_unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 9;
+      span {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: gv.$light-black;
+        color: gv.$white-color;
+        display: inline-flex;
         align-items: center;
-        justify-content: space-between;
-        position: relative;
-        @include media.mq(sm){
-            margin-top: 0;
-        }
-        &_unit {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 99;
-            span {
-                width:3rem;
-                height: 3rem;
-                border-radius: 50%;
-                background-color: gv.$light-black;
-                color:gv.$white-color;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                border:1px solid #004990;
-            }
-            p {
-                font-weight: 300;
-                font-size: 1.4rem;
-                margin-top:0.2rem;
-            }
-        }
-        &_active {
-            span {
-                background-color: gv.$main-color;
-                color:gv.$white-color;
-            }
-        }
-        &::after {
-            content:'';
-            position: absolute;
-            width:99%;
-            height: 2px;
-            top:25%;
-            background-color: #004990;
-        }
-
-        &_ar {
-            &::after {
-                width:97%;
-                right:2rem
-            }
-        }
+        justify-content: center;
+        border: 1px solid #004990;
+      }
+      p {
+        font-weight: 300;
+        font-size: 1.4rem;
+        margin-top: 0.2rem;
+      }
     }
+    &_active {
+      span {
+        background-color: gv.$main-color;
+        color: gv.$white-color;
+      }
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      width: 99%;
+      height: 2px;
+      top: 25%;
+      background-color: #004990;
+    }
+
+    &_ar {
+      &::after {
+        width: 97%;
+        right: 2rem;
+      }
+    }
+  }
 }

@@ -12,7 +12,7 @@ const FacebookSignIn = ({text}) => {
     return (
         <div className={style.fb}>
             <FacebookLoginButton
-                appId="1150435905491331"
+                appId={process.env.REACT_APP_FACEBOOK_APP_ID}
                 callback={responseFacebook}
                 cssClass={style.fb__button}
                 textButton={text}

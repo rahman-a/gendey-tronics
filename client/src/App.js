@@ -1,111 +1,107 @@
-import {useEffect} from 'react'
-import {Switch, Route, useLocation, Redirect} from 'react-router-dom'
-import { useSelector } from 'react-redux';
-import Home from "./views/Home";
+import { useEffect } from 'react'
+import { Switch, Route, useLocation, Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import Home from './views/Home'
 import Account from './views/Account'
-import Login from './views/Login';
-import Signup from './views/Signup';
+import Login from './views/Login'
+import Signup from './views/Signup'
 import Blogs from './views/AllBlogs'
 import Blog from './views/Blog'
 import Products from './views/AllProducts'
 import Product from './views/Product'
-import PrivacyPolicy from "./views/PrivacyPolicy";
-import TermsAndCondition from "./views/TermsAndConditions";
-import SalesTerms from "./views/SalesTerms/indx";
-import VideoGallery from "./views/VideoGallery";
-import PhotoGallery from "./views/PhotoGallery";
+import PrivacyPolicy from './views/PrivacyPolicy'
+import TermsAndCondition from './views/TermsAndConditions'
+import SalesTerms from './views/SalesTerms/indx'
+import VideoGallery from './views/VideoGallery'
+import PhotoGallery from './views/PhotoGallery'
 import Course from './views/Course'
 import Courses from './views/allCourses'
 import Contact from './views/ContactUs'
-import CoursePayment from './views/CoursePayment';
-import CourseLearn from './views/CourseLearn';
-import OrderProcess from './views/OrderProcess';
-import VerifyEmail from './views/VerifyEmail';
-import ResetEmail from './views/ResetEmail';
-import NotFound from './views/Notfound';
+import CoursePayment from './views/CoursePayment'
+import CourseLearn from './views/CourseLearn'
+import OrderProcess from './views/OrderProcess'
+import VerifyEmail from './views/VerifyEmail'
+import ResetEmail from './views/ResetEmail'
+import NotFound from './views/Notfound'
 
 function App() {
-  const {pathname} = useLocation()
-  const {lang} = useSelector(state => state.language)
-  const {isAuth} = useSelector(state => state.client)
-  
+  const { pathname } = useLocation()
+  const { lang } = useSelector((state) => state.language)
+  const { isAuth } = useSelector((state) => state.client)
+
   useEffect(() => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
   }, [pathname, lang])
   return (
-    <div className="App"
-    style={{fontFamily:lang === 'en' ? 'Roboto, sans-serif': 'Cairo, sans-serif',
-    direction:lang === 'en' ?'ltr' :'rtl'}}>
+    <div
+      className='App'
+      style={{
+        fontFamily: lang === 'en' ? 'Roboto, sans-serif' : 'Cairo, sans-serif',
+        direction: lang === 'en' ? 'ltr' : 'rtl',
+      }}
+    >
       <Switch>
         <Route path='/' exact>
-          <Home/> 
+          <Home />
         </Route>
-        <Route path='/account'>
-          {isAuth ? <Account/> : <Home/>} 
-        </Route>
-        <Route path='/login'>
-          {isAuth ? <Home/> :<Login/>} 
-        </Route>
-        <Route path='/signup'>
-         {isAuth ?  <Home/> :<Signup/>}
-        </Route>
+        <Route path='/account'>{isAuth ? <Account /> : <Home />}</Route>
+        <Route path='/login'>{isAuth ? <Home /> : <Login />}</Route>
+        <Route path='/signup'>{isAuth ? <Home /> : <Signup />}</Route>
         <Route path='/products'>
-          <Products/>
+          <Products />
         </Route>
         <Route path='/courses'>
-          <Courses/>
+          <Courses />
         </Route>
         <Route path='/course/:id' exact>
-          <Course/>
+          <Course />
         </Route>
         <Route path='/course/:id/payment' exact>
-         {isAuth ? <CoursePayment/> : <Login/>}
+          {isAuth ? <CoursePayment /> : <Login />}
         </Route>
         <Route path='/course/:id/learn'>
-          {isAuth ? <CourseLearn/> : <Login/>}
+          {isAuth ? <CourseLearn /> : <Login />}
         </Route>
         <Route path='/product/:id?'>
-          <Product/>
+          <Product />
         </Route>
-        <Route path='/order'>
-         {isAuth ? <OrderProcess/> : <Login/>}
-        </Route>
-        <Route path='/blogs'>
-          <Blogs/>
-        </Route>
+        <Route path='/order'>{isAuth ? <OrderProcess /> : <Login />}</Route>
         <Route path='/blog/:id'>
-          <Blog/> 
+          <Blog />
+        </Route>
+        <Route path='/blog'>
+          <Blogs />
         </Route>
         <Route path='/privacy-policy'>
-          <PrivacyPolicy/> 
+          <PrivacyPolicy />
         </Route>
         <Route path='/terms-and-condition'>
-          <TermsAndCondition/> 
+          <TermsAndCondition />
         </Route>
         <Route path='/sales-terms'>
-          <SalesTerms/> 
+          <SalesTerms />
         </Route>
-        <Route path='/videos-gallery'>
-          <VideoGallery/> 
+        <Route path='/videos'>
+          <VideoGallery />
         </Route>
-        <Route path='/photo-gallery'>
-          <PhotoGallery/> 
+        <Route path='/gallery'>
+          <PhotoGallery />
         </Route>
         <Route path='/contact-us'>
-          <Contact/> 
+          <Contact />
         </Route>
         <Route path='/activate'>
-          <VerifyEmail/>
+          <VerifyEmail />
         </Route>
         <Route path='/reset'>
-            <ResetEmail/>
+          <ResetEmail />
         </Route>
-        <Route path='*'>
-            <NotFound/>
+        <Route path='/static/*'>
+          <NotFound />
         </Route>
       </Switch>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

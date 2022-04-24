@@ -1,41 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400&display=swap');
-
-
-
-:root {
-    
-    // fonts
-    --main-font:'Roboto', sans-serif;
-    --second-font:'Cairo', sans-serif;
-    --third-font:'Montserrat', sans-serif;
-
-    // colors
-    --main-color:#323431;
-    --second-color:#f8c60071;
-    --light-color:#f8c600a8;
-    --full-light-color:#f8c60071;
-    --state-red-color:#FCD4DB;
-    --state-green-color:#C7FFCE;
-    --state-yellow-color:#FBFCD4;
-    --code-red-color:#EC4A0D;
-    --code-yellow-color:#C7E81D;
-    --code-green-color:#037A12;
-    --white-color:#fff
+@font-face {
+  font-family: 'Careem';
+  src: url(../asset/Careem_Regular.ttf) format('truetype');
 }
 
- // fonts
- $main-font:'Roboto', sans-serif;
- $second-font:'Cairo', sans-serif;
- $third-font:'Montserrat', sans-serif;
+:root {
+  // fonts
+  --main-font: 'Careem', sans-serif;
 
- // colors
- $bg-color:#282828;
- $main-color:#F8C600;
- $light-color:#f7d962;
- $light-black:#3B3B37;
- $light-gray:#707070;
- $white-color:#fff;
- $second-color:#333;
- $full-light-color:#F8C600;
+  // colors
+  --main-color: #323431;
+  --second-color: #f8c60071;
+  --light-color: #f8c600a8;
+  --full-light-color: #f8c60071;
+  --state-red-color: #fcd4db;
+  --state-green-color: #c7ffce;
+  --state-yellow-color: #fbfcd4;
+  --code-red-color: #ec4a0d;
+  --code-yellow-color: #c7e81d;
+  --code-green-color: #037a12;
+  --white-color: #fff;
+}
+
+// fonts
+$main-font: 'Roboto', sans-serif;
+$second-font: 'Cairo', sans-serif;
+$third-font: 'Montserrat', sans-serif;
+
+// colors
+$bg-color: #282828;
+$main-color: #f8c600;
+$light-color: #f7d962;
+$light-black: #3b3b37;
+$light-gray: #707070;
+$white-color: #fff;
+$second-color: #333;
+$full-light-color: #f8c600;

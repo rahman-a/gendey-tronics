@@ -4,7 +4,7 @@ const router = express.Router()
 import {isAdmin, isAuth} from '../middlewares/auth.js'
 
 import {
-    incomingEmails,
+    //incomingEmails,
     outgoingEmails,
     getEmailData,
     listAllEmails,
@@ -12,7 +12,7 @@ import {
     updateEmail
 } from '../controllers/supportControllers.js'
 
-router.post('/incoming',incomingEmails)
+//router.post('/incoming',incomingEmails)
 router.post('/outgoing', isAuth, isAdmin, outgoingEmails)
 router.get('/:id', isAuth, isAdmin, getEmailData)
 router.get('/', isAuth, isAdmin, listAllEmails)

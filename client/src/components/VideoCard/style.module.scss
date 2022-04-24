@@ -2,78 +2,79 @@
 @use '../../sass/mq' as media;
 
 .videoCard {
-    width: 30rem;
-    margin-bottom: 2rem;
-    &:hover > figure{
-        transform: scale(1.05);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  &:hover > figure {
+    transform: scale(1.05);
+  }
+  &__frame {
+    width: 50.6rem;
+    height: 30.15rem;
+    @include media.mq(xs) {
+      width: 38rem;
     }
-    &__frame {
-        width:50.6rem;
-        height:30.15rem;
-        @include media.mq(xs){
-            width:38rem;
-        }
+  }
+  figure {
+    width: 100%;
+    position: relative;
+    color: gv.$white-color;
+    transition: all 0.3s ease;
+    img {
+      width: 100%;
     }
-    figure {
-        width:100%;
-        position: relative;
-        color:gv.$white-color;
-        transition: all 0.3s ease;
-        img {
-            width: 100%;
-        }
-        svg {
-            position: absolute;
-            top:50%;
-            left:50%;
-            transform:translate(-50%, -50%);
-            width:5rem;
-            height:5rem;
-           cursor: pointer;
-        }
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 5rem;
+      height: 5rem;
+      cursor: pointer;
     }
-    h3 {
-        color:gv.$light-gray;
-    }
-    &__options {
-        display: flex;
-        align-items:center;
-        margin-top:1.5rem;
-        font-family: gv.$second-font;
-    }
+  }
+  h3 {
+    color: gv.$light-gray;
+  }
+  &__options {
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+    font-family: gv.$second-font;
+  }
 
-    &__maker {
-        display: flex;
-        align-items: center;
-        h4 {
-            margin-left:1rem;
-            color:lighten(gv.$light-gray, 10%);
-        }
-        svg {
-            width:2rem;
-            height:2rem;
-        }
-        &_ar {
-            h4 {
-                margin-left: unset;
-                margin-right:1rem
-            }
-        }
+  &__maker {
+    display: flex;
+    align-items: center;
+    h4 {
+      margin-left: 1rem;
+      color: lighten(gv.$light-gray, 10%);
     }
-    &__views {
-        display: flex;
-        align-items: center;
-        margin-left:3rem;
-        color:lighten(gv.$light-gray, 10%);
-        transform: translateY(-1px);
-        span {
-            margin-right:1rem;
-        }
-        &_tube {
-            display: inline-block;
-            width:2px;
-            height: 1.8rem;
-            background-color: lighten(gv.$light-gray, 10%);;
-        }
+    svg {
+      width: 2rem;
+      height: 2rem;
     }
+    &_ar {
+      h4 {
+        margin-left: unset;
+        margin-right: 1rem;
+      }
+    }
+  }
+  &__views {
+    display: flex;
+    align-items: center;
+    margin-left: 3rem;
+    color: lighten(gv.$light-gray, 10%);
+    transform: translateY(-1px);
+    span {
+      margin-right: 1rem;
+    }
+    &_tube {
+      display: inline-block;
+      width: 2px;
+      height: 1.8rem;
+      background-color: lighten(gv.$light-gray, 10%);
+    }
+  }
 }

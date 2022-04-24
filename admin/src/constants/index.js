@@ -8,18 +8,24 @@ import calls from './calls.constants'
 import contacts from './contact.constants'
 import dashboard from './dashboard.constants'
 import support from './support.constants'
+import menu from './menu.constants'
+import media from './media.constants'
+import instructor from './instructor.constants'
 
 const constants = {
-    admin,
-    users,
-    products,
-    blogs,
-    courses,
-    drive,
-    calls,
-    contacts,
-    dashboard,
-    support
+  admin,
+  users,
+  products,
+  blogs,
+  courses,
+  drive,
+  calls,
+  contacts,
+  dashboard,
+  support,
+  menu,
+  media,
+  instructor,
 }
 
 export default constants

@@ -1,30 +1,30 @@
 @use '../../sass/mq' as media;
 .courses {
-    margin-top:10.4rem;
-    @include media.mq(md){
-        margin-top: 7.4rem;
+  margin-top: 10.4rem;
+  @include media.mq(md) {
+    margin-top: 7.4rem;
+  }
+  @include media.mq(sm) {
+    margin-top: 4rem;
+  }
+  figure {
+    width: 100%;
+    img {
+      width: 100%;
     }
-    @include media.mq(sm){
-        margin-top: 4rem;
+  }
+  &__container {
+    width: 120rem;
+    @include media.mq(xl) {
+      width: 90rem;
     }
-    figure {
-        width:100%;
-        img {
-            width: 100%;
-        }
+    @include media.mq(md) {
+      width: 100%;
     }
-    &__container {
-        width:120rem;
-        @include media.mq(xl){
-            width:90rem;
-        }
-        @include media.mq(md){
-            width:100%;
-        }
-    }
-    &__wrapper {
-        margin-top: 8rem;
-        position: relative; 
-        overflow: hidden;
-    }
+  }
+  &__wrapper {
+    margin-top: 8rem;
+    position: relative;
+    overflow: hidden;
+  }
 }

@@ -9,7 +9,7 @@ import {HardDrive} from '../../icons'
 import Files from './Files'
 
 const Drive = () => {
-  const [driveFiles, setDriveFiles] = useState([])
+  const [driveFiles, setDriveFiles] = useState(null)
   const {loading, error, url, files} = useSelector(state => state.authenticateMember)
   const {
       loading:access_loading,

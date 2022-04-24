@@ -2,108 +2,114 @@
 @use '../../sass/media' as media;
 
 .login {
-    position: relative;
-    height: 100vh;
-    background-color: var.$bg-color;
+  position: relative;
+  height: 100vh;
+  background-color: var.$bg-color;
+  display: grid;
+  place-items: center;
+  &__wrapper {
+    margin-top: -30rem;
+    width: 50%;
+    min-height: 30vh;
     display: grid;
     place-items: center;
-    &__wrapper {
-        width:50%;
-        min-height: 30vh;
-        display: grid;
-        place-items: center;
-        
-        @include media.mq(sm) {
-            width:65%;
-        }
 
-        @include media.mq(xs){
-            width:85%;
-        }
-        @include media.mq(xxs) {
-            width: 95%;
-        }
-    }
-    &__back {
-        all: unset;
-        position: absolute;
-        left: 2rem;
-        top: 2rem;
-        color: var.$white-color;
-        cursor: pointer;
-        border-bottom: 1px solid transparent;
-        &:hover {
-            border-bottom: 1px solid var.$white-color;
-        }
-        span {
-            margin-right: 1rem;
-            svg {
-                transform:rotate(180deg)
-            }
-        }
-
+    @include media.mq(sm) {
+      width: 65%;
     }
 
-    &__Form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width:100%;
+    @include media.mq(xs) {
+      width: 85%;
     }
+    @include media.mq(xxs) {
+      width: 95%;
+    }
+  }
+  &__back {
+    all: unset;
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+    color: var.$white-color;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    &:hover {
+      border-bottom: 1px solid var.$white-color;
+    }
+    span {
+      margin-right: 1rem;
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
 
-    &__submit {
-        all: unset;
-        position: relative;
-        display: grid;
-        place-items: center;
-        background-color: var.$light-color;
-        color:var.$bg-color;
-        width: 25%;
-        padding: 0.8rem;
-        border-radius: 3rem;
-        cursor: pointer;
-        transition: all 0.3s ease-in;
-        @include media.mq(md){
-            width:35%;
-        }
-        &:hover {
-            transform: scale(1.02)
-        }
-        &:active {
-            transform:scale(0.92)
-        }
-    }
+  &__Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 
-    &__group {
-        position: relative;
-        margin-bottom: 2rem;
-        width:60%;
-        @include media.mq(md){
-            width:85%;
-        }
-        span {
-            display: inline-block;
-            text-align: center;
-            width:15%;
-            background-color:var.$main-color;
-            color:var.$second-color;
-            padding:1.5rem;
-            box-shadow: inset 1px 1px 3px 3px rgb(0 0 0 / 20%);
-        }
-        input {
-            border: 0;
-            outline: none;
-            width: 85%;
-            padding: 1.5rem;
-            border-top-right-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
-            background-color: var.$white-color;
-            &::placeholder {
-                color:var.$bg-color;
-                font-size: 1.2rem;
-                font-style: italic;
-                font-weight: 400;
-            }
-        }
+  &__submit {
+    all: unset;
+    position: relative;
+    display: grid;
+    place-items: center;
+    background-color: var.$light-color;
+    color: var.$bg-color;
+    width: 25%;
+    padding: 0.8rem;
+    border-radius: 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    @include media.mq(md) {
+      width: 35%;
     }
+    &:hover {
+      transform: scale(1.02);
+    }
+    &:active {
+      transform: scale(0.92);
+    }
+  }
+
+  &__group {
+    position: relative;
+    margin-bottom: 2rem;
+    width: 60%;
+    @include media.mq(md) {
+      width: 85%;
+    }
+    span {
+      display: inline-block;
+      text-align: center;
+      width: 15%;
+      background-color: var.$main-color;
+      color: var.$second-color;
+      padding: 1.5rem;
+      box-shadow: inset 1px 1px 3px 3px rgb(0 0 0 / 20%);
+    }
+    input {
+      border: 0;
+      outline: none;
+      width: 85%;
+      padding: 1.5rem;
+      border-top-right-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+      background-color: var.$white-color;
+      &::placeholder {
+        color: var.$bg-color;
+        font-size: 1.2rem;
+        font-style: italic;
+        font-weight: 400;
+      }
+    }
+  }
+
+  &__logo {
+    img {
+      width: 25rem;
+    }
+  }
 }

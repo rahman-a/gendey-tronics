@@ -46,7 +46,7 @@ const Segment = ({value, title, icon, type, page, sales}) => {
                     <Badge bg={type}> {count} </Badge>
                 </p>
             </div>
-            {sales && <div className={style.dashboard__segment_payment}>
+            {sales > 0 && <div className={style.dashboard__segment_payment}>
                 <h4 className='text-muted'> Total Sales </h4>
                 <p style={{fontSize:'1.9rem', textAlign:'center'}}> 
                     <Badge style={{letterSpacing:'1.6px'}} bg='success'> {`${sales}$`} </Badge> 
