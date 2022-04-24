@@ -71,7 +71,7 @@ const Product = () => {
     return () => {
       dispatch({ type: constants.products.CREATE_PRODUCT_RESET })
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <div className={`${style.product} font-size-input`}>

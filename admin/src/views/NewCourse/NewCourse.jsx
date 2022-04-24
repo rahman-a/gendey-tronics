@@ -225,7 +225,7 @@ const NewCourse = () => {
   useEffect(() => {
     isDraftFoundHandler()
     return () => dispatch({ type: constants.courses.CREATE_COURSE_RESET })
-  }, [])
+  }, [dispatch])
 
   return (
     <div

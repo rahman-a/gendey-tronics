@@ -39,7 +39,7 @@ function App() {
 
   useEffect(() => {
     isAuth && dispatch(action.admin.getAdminAvatar())
-  }, [isAuth])
+  }, [isAuth, dispatch])
 
   return (
     <div className='App'>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import style from './style.module.scss'
 import { useSelector } from 'react-redux'
 import { Form, Button, Alert } from 'react-bootstrap'

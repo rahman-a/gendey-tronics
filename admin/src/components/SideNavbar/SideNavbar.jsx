@@ -54,6 +54,7 @@ const SideNavbar = ({ showSideMenu, setSideMenu }) => {
       setSideMenu(false)
       navigate('/login')
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogout])
 
   return (
