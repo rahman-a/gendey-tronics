@@ -30,7 +30,6 @@ const NewCourse = () => {
   const { loading, error, message } = useSelector((state) => state.createCourse)
 
   const saveAsDraftHandler = (_) => {
-    console.log({ course })
     const jsonImage = course.image && JSON.stringify(course.image)
     localStorage.setItem(
       'gd-draft-course',
@@ -101,10 +100,10 @@ const NewCourse = () => {
           setErrors(`can't create lesson without description...`)
           return
         }
-        // if(!lesson.video) {
-        //   setErrors(`can't create lesson without video link...`)
-        //   return
-        // }
+        if (!lesson.video && !course.isPaid) {
+          setErrors(`can't create lesson without video link...`)
+          return
+        }
         if (!lesson.duration) {
           setErrors(`can't create lesson without video duration...`)
           return
@@ -200,8 +199,6 @@ const NewCourse = () => {
           }
 
           courseData.image = file
-
-          console.log({ course: courseData })
 
           const data = new FormData()
           data.append('course', JSON.stringify(courseData.course))

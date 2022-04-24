@@ -154,7 +154,7 @@ const ProductData = ({ saveProductInfo, loading, info, setInfo, imageRef }) => {
                   <option
                     className={style.product__form_page}
                     key={uuidv4()}
-                    value={page}
+                    value={page.toLocaleLowerCase()}
                   >
                     {page}
                   </option>

@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import style from './style.module.scss'
 import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import actions from '../../actions'
+import { useSelector } from 'react-redux'
 import {
   Home,
   Users,
@@ -28,20 +27,22 @@ const SideNavbar = ({ showSideMenu, setSideMenu }) => {
   const courseRef = useRef(null)
   const blogRef = useRef(null)
   const contentRef = useRef(null)
-  const { loading, error, isLogout } = useSelector((state) => state.logout)
-  const dispatch = useDispatch()
+  const menuRef = useRef(null)
+  const { isLogout } = useSelector((state) => state.logout)
 
-  const logoutHandler = (e) => {
-    e.stopPropagation()
-    dispatch(actions.admin.logout())
-  }
-
-  const showReportsMenu = (e, ref) => {
+  const showReportsMenu = (e, ref, isScroll) => {
     e.stopPropagation()
     if (!isReportMenu) {
       const menuHeight = ref.current.getBoundingClientRect().height
       ref.current.parentNode.style.height = `${menuHeight}px`
       setIsReportMenu(true)
+      // scroll menu to bottom
+      isScroll &&
+        setTimeout(() => {
+          ref.current?.scrollIntoView({
+            behavior: 'smooth',
+          })
+        }, 250)
     } else {
       ref.current.parentNode.style.height = 0
       setIsReportMenu(false)
@@ -57,13 +58,6 @@ const SideNavbar = ({ showSideMenu, setSideMenu }) => {
 
   return (
     <>
-      <div
-        className={style.navbar__logout_alert}
-        style={{ left: error ? '1rem' : '-25rem' }}
-      >
-        <p>{error}</p>
-      </div>
-
       <div
         className={style.navbar__menu}
         style={{ left: showSideMenu ? '0' : '-30rem' }}
@@ -233,13 +227,13 @@ const SideNavbar = ({ showSideMenu, setSideMenu }) => {
 
           {/* Content Control */}
           <li className={style.navbar__menu_item}>
-            <div onClick={(e) => showReportsMenu(e, contentRef)}>
+            <div onClick={(e) => showReportsMenu(e, contentRef, true)}>
               <span>
                 <Website />
               </span>
               <span>Content</span>
             </div>
-            <ul className={style.navbar__menu_dropdown}>
+            <ul className={style.navbar__menu_dropdown} ref={menuRef}>
               <div ref={contentRef}>
                 <li
                   className={style.navbar__menu_dropdown_item}

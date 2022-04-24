@@ -38,8 +38,8 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(action.admin.getAdminAvatar())
-  }, [])
+    isAuth && dispatch(action.admin.getAdminAvatar())
+  }, [isAuth])
 
   return (
     <div className='App'>
