@@ -301,11 +301,15 @@
 
     @include media.mq(md) {
       top: 0.1rem;
-      left: 20rem;
+      left: 16rem;
     }
 
     @include media.mq(xs) {
       width: 15rem;
+    }
+    &_ar {
+      left: unset;
+      right: 16.4rem;
     }
   }
 

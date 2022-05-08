@@ -25,6 +25,8 @@ const Product = () => {
     (state) => state.createProduct
   )
 
+  const { pages } = useSelector((state) => state.listPages)
+
   const dateOptions = {
     month: 'long',
     year: 'numeric',
@@ -67,7 +69,7 @@ const Product = () => {
   }, [message])
 
   useEffect(() => {
-    dispatch(actions.menu.listPages())
+    !pages?.length && dispatch(actions.menu.listPages())
     return () => {
       dispatch({ type: constants.products.CREATE_PRODUCT_RESET })
     }

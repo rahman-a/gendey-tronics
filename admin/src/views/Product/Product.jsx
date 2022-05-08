@@ -26,6 +26,9 @@ const Product = () => {
   const { loading: list_loading, error: list_error } = useSelector(
     (state) => state.toggleListing
   )
+
+  const { pages } = useSelector((state) => state.listPages)
+
   const { id } = useParams()
 
   const dateOptions = {
@@ -55,6 +58,7 @@ const Product = () => {
 
   useEffect(() => {
     id && dispatch(actions.products.getOneProduct(id))
+    !pages?.length && dispatch(actions.menu.listPages())
     return () => {
       dispatch({ type: constants.products.EDIT_IMAGE_RESET })
       dispatch({ type: constants.products.EDIT_PRODUCT_RESET })

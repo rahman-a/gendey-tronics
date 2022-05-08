@@ -206,7 +206,11 @@ const Nav = ({ elementRefs }) => {
                               : item.title['en']}
                           </span>
                           {item.subItems && (
-                            <ul className={style.header__subList}>
+                            <ul
+                              className={`${style.header__subList} ${
+                                lang === 'ar' ? style.header__subList_ar : ''
+                              }`}
+                            >
                               {item.subItems.map((subItem) => (
                                 <li
                                   key={uuidv4()}

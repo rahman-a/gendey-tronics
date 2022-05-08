@@ -10,38 +10,38 @@ import Alert from 'react-bootstrap/Alert'
 import strings from '../../localization'
 
 const Courses = () => {
-  const [showHeroImage, setShowHeroImage] = useState(false)
+  // const [showHeroImage, setShowHeroImage] = useState(false)
   const wrapperRef = useRef(null)
-  const [imgSrc, setImgSrc] = useState(null)
+  // const [imgSrc, setImgSrc] = useState(null)
   const dispatch = useDispatch()
   const { loading, error, courses } = useSelector((state) => state.listCourses)
   const { items } = useSelector((state) => state.listNavItems)
   const { isAuth } = useSelector((state) => state.client)
   const { lang } = useSelector((state) => state.language)
 
-  const getHeroImageSrc = () => {
-    if (items && !imgSrc) {
-      console.log({ items })
-      const navItem = items.find(
-        (item) => item.title['en'].toLocaleLowerCase() === 'courses'
-      )
-      console.log({ navItem })
-      if (navItem) {
-        setImgSrc(navItem.image)
-      }
-    }
-  }
+  // const getHeroImageSrc = () => {
+  //   if (items && !imgSrc) {
+  //     console.log({ items })
+  //     const navItem = items.find(
+  //       (item) => item.title['en'].toLocaleLowerCase() === 'courses'
+  //     )
+  //     console.log({ navItem })
+  //     if (navItem) {
+  //       setImgSrc(navItem.image)
+  //     }
+  //   }
+  // }
 
-  useEffect(() => {
-    courses && setShowHeroImage(true)
-    return () => {
-      setShowHeroImage(false)
-    }
-  }, [courses])
+  // useEffect(() => {
+  //   courses && setShowHeroImage(true)
+  //   return () => {
+  //     setShowHeroImage(false)
+  //   }
+  // }, [courses])
 
-  useEffect(() => {
-    getHeroImageSrc()
-  }, [items])
+  // useEffect(() => {
+  //   getHeroImageSrc()
+  // }, [items])
 
   useEffect(() => {
     isAuth
@@ -51,11 +51,11 @@ const Courses = () => {
   return (
     <Template>
       <div className={style.courses}>
-        {showHeroImage && (
+        {/* {showHeroImage && (
           <figure>
             <img src={`/api/images/${imgSrc}`} alt='learn' />
           </figure>
-        )}
+        )} */}
         <div
           className={`container ${style.courses__container}`}
           style={{

@@ -11,7 +11,7 @@ import constants from '../../constants'
 let count = 0
 
 const ProductCard = ({ card }) => {
-  const [messagePosition, setMessagePosition] = useState(-10)
+  const [messagePosition, setMessagePosition] = useState(-15)
   const history = useHistory()
   const [isLoading, setIsLoading] = useState(false)
   const { lang } = useSelector((state) => state.language)
@@ -39,7 +39,7 @@ const ProductCard = ({ card }) => {
       setIsLoading(false)
       setMessagePosition(1)
       setTimeout(() => {
-        setMessagePosition(-10)
+        setMessagePosition(-15)
         dispatch({ type: constants.product.ADD_ITEM_TO_CART_RESET })
       }, 3500)
       count++

@@ -12,46 +12,46 @@ import Message from '../../components/Message'
 import strings from '../../localization'
 
 const Products = () => {
-  const [imgSrc, setImgSrc] = useState(null)
-  const [textOpacity, setTextOpacity] = useState(0)
+  // const [imgSrc, setImgSrc] = useState(null)
+  // const [textOpacity, setTextOpacity] = useState(0)
   const wrapperRef = useRef(null)
   const location = useLocation()
   const dispatch = useDispatch()
   const { loading, error, products } = useSelector(
     (state) => state.listProducts
   )
-  const { items } = useSelector((state) => state.listNavItems)
+  // const { items } = useSelector((state) => state.listNavItems)
   const { lang } = useSelector((state) => state.language)
   const query = new URLSearchParams(location.search)
   const type = query.get('type')
-  const reformType = (type) => {
-    return type.split('-').join(' ')
-  }
+  // const reformType = (type) => {
+  //   return type.split('-').join(' ')
+  // }
 
-  const getHeroImageSrc = useCallback(() => {
-    const itemType = type.split('-').join(' ')
-    if (items) {
-      for (const item of items) {
-        const navItem = item.subItems.find(
-          (item) => item.title['en'].toLocaleLowerCase() === itemType
-        )
-        if (navItem) {
-          setImgSrc(navItem.image)
-          setTimeout(() => {
-            setTextOpacity(1)
-          }, 500)
-        }
-      }
-    }
-  }, [items, type])
+  // const getHeroImageSrc = useCallback(() => {
+  //   const itemType = type.split('-').join(' ')
+  //   if (items) {
+  //     for (const item of items) {
+  //       const navItem = item.subItems.find(
+  //         (item) => item.title['en'].toLocaleLowerCase() === itemType
+  //       )
+  //       if (navItem) {
+  //         setImgSrc(navItem.image)
+  //         setTimeout(() => {
+  //           setTextOpacity(1)
+  //         }, 500)
+  //       }
+  //     }
+  //   }
+  // }, [items, type])
 
-  useEffect(() => {
-    getHeroImageSrc()
-    return () => {
-      setImgSrc(null)
-      setTextOpacity(0)
-    }
-  }, [getHeroImageSrc])
+  // useEffect(() => {
+  //   getHeroImageSrc()
+  //   return () => {
+  //     setImgSrc(null)
+  //     setTextOpacity(0)
+  //   }
+  // }, [getHeroImageSrc])
 
   useEffect(() => {
     type && dispatch(actions.products.listProducts(type))
@@ -84,7 +84,7 @@ const Products = () => {
         ) : (
           products && (
             <>
-              <figure className={style.products__figure}>
+              {/* <figure className={style.products__figure}>
                 <div
                   className={style.products__figure_content}
                   style={{ opacity: textOpacity }}
@@ -94,7 +94,7 @@ const Products = () => {
                   <p>think more about tested solution</p>
                 </div>
                 <img src={`/api/images/${imgSrc}`} alt='products-files' />
-              </figure>
+              </figure> */}
               <div className={`container ${style.products__container}`}>
                 <div className={style.products__wrapper} ref={wrapperRef}>
                   <CardSlider

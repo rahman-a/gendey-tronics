@@ -57,20 +57,7 @@ app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 
 // RECEIVING E-MAILS COMING FROM MAILGUN
-app.post(
-  '/api/support/incoming',
-  (req, res, next) => {
-    if (req.body['X-Mailgun-Incoming'] === 'Yes') {
-      next()
-    } else {
-      res.status(400).json({
-        message: 'Invalid request',
-      })
-    }
-  },
-  uploadHandler.any(),
-  incomingEmails
-)
+app.post('/api/support/incoming', uploadHandler.any(), incomingEmails)
 
 // SERVING IMAGES
 app.use(

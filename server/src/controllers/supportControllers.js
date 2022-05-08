@@ -1,9 +1,23 @@
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import Support from '../models/supportModel.js'
 import User from '../models/userModal.js'
 import template from '../../emails/template.js'
 import sendEmail from '../../emails/send.js'
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
 export const incomingEmails = async (req, res) => {
+  if (req.body['X-Mailgun-Incoming'] !== 'Yes') {
+    if (req.files) {
+      req.files.forEach((file) => {
+        fs.unlinkSync(path.resolve(__dirname, `../../uploads/${file.filename}`))
+      })
+    }
+    return res.status(400).json('Invalid request')
+  }
+
   const from = req.body.from.split('<')[0].trim()
   const sender = req.body.sender
   const recipient = req.body.recipient
@@ -21,7 +35,7 @@ export const incomingEmails = async (req, res) => {
   if (req.files) {
     const attachments = req.files.map((file) => {
       return {
-        path: file.fileName,
+        path: file.filename,
         mimetype: file.mimetype,
         originalName: file.originalname,
       }
