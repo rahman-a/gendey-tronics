@@ -9,6 +9,7 @@ const strings = {
       no_result_found_text: 'No result found for your search',
       search_result: 'Search Result',
       close: 'Close',
+      show_more: 'Show More',
     },
     ar: {
       payment_info: 'بيانات الدفع',
@@ -29,6 +30,7 @@ const strings = {
       overview_discount_included:
         'خصومات كبيرة على الأجهزة والمعدات للحاصلين على الدورات التدريبية',
       overview_support_included: 'دعم فني على مدار 12 ساعة يوميًا',
+      show_more: 'أظهر المزيد',
     },
   },
   client: {

@@ -52,8 +52,10 @@ const Slider = () => {
           <Table>
             <thead>
               <th>#</th>
-              <th>Header</th>
-              <th>Sub Header</th>
+              <th>Header En</th>
+              <th>Header Ar</th>
+              <th>Sub Header En</th>
+              <th>Sub Header Ar</th>
               <th>Image</th>
               <th>Link to</th>
               <th>Created At</th>

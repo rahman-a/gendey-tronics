@@ -11,7 +11,7 @@ const CreateSlider = ({ isCreateSlide, setIsCreateSlide }) => {
   const [target, setTarget] = useState({})
   const [isError, setIsError] = useState(null)
   const dispatch = useDispatch()
-  const { loading, message } = useSelector((state) => state.createSlider)
+  const { loading, message, error } = useSelector((state) => state.createSlider)
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target
@@ -28,14 +28,22 @@ const CreateSlider = ({ isCreateSlide, setIsCreateSlide }) => {
   }
 
   const isFormValid = () => {
-    const { header, subHeader, slider } = data
+    const { headerEn, headerAr, subHeaderEn, subHeaderAr, slider } = data
     const { itemId, type } = target
-    if (!header) {
-      setIsError('Please Write Header For Slider')
+    if (!headerEn) {
+      setIsError('Please Write English Header For Slider')
       return false
     }
-    if (!subHeader) {
-      setIsError('Please Write Sub Header For Slider')
+    if (!headerAr) {
+      setIsError('Please Write Arabic Header For Slider')
+      return false
+    }
+    if (!subHeaderEn) {
+      setIsError('Please Write English Sub Header For Slider')
+      return false
+    }
+    if (!subHeaderAr) {
+      setIsError('Please Write Arabic Sub Header For Slider')
       return false
     }
     if (!slider) {
@@ -58,8 +66,14 @@ const CreateSlider = ({ isCreateSlide, setIsCreateSlide }) => {
     e.preventDefault()
     if (isFormValid()) {
       const formData = new FormData()
-      formData.append('header', data.header)
-      formData.append('subHeader', data.subHeader)
+      formData.append(
+        'header',
+        JSON.stringify({ ar: data.headerAr, en: data.headerEn })
+      )
+      formData.append(
+        'subHeader',
+        JSON.stringify({ ar: data.subHeaderAr, en: data.subHeaderEn })
+      )
       formData.append('slider', data.slider)
       formData.append('target', JSON.stringify(target))
       dispatch(actions.admin.createSlider(formData))
@@ -70,6 +84,10 @@ const CreateSlider = ({ isCreateSlide, setIsCreateSlide }) => {
     dispatch({ type: constants.admin.CREATE_SLIDER_RESET })
     setIsError(null)
   }
+
+  useEffect(() => {
+    error && setIsError(error)
+  }, [error])
 
   useEffect(() => {
     message && setIsCreateSlide(false)
@@ -98,20 +116,38 @@ const CreateSlider = ({ isCreateSlide, setIsCreateSlide }) => {
               </div>
             )}
             <Form>
-              {/* Slider Header */}
+              {/* Slider Header English */}
               <InputGroup className='mb-3'>
-                <InputGroup.Text> Header </InputGroup.Text>
+                <InputGroup.Text> Header English </InputGroup.Text>
                 <Form.Control
-                  name='header'
+                  name='headerEn'
                   onChange={(e) => handleInputChange(e)}
                 />
               </InputGroup>
 
-              {/* Slider Sub Header */}
+              {/* Slider Header Arabic */}
               <InputGroup className='mb-3'>
-                <InputGroup.Text> Sub Header </InputGroup.Text>
+                <InputGroup.Text> Header Arabic </InputGroup.Text>
                 <Form.Control
-                  name='subHeader'
+                  name='headerAr'
+                  onChange={(e) => handleInputChange(e)}
+                />
+              </InputGroup>
+
+              {/* Slider Sub Header English*/}
+              <InputGroup className='mb-3'>
+                <InputGroup.Text> Sub Header English </InputGroup.Text>
+                <Form.Control
+                  name='subHeaderEn'
+                  onChange={(e) => handleInputChange(e)}
+                />
+              </InputGroup>
+
+              {/* Slider Sub Header Arabic */}
+              <InputGroup className='mb-3'>
+                <InputGroup.Text> Sub Header Arabic </InputGroup.Text>
+                <Form.Control
+                  name='subHeaderAr'
                   onChange={(e) => handleInputChange(e)}
                 />
               </InputGroup>

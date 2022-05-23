@@ -55,7 +55,7 @@ const Login = () => {
   return (
     <div className={style.login}>
       <div className={style.login__logo}>
-        <img src='/images/gendy_logo_white_light.png' alt='logo' />
+        <img src='/images/gendy_logo_white.png' alt='logo' />
       </div>
       <div className={style.login__wrapper}>
         <div className={style.login__Form} onKeyDown={loginOnKeyDown}>

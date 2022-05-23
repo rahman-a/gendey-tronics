@@ -134,10 +134,11 @@
     }
   }
   &__copyright {
-    background-color: #192126;
+    background-color: gv.$bg-color;
     padding: 1rem 0;
     text-align: center;
     color: gv.$white-color;
+    border-top: 1px solid #515151;
     p {
       margin: 0;
     }

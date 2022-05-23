@@ -2,118 +2,121 @@
 @use '../../sass/mq' as media;
 
 .feature {
-    padding:10rem 0;
-    @include media.mq(md){
-        padding: 5rem 0;
+  padding: 15rem 0 10rem 0;
+  @include media.mq(md) {
+    padding: 15rem 0 5rem 0;
+  }
+  @include media.mq(md) {
+    padding: 8rem 0 5rem 0;
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include media.mq(md) {
+      flex-direction: column;
     }
-    &__content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        @include media.mq(md){
-            flex-direction: column;
-        }
+  }
+  &__hero {
+    line-height: 1.4;
+    @include media.mq(md) {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 5rem;
     }
-    &__hero {
-        line-height: 1.4;
-        @include media.mq(md){
-            width: 100%;
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-        span {
-            font-weight: 300;
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-        h2 {
-            font-size: 8rem;
-            font-weight: 600;
-            @include media.mq(xs){
-                font-size: 6rem;
-            }
-        }
-        p {
-            font-size: 5rem;
-            @include media.mq(xs){
-                font-size: 4rem;
-            }
-        }
-        h3 {
-            font-size: 8rem;
-            font-weight: 400;
-            color:gv.$main-color;
-            text-transform: uppercase;
-            @include media.mq(xs){
-                font-size: 6rem;
-            }
-        }
-        &_ar {
-            width: 100%;
-            h2 {
-                @include media.mq(lg){
-                    font-size: 5rem;
-                }
-            }
-            h3 {
-                @include media.mq(lg){
-                    font-size: 6rem;
-                } 
-            }
-            p {
-                font-size: 4rem;
-                @include media.mq(lg){
-                    font-size: 3rem;
-                }
-            }
-        }
+    span {
+      font-weight: 300;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
     }
-    &__list {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        margin-left: 5rem;
-        gap:3rem;
-        @include media.mq(xs){
-            margin-left: 0;
-            flex-direction: column;
-        }
+    h2 {
+      font-size: 8rem;
+      font-weight: 600;
+      @include media.mq(xs) {
+        font-size: 6rem;
+      }
     }
+    p {
+      font-size: 5rem;
+      @include media.mq(xs) {
+        font-size: 4rem;
+      }
+    }
+    h3 {
+      font-size: 8rem;
+      font-weight: 400;
+      color: gv.$main-color;
+      text-transform: uppercase;
+      @include media.mq(xs) {
+        font-size: 6rem;
+      }
+    }
+    &_ar {
+      width: 100%;
+      h2 {
+        @include media.mq(lg) {
+          font-size: 5rem;
+        }
+      }
+      h3 {
+        @include media.mq(lg) {
+          font-size: 6rem;
+        }
+      }
+      p {
+        font-size: 4rem;
+        @include media.mq(lg) {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5rem;
+    gap: 3rem;
+    @include media.mq(xs) {
+      margin-left: 0;
+      flex-direction: column;
+    }
+  }
 
-    &__item {
-        width:45%;
-        display: flex;
-        flex-direction: column;
-        line-height: 1.6;
-        @include media.mq(xs){
-           width: 100%;
-           text-align: center;
-        }
-        span {
-           align-self: center;
-           color:gv.$main-color;
-           margin-bottom: 1.5rem;
-           transform: translateX(-5.5rem);
-           @include media.mq(xs){
-                transform: unset;
-                align-self: unset;
-            }
-           svg {
-               width:4.5rem;
-               height: 4.5rem;
-           }
-        }
-        h3 {
-            font-size: 1.6rem;
-            color:gv.$light-gray;
-            font-weight: 400;
-        }
-        p {
-            font-size: 1.4rem;
-            color:gv.$light-gray;
-            font-weight: 300;
-        }
+  &__item {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+    @include media.mq(xs) {
+      width: 100%;
+      text-align: center;
     }
+    span {
+      align-self: center;
+      color: gv.$main-color;
+      margin-bottom: 1.5rem;
+      transform: translateX(-5.5rem);
+      @include media.mq(xs) {
+        transform: unset;
+        align-self: unset;
+      }
+      svg {
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+    }
+    h3 {
+      font-size: 1.6rem;
+      color: gv.$light-gray;
+      font-weight: 400;
+    }
+    p {
+      font-size: 1.4rem;
+      color: gv.$light-gray;
+      font-weight: 300;
+    }
+  }
 }

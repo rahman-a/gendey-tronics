@@ -21,7 +21,7 @@ router.patch(
   uploadHandler.single('image'),
   updateItem
 )
-router.get('/', isAuth, isAdmin, listAllItems)
+router.get('/', listAllItems)
 router.get('/pages', isAuth, isAdmin, listAllPages)
 router.delete('/:id/:parent?', isAuth, isAdmin, deleteItem)
 

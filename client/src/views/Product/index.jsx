@@ -261,13 +261,18 @@ const Product = () => {
                 <>
                   <div className={style.product__content}>
                     <div className={style.product__details}>
-                      <Scrollbars className={style.product__thumbnails}>
+                      <Scrollbars
+                        className={`${style.product__thumbnails} ${
+                          lang === 'ar' ? style.product__thumbnails_ar : ''
+                        }`}
+                      >
                         {product &&
-                          product.images.map((image, index) => (
+                          product.images.map((image) => (
                             <img
                               onClick={(e) => setImgSrc(image.src)}
                               src={`/api/images/${image.src}`}
                               alt='product'
+                              key={image._id}
                             />
                           ))}
                       </Scrollbars>
@@ -287,7 +292,11 @@ const Product = () => {
                         <p>{product.description}</p>
                       </div>
                     </div>
-                    <div className={style.product__action}>
+                    <div
+                      className={`${style.product__action} ${
+                        lang === 'ar' ? style.product__action_ar : ''
+                      }`}
+                    >
                       <div className={style.product__title}>
                         <h1>{product.name}</h1>
                         <span>{product.short}</span>

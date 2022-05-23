@@ -14,13 +14,14 @@ import {
   Logout,
   Whats,
 } from '../icons'
-import { items } from './links'
 import actions from '../../actions'
 import constants from '../../constants'
 import Loader from '../Loader'
 import SearchOutput from '../SearchOutput'
 import strings from '../../localization'
+import gendy_logo_ar from '../../img/gendy_logo_ar.png'
 import gendy_logo from '../../img/gendy_logo.png'
+import logo from '../../img/logo.png'
 
 const Nav = ({ elementRefs }) => {
   const navRef = useRef(null)
@@ -152,7 +153,12 @@ const Nav = ({ elementRefs }) => {
               className={style.header__logo}
               onClick={() => history.push('/')}
             >
-              <img src={gendy_logo} alt='logo' />
+              <img
+                src={lang === 'en' ? gendy_logo : gendy_logo_ar}
+                alt='logo'
+                className={style.header__logo_big}
+              />
+              <img src={logo} alt='logo' className={style.header__logo_small} />
             </div>
             <div
               className={`${style.header__links} ${
@@ -190,7 +196,7 @@ const Nav = ({ elementRefs }) => {
                     navItems.map((item) => {
                       return (
                         <li
-                          key={uuidv4()}
+                          key={item._id}
                           className={style.header__item}
                           onClick={toggleMenuHandler}
                         >
@@ -213,7 +219,7 @@ const Nav = ({ elementRefs }) => {
                             >
                               {item.subItems.map((subItem) => (
                                 <li
-                                  key={uuidv4()}
+                                  key={subItem._id}
                                   className={style.header__subItem}
                                   onClick={() => setToggleMenu(false)}
                                 >
@@ -240,7 +246,11 @@ const Nav = ({ elementRefs }) => {
                 <CloseSquare />
               </button>
             </div>
-            <div className={style.header__actions}>
+            <div
+              className={`${style.header__actions} ${
+                lang === 'ar' ? style.header__actions_ar : ''
+              }`}
+            >
               <div className={style.header__search}>
                 <div
                   style={styleSearchInput()}
@@ -272,8 +282,8 @@ const Nav = ({ elementRefs }) => {
               </span>
               <div
                 className={`${style.header__signIn} ${
-                  lang === 'ar' && isAuth ? style.header__signIn_ar : ''
-                }`}
+                  lang === 'ar' ? style.header__signIn_ar : ''
+                } ${lang === 'ar' && isAuth ? style.header__signIn_auth : ''}`}
               >
                 {isAuth ? (
                   <>

@@ -3,14 +3,7 @@ import DropdownMenu from '../DropdownMenu'
 import Navbar from './Navbar'
 import style from './style.module.scss'
 import strings from '../../localization'
-import {
-  Envelop,
-  PhoneAlt,
-  FbYellow,
-  TwYellow,
-  YtYellow,
-  CloseSquare,
-} from '../icons'
+import { Envelop, PhoneAlt, FbYellow, TwYellow, YtYellow } from '../icons'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../Loader'

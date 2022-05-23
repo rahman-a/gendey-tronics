@@ -20,16 +20,11 @@
       flex-direction: column;
     }
     figure {
-      width: 30rem;
+      width: 100%;
       height: 25rem;
-      margin-left: 1rem;
       cursor: pointer;
-      @include media.mq(md) {
-        margin-left: 6rem;
-      }
       @include media.mq(sm) {
-        width: 35rem;
-        margin-left: 8rem;
+        width: 100%;
       }
       @include media.mq(xs) {
         width: unset;
@@ -44,10 +39,14 @@
   }
   &__details {
     position: relative;
-    width: 35%;
+    width: 50%;
+    height: 100%;
     margin: 0 10rem;
     @include media.mq(md) {
+      display: flex;
+      flex-direction: column;
       margin: 0 2rem;
+      height: unset;
     }
     @include media.mq(sm) {
       display: flex;
@@ -70,6 +69,7 @@
   &__desc {
     margin-top: 5rem;
     color: gv.$gray-color;
+    order: 2;
     @include media.mq(sm) {
       margin: 0 0 0 5rem;
       width: 50rem;
@@ -227,10 +227,17 @@
     &_ar {
       button {
         margin-right: unset;
-        margin-left: 10rem;
+        margin-left: 3rem;
+        width: 19rem;
         svg {
           margin-right: unset;
           margin-left: 1rem;
+        }
+        @include media.mq(sm) {
+          width: 40%;
+        }
+        @include media.mq(xs) {
+          width: 65%;
         }
       }
     }
@@ -503,19 +510,32 @@
   &__thumbnails {
     position: absolute !important;
     top: 1rem;
-    left: -10rem;
-    width: 10rem !important;
-    height: 25rem !important;
+    width: 8rem !important;
+    height: 24rem !important;
+    left: -9rem;
+    order: 2;
     @include media.mq(md) {
+      position: relative !important;
+      width: 100% !important;
+      height: 8rem !important;
       left: unset;
-      width: 6rem !important;
     }
     @include media.mq(sm) {
       left: 1rem;
     }
     & > div:first-child {
+      overflow-x: hidden !important;
       display: flex;
       flex-direction: column;
+      height: 100%;
+      @include media.mq(md) {
+        flex-direction: row;
+        justify-content: space-between;
+        height: unset;
+      }
+      @include media.mq(sm) {
+        justify-content: space-around;
+      }
     }
     img {
       width: 5rem;
@@ -525,6 +545,13 @@
       cursor: pointer;
       &:not(last-child) {
         margin-bottom: 1.6rem;
+      }
+    }
+    &_ar {
+      left: unset;
+      right: -10rem;
+      @include media.mq(md) {
+        right: unset;
       }
     }
   }
