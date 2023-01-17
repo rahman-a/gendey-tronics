@@ -1,0 +1,155 @@
+@use '../../sass/variables' as gv;
+.calender {
+    width:50rem;
+    height: 45rem;
+    p {
+        margin:0;
+    }
+    input {
+      cursor: default;
+      text-align: center;
+    }
+   &__header {
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       margin-bottom: 2rem;
+       p:last-of-type {
+           font-weight: 300;
+       }
+   }
+   &__time {
+       display: flex;
+       align-items: center;
+       margin-bottom: 2rem;
+       &_inputs {
+           flex-grow: 2;
+           margin-left: 5rem;
+           &_ar {
+                margin-right:5rem;
+                margin-left:unset;
+           }
+       }
+       input {
+        width: 4rem;
+        border: unset;
+        background-color: gv.$main-color;
+        border-radius: 1.6rem;
+        box-shadow: -3px 2px 6px 0px rgb(0 0 0 / 50%);
+        text-align: center;
+        outline: none;
+       }
+       span {
+           margin: 0 0.5rem;
+       }
+       button {
+            all:unset;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 3rem;
+            padding: 0.2rem 0.5rem;
+            width:8rem;
+            margin-bottom: 1rem;
+            color:gv.$white-color;
+            background-color: gv.$bg-color;
+            cursor: pointer;
+            &:hover {
+                background-color: darken(gv.$bg-color, 10%);
+            }
+       }
+       &_period {
+        background-color: #f8c600;
+        padding: 0.5rem 1rem;
+        border-radius: 1.6rem;
+        cursor: pointer;
+       }
+   }
+   &__date {
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       margin-bottom: 2rem;
+       &_year {
+        width: 8rem;
+        border: unset;
+        background-color: gv.$main-color;
+        border-radius: 1.6rem;
+        box-shadow: -3px 2px 6px 0px rgb(0 0 0 / 50%);
+        text-align: center;
+        outline: none;
+       }
+       &_inputs {
+           display: flex;
+           align-items: center;
+           justify-content: space-between;
+           position: relative;
+           background-color: gv.$main-color;
+           border-radius: 1.6rem;
+           width:20rem;
+           padding: 0.5rem 0.2rem;
+           direction: ltr;
+           input {
+               border:unset;
+               background-color: transparent;
+               outline: none;
+               width:8rem;
+               transform: translateX(5.8rem);
+           }
+           span {
+               cursor: pointer;
+           }
+           span {
+            position: absolute;
+            &:first-child {
+                left:2rem;
+            }
+            &:last-child {
+                right:2rem;
+            }
+           }
+       }
+   }
+
+   &__week {
+       margin-left: 10rem;
+       display: flex;
+       align-items: center;
+       color:lighten(gv.$light-black, 50%);
+       margin-bottom: 0.5rem;
+       direction: ltr;
+       span:not(:last-child) {
+           margin-right:4.5rem;
+       }
+   }
+
+   &__days {
+       margin-left: 10rem;
+       display: flex;
+       align-items: center;
+       flex-wrap: wrap;
+       direction: ltr;
+       span {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: -3px 2px 3px -2px rgb(0 0 0 / 50%);
+        cursor: pointer;
+        font-weight: 300;
+        margin-right:2.4rem;
+        margin-bottom: 1.5rem;
+       }
+       &_today {
+           background-color: gv.$main-color;
+       }
+       &_active {
+           background-color:gv.$bg-color;
+           color:gv.$white-color;
+       }
+   }
+
+}

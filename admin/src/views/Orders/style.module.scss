@@ -1,0 +1,132 @@
+@use '../../sass/variables' as var;
+@use '../../sass/media' as media;
+
+
+.orders {
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+    text-align: -webkit-center;
+    h1 {
+        padding:5rem 0;
+    }
+
+    &__search {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        &_input {
+            all: unset;
+            text-align: left !important;
+            margin-bottom: 1rem;
+            width: 30rem;
+            margin-right:2rem;
+        }
+        button {
+            margin-left:1rem;
+        }
+    }
+
+    &__action {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    &__confirmDelete {
+        text-align: center;
+        padding: 0.2rem;
+        font-weight: 300
+    }
+
+    &__name {
+        span {
+            border-bottom:1px dashed #333;
+            cursor: pointer;
+            &:hover {
+                border-bottom: 1px solid #333;
+            }
+        }
+    }
+
+    &__show {
+        display: -ms-grid !important;
+        display: grid !important;
+        place-items: center;
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width:3rem;
+            height: 3rem;
+            border-radius: 50%;
+            border:1px solid rgb(50, 248, 99);
+            color:rgb(4, 163, 25);
+            cursor: pointer;
+        }
+    }
+
+    &__data {
+        td {
+            padding:1rem 0;
+            width:20rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    &__items {
+        &_header {
+            width:100%;
+            text-align: center;
+            p {
+                font-size:1.4rem;
+            }
+        }
+        &_data {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            figure {
+                width:5rem;
+                margin-right: 1rem;
+                img {
+                    width:100%;
+                }
+            }
+        }
+
+        &_info {
+            display: flex;
+            align-items: center;
+        }
+
+        &_name {
+            h3 {
+                font-size: 1.6rem;
+                margin: 0;
+            }
+            span {
+                font-size: 1.2rem;
+                font-style: italic;
+            }
+        }
+
+        &_price {
+            display: flex;
+            align-items: center;
+            p {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-size: 1.2rem;
+                &:nth-child(2),
+                &:nth-child(4) {
+                    margin:0 0.5rem;
+                }
+                &:last-child {
+                    margin-left:1rem
+                }
+            }
+        }
+    }
+}

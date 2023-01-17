@@ -1,0 +1,136 @@
+@use '../../sass/variables' as var;
+@use '../../sass/media' as media;
+
+.videos {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: -webkit-center;
+  h1 {
+    padding: 5rem 0;
+  }
+
+  &__add {
+    width: 12rem;
+    height: 3rem;
+    position: absolute;
+    top: 5rem;
+    right: 15rem;
+    background-color: var.$bg-color;
+    color: var.$white-color;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    font-size: 1.3rem;
+    text-align: -webkit-center;
+    cursor: pointer;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 5rem;
+  }
+
+  &__video {
+    position: relative;
+    height: 20rem;
+    width: 20rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:hover span {
+      opacity: 1;
+    }
+
+    &:hover div:last-of-type {
+      opacity: 1;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__actions {
+    position: absolute;
+    top: 0;
+    z-index: 9;
+    span {
+      background-color: #fff;
+      padding: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+      color: red;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+  }
+
+  & div:first-of-type {
+    right: 1rem;
+  }
+
+  & div:nth-of-type(2) {
+    right: 5rem;
+    span {
+      color: var.$bg-color;
+    }
+  }
+
+  &__info {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(40 40 40 / 90%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out;
+    p {
+      padding: 0 1rem;
+      color: var.$main-color;
+    }
+    span {
+      display: block;
+      color: var.$main-color;
+      svg {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+
+  &__frame {
+    width: 50.6rem;
+    height: 30.15rem;
+    @include media.mq(xs) {
+      width: 38rem;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 9999;
+  }
+}

@@ -1,0 +1,193 @@
+@use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
+.favList {
+    margin-top: 5rem;
+
+    &__titles {
+        width:80%;
+        margin:1rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include media.mq(sm){
+            display: none;
+        }
+        p {
+            position: relative;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color:gv.$light-gray;
+        }
+        p:first-child,
+        p:nth-child(3) {
+           left:9%;
+           @include media.mq(md){
+               left:13%;
+           }
+        }
+        p:nth-child(2) {
+            left:16%;
+            @include media.mq(lg){
+                left:22%;
+            }
+            @include media.mq(md){
+                left:28%;
+            }
+        }
+        &_ar {
+            p:first-child,
+            p:nth-child(3) {
+            right:10%;
+            @include media.mq(md){
+                right:15%;
+            }
+            }
+            p:nth-child(2) {
+                right:17%;
+                @include media.mq(lg){
+                    right:22%;
+                }
+                @include media.mq(md){
+                    right:25%;
+                }
+            }
+        }
+    }
+    &__fav {
+        width: 80%;
+        margin:1rem auto;
+        display: flex;
+        align-items: center;
+        justify-content:space-between;
+        color:gv.$main-color;
+        border-top:1px solid gv.$light-gray;
+        @include media.mq(sm){
+            width:95%;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            border-top:unset;
+            border-bottom: 1px solid gv.$light-gray;
+        }
+        &_icon {
+            width:5rem;
+            height: 5rem;
+            cursor: pointer;
+            @include media.mq(sm){
+                position:absolute;
+                top:5rem;
+                right:5.5rem;
+                width:3rem;
+                height: 3rem;
+            }
+        }
+        &_action {
+            all: unset;
+            color: gv.$light-gray;
+            border: 1px solid;
+            border-radius: 50%;
+            padding: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            justify-content: center;
+            @include media.mq(sm){
+                position:absolute;
+                top:3rem;
+                right:0.5rem;
+                border-radius: 1.5rem;
+                width:2.5rem;
+                height: 5rem;
+                padding:0;
+            }
+        }
+        &_cart {
+            @include media.mq(sm){
+                position: absolute;
+                left:14rem;
+            }   
+        }
+        &_ar {
+            &_action {
+                @include media.mq(sm){
+                    right:unset;
+                    left:0.5rem;
+                }
+            }
+        }
+    }
+    &__product {
+        display: flex;
+        align-items: center;
+        color:rgb(158, 4, 4);
+        img {
+            width:7rem;
+            min-height: 8.5rem;
+            object-fit: cover;
+            margin: 0 3rem;
+            @include media.mq(sm){
+                margin:0 1.5rem;
+            }
+        }
+        a {
+            color:gv.$light-gray;
+            font-size: 1.6rem;
+            font-weight: 300;
+            width:15rem;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        svg {
+            width:2.5rem;
+            height: 2.5rem;
+        }
+    }
+
+    &__price {
+        font-size: 2.5rem;
+        color:gv.$tag-color;
+        @include media.mq(sm){
+            position:absolute;
+            top:1.2rem;
+            right:5rem;
+        }
+        &_ar {
+            @include media.mq(sm){
+                top:1.2rem;
+                right:unset;
+                left:5rem;
+            } 
+        }
+    }
+
+    &__none {
+        display: grid;
+        place-items: center;
+        padding: 5rem 0;
+        p {
+            font-size: 2.5rem;
+            color:gv.$light-gray;
+        }
+
+        button {
+            all:unset;
+            background-color: gv.$main-color;
+            color:gv.$white-color;
+            border-radius:1rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease-in;
+            margin-top: 2rem;
+            &:hover {
+                color:gv.$main-color;
+                background-color: gv.$white-color;
+                box-shadow: 0 2px 12px -6px rgba(0,0,0,0.5);
+            } 
+        }
+    }
+}

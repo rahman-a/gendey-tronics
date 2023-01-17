@@ -1,0 +1,16 @@
+{
+    "web": {
+        "client_id": "791814831375-lt8prrm8gbianefno9i1441m6sv6jiku.apps.googleusercontent.com",
+        "project_id": "getting-started-bbce8",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": "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",
+        "redirect_uris": [
+            "http://localhost:3000/drive"
+        ],
+        "javascript_origins": [
+            "http://localhost:3000"
+        ]
+    }
+}

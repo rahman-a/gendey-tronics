@@ -1,0 +1,29 @@
+.reviews {
+    max-height: 45rem;
+    overflow-y: auto;
+    &__review {
+        margin-top:1.2rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #ccc;
+        &_header {
+            display: flex;
+            align-items: center;
+            h3 {
+                margin: 0 0.5rem 0 0;
+                font-size: 1.3rem;
+                font-weight: 400;
+            }
+            span {
+                font-size: 1.2rem;
+            }
+        }
+        p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+        }
+    }
+}

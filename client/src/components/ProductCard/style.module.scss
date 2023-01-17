@@ -1,0 +1,109 @@
+@use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
+.productCard {
+    position: relative;
+    width:25rem;
+    display: flex;
+    flex-direction: column;
+    margin-right: 4rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 -1px 12px -6px rgba(0,0,0,0.5);
+    transition: all 0.5s ease-in-out;
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 5px 1px 16px 0px rgba(0,0,0,0.5);
+    }
+    &:hover figure {
+        box-shadow: none;
+    }
+    @include media.mq(sm){
+        min-width: 25rem;
+        margin-right: 2rem;
+    }
+    figure {
+        width:100%;
+        height: 30rem;
+        transition: all 0.5s ease-in-out;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &__option {
+        padding: 0 2rem 2rem 1rem;
+        p {
+            color:gv.$main-color;
+            font-size: 2rem;
+            font-weight: 600;
+            padding:0.5rem 0;
+            margin:0 !important;
+        }
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.6rem;
+        }
+    }
+    &__cta {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+        button {
+            all:unset;
+            padding:0.2rem 0.5rem;
+            color:gv.$white-color;
+            border-radius: 1.6rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 300;
+            box-shadow: -1px 0px 4px 1px rgb(0 0 0 / 30%);
+        }
+        button:first-child {
+            width:8rem;
+            background-color: gv.$main-color;
+            text-align: center;
+            margin-right: 4rem;
+            &:hover {
+                background-color: darken(gv.$main-color, 5%);
+            }
+        }
+        button:last-child {
+            width:14rem;
+            background-color: gv.$black-color;
+            display:flex;
+            align-items: center;
+            justify-content: space-around;
+            &:hover {
+                background-color: lighten(gv.$black-color, 20%);
+            }
+            &:disabled {
+                background-color: #c5c5c5;
+                color:#787878
+            }
+            span {
+                margin-left:0.5rem
+            }
+        }
+
+        &_ar {
+            button:first-child {
+                margin-right: unset;
+                margin-left: 4rem;
+            }
+        }
+    }
+
+    &__addToCart {
+        position: absolute;
+        background-color: #b3fdb6;
+        color: #025202;
+        left:10%;
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        box-shadow: inset 0px -1px 8px 3px rgb(0 0 0 / 30%);
+        transition: all 0.3s ease-in-out;
+    }
+}

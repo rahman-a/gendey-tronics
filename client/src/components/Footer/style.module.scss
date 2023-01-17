@@ -1,0 +1,152 @@
+@use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
+.footer {
+  background-color: gv.$bg-color;
+  position: relative;
+
+  &__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include media.mq(sm) {
+      flex-direction: column;
+    }
+  }
+  &__logo {
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 18rem;
+      height: 18rem;
+    }
+  }
+  &__contact {
+    all: unset;
+    position: relative;
+    width: 15rem;
+    height: 5rem;
+    background-color: darken(gv.$main-color, 15%);
+    border-radius: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    &:hover {
+      background-color: gv.$main-color;
+    }
+    &_title {
+      font-family: gv.$second-font;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: gv.$white-color;
+    }
+    &_logo {
+      display: flex;
+      position: absolute;
+      left: 1rem;
+      width: 25%;
+      height: 83%;
+      background-color: gv.$light-black;
+      border-radius: 50%;
+      justify-content: center;
+      color: gv.$white-color;
+      align-items: center;
+      svg {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+  &__line {
+    background-color: gv.$white-color;
+    width: 1px;
+    height: 25rem;
+    transform: translate(-5rem, 1rem);
+    @include media.mq(md) {
+      transform: translate(0, 1rem);
+    }
+    @include media.mq(sm) {
+      width: 75vw;
+      height: 1px;
+      transform: unset;
+      margin: 2rem 0;
+    }
+    &_ar {
+      transform: translate(5rem, 1rem);
+      @include media.mq(sm) {
+        transform: unset;
+      }
+    }
+  }
+  &__details {
+    flex-grow: 7;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    @include media.mq(sm) {
+      width: 75vw;
+      flex-wrap: wrap;
+      align-items: unset;
+      justify-content: space-between;
+      ul {
+        padding-left: 0 !important;
+        margin-right: 2rem;
+      }
+    }
+  }
+  &__link {
+    display: inline-block;
+    color: darken(gv.$white-color, 15%);
+    font-size: 1.4rem;
+    transition: all 0.5s ease;
+    transform: scale(1);
+    text-transform: capitalize;
+    &:hover {
+      color: gv.$white-color;
+      transform: scale(1.1);
+    }
+  }
+  &__social {
+    text-align: end;
+    margin: 2rem 5rem;
+    color: gv.$white-color;
+    @include media.mq(sm) {
+      text-align: center;
+    }
+    a {
+      color: inherit;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      transition: all 0.3s ease-in;
+      &:hover {
+        transform: translateY(-3px);
+      }
+    }
+  }
+  &__copyright {
+    background-color: gv.$bg-color;
+    padding: 1rem 0;
+    text-align: center;
+    color: gv.$white-color;
+    border-top: 1px solid #515151;
+    p {
+      margin: 0;
+    }
+    p:last-child {
+      font-size: 1rem;
+      a {
+        color: #fad203;
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+@use '../../sass/variables' as var;
+@use '../../sass/media' as media;
+
+.rating {
+    display: flex;
+    align-items: center;
+    &__overall {
+        text-align: center;
+        h2 {
+            font-size: 5.5rem;
+            color: var.$main-color;
+            margin:0;
+            text-align: center;
+        }
+        p {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+        }
+    }
+    &__progress {
+        flex-grow: 2;
+        margin:0 2rem;
+        &_wrapper {
+            display: flex;
+            align-items: center;
+        }
+        &_bar {
+            height: 0.8rem;
+            width:60%;
+            margin-right: 1rem;
+            background-color: lighten(var.$light-gray, 40%);
+            @include media.mq(md){
+                width:20rem;
+            }
+            @include media.mq(xs){
+                width:12.5rem;
+            }
+            & > div {
+                height: 0.8rem;
+                background-color: lighten(var.$light-gray, 20%);
+            }
+            &_ar {
+                margin-right: unset;
+                margin-left: 1rem;
+            }
+        }
+        &_stars {
+            display: flex;
+            align-items: center;
+            &_count {
+                width:9rem;
+            }
+            span {
+                color:var.$main-color;
+            }
+            p {
+                margin:0;
+                margin-left:0.5rem;
+            }
+        }
+    }
+
+    &__reviews {
+        max-height: 45rem;
+        overflow-y: auto;
+    }
+
+    &__review {
+        margin-top:1.2rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #ccc;
+        &_header {
+            display: flex;
+            align-items: center;
+            h3 {
+                margin: 0 0.5rem 0 0;
+                font-size: 1.3rem;
+                font-weight: 400;
+            }
+            span {
+                font-size: 1.2rem;
+            }
+        }
+        p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+        }
+    }
+}

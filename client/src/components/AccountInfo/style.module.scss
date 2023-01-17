@@ -1,0 +1,151 @@
+@use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
+.accountInfo {
+    display: flex;
+    @include media.mq(sm){
+     flex-direction: column;
+    }
+    &__action {
+        flex-grow: 1;
+    }
+    &__info {
+        @include media.mq(sm){
+            align-items: center;
+        }
+    }
+    &__info, &__pass {
+        margin: 6rem 0 0 6rem;
+        @include media.mq(sm){
+           display: flex;
+           flex-wrap: wrap;
+        }
+        &_group {
+            margin-bottom: 4rem;
+            @include media.mq(sm){
+               width:40%;
+               margin: 0 2rem 4rem 0;
+            }
+            @include media.mq(xs){
+                margin: 0 5rem 4rem 0;
+            }
+            h3 {
+                font-size: 1.4rem;
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+            }
+        }
+        &_input {
+            display:flex;
+            flex-direction: column;
+            margin-right: 5rem;
+            @include media.mq(sm){
+               margin-bottom: 2rem;
+            }
+            input:not([type=submit]) {
+                all:unset;
+                border:1px solid rgba(gv.$light-gray, 0.4);
+                padding:0.5rem 1rem;
+                width:25rem;
+                border-radius: 0.3rem;
+                &::placeholder {
+                    font-size: 1.3rem;
+                    color: rgba(gv.$light-gray, 0.4);
+                }
+            }
+            label {
+                color:rgba(gv.$black-color, 0.7);
+                font-size: 1.4rem;
+            }
+        }
+        input[type=submit] {
+            all:unset;
+            align-self: flex-start;
+            border:1px solid  rgba(gv.$light-gray, 0.4);
+            padding:0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 1.7rem;
+            cursor: pointer;
+            width:12rem;
+            text-align: center;
+            &:hover {
+                color:gv.$main-color;
+            }
+        }
+        &_ar {
+            margin:6rem 6rem 0 0
+        }
+    }
+
+    &__pass {
+        &_input {
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__address {
+        height: 100%;
+        display: grid;
+        place-items: center;
+        &_new {
+            display: flex;
+            align-items: center;
+            @include media.mq(sm){
+                flex-direction: column;
+            }
+        }
+        &_cta {
+            margin-right:5rem;
+            text-align: center;
+            @include media.mq(sm){
+                margin-right: 0;
+                order:2;
+            }
+            p {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+                @include media.mq(sm){
+                    margin-bottom: 0;
+                }
+            }
+            button {
+                all:unset;
+                background-color: gv.$main-color;
+                color:gv.$white-color;
+                padding: 0.5rem 1rem;
+                border-radius: 1.6rem;
+                cursor: pointer;
+                transition: all 0.5s ease;
+                &:hover {
+                    color:gv.$main-color;
+                    background-color: gv.$white-color;
+                    box-shadow: 0 2px 12px -6px rgba(0,0,0,0.5);
+                }
+            }
+        }
+        &_icon {
+            svg {
+                width:20rem;
+                height: 20rem;
+                fill:lighten(gv.$light-gray, 20%);
+                @include media.mq(sm){
+                    width: 10rem;
+                    height: 12rem;
+                }
+            }
+        }
+        &_add {
+            width:38rem;
+            position: relative;
+        }
+        &_overlay {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255 255 255 / 50%);
+        }
+    }
+}

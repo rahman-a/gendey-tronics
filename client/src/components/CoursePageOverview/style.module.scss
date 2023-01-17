@@ -1,0 +1,160 @@
+@use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
+.overview {
+    position: absolute;
+    top:5%;
+    right:10rem;
+    width:45rem;
+    z-index: 9;
+    box-shadow: -1px 1px 8px 4px rgb(0 0 0 / 30%);
+    @include media.mq(xxl){
+        right:5rem;
+    }
+    @include media.mq(xl){
+        right:2rem;
+    }
+    @include media.mq(lg) {
+        right:1rem;
+    }
+    @include media.mq(md){
+        display: none;
+    }
+    &__video {
+        height: 30rem;
+        figure {
+            width:100%;
+            height: 100%;
+            position: relative;
+            margin:0;
+            // img {
+            //     width: 100%;
+            // }
+            // span {
+            //     position: absolute;
+            //     top:50%;
+            //     left:50%;
+            //     transform:translate(-50%, -50%);
+            //     cursor: pointer;
+            //     svg {
+            //         width:5rem;
+            //         height: 5rem;
+            //         cursor: pointer;
+            //     }
+            // }
+        }
+        &_frame {
+            width:100%;
+            height: 100%;
+        }
+
+    }
+    &__cta {
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(gv.$white-color, 0.5);
+        button {
+            all: unset;
+            align-self: center;
+            background-color: gv.$main-color;
+            width: 25rem;
+            color: gv.$white-color;
+            text-align: center;
+            border-radius: 1.6rem;
+            cursor: pointer;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-top:2rem;
+            margin-bottom:5rem;
+        }
+    }
+    &__price {
+        display: flex;
+        align-items: center;
+        padding:2rem;
+        p {
+            color:gv.$main-color;
+            font-size: 4rem;
+            margin-right: 3rem;
+        }
+        span {
+            font-size: 2rem;
+            color:gv.$white-color;
+        }
+    }
+    &__enrolled {
+        padding: 1rem;
+        font-size: 2.5rem;
+        color: #fefbf7;
+        text-align: center;
+        font-weight: 500;
+    }
+    &__info {
+        background-color: gv.$white-color;
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.3rem;
+            color:gv.$light-black;
+            span {
+                margin-right: 1rem;
+            }
+        }
+        &_ar {
+            span {
+                margin-right: unset;
+                margin-left: 1rem;
+            }
+        }
+    }
+    &__coupon {
+        background-color: gv.$main-color;
+        padding: 0.5rem;
+        border-radius: 1.5rem;
+        margin: 3rem 0;
+        display: inline-block;
+        width: 30rem;
+        input {
+            all: unset;
+            background-color: gv.$white-color;
+            padding: 1rem;
+            box-sizing: border-box;
+            border-radius: 1.6rem;
+            margin-right: 2rem;
+            color:black;
+            &::placeholder {
+                font-weight: 300;
+            }
+        }
+        button {
+            all: unset;
+            color: gv.$white-color;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        &_ar {
+            width:31rem;
+            input {
+                margin-right: unset;
+                margin-left: 2rem;
+            }
+        }
+    }
+
+    &_ar {
+        right:unset;
+        left:10rem;
+        @include media.mq(xxl){
+            left:5rem;
+            right:unset;
+        }
+        @include media.mq(xl){
+            left:2rem;
+            right:unset;
+        }
+        @include media.mq(lg) {
+            left:1rem;
+            right:unset;
+        }
+    }
+}

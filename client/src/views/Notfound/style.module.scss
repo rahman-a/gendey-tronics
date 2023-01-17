@@ -1,0 +1,19 @@
+@use '../../sass/variables' as gv;
+
+.notFound {
+    padding:15rem 0;
+    background-color: #192126;
+    color: gv.$main-color;
+    h1 {
+        font-size: 15rem;
+        font-family: cursive;
+    }
+    h2 {
+        color:gv.$white-color;
+    }
+    p {
+        font-size: 1.5rem;
+        font-family: monospace;
+        color: #ccc;
+    }
+}

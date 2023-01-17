@@ -1,0 +1,196 @@
+@use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
+.register {
+    width:50%;
+    margin-top: 5rem;
+    @include media.mq(md){
+        width:100%;
+        margin-bottom: 5rem;
+    }
+    &__header {
+        width:70%;
+        text-align: center;
+        color:lighten(gv.$light-black, 50%);
+        margin-bottom:1.5rem;
+        @include media.mq(md){
+            width: 100%;
+        }
+        p {
+            font-weight: 400;
+            a {
+                color:gv.$main-color;
+                text-transform: uppercase;
+                margin-left: 1rem;
+                font-size: 1.3rem;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+    }
+    &__form {
+        @include media.mq(md){
+            margin-left: 15rem;
+        }
+        @include media.mq(sm){
+            margin-left: 10rem;
+        }
+        @include media.mq(xs){
+            margin-left: 0;
+        }
+        &_ar {
+            @include media.mq(md){
+                margin-left: 0;
+                margin-right: 20rem;
+            }
+            @include media.mq(sm){
+                margin-left: 0;
+                margin-right: 10rem;
+            }
+            @include media.mq(xs){
+                margin-left: 0;
+                margin-right: 0;
+            } 
+        }
+    }
+    &__group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+        
+        label {
+            font-size: 1.4rem;
+            color:gv.$light-gray;
+            margin-bottom: 1rem;
+        }
+        input {
+            all:unset;
+            width:70%;
+            border:1px solid lighten(gv.$light-black, 30%);
+            padding: 1rem;
+            border-radius: 1.2rem;
+            color:lighten(gv.$light-black, 20%);
+            font-size: 1.5rem;
+            @include media.mq(xs){
+                width:95%;
+            }
+            &::placeholder{
+                color:lighten(gv.$light-black, 30%);
+                font-size: 1.2rem;
+            }
+
+        }
+        &_mute {
+            font-size: 1rem;
+            max-width: 45rem;
+            color: #747474;
+            margin-top: 1rem;
+        }
+        &_invalid {
+            input {
+                border:1px solid #fa0202
+            }
+        }
+        &_name {
+            display: flex;
+            align-items: center;
+            input {
+                width:30% !important;
+                margin-right: 4rem;
+                @include media.mq(xs){
+                    width:17rem !important;
+                    margin-right: 2rem;
+                }
+            }
+            &_ar {
+                input{
+                    margin:0;
+                }
+                & input:first-child {
+                    margin-left: 4rem;
+                }
+            }
+        }
+    }
+
+    &__options {
+        width:75%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.4rem;
+        @include media.mq(xs){
+            width:100%;
+        }
+        p{
+            a {
+            color:gv.$main-color !important;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline !important;
+            }
+            
+        }
+        @include media.mq(xs){
+            margin: 0 !important;
+        }
+    }
+        &_terms {
+            display: flex;
+            align-items: center;
+            input {
+                margin-right:0.5rem
+            }
+        }
+    }
+    &__submit {
+        all:unset;
+        border:1px solid lighten(gv.$light-gray, 50%);
+        background-color: darken( gv.$main-color, 3%);;
+        color:gv.$white-color;
+        border-radius: 1.6rem;
+        margin:2rem 0;
+        padding:0.5rem 2rem;
+        cursor: pointer;
+        &:disabled {
+            background-color: #d8d8d8;
+            pointer-events: none;
+        }
+        &:hover {
+            background-color: gv.$main-color;
+        }
+    }
+
+    &__alt {
+        p {
+            display: flex;
+            align-items: center;
+            width:70%;
+            color:lighten(gv.$light-black, 30%);
+            font-weight: 300;
+            span {
+                flex-grow: 1;
+                margin-left: 1rem;
+                height: 1px;
+                background-color: lighten(gv.$light-black, 60%);
+            }
+        }
+    }
+    &__int {
+        padding: 2rem 0;
+        display: flex;
+        align-items: center;
+        img {
+            width:10rem;
+            margin-right:2rem;
+            cursor:pointer;
+        }
+        &_ar {
+            justify-content: flex-end;
+            direction: ltr;
+        }
+        @include media.mq(sm) {
+            font-size: 1.4rem;
+        }
+    }
+}

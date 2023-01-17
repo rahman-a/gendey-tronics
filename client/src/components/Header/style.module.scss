@@ -1,0 +1,600 @@
+@use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
+.header {
+  &__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 0;
+    @include media.mq(md) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+  &__contact_link {
+    margin-right: 2.5rem;
+    color: gv.$light-gray !important;
+    font-size: 1.6rem;
+    font-weight: 300;
+    @include media.mq(sm) {
+      font-size: 1.4rem;
+    }
+    @include media.mq(xs) {
+      font-size: 1.1rem;
+      margin-right: 1.5rem;
+      transform: translateX(1rem);
+      display: inline-block;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+    &:hover &_phone {
+      animation: phoneRing 0.2s ease-in-out infinite;
+    }
+    &:hover &_envelop {
+      animation: envelopMove 1s ease-in-out infinite;
+    }
+    &_ar {
+      margin-right: 1rem;
+      display: inline-flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+  &__options {
+    display: flex;
+    align-items: center;
+    @include media.mq(md) {
+      margin: 2rem 0;
+    }
+    @include media.mq(xs) {
+      transform: translateX(-2rem);
+      position: relative;
+      z-index: 999;
+    }
+  }
+  &__social {
+    margin-right: 4rem;
+    color: rgba(gv.$main-color, 0.7);
+    font-size: 2rem;
+    &_icon {
+      color: inherit;
+      margin-left: 4rem;
+      cursor: pointer;
+      svg {
+        transition: all 0.3s ease;
+        &:hover {
+          color: gv.$main-color;
+          transform: translateY(-3px);
+        }
+      }
+    }
+  }
+  &__lang {
+    width: 16rem;
+    position: relative;
+  }
+  &__navbar {
+    width: 100vw;
+    position: fixed;
+    z-index: 99;
+    top: 6.5rem;
+    background-color: gv.$alt-main-color;
+    height: 10.4rem;
+    transition: all 0.2s ease;
+    box-shadow: -3px 1px 7px 0px rgb(0 0 0 / 30%);
+    @include media.mq(md) {
+      top: 10.5rem;
+    }
+    @include media.mq(sm) {
+      height: 7.2rem;
+    }
+  }
+  &__navBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include media.mq(lg) {
+      align-items: unset;
+    }
+    @include media.mq(md) {
+      height: 100%;
+    }
+  }
+  &__hamMenu {
+    display: none;
+    width: 7rem;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    span {
+      height: 2px;
+      background-color: gv.$bg-color;
+      position: relative;
+      width: 5rem;
+      transition: all 0.5s ease;
+      @include media.mq(sm) {
+        width: 3rem;
+        height: 1px;
+      }
+      &::before {
+        content: '';
+        width: 7rem;
+        height: 100%;
+        background-color: inherit;
+        position: absolute;
+        top: -1.8rem;
+        @include media.mq(sm) {
+          width: 4rem;
+          top: -1rem;
+        }
+      }
+      &::after {
+        content: '';
+        width: 3rem;
+        height: 100%;
+        background-color: inherit;
+        position: absolute;
+        bottom: -1.8rem;
+        transition: all 0.5s ease;
+        @include media.mq(sm) {
+          width: 1.5rem;
+          bottom: -1rem;
+        }
+      }
+    }
+    &:hover span,
+    &:hover span::after {
+      width: 7rem;
+      @include media.mq(sm) {
+        width: 4rem;
+      }
+    }
+    @include media.mq(md) {
+      display: flex;
+    }
+  }
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16rem;
+    height: 12rem;
+    transform: translateY(-0.5rem);
+    cursor: pointer;
+    @include media.mq(xxl) {
+      width: 20rem;
+    }
+    @include media.mq(md) {
+      width: 17rem;
+      transform: translateY(0);
+    }
+    @include media.mq(sm) {
+      width: 13rem;
+      height: 7.2rem;
+    }
+    img {
+      width: 100%;
+      height: 7rem;
+      object-fit: contain;
+    }
+
+    &_big {
+      @include media.mq(md) {
+        display: none;
+      }
+    }
+
+    &_small {
+      display: none;
+      @include media.mq(md) {
+        display: block;
+        height: 8rem !important;
+      }
+      @include media.mq(sm) {
+        height: 6rem !important;
+      }
+    }
+  }
+  &__links {
+    margin: 1rem 4rem 1rem 4rem;
+    display: flex;
+    transform: translateX(-3rem);
+    @include media.mq(md) {
+      display: flex;
+      align-items: flex-start;
+      position: absolute;
+      background-color: gv.$alt-main-color;
+      left: 0rem;
+      transition: all 0.5s ease;
+      margin: 0;
+    }
+    @include media.mq(sm) {
+      z-index: 9999999;
+    }
+    button {
+      all: unset;
+      display: none;
+      margin: 1.5rem;
+      cursor: pointer;
+      svg {
+        width: 2rem;
+        height: 2rem;
+        fill: gv.$bg-color;
+      }
+      @include media.mq(md) {
+        display: inline;
+      }
+    }
+    &_ar {
+      margin: 1rem 2rem 1rem 4rem;
+      left: unset;
+      right: 0;
+      transform: translateX(0);
+      @include media.mq(md) {
+        margin: 0;
+      }
+    }
+  }
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    @include media.mq(md) {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+  &__item {
+    margin: 2rem 3.2rem 2rem 0rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    &::before {
+      content: '';
+      position: absolute;
+      margin-bottom: 3.5rem;
+      width: 0;
+      height: 1.6px;
+      background-color: gv.$bg-color;
+      transition: all 0.3s ease;
+    }
+    &:hover::before {
+      width: 100%;
+    }
+
+    &_active {
+      ul {
+        display: block;
+      }
+      &::before {
+        width: 100%;
+      }
+    }
+    @include media.mq(xl) {
+      margin: 1rem 2.5rem 1rem 0rem;
+    }
+    @include media.mq(lg) {
+      margin: 1rem 1.6rem 0rem 0rem;
+    }
+    @include media.mq(md) {
+      margin: 2rem 2rem 1rem 1.2rem;
+    }
+
+    &_placeholder {
+      width: 15rem;
+      height: 2.2rem;
+      &::before {
+        display: none;
+      }
+      span {
+        width: 100%;
+        height: 100%;
+        background-color: #cddc39;
+      }
+    }
+  }
+  &__link {
+    color: gv.$bg-color !important;
+    font-size: 1.7rem;
+    font-weight: 500 !important;
+    cursor: pointer;
+    @include media.mq(lg) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__subList {
+    display: none;
+    position: absolute;
+    top: 6rem;
+    left: 0;
+    width: max-content;
+    background-color: gv.$alt-main-color;
+    padding: 0;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-top: 1px solid #f4dd1a;
+    overflow: hidden;
+    z-index: 9;
+
+    @include media.mq(md) {
+      top: 0.1rem;
+      left: 16rem;
+    }
+
+    @include media.mq(xs) {
+      width: 15rem;
+    }
+    &_ar {
+      left: unset;
+      @include media.mq(md) {
+        right: 18.5rem;
+      }
+
+      a {
+        padding: 2rem 1rem 1rem 5rem !important;
+      }
+    }
+  }
+
+  &__subItem {
+    border-bottom: 1px solid #fce946;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1.6px;
+      background-color: gv.$bg-color;
+      transition: all 0.3s ease;
+    }
+    &:hover::before {
+      width: 100%;
+    }
+  }
+
+  &__subLink {
+    display: inline-block;
+    padding: 2rem 5rem 1rem 1rem;
+    color: #000;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    &:hover {
+      background-color: #ffeb3b;
+      color: gv.$bg-color;
+    }
+
+    @include media.mq(sm) {
+      padding: 2rem 1rem 1rem 1rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    width: 11rem;
+    margin-bottom: 1rem;
+    color: gv.$bg-color;
+
+    @include media.mq(md) {
+      margin-right: 1.6rem;
+    }
+    @include media.mq(sm) {
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      align-self: unset;
+      width: 8rem;
+    }
+    svg {
+      width: 1.8rem;
+      height: 1.8rem;
+      cursor: pointer;
+      &:hover {
+        color: #505050;
+      }
+    }
+    &_ar {
+      margin-right: unset;
+      margin-left: 3.5rem;
+    }
+  }
+  &__signIn {
+    display: flex;
+    align-items: center;
+    @include media.mq(sm) {
+      margin-bottom: 0;
+      position: relative;
+      z-index: 999999;
+    }
+    span {
+      cursor: pointer;
+      font-size: 1.8rem;
+    }
+    span:first-child {
+      margin-left: 1.2rem;
+      margin-right: 0.5rem;
+      transform: translateY(-2px);
+      @include media.mq(sm) {
+        margin-left: 0;
+      }
+    }
+    svg {
+      fill: gv.$white-color;
+    }
+    span:hover {
+      color: lighten(gv.$bg-color, 10%);
+    }
+
+    @include media.mq(sm) {
+      transform: translateX(5px);
+    }
+
+    &_ar {
+      span:first-child {
+        margin-left: 0.5rem;
+        margin-right: 1.5rem;
+      }
+      span:last-child {
+        @include media.mq(md) {
+          margin: 0px 1rem 0px 0px !important;
+        }
+      }
+    }
+
+    &_auth {
+      span:last-child {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  &__search {
+    position: relative;
+    margin-right: 1rem;
+    @include media.mq(md) {
+      position: unset;
+    }
+    @include media.mq(sm) {
+      margin-left: 0.5rem;
+    }
+    &_input {
+      position: absolute;
+      left: -16rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease-in-out;
+      color: #fff;
+      @include media.mq(md) {
+        left: 0;
+        top: 0;
+        width: 76vw;
+        height: 10.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      @include media.mq(sm) {
+        height: 6.4rem;
+      }
+    }
+    input {
+      all: unset;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 0.2rem 1rem;
+      font-size: 1.2rem;
+      &::placeholder {
+        font-size: 1.2rem;
+        color: gv.$white-color;
+      }
+      @include media.mq(md) {
+        background-color: rgb(224 223 223);
+        height: 100%;
+        color: gv.$bg-color;
+      }
+    }
+  }
+
+  &__onScroll {
+    top: 0;
+    background-color: rgba(gv.$alt-main-color, 0.95);
+  }
+
+  &__up {
+    display: none;
+    position: fixed;
+    right: 0;
+    bottom: 2rem;
+    width: 10rem;
+    z-index: 999999999999999;
+    cursor: pointer;
+    &:hover svg {
+      animation: envelopMove 1s ease-in-out infinite;
+    }
+    a {
+      all: unset;
+      display: inline-block;
+      color: gv.$white-color;
+      background-color: gv.$main-color;
+      padding: 1.3rem;
+      clip-path: circle();
+    }
+  }
+  &__whats,
+  &__dashboard {
+    position: fixed;
+    left: 0;
+    bottom: 2rem;
+    width: 10rem;
+    z-index: 999999999999999;
+    cursor: pointer;
+    &:hover svg {
+      animation: envelopMove 1s ease-in-out infinite;
+    }
+    a {
+      all: unset;
+      display: inline-block;
+      padding: 1.3rem;
+    }
+    svg {
+      width: 6rem;
+      height: 6rem;
+    }
+  }
+  &__cart {
+    position: absolute;
+    top: -1.2rem;
+    right: 1px;
+    color: gv.$bg-color;
+    transition: all 0.3s ease;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  &__dashboard {
+    bottom: unset;
+    top: 25%;
+    color: gv.$main-color;
+    transition: all 0.3s ease-in;
+    width: max-content;
+    svg {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+    span {
+      position: absolute;
+      left: 4.5rem;
+      top: 0.5rem;
+      color: #505050;
+      svg {
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+    }
+  }
+}
+
+@keyframes phoneRing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes envelopMove {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,7 @@
+@use '../../sass/variables' as gv;
+
+.reset {
+    padding:15rem 0;
+    background-color: #192126;
+    color:gv.$white-color
+}

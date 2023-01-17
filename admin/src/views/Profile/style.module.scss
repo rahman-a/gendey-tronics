@@ -1,0 +1,80 @@
+@use '../../sass/variables' as var;
+@use '../../sass/media' as media;
+
+.profile {
+    background-color: #F5F5F5;
+    min-height: 100vh;
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 8rem 5rem;
+        @include media.mq(xxl){
+            padding:8rem 1rem;
+        }
+        @include media.mq(lg){
+            justify-content: center;
+        }
+        @include media.mq(sm){
+            padding:8rem 0;
+        }
+    }
+     &__header {
+         width:100%;
+         padding-bottom:2rem;
+        figure {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            clip-path: circle();
+            span {
+                display: none;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.389);
+                color:#fff;
+            }
+
+            &:hover {
+                span {
+                    display: flex;
+                }
+            }
+        }
+         img {
+             width:25rem;
+             object-fit: cover;
+        }
+        &_info {
+            h4 {
+                letter-spacing: 1.6px;
+            }
+        }
+
+     }
+
+     &__info {
+         width:100%;
+         padding-top: 2rem;
+         border-top:1px solid #ccc
+     }
+
+     &__about {
+         &_editor {
+            min-height: 25rem;
+            background-color: #fff;
+            padding: 0 1rem;
+            margin-bottom: 1rem;
+         }
+     }
+
+     &__separator {
+        width:100%;
+        padding-top: 2rem;
+        border-top:1px solid #ccc
+     }
+}

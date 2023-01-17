@@ -1,0 +1,83 @@
+@use '../../sass/mq' as media;
+
+.imageCard {
+  &__item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    //     &_1 {
+    //       grid-column: 1/2;
+    //       grid-row: 1 / span 2;
+    //     }
+    //     &_3 {
+    //       grid-column: 2 /3;
+    //       grid-row: 2/3;
+    //     }
+    //     &_2 {
+    //       grid-column: 3 /4;
+    //       grid-row: 3/4;
+    //     }
+    //     &_4 {
+    //       grid-row: 3 / span 2;
+    //       grid-column: 1 / span 2;
+    //     }
+    //     &_5 {
+    //       grid-row: 5/6;
+    //       grid-column: 1 /2;
+    //     }
+    //     &_6 {
+    //       grid-column: 2 /3;
+    //       grid-row: 5 /6;
+    //     }
+    //     &_7 {
+    //       grid-row: 6/7;
+    //       grid-column: 1 /2;
+    //     }
+    //     &_8 {
+    //       grid-row: 7/8;
+    //       grid-column: 1 /2;
+    //     }
+    //     &_9 {
+    //       grid-row: 6 /-1;
+    //       grid-column: 2/ 3;
+    //     }
+    //     &_10 {
+    //       grid-column: 3 / span 2;
+    //       grid-row: 1 / span 2;
+    //     }
+    //     &_11 {
+    //       grid-row: 4/5;
+    //       grid-column: 3/4;
+    //     }
+    //     &_12 {
+    //       grid-row: 3 / span 2;
+    //       grid-column: 4/5;
+    //     }
+    //     &_13 {
+    //       grid-row: 5 /-1;
+    //       grid-column: 3 / span 2;
+    //     }
+    //     &_14 {
+    //       grid-column: 5 / -1;
+    //       grid-row: 1 / -1;
+    //     }
+  }
+  &__image {
+    position: relative;
+    display: block;
+    img {
+      height: 8vw;
+      object-fit: cover;
+      object-position: 50% 50%;
+      transform: scale(1);
+      transition: all 0.3s ease-in-out;
+      @include media.mq(sm) {
+        height: 20vw;
+      }
+    }
+  }
+
+  &__item:hover img {
+    transform: scale(1.5);
+  }
+}

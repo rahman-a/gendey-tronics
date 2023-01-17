@@ -1,0 +1,24 @@
+@use '../../sass/mq' as media;
+
+.blogs {
+    margin-top: 15rem;
+    @include media.mq(sm){
+        margin-top: 10rem;
+    }
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    &_ar {
+        figure {
+            margin-right: unset;
+            margin-left: 3rem;
+        }
+        button {
+            margin-right: unset;
+            margin-left: 5rem !important;
+        }
+    }
+}

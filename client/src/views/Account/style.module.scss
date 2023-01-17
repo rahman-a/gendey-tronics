@@ -1,0 +1,65 @@
+@use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
+.account {
+    position: relative;
+    top:10.4rem;
+    @include media.mq(md){
+        top: 7rem;
+     }
+    @include media.mq(sm){
+       top: 4rem;
+    }
+    @include media.mq(xs){
+        top: 4.1rem;
+     }
+    &__header {
+        display: grid;
+        place-items: center;
+        min-height: 50rem;
+        background-image: url(../../img/account-bg.png);
+        background-position: center;
+        background-size: cover;
+    }
+    &__btn {
+        all: unset;
+        background-color: gv.$white-color;
+        padding: 0.2rem 1rem;
+        border-radius: 1.6rem;
+        border: 1px solid gv.$light-gray;
+        cursor: pointer;
+        font-size: 1.4rem;
+        font-weight: 500;
+        width:fit-content;
+        text-align: center;
+        &:hover {
+            color:gv.$main-color;
+        }
+        &:not(:last-child) {
+            margin-right:4.5rem;
+            @include media.mq(xs){
+               margin-right: 0;
+            }
+        }
+        @include media.mq(xs){
+            width:38%;
+            margin: 0 2rem 2rem 0 !important;
+        }
+        &_ar:not(:last-child) {
+            margin-left:4.5rem;
+            margin-right: unset;
+            @include media.mq(xs){
+                margin-left: 0;
+                margin-right: unset;
+            }
+        }
+    }
+    &__action {
+        @include media.mq(xs){
+            text-align: center;
+        }
+    }
+    &__content {
+        margin-bottom: 11rem;
+    }
+}

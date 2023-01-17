@@ -1,0 +1,62 @@
+@use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
+.rating {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    &__overall {
+        h2 {
+            font-size: 5.5rem;
+            color: gv.$main-color;
+            margin:0;
+            text-align: center;
+        }
+        p {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+    }
+    &__progress {
+        flex-grow: 2;
+        margin:0 2rem;
+        &_wrapper {
+            display: flex;
+            align-items: center;
+        }
+        &_bar {
+            height: 0.8rem;
+            width:60%;
+            margin-right: 1rem;
+            background-color: lighten(gv.$light-gray, 40%);
+            @include media.mq(md){
+                width:20rem;
+            }
+            @include media.mq(xs){
+                width:12.5rem;
+            }
+            & > div {
+                height: 0.8rem;
+                background-color: lighten(gv.$light-gray, 20%);
+            }
+            &_ar {
+                margin-right: unset;
+                margin-left: 1rem;
+            }
+        }
+        &_stars {
+            display: flex;
+            align-items: center;
+            &_count {
+                width:9rem;
+            }
+            span {
+                color:gv.$main-color;
+            }
+            p {
+                margin:0;
+                margin-left:0.5rem;
+            }
+        }
+    }
+}

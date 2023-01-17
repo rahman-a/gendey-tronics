@@ -1,0 +1,160 @@
+@use '../../sass/variables' as var;
+@use '../../sass/media' as media;
+
+.course {
+    &__wrapper {
+        position: relative;
+        text-align: center;
+        margin: 5rem;
+    }
+
+    &__header {
+        h1 {
+            font-size: 5rem;
+            font-weight: 300;
+        }
+
+        &_copy {
+            cursor: pointer;
+            margin-left:0.5rem;
+        }
+
+        &_date {
+            letter-spacing: 1px;
+            color: #00000091;
+            font-weight: 400;
+        }
+    }
+
+    &__body {
+        margin-top: 5rem;
+    }
+
+    &__segment {
+        display: flex;
+        justify-content: space-between;
+        & > form ,
+        & > div {
+            width:35%;
+            text-align: start;
+        }
+    }
+
+    &__image {
+        position: relative;
+        max-width:25rem;
+        max-height: 36rem;
+        overflow: hidden;
+        cursor: pointer;
+        
+        &:hover div {
+            display: block;
+        }
+        
+        &_backdrop {
+            display: none;
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            label {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color:var.$white-color;
+                cursor: pointer;
+                span {
+                    display: inline-block;
+                }
+                svg {
+                    width:2rem;
+                    height: 2rem;
+                }
+            }
+        }
+        
+        img {
+            width:100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__submit {
+        display: flex;
+        align-items: center;
+        margin-top: 0.5rem;
+    }
+
+    &__level {
+        background-color:var.$bg-color;
+        color: #fff;
+        padding: 0.3rem;
+        margin-bottom: 1rem;
+        font-size: 1.6rem;
+        font-weight: 300;
+    }
+
+    &__points {
+        margin-top: 5rem;
+    }
+    &__point {
+        display:flex;
+        span {
+            color:darkred;
+            margin-left:1rem;
+            cursor: pointer;
+        }
+    }
+
+    &__chapter {
+       &_header {
+        display: flex;
+        align-items: center;
+        button {
+            margin-left:1rem;
+        }
+       }
+       &_title {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+       }
+       &_actions {
+           display: flex;
+           align-items: center;
+           span {
+            margin-right: 0.5rem;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.3rem;
+            padding: 0.2rem;
+            border-radius: 0.3rem;
+            display: grid;
+            place-items: center;
+           }
+           span:first-child {
+               background-color: #5bad5b;
+               &:hover {
+                   background-color: green;
+               }
+           }
+           span:last-child {
+                background-color: #c74f4f;
+                &:hover {
+                    background-color: darkred;
+                }
+           }
+       }
+    }
+
+    &__publish {
+        position: fixed;
+        top:10rem;
+        right:5rem;
+    }
+}

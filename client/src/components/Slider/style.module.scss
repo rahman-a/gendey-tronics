@@ -1,0 +1,149 @@
+@use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  top: 10.4rem;
+  margin-bottom: 8rem;
+  direction: ltr;
+  @include media.mq(md) {
+    top: 7.4rem;
+  }
+  @include media.mq(sm) {
+    height: 100%;
+    top: 4rem;
+  }
+  @include media.mq(xs) {
+    margin-bottom: 5rem;
+  }
+  img {
+    height: 100%;
+    max-height: 100vh;
+    object-fit: cover;
+    @include media.mq(sm) {
+      height: 45rem;
+    }
+    @include media.mq(xs) {
+      height: 28rem;
+    }
+  }
+  &__info {
+    position: relative;
+    width: 100%;
+    @include media.mq(xs) {
+      text-align: -webkit-center;
+    }
+  }
+  &__desc {
+    width: 100rem;
+    position: absolute;
+    top: 40%;
+    left: 15rem;
+    text-align: left;
+    // background-color: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: 1rem;
+
+    @include media.mq(xl) {
+      left: 0;
+      top: 35%;
+    }
+    @include media.mq(xxl) {
+      top: 20%;
+    }
+
+    @include media.mq(md) {
+      width: 100%;
+    }
+    @include media.mq(xs) {
+      width: 100% !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      left: 0;
+      bottom: 16%;
+      text-align: center;
+    }
+
+    &_ar {
+      text-align: right;
+      direction: rtl;
+    }
+  }
+
+  &__header {
+    font-size: 10rem;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 3px;
+    margin-bottom: 2.5rem;
+    @include media.mq(md) {
+      font-size: 8rem;
+    }
+    @include media.mq(sm) {
+      font-size: 6rem;
+    }
+    @include media.mq(xs) {
+      letter-spacing: 1px;
+      font-size: 4rem;
+      margin-bottom: 0;
+    }
+  }
+  &__subheader {
+    width: 60%;
+    font-size: 5rem;
+    font-weight: 400;
+    color: #f8c600;
+    line-height: 1.2;
+    margin-top: -1.5rem;
+    @include media.mq(md) {
+      font-size: 4rem;
+    }
+    @include media.mq(sm) {
+      font-size: 3rem;
+    }
+    @include media.mq(xs) {
+      font-size: 1.8rem;
+      margin: 0.5rem 0;
+    }
+  }
+
+  &__more {
+    all: unset;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    color: gv.$white-color;
+    background-color: rgba(gv.$light-black, 0.7);
+    padding: 0 0.2rem;
+    font-size: 1.4rem;
+    font-weight: 300;
+    cursor: pointer;
+    z-index: 999;
+    margin-top: 2rem;
+    @include media.mq(sm) {
+      position: static;
+    }
+    svg {
+      margin-left: 0.5rem;
+      transform: translate(0, 3.5px);
+      transition: all 0.3s ease;
+    }
+    &:hover svg {
+      transform: translate(5px, 3.5px);
+    }
+    &:hover {
+      background-color: rgba(gv.$light-black, 0.9);
+    }
+  }
+
+  &__placeholder {
+    height: calc(100vh - 15rem);
+    @include media.mq(xs) {
+      height: calc(100vh - 15rem);
+      object-fit: cover;
+    }
+  }
+}

@@ -1,0 +1,141 @@
+@use 'variables' as gv;
+@use 'mq' as *;
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    @include mq(xl) {
+        font-size: 60%;
+    }
+    @include mq(lg){
+        font-size: 58%;
+    }
+    @include mq(md) {
+        font-size: 56%;
+    }
+    @include mq(sm) {
+        font-size: 54%;
+    }
+}
+
+*,
+*::after,
+*::before {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: gv.$main-font;
+    font-size: 1.6rem;
+    line-height: 1.6;
+
+}
+
+#root {
+ overflow-x:hidden;
+
+}
+.container {
+    max-width:85% !important;
+    margin:0 auto;
+    @include mq(xl){
+        max-width: 90% !important;
+    }
+    @include mq(md) {
+        max-width: 100% !important;
+        margin:0 !important;
+        height: 100%;
+    }
+}
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.order_item {
+    svg {
+        @include mq(xs){
+            margin-top:1rem;
+            margin-bottom: 0 !important;
+            order:2;
+            transform: rotate(90deg);
+        }
+    }
+}
+
+// customize carousel
+.control-dots {
+    .dot {
+        width: 2rem !important;
+        height: 2rem !important;
+        @include mq(xs){
+            width:1.5rem !important;
+            height: 1.5rem !important;
+            margin:0 5px !important;
+        }
+    }
+    .selected {
+        background-color: gv.$main-color !important;
+    }
+}
+
+// Customize Loader Size
+.spinner-border {
+    width:100% !important;
+    height: 100% !important;
+}
+
+@media only print {
+    .header,
+    .footer,
+    .progressBar,
+    .printerIcon {
+        display: none !important;
+    }
+    .orderInvoice,
+    .header--logo{
+        display: block;
+    }
+}
+
+// Beta Message  
+.beta-message {
+    position: fixed;
+    top: -50rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fad0c5f0;
+    color: #730000;
+    border-radius: 1rem;
+    padding: 2rem 3rem 2rem;
+    z-index: 9999999999;
+    text-align: center;
+    box-shadow: 1px 0px 2px 3px rgb(0 0 0 / 30%);
+    font-weight: 500;
+    transition: all 1s ease-in-out;
+    span {
+        color: inherit;
+        position: absolute;
+        right: 1rem;
+        top: 0px;
+        cursor: pointer;
+    }
+
+    svg {
+        width:1.5rem;
+        height:1.5rem;
+    }
+    @include mq(sm) {
+        width:90%;
+    }
+}

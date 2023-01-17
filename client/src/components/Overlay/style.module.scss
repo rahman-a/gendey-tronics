@@ -1,0 +1,54 @@
+@use '../../sass/variables' as gv;
+@use '../../sass/mq' as media;
+.overlay {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    min-height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index:9999999;
+    &__arrow {
+        color:gv.$white-color;
+        position: absolute;
+        cursor: pointer;
+        svg {
+            width:5rem;
+            height: 5rem;
+        }
+        &_left {
+            left: 27rem;
+            top: 50%;
+            @include media.mq(lg){
+                left:22rem;
+            }
+            @include media.mq(md){
+                left:16rem;
+            }
+            @include media.mq(sm){
+                left:6rem;
+            }
+            @include media.mq(xs){
+                top:unset;
+                bottom:1rem;
+            }
+        }
+        &_right {
+            right: 27rem;
+            top: 50%;
+            @include media.mq(lg){
+                right:22rem;
+            }
+            @include media.mq(md){
+                right:16rem;
+            }
+            @include media.mq(sm){
+                right:6rem;
+            }
+            @include media.mq(xs){
+                top:unset;
+                bottom:1rem;
+            }
+        }
+    }
+}
