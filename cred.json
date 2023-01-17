@@ -1,0 +1,16 @@
+{
+    "web": {
+        "client_id": "974066718491-6j4bdl2smq1u1sfnodkh47h8qn5p5kna.apps.googleusercontent.com",
+        "project_id": "elgendy-autotronics-center",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": "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",
+        "redirect_uris": [
+            "https://admin.gendyecu.com/drive"
+        ],
+        "javascript_origins": [
+            "https://admin.gendyecu.com"
+        ]
+    }
+}

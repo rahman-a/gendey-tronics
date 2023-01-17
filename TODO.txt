@@ -1,0 +1,7 @@
+- margin of card slider control is 2rem 1.5rem 2.5rem 0 and change margin to 2rem 0 1.5rem 2.5rem 0 on md screen
+- add padding to card container which is 0 2rem on md screen
+- set messagePosition top in product card to -15 instead of -10
+- set left for subList 16rem instead of 20 on md screen
+
+products 90 92 96
+courses 52 54
