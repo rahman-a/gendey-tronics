@@ -26,6 +26,7 @@ import supportRouter from './server/src/routers/supportRouter.js'
 import adminRouter from './server/src/routers/adminRouter.js'
 import menuRouter from './server/src/routers/menuRouter.js'
 import mediaRouter from './server/src/routers/mediaRouter.js'
+import purchaseRouter from './server/src/routers/purchaseRouter.js'
 import { incomingEmails } from './server/src/controllers/supportControllers.js'
 import { uploadHandler } from './server/src/middlewares/upload.js'
 import {
@@ -86,6 +87,7 @@ app.use('/api/support', supportRouter)
 app.use('/api/admin', adminRouter)
 app.use('/api/menu', menuRouter)
 app.use('/api/media', mediaRouter)
+app.use('/api/purchase', purchaseRouter)
 
 if (process.env.NODE_ENV === 'production') {
   // SERVING STATIC FILES

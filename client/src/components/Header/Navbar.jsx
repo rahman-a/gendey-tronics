@@ -182,8 +182,9 @@ const Nav = ({ elementRefs }) => {
               {/* NAVBAR ITEMS */}
               <ul className={style.header__list}>
                 {isLoading
-                  ? [...Array(5)].map((_) => (
+                  ? [...Array(5)].map((_, idx) => (
                       <li
+                        key={idx}
                         className={`${style.header__item} ${style.header__item_placeholder}`}
                       >
                         <Placeholder

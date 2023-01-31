@@ -7,8 +7,8 @@ import Review from '../models/reviewsModal.js'
 import Instructor from '../models/instructorModal.js'
 import Enrollment from '../models/enrollmentModal.js'
 import Wishlist from '../models/wishlistModal.js'
-import Product from '../models/productModal.js'
-import Order from '../models/orderModal.js'
+// import Product from '../models/productModal.js'
+// import Order from '../models/orderModal.js'
 import strings from '../localization.js'
 
 export const createNewCourse = async (req, res, next) => {
@@ -49,6 +49,7 @@ export const getTheCourseData = async (req, res, next) => {
       res.status(404)
       throw new Error(strings.course[lang].no_course)
     }
+    course.original_Price = course.price
     if (course.discount) {
       course.price = course.price - (course.price * course.discount) / 100
     }
@@ -90,6 +91,8 @@ export const getTheCourseData = async (req, res, next) => {
       ? await Wishlist.findOne({ itemType: 'course', item: id })
       : null
     if (type === 'preview') {
+      console.log('course price preview', course.price)
+      console.log('course discount', course.discount)
       res.json({
         success: true,
         code: 200,
@@ -98,6 +101,7 @@ export const getTheCourseData = async (req, res, next) => {
           name: course.name,
           description: course.description,
           price: course.price,
+          original_Price: course.original_Price,
           image: course.image,
           isFav: isFav ? true : false,
           discount: course.discount || 0,
@@ -114,6 +118,7 @@ export const getTheCourseData = async (req, res, next) => {
           students: enrollments,
           instructor: instructorData,
           chapters: allChapters,
+          original_Price: course.original_Price,
           isFav: isFav ? true : false,
           enrollment: {
             _id: enrollment ? enrollment._id : null,
@@ -125,15 +130,23 @@ export const getTheCourseData = async (req, res, next) => {
       })
     }
   } catch (error) {
-    console.log('ERROR', error)
     next(error)
   }
 }
 
 export const listAllCourses = async (req, res, next) => {
   const { lang } = req.headers
-  const { name, price, rating, students, isPaid, page, skip, isPublished } =
-    req.query
+  const {
+    name,
+    price,
+    rating,
+    students,
+    isPaid,
+    page,
+    skip,
+    isPublished,
+    isPublic,
+  } = req.query
   let searchFilter = {}
   try {
     if (name) {
@@ -167,7 +180,6 @@ export const listAllCourses = async (req, res, next) => {
     }
 
     if (rating) {
-      console.log({ rating })
       searchFilter = {
         ...searchFilter,
         rating: {
@@ -206,8 +218,8 @@ export const listAllCourses = async (req, res, next) => {
       }
     }
 
-    if (isPublished) {
-      const value = isPublished === 'true'
+    if (isPublished || isPublic) {
+      const value = (isPublished || isPublic) === 'true'
       searchFilter = {
         ...searchFilter,
         isPublished: value,
@@ -631,7 +643,8 @@ function calculateReviewData(reviews) {
     if (r.rating > 3 && r.rating <= 4) numberOfRating4 += 1
     if (r.rating > 4 && r.rating <= 5) numberOfRating5 += 1
   })
-  const averageNumericRating = overAllRating / numberOfReview || 0
+  const averageNumericRating = (overAllRating / numberOfReview).toFixed(1) || 0
+  console.log('🚀 averageNumericRating', averageNumericRating)
   const rating1Percentage =
     Math.floor((numberOfRating1 * 100) / numberOfReview) || 0
   const rating2Percentage =
@@ -647,12 +660,12 @@ function calculateReviewData(reviews) {
     numberOfReview,
     averageNumericRating,
     ratingValues: [
-      rating1Percentage,
-      rating2Percentage,
-      rating3Percentage,
-      rating4Percentage,
       rating5Percentage,
+      rating4Percentage,
+      rating3Percentage,
+      rating2Percentage,
+      rating1Percentage,
     ],
-    reviews: allReviews,
+    reviews: allReviews.filter((r) => Boolean(r.comment)),
   }
 }

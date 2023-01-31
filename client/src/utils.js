@@ -12,3 +12,17 @@ export const tm = (se, lang) => {
     ? Math.ceil(h.toFixed(2)) + ' ساعة'
     : Math.ceil(h.toFixed(2)) + ' hours'
 }
+
+export function extractInitials(name) {
+  // split the name into an array of words
+  const words = name.split(' ')
+  // initialize an empty string for the initials
+  let initials = ''
+  // iterate over the words in the name
+  for (const word of words) {
+    // add the first character of the word to the initials string
+    initials += word[0]
+  }
+  // return the initials
+  return initials
+}

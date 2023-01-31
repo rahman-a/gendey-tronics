@@ -72,7 +72,6 @@ export const updateAdminInfo = async (req, res, next) => {
 }
 
 export const updateAdminImage = async (req, res, next) => {
-  console.log('File', req.file)
   try {
     await Instructor.findOneAndUpdate(
       { info: req.user._id },

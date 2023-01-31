@@ -1,54 +1,65 @@
 @use '../../sass/mq' as media;
+@use '../../sass/variables' as gv;
 
 .orders {
-    display: flex;
-    @include media.mq(sm){
-        flex-direction: column;
+  display: flex;
+  @include media.mq(sm) {
+    flex-direction: column;
+  }
+  &__content {
+    flex-grow: 1;
+  }
+  &__list {
+    position: relative;
+    padding: 5rem;
+    @include media.mq(md) {
+      padding: 3rem;
     }
-    &__content {
-        flex-grow: 1;
+    @include media.mq(sm) {
+      padding: 0.5rem;
     }
-    &__list {
-        position: relative;
-        padding:5rem;
-        @include media.mq(md){
-            padding:3rem
-        }
-        @include media.mq(sm){
-            padding:0.5rem
-        }
+  }
+  &__message {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    h2 {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: #cfae0b;
+      font-weight: 300;
+      font-size: 3rem;
+      letter-spacing: 2px;
     }
-    &__message { 
-        height: 100%;
-        width:100%;  
-        position: relative;
-        h2 { 
-            height: 100%;     
-            display: grid;
-            place-items: center;
-            color: #cfae0b;
-            font-weight: 300;
-            font-size: 3rem;
-            letter-spacing: 2px
-        }
-        &_type {
-            padding:2rem;
-            button {
-                margin-right:1rem;
-            }
-        }
-        &_content {
-            padding:5rem;
-        }
-        &_title {
-            button {
-                font-size: 1.6rem;
-            }
-        }
-        &_item {
-            font-size:1.4rem;
-            color:#333;
-            font-weight: 300;       
-        }
+    &_type {
+      padding: 2rem;
+      button {
+        margin-right: 1rem;
+      }
     }
+    &_content {
+      padding: 5rem;
+    }
+    &_title {
+      button {
+        font-size: 1.6rem;
+      }
+    }
+    &_item {
+      font-size: 1.4rem;
+      color: #333;
+      font-weight: 300;
+    }
+  }
+
+  &__review {
+    all: unset;
+    margin-top: 1.5rem;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    color: gv.$main-color;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 }

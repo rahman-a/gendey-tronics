@@ -54,7 +54,7 @@
     @include media.mq(xs) {
       transform: translateX(-2rem);
       position: relative;
-      z-index: 999;
+      z-index: 9999;
     }
   }
   &__social {
@@ -81,7 +81,7 @@
   &__navbar {
     width: 100vw;
     position: fixed;
-    z-index: 99;
+    z-index: 999;
     top: 6.5rem;
     background-color: gv.$alt-main-color;
     height: 10.4rem;
@@ -543,6 +543,11 @@
     svg {
       width: 6rem;
       height: 6rem;
+    }
+
+    @include media.mq(md) {
+      left: -1rem;
+      bottom: 8rem;
     }
   }
   &__cart {

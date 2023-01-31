@@ -2,115 +2,116 @@
 @use '../../sass/mq' as media;
 
 .accordion {
-    width:100%;
-    &:not(:last-of-type) {
-        border-bottom: 1.5px solid lighten(gv.$light-black, 35%);
-    }
-    &__wrapper {
-        height: 0;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-    &__title {
-        align-items: center;
-        justify-content: space-between;
-        padding:1rem 1.5rem;
-        background-color: lighten(gv.$light-black, 75%);
+  width: 100%;
+  &:not(:last-of-type) {
+    border-bottom: 1.5px solid lighten(gv.$light-black, 35%);
+  }
+  &__wrapper {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  &__title {
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background-color: lighten(gv.$light-black, 75%);
+    cursor: pointer;
+    &_name {
+      width: 35rem;
+      font-weight: 500;
+      font-size: 1.5rem;
+      display: flex;
+      @include media.mq(xs) {
+        width: 22rem;
+        font-size: 1.8rem;
+      }
+      span {
+        margin-right: 1rem;
         cursor: pointer;
-        &_name {
-            width:35rem;
-            font-weight: 500;
-            font-size: 1.5rem;
-            display: flex;
-            @include media.mq(xs){
-                width:22rem;
-                font-size: 1.2rem;
-            }
-            span {
-                margin-right: 1rem;
-                cursor: pointer;
-                color: lighten(gv.$light-black, 30%);
-                svg {
-                    width:1.2rem;
-                    height: 1.2rem;
-                }
-            }
+        color: lighten(gv.$light-black, 30%);
+        svg {
+          width: 1.2rem;
+          height: 1.2rem;
         }
-        &_info {
-            span {
-                color:lighten(gv.$light-black, 30%);
-                font-weight: 300;
-                @include media.mq(xs) {
-                    font-size: 1.4rem;
-                }
-            }
-            span:not(:last-child) {
-                margin-right: 1.2rem;
-            }
-        }
+      }
     }
-    &__lecture {
-        align-items: flex-start;
-        justify-content: space-between;
-        padding: 1rem 1.5rem;
-        &_purchased {
-            cursor: pointer;
-            &:hover {
-                background-color: lighten(gv.$light-gray, 50%);
-            }
+    &_info {
+      span {
+        color: lighten(gv.$light-black, 30%);
+        font-weight: 300;
+        @include media.mq(xs) {
+          font-size: 1.6rem;
         }
-        &_name {
-            height: 2.5rem;
-            overflow: hidden;
-        }
-        &_title {
-            margin:0;
-            display: flex;
-            align-items: center;
-            @include media.mq(xs){
-                font-size: 1.4rem;
-            }
-            span {
-                margin-left: 0.3rem;
-                cursor: pointer;
-                color: #8e8e8e;
-                background-color: #cbcbcb;
-                border-radius: 50%;
-                svg {
-                    height: 0.8rem; 
-                }
-            }
-            &_free {
-                color:blue;
-                text-decoration: underline;
-                cursor: pointer;
-            }
-        }
-        &_description {
-            color: #868686;
-            font-weight: 300;
-            font-size: 1.4rem;
-            padding-left: 2rem;
-            width: 80%;
-        }
-        &_info {
-            display: flex;
-            align-items: center;
-            button {
-                all:unset;
-                color:blue;
-                text-decoration: underline;
-                margin-right:1rem;
-                cursor: pointer;
-                @include media.mq(xs){
-                    font-size: 1.4rem;
-                }
-            }
-            span {
-                color:lighten(gv.$light-black, 30%);
-                font-weight: 300;
-                width:8rem;
-            }
-        }
+      }
+      span:not(:last-child) {
+        margin-right: 1.2rem;
+      }
     }
+  }
+  &__lecture {
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    &_purchased {
+      cursor: pointer;
+      &:hover {
+        background-color: lighten(gv.$light-gray, 50%);
+      }
+    }
+    &_name {
+      height: 2.5rem;
+      overflow: hidden;
+    }
+    &_title {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      @include media.mq(xs) {
+        font-size: 1.6rem;
+      }
+      span {
+        margin-left: 0.3rem;
+        cursor: pointer;
+        color: #8e8e8e;
+        background-color: #cbcbcb;
+        border-radius: 50%;
+        svg {
+          height: 0.8rem;
+        }
+      }
+      &_free {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+    &_description {
+      color: #868686;
+      font-weight: 300;
+      font-size: 1.6rem;
+      padding-left: 2rem;
+      width: 80%;
+    }
+    &_info {
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      button {
+        all: unset;
+        color: blue;
+        text-decoration: underline;
+        margin-right: 1rem;
+        cursor: pointer;
+        @include media.mq(xs) {
+          font-size: 1.4rem;
+        }
+      }
+      span {
+        color: lighten(gv.$light-black, 30%);
+        font-weight: 300;
+        width: 8rem;
+      }
+    }
+  }
 }

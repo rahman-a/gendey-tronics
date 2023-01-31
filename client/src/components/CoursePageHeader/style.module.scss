@@ -2,179 +2,181 @@
 @use '../../sass/mq' as media;
 
 .header {
-    position: relative;
-    color: gv.$white-color;
+  position: relative;
+  color: gv.$white-color;
+  height: 70vh;
+  margin-bottom: 5rem;
+  @include media.mq(md) {
+    height: unset;
+  }
+  &__figure {
+    position: absolute;
     height: 70vh;
-    margin-bottom: 5rem;
-    @include media.mq(md){
-        height: unset;
+    width: 100%;
+    z-index: -1;
+    filter: blur(0.8rem);
+    img {
+      width: 100%;
+      height: 100%;
+      @include media.mq(md) {
+        object-fit: cover;
+      }
     }
-    &__figure {
-        position: absolute;
-        height: 70vh;
-        width:100%;
-        z-index:-1;
-        filter:blur(0.8rem);        
-        img {
-            width:100%;
-            height: 100%;
-            @include media.mq(md){
-                object-fit: cover;
-            }
-        }
-        @include media.mq(md){
-            height:100%;
-        }
+    @include media.mq(md) {
+      height: 100%;
     }
-    &__content {
-        width: 65%;
-        padding-left: 5rem;
-        @include media.mq(lg){
-            width:55%;
-            transform: translateY(4rem);
-        }
-        @include media.mq(md){
-            width:95%;
-            transform: unset;
-            padding: 2rem 5rem;
-        }
-        @include media.mq(xs){
-            padding: 2rem 0;
-        }
-        h1 {
-            padding: 3rem 0;
-            font-size: 5rem;
-            text-transform: capitalize;
-            @include media.mq(lg){
-                font-size: 4rem;
-            }
-            @include media.mq(xs){
-                font-size: 2.5rem;
-                padding: 2rem 0;
-            }
-        }
-        &_video {
-            display: none;
-            @include media.mq(md){
-                display: block;
-            }
-            figure {  
-                position: relative;
-                @include media.mq(md){
-                    width:45rem;
-                    height: 25rem;
-                    margin:0  auto;
-                }
-                @include media.mq(xs){
-                    width: 100vw;
-                }
-                iframe {
-                    width:100%;
-                    height: 100%;
-                }
-            }
-        }
+  }
+  &__content {
+    width: 65%;
+    padding-left: 5rem;
+    @include media.mq(lg) {
+      width: 55%;
+      transform: translateY(4rem);
     }
-    &__description {
-        font-weight: 200;
-        font-family: gv.$second-font;
-        margin-bottom: 2rem;
-        @include media.mq(xs){
-            font-size: 1.5rem;
-        }
+    @include media.mq(md) {
+      width: 95%;
+      transform: unset;
+      padding: 2rem 5rem;
     }
-    &__rating {
-        display: flex;
-        align-items: center;
-        &_num {
-            display: flex;
-            align-items: center;
-            margin-right: 2rem;
-            direction: ltr;
-
-            &_value {
-                margin-right: 0.5rem;
-            }
-            &_ar {
-                margin-right: unset;
-                &_value {
-                    margin-right: 0.5rem;
-                    margin-left: 0.5rem;
-                }
-            }
-        }
-        &_student {
-            span {
-                margin-right: 0.5rem;
-            }
-        }
+    @include media.mq(xs) {
+      padding: 2rem 0;
     }
-    &__creator {
-        margin-bottom: 2rem;
-        &_update {
-            span {
-                color:gv.$main-color
-            }
-        }
+    h1 {
+      padding: 3rem 0;
+      font-size: 5rem;
+      text-transform: capitalize;
+      @include media.mq(lg) {
+        font-size: 4rem;
+      }
+      @include media.mq(xs) {
+        font-size: 2.5rem;
+        padding: 2rem 0;
+      }
     }
-
-    &__cta {
-        display: flex;
-        align-items: center;
+    &_video {
+      display: none;
+      @include media.mq(md) {
+        display: block;
+      }
+      figure {
+        position: relative;
+        @include media.mq(md) {
+          width: 45rem;
+          height: 25rem;
+          margin: 0 auto;
+        }
+        @include media.mq(xs) {
+          width: 100vw;
+        }
         iframe {
-            width:10rem;
-            height: 3rem;
+          width: 100%;
+          height: 100%;
         }
-        button {
-            all: unset;
-            border: 2px solid gv.$white-color;
-            padding: 0.5rem 1rem;
-            border-radius: 1.6rem;
-            margin-right: 1.5rem;
-            cursor: pointer;
-            &:hover {
-                background-color: lighten(gv.$white-color, 80%);
-                color:gv.$bg-color;
-            }
-        }
+      }
     }
-    &__coupon {
-        display: none;
-        background-color: gv.$main-color;
-        border-radius: 1.5rem;
-        width: 30rem;
-        height: 5rem;
-        margin:2rem 0;
-        @include media.mq(md){
-            display: flex;
-        }
-        input {
-            all: unset;
-            background-color: gv.$white-color;
-            padding: 1rem;
-            box-sizing: border-box;
-            border-radius: 1.6rem;
-            margin-right: 2rem;
-            color:black;
-            &::placeholder {
-                font-weight: 300;
-            }
-        }
-        button {
-            all: unset;
-            color: gv.$white-color;
-            font-size: 2rem;
-            cursor: pointer;
-            @include media.mq(xs){
-                font-size: 1.6rem;
-                transform: translateX(-1rem);
-            }
-        }
-        &_ar {
-            input {
-                margin-right: unset;
-                margin-left: 2rem;
-            }
-        }
+  }
+  &__description {
+    font-weight: 200;
+    font-family: gv.$second-font;
+    margin-bottom: 2rem;
+    @include media.mq(xs) {
+      font-size: 1.5rem;
     }
+  }
+  &__rating {
+    display: flex;
+    align-items: center;
+    &_num {
+      display: flex;
+      align-items: center;
+      margin-right: 2rem;
+      direction: ltr;
+
+      &_value {
+        margin-right: 0.5rem;
+      }
+      &_ar {
+        margin-right: unset;
+        &_value {
+          margin-right: 0.5rem;
+          margin-left: 0.5rem;
+        }
+      }
+    }
+    &_student {
+      span {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+  &__creator {
+    margin-bottom: 2rem;
+    &_update {
+      span {
+        color: gv.$main-color;
+      }
+    }
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    iframe {
+      width: 10rem;
+      height: 3rem;
+    }
+    button {
+      all: unset;
+      border: 2px solid gv.$white-color;
+      padding: 0.5rem 1rem;
+      border-radius: 1.6rem;
+      margin-right: 1.5rem;
+      cursor: pointer;
+      &:hover {
+        background-color: lighten(gv.$white-color, 80%);
+        color: gv.$bg-color;
+      }
+    }
+  }
+  &__coupon {
+    display: none;
+    background-color: gv.$main-color;
+    border-radius: 1.5rem;
+    width: 30rem;
+    height: 5rem;
+    margin: 2rem 0;
+    @include media.mq(md) {
+      display: flex;
+    }
+    input {
+      all: unset;
+      background-color: gv.$white-color;
+      padding: 1rem;
+      box-sizing: border-box;
+      border-radius: 1.6rem;
+      margin-right: 2rem;
+      color: black;
+      &::placeholder {
+        font-weight: 300;
+      }
+    }
+    button {
+      all: unset;
+      color: gv.$white-color;
+      font-size: 2rem;
+      color: gv.$black-color;
+      cursor: pointer;
+      @include media.mq(xs) {
+        font-size: 1.6rem;
+        transform: translateX(1rem);
+        padding: 0 0 0.5rem 0.5rem;
+      }
+    }
+    &_ar {
+      input {
+        margin-right: unset;
+        margin-left: 2rem;
+      }
+    }
+  }
 }

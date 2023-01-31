@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import style from './style.module.scss'
-import Loader from '../../components/Loader'
-import Message from '../../components/Message'
 import Button from 'react-bootstrap/Button'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import ReactStars from 'react-awesome-stars-rating'
-import actions from '../../actions'
 import { v4 as uuidv4 } from 'uuid'
-
-const Rating = ({ lang, strings }) => {
+import Loader from '../Loader'
+import Message from '../Message'
+import actions from '../../actions'
+import strings from '../../localization'
+const Rating = ({ id }) => {
   const [ratingText, setRatingText] = useState('')
   const [ratingValue, setRatingValue] = useState(0.0)
   const [reviewEdit, setReviewEdit] = useState(true)
   const [update, setUpdate] = useState(false)
   const [reviewId, setReviewId] = useState(null)
-  const { id } = useParams()
   const { loading, error, message } = useSelector((state) => state.addReview)
   const { review } = useSelector((state) => state.getReview)
+  const { lang } = useSelector((state) => state.language)
   const {
     loading: update_loading,
     message: update_message,
@@ -31,6 +30,7 @@ const Rating = ({ lang, strings }) => {
       comment: ratingText,
       rating: ratingValue,
     }
+    console.log('add review', data)
     dispatch(actions.courses.addReview(data))
   }
 
@@ -67,10 +67,10 @@ const Rating = ({ lang, strings }) => {
     }
   }, [message, review])
   return (
-    <div className={style.courseLearn__rating}>
+    <div className={style.rating}>
       {review && (
         <>
-          <div className={style.courseLearn__rating_stars}>
+          <div className={style.rating__stars}>
             <ReactStars
               count={5}
               size={50}
@@ -79,11 +79,9 @@ const Rating = ({ lang, strings }) => {
               isHalf={true}
               activeColor='#ffd700'
             />
-            <span className={style.courseLearn__rating_value}>
-              {review.rating}
-            </span>
+            <span className={style.rating__value}>{review.rating}</span>
           </div>
-          <div className={style.courseLearn__rating_content}>
+          <div className={style.rating__content}>
             <p>{review.comment}</p>
             {!update && (
               <Button
@@ -97,7 +95,7 @@ const Rating = ({ lang, strings }) => {
       )}
       {reviewEdit && (
         <>
-          <div className={style.courseLearn__rating_stars}>
+          <div className={style.rating__stars}>
             <ReactStars
               id={`${uuidv4()}`}
               count={5}
@@ -108,23 +106,16 @@ const Rating = ({ lang, strings }) => {
               isHalf={true}
               activeColor='#ffd700'
             />
-            <span className={style.courseLearn__rating_value}>
-              {ratingValue}
-            </span>
+            <span className={style.rating__value}>{ratingValue}</span>
           </div>
-          <div className={style.courseLearn__rating_canvas}>
+          <div className={style.rating__canvas}>
             <textarea
               name='note'
-              cols='30'
-              rows='3'
               onChange={(e) => setRatingText(e.target.value)}
               value={ratingText}
             ></textarea>
           </div>
-          <div
-            className={style.courseLearn__rating_actions}
-            style={{ direction: 'ltr' }}
-          >
+          <div className={style.rating__actions} style={{ direction: 'ltr' }}>
             {loading || update_loading ? (
               <Loader size='4' />
             ) : error || update_message ? (

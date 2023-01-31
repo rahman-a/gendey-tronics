@@ -2,61 +2,63 @@
 @use '../../sass/mq' as media;
 
 .points {
-    width:63%;
-    background-color: lighten(gv.$light-gray, 50%);
-    padding: 1rem 3rem;
-    border-radius: 0.8rem;
-    box-shadow: -1px 1px 8px -3px rgb(0 0 0 / 30%);
-    @include media.mq(lg){
-        width:55%;
+  width: 63%;
+  background-color: lighten(gv.$light-gray, 50%);
+  padding: 1rem 3rem;
+  border-radius: 0.8rem;
+  box-shadow: -1px 1px 8px -3px rgb(0 0 0 / 30%);
+  @include media.mq(lg) {
+    width: 55%;
+  }
+  @include media.mq(md) {
+    width: 85%;
+    margin-left: 5rem;
+  }
+  @include media.mq(xs) {
+    width: 100%;
+    margin: 0 0 0 -1rem;
+    padding: 1rem 2rem;
+  }
+  h2 {
+    font-size: 3rem;
+    padding: 0.5rem 0;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  &__list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+    @include media.mq(xs) {
+      flex-direction: column;
     }
-    @include media.mq(md){
-        width:85%;
-        margin-left: 5rem;
+  }
+  li {
+    display: flex;
+    width: 45%;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    @include media.mq(lg) {
+      width: 48%;
     }
-    @include media.mq(xs){
-        width:100%;
-        margin:0 0 0 -1rem;
-        padding: 1rem 2rem;
+    @include media.mq(xs) {
+      width: 100%;
     }
-    h2 {
-        font-size: 3rem;
-        padding: 0.5rem 0;
-        font-weight: 300;
-        margin-bottom: 2rem;
-    } 
-    &__list {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        padding: 0;
-        @include media.mq(xs){
-            flex-direction: column;
-        }
+    span {
+      color: gv.$main-color;
+      margin-right: 1rem;
     }
+  }
+  &_ar {
     li {
-        display: flex;
-        width:45%;
-        font-size: 1.4rem;
-        margin-bottom: 1rem;
-        @include media.mq(lg){
-            width:48%;
-        }
-        @include media.mq(xs){
-            width:100%;
-        }
-        span {
-            color:gv.$main-color;
-            margin-right:1rem;
-        }
+      span {
+        margin-right: unset;
+        margin-left: 1rem;
+      }
     }
-    &_ar {
-        li{
-            span {
-                margin-right: unset;
-                margin-left: 1rem;
-            }
-        }
-    }
+  }
 }

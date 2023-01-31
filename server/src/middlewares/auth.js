@@ -43,7 +43,6 @@ export const isAdmin = (req, res, next) => {
 
 export const checkApiKey = (req, res, next) => {
   const { lang } = req.headers
-  console.log('Check Api Key....?!!')
   if (req.headers.apikey) {
     try {
       if (req.headers.apikey === process.env.APIKEY) next()

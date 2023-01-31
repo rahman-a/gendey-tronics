@@ -1,6 +1,6 @@
 const template = {
-    activate(info){
-        return`
+  activate(info) {
+    return `
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -105,7 +105,7 @@ const template = {
 															<th class="column" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
-																		<td class="text-header" style="color:#000; font-family:'Noto Sans', Arial,sans-serif; font-size:20px; line-height:16px; text-align:right; text-transform:uppercase;"><multiline><webversion class="link2" style="color:#000; font-weight: 900; text-decoration:none;">RESET PASSWORD</webversion></multiline></td>
+																		<td class="text-header" style="color:#000; font-family:'Noto Sans', Arial,sans-serif; font-size:20px; line-height:16px; text-align:right; text-transform:uppercase;"><multiline><webversion class="link2" style="color:#000; font-weight: 900; text-decoration:none;">Account Activation</webversion></multiline></td>
 																	</tr>
 																</table>
 															</th>
@@ -218,9 +218,9 @@ const template = {
 </html>
 
     `
-},
-reset(info){
-    return`
+  },
+  reset(info) {
+    return `
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -446,9 +446,9 @@ reset(info){
 </html>
 
 `
-},
-support(info){
-    return`
+  },
+  support(info) {
+    return `
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -583,8 +583,14 @@ support(info){
 																<tr>
 																	<td class="text pb20" style="color:#777777; font-family:'Noto Sans', Arial,sans-serif; font-size:14px; line-height:26px; text-align:left; padding-bottom:20px;">
 																		<multiline>	
-                                                                           ${ info.name ? `<p>Hi ${info.name}</p>` : '' }
-                                                                            ${info.html}
+                                                                           ${
+                                                                             info.name
+                                                                               ? `<p>Hi ${info.name}</p>`
+                                                                               : ''
+                                                                           }
+                                                                            ${
+                                                                              info.html
+                                                                            }
 																		</multiline>
 																	</td>
 																</tr>
@@ -593,7 +599,7 @@ support(info){
 																	<td align="left">
 																		<table border="0" cellspacing="0" cellpadding="0" style="margin-bottom:1rem">
 																			<tr>
-																				<td class="text-button" style="background:#ffeb3b; color:#363636; font-family:'Noto Sans', Arial,sans-serif; font-size:14px; line-height:18px; padding:12px 20px; text-align:center; border-radius:6px;"><multiline><a href="#" target="_blank" class="link-white" style="color:#363636; text-decoration:none;"><span class="link-white" style="color:#363636; text-decoration:none;">Reset Password</span></a></multiline></td>
+																				<td class="text-button" style="background:#ffeb3b; color:#363636; font-family:'Noto Sans', Arial,sans-serif; font-size:14px; line-height:18px; padding:12px 20px; text-align:center; border-radius:6px;"><multiline><a href="#" target="_blank" class="link-white" style="color:#363636; text-decoration:none;"><span class="link-white" style="color:#363636; text-decoration:none;">Support</span></a></multiline></td>
                                                                             </tr>
                                                                             
 																		</table>
@@ -653,9 +659,9 @@ support(info){
 </html>
 
     `
-},
-// totalPrice - orderId - items [name, price, quantity]
-receipt(info) {
+  },
+  // totalPrice - orderId - items [name, price, quantity]
+  receipt(info) {
     return `
     <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -969,7 +975,9 @@ receipt(info) {
                                                                             valign="top">
                                                                             <h1 class="aligncenter"
                                                                                 style="font-family: 'Helvetica Neue',Helvetica,Arial,'Lucida Grande',sans-serif; box-sizing: border-box; font-size: 32px; color: #000; line-height: 1.2em; font-weight: 500; text-align: center; margin: 40px 0 0;"
-                                                                                align="center">$${info.totalPrice} Paid</h1>
+                                                                                align="center">$${
+                                                                                  info.totalPrice
+                                                                                } Paid</h1>
                                                                         </td>
                                                                     </tr>
                                                                     <tr
@@ -993,7 +1001,9 @@ receipt(info) {
                                                                                 <tr
                                                                                     style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                                                     <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 15px 0;"
-                                                                                        valign="top">ORDER NO: ${info.orderId}</td>
+                                                                                        valign="top">ORDER NO: ${
+                                                                                          info.orderId
+                                                                                        }</td>
                                                                                     </td> 
                                                                                 </tr>
                                                                                 <tr
@@ -1005,9 +1015,11 @@ receipt(info) {
                                                                                             cellspacing="0"
                                                                                             style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; margin: 0;">
                                                                                             
-                                                                                            ${
-                                                                                                info.items.map(item => (
-                                                                                                    `<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 1rem 0;">
+                                                                                            ${info.items.map(
+                                                                                              (
+                                                                                                item
+                                                                                              ) =>
+                                                                                                `<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 1rem 0;">
                                                                                                         <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 12px; vertical-align: top; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; padding: 15px 0;"
                                                                                                             valign="top">${item.name}
                                                                                                         </td>
@@ -1017,8 +1029,7 @@ receipt(info) {
                                                                                                             valign="top">$ ${item.price}
                                                                                                         </td>
                                                                                                     </tr>`
-                                                                                                ))
-                                                                                            }
+                                                                                            )}
                                                                                             
                                                                                             
 
@@ -1033,7 +1044,9 @@ receipt(info) {
                                                                                                 <td class="alignright"
                                                                                                     style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: right; border-top-width: 2px; border-top-color: #333; border-top-style: solid; border-bottom-color: #333; border-bottom-width: 2px; border-bottom-style: solid; font-weight: 700; margin: 0; padding: 10px 0;"
                                                                                                     align="right"
-                                                                                                    valign="top">$ ${info.totalPrice}
+                                                                                                    valign="top">$ ${
+                                                                                                      info.totalPrice
+                                                                                                    }
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </table>
@@ -1109,7 +1122,7 @@ receipt(info) {
 
 </html>
     `
-}
+  },
 }
 
 export default template

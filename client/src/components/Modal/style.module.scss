@@ -1,31 +1,30 @@
 @use '../../sass/variables' as gv;
 @use '../../sass/mq' as media;
 .modal {
-    position: fixed;
-    left:50%;
-    transform: translate(-50%, -50%);
-    background-color:#fff;
-    min-width: 20vw;
-    min-height: 20vh;
-    z-index:99999999;
-    border-radius: 1.4rem;
-    padding: 3rem 1.6rem 1.6rem;
-    transition: all 0.5s ease-in-out;
-    overflow: auto;
-    @include media.mq(sm){
-        min-height: unset;
-        min-width: unset;
-        max-height: 65vh;
-        max-width: 100vw;
-        padding:3rem 0.6rem 1.6rem;
-    }
-    &__close {
-        cursor: pointer;
-        position: absolute;
-        top:0.5rem;
-        right:1.6rem;
-        z-index: 9999;
-        border-radius: 50%;
-    }
-    
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  min-width: 20vw;
+  min-height: 20vh;
+  z-index: 999999999999;
+  border-radius: 1.4rem;
+  padding: 3rem 1.6rem 1.6rem;
+  transition: all 0.5s ease-in-out;
+  overflow: auto;
+  @include media.mq(sm) {
+    min-height: unset;
+    min-width: unset;
+    max-height: 65vh;
+    max-width: 100vw;
+    padding: 3rem 0.6rem 1.6rem;
+  }
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    top: 0.5rem;
+    right: 1.6rem;
+    z-index: 9999;
+    border-radius: 50%;
+  }
 }

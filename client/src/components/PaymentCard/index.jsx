@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import style from './style.module.scss'
-import { Paypal, PaypalText, Fawery, MobileCash, Vodafone } from '../icons'
+import { Paypal, PaypalText, Fawery, Vodafone } from '../icons'
 import { Overlay } from '../Overlay'
 import Loader from '../Loader'
-import PaypalButtons from './paypal'
-import { useHistory, useParams, useLocation } from 'react-router-dom'
+import PayPalButton from './Paypal'
+import { useHistory, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import constants from '../../constants'
 import actions from '../../actions'
@@ -39,8 +39,8 @@ const PaymentCard = ({ type, course }) => {
   }
 
   // complete Course Payment
-  const completeCoursePayment = (_) => {
-    dispatch(actions.courses.newEnrollment(course._id))
+  const completeCoursePayment = (value) => {
+    dispatch(actions.courses.newEnrollment(course._id, value))
   }
 
   // complete Product Payment
@@ -91,7 +91,7 @@ const PaymentCard = ({ type, course }) => {
         <Loader
           size='8'
           center
-          custom={{ color: '#F8C600', zIndex: '9999999' }}
+          custom={{ color: '#F8C600', zIndex: '999999999999' }}
         >
           {purchasingCourse && (
             <p style={{ width: '25rem', transform: 'translate(-10rem)' }}>
@@ -143,7 +143,7 @@ const PaymentCard = ({ type, course }) => {
           </div>
         </div>
         {paymentType === 'paypal' ? (
-          <PaypalButtons
+          <PayPalButton
             type={type}
             setError={setError}
             cartItems={items}
@@ -161,7 +161,6 @@ const PaymentCard = ({ type, course }) => {
           paymentType === 'cash' && (
             <div className={style.coursePayment__cash}>
               <h3>
-                {' '}
                 {strings.client[lang].cash_message} <code> 01064345626 </code>{' '}
               </h3>
               <h4 style={{ lineHeight: lang === 'ar' ? 1.9 : 1.6 }}>
