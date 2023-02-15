@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import compression from 'compression'
 import { fileURLToPath } from 'url'
 import path from 'path'
 import { checkApiKey } from './server/src/middlewares/auth.js'
@@ -55,10 +56,24 @@ app.use(
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(cookieParser())
+app.use(compression())
 app.use(express.urlencoded({ extended: false }))
 
 // RECEIVING E-MAILS COMING FROM MAILGUN
-app.post('/api/support/incoming', uploadHandler.any(), incomingEmails)
+app.post(
+  '/api/support/incoming',
+  (req, res, next) => {
+    if (req.body['X-Mailgun-Incoming'] === 'Yes') {
+      next()
+    } else {
+      res.status(400).json({
+        message: 'Invalid request',
+      })
+    }
+  },
+  uploadHandler.any(),
+  incomingEmails
+)
 
 // SERVING IMAGES
 app.use(

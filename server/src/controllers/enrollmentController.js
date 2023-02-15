@@ -8,7 +8,6 @@ export const createEnrollment = async (req, res, next) => {
   const { lang } = req.headers
   const { id } = req.params
   const { user, payment } = req.body
-  console.log('🚀createEnrollment ~ payment', payment)
 
   const targetUser = user ? user : req.user._id
 

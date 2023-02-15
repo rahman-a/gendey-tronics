@@ -643,7 +643,9 @@ function calculateReviewData(reviews) {
     if (r.rating > 3 && r.rating <= 4) numberOfRating4 += 1
     if (r.rating > 4 && r.rating <= 5) numberOfRating5 += 1
   })
-  const averageNumericRating = (overAllRating / numberOfReview).toFixed(1) || 0
+  const averageNumericRating = isNaN(overAllRating / numberOfReview)
+    ? '0.0'
+    : (overAllRating / numberOfReview).toFixed(1)
   console.log('🚀 averageNumericRating', averageNumericRating)
   const rating1Percentage =
     Math.floor((numberOfRating1 * 100) / numberOfReview) || 0

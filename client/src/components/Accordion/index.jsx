@@ -1,14 +1,15 @@
-import React, { useState, useRef, useEffect} from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import style from './style.module.scss'
 import { AccordionArrow } from '../icons'
 import AccordionItem from './AccordionItem'
 import { useSelector } from 'react-redux'
+import { tm } from '../../utils'
 
-const Accordion = ({ chapter,verticalTitle, setLesson, isPaid}) => {
+const Accordion = ({ chapter, verticalTitle, setLesson, isPaid }) => {
   const [isCollapse, setIsCollapse] = useState(true)
   const wrapperRef = useRef(null)
   const holderRef = useRef(null)
-  const {lesson} = useSelector(state => state.enrollmentProgress)
+  const { lesson } = useSelector((state) => state.enrollmentProgress)
   const toggleCollapseLecture = (_) => {
     if (isCollapse) {
       const holderHeight = holderRef.current.getBoundingClientRect().height
@@ -19,23 +20,15 @@ const Accordion = ({ chapter,verticalTitle, setLesson, isPaid}) => {
       setIsCollapse(true)
     }
   }
-  const tm = (se, cut) => {
-    let h = (se /60 /60)
-    if(h < 1){
-       let  t =  cut === 'cut'?(h * 100).toFixed(2) + ' min' :(h * 100).toFixed(2) + ' minutes'
-        return t 
-    }
-    if(h === 1) return h.toFixed(2) + ' hour'
-    return h.toFixed(2)  + ' hours'
-  }
-  useEffect(() => {
-  },[lesson])
+  useEffect(() => {}, [lesson])
   return (
     <div className={style.accordion}>
       <div className={style.accordion__item}>
-        <div className={style.accordion__title}
-        style={{display: verticalTitle ? 'block': 'flex'}}
-        onClick={toggleCollapseLecture}>
+        <div
+          className={style.accordion__title}
+          style={{ display: verticalTitle ? 'block' : 'flex' }}
+          onClick={toggleCollapseLecture}
+        >
           <div className={style.accordion__title_name}>
             <span onClick={toggleCollapseLecture}>
               <AccordionArrow
