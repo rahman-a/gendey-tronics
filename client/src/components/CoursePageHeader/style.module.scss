@@ -168,7 +168,7 @@
       cursor: pointer;
       @include media.mq(xs) {
         font-size: 1.6rem;
-        transform: translateX(1rem);
+        transform: translateX(-1.5rem);
         padding: 0 0 0.5rem 0.5rem;
       }
     }
@@ -176,6 +176,9 @@
       input {
         margin-right: unset;
         margin-left: 2rem;
+      }
+      button {
+        transform: translateX(1rem);
       }
     }
   }

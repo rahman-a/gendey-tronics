@@ -80,10 +80,11 @@
           height: 0.8rem;
         }
       }
+      // comment the free css rule and will uncomment if the client want this feature
       &_free {
-        color: blue;
-        text-decoration: underline;
-        cursor: pointer;
+        // color: blue;
+        // text-decoration: underline;
+        // cursor: pointer;
       }
     }
     &_description {

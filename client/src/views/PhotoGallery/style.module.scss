@@ -58,17 +58,22 @@
   &__wrapper {
     min-height: 25rem;
     position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    grid-template-rows: repeat(auto-fit, 8vw);
-    grid-auto-flow: dense;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    // grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    // grid-template-rows: repeat(auto-fit, 8vw);
+    // grid-auto-flow: dense;
     gap: 1rem;
     margin-top: 5rem;
     @include media.mq(md) {
+      align-items: flex-start;
       margin-top: 3rem;
     }
     @include media.mq(sm) {
-      grid-template-rows: repeat(auto-fit, 20vw);
+      justify-content: center;
+      // grid-template-rows: repeat(auto-fit, 20vw);
     }
   }
 
