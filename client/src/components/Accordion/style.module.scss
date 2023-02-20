@@ -53,6 +53,9 @@
     align-items: flex-start;
     justify-content: space-between;
     padding: 1rem 1.5rem;
+    @include media.mq(xs) {
+      flex-wrap: wrap;
+    }
     &_purchased {
       cursor: pointer;
       &:hover {
@@ -60,7 +63,6 @@
       }
     }
     &_name {
-      height: 2.5rem;
       overflow: hidden;
     }
     &_title {
@@ -68,6 +70,7 @@
       display: flex;
       align-items: center;
       @include media.mq(xs) {
+        gap: 0.5rem;
         font-size: 1.6rem;
       }
       span {
@@ -75,7 +78,7 @@
         cursor: pointer;
         color: #8e8e8e;
         background-color: #cbcbcb;
-        border-radius: 50%;
+        clip-path: circle();
         svg {
           height: 0.8rem;
         }
@@ -93,6 +96,8 @@
       font-size: 1.6rem;
       padding-left: 2rem;
       width: 80%;
+      height: 0;
+      overflow: hidden;
     }
     &_info {
       display: flex;

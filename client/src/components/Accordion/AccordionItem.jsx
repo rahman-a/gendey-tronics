@@ -15,7 +15,8 @@ const AccordionItem = ({
   isPaid,
 }) => {
   const [isLectureDesc, setIsLectureDesc] = useState(false)
-  const descriptionRef = useRef(null)
+  const descriptionBlockRef = useRef(null)
+  const descriptionContentRef = useRef(null)
   const { id } = useParams()
   const enrollId = new URLSearchParams(useLocation().search).get('enroll')
   const { enrollment } = useSelector((state) => state.enrollmentData)
@@ -29,15 +30,19 @@ const AccordionItem = ({
   }
   const toggleLectureDescriptionHandler = (_) => {
     if (isLectureDesc) {
-      const holderHeight = descriptionRef.current.getBoundingClientRect().height
+      const holderHeight =
+        descriptionContentRef.current.getBoundingClientRect().height
       const wrapperHeight = wrapperRef.current.getBoundingClientRect().height
       wrapperRef.current.style.height = `${wrapperHeight - holderHeight}px`
+      descriptionBlockRef.current.style.height = 0
       setIsLectureDesc(false)
     } else {
       setIsLectureDesc(true)
-      const holderHeight = descriptionRef.current.getBoundingClientRect().height
+      const holderHeight =
+        descriptionContentRef.current.getBoundingClientRect().height
       const wrapperHeight = wrapperRef.current.getBoundingClientRect().height
       wrapperRef.current.style.height = `${holderHeight + wrapperHeight}px`
+      descriptionBlockRef.current.style.height = `${holderHeight}px`
     }
   }
   const activateLessonHandler = () => {
@@ -63,7 +68,8 @@ const AccordionItem = ({
     >
       <div
         className={style.accordion__lecture_name}
-        style={{ height: isLectureDesc ? 'fit-content' : '2.5rem' }}
+        onClick={toggleLectureDescriptionHandler}
+        // style={{ height: isLectureDesc ? 'fit-content' : '2.5rem' }}
       >
         <p
           className={`${style.accordion__lecture_title}
@@ -92,7 +98,9 @@ const AccordionItem = ({
             <span onClick={toggleLectureDescriptionHandler}>
               <AccordionArrow
                 style={{
-                  transform: isLectureDesc ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transform: isLectureDesc
+                    ? 'translateY(-0.2rem) rotate(180deg)'
+                    : 'rotate(0deg)',
                   transition: 'transform 0.3s ease',
                 }}
               />
@@ -100,12 +108,17 @@ const AccordionItem = ({
           )}
         </p>
         {lecture.description && (
-          <p
+          <div
             className={style.accordion__lecture_description}
-            ref={descriptionRef}
+            ref={descriptionBlockRef}
           >
-            {lecture.description}
-          </p>
+            <p
+              className={style['accordion__lecture_description--p']}
+              ref={descriptionContentRef}
+            >
+              {lecture.description}
+            </p>
+          </div>
         )}
       </div>
       <div className={style.accordion__lecture_info}>

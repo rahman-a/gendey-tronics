@@ -39,24 +39,26 @@ const CourseInstructor = ({ instructor, lang }) => {
   return (
     <div className={style.instructor}>
       <div className={style.instructor__name}>
-        <h3>{instructor.name}</h3>
-        <p>{instructor.role}</p>
+        <h3>{instructor?.name}</h3>
+        <p>{instructor?.role}</p>
       </div>
       <div
         className={`${style.instructor__overview} ${
           lang === 'ar' ? style.instructor__overview_ar : ''
         }`}
       >
-        <figure>
-          <img
-            src={
-              instructor.avatar
-                ? `/api/images/${instructor.avatar}`
-                : '/images/instructor_info.png'
-            }
-            alt='instructor'
-          />
-        </figure>
+        {instructor?.avatar && (
+          <figure>
+            <img
+              src={
+                instructor.avatar
+                  ? `/api/images/${instructor?.avatar}`
+                  : '/images/instructor_info.png'
+              }
+              alt='instructor'
+            />
+          </figure>
+        )}
         <div className={style.instructor__overview_info}>
           <ul>
             <li>
@@ -64,7 +66,7 @@ const CourseInstructor = ({ instructor, lang }) => {
                 <Star />
               </span>
               <p>
-                {instructor.averageRating}{' '}
+                {instructor?.averageRating}{' '}
                 {strings.course[lang].instructor_rating}
               </p>
             </li>
@@ -73,7 +75,7 @@ const CourseInstructor = ({ instructor, lang }) => {
                 <CertificateStar />
               </span>
               <p>
-                {instructor.reviewsNumber > 1
+                {instructor?.reviewsNumber > 1
                   ? `${instructor.reviewsNumber} ${
                       lang === 'en' ? 'Reviews' : 'تقييمات'
                     }`
@@ -87,7 +89,7 @@ const CourseInstructor = ({ instructor, lang }) => {
                 <Person />
               </span>
               <p>
-                {instructor.studentsNumber > 1
+                {instructor?.studentsNumber > 1
                   ? `${instructor.studentsNumber} ${
                       lang === 'en' ? 'Students' : 'طلبة'
                     }`
@@ -101,7 +103,7 @@ const CourseInstructor = ({ instructor, lang }) => {
                 <DemandVideo />
               </span>
               <p>
-                {instructor.coursesNumber > 1
+                {instructor?.coursesNumber > 1
                   ? `${instructor.coursesNumber} ${
                       lang === 'en' ? 'Courses' : 'دورات تدريبية'
                     }`
