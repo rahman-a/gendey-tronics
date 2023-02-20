@@ -1,4 +1,0 @@
-- remove the order number from the learning points of the course.
-- adjust the apply word in the center of the apply button of the course page
-- adjust the width and height of the images in gallery
-- direct client to download section of courses when client click in continue to course button on small devices

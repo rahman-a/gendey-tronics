@@ -129,7 +129,7 @@ const Row = ({ slide, idx }) => {
 
           <td>
             <span className={style.sliders__item} onClick={navigateTo}>
-              {slide.target.itemId.name || slide.target.itemId.title}
+              {slide.target.itemId?.name || slide.target.itemId?.title}
             </span>
           </td>
 

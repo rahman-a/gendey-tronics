@@ -1,6 +1,7 @@
 import User from '../models/userModal.js'
 import Course from '../models/courseModal.js'
 import Product from '../models/productModal.js'
+import Instructor from '../models/instructorModal.js'
 import Blog from '../models/blogModel.js'
 import Enrollment from '../models/enrollmentModal.js'
 import Order from '../models/orderModal.js'
@@ -345,6 +346,17 @@ export const deleteUserAccount = async (req, res, next) => {
   const { lang } = req.headers
   try {
     await req.user.remove()
+    const instructor = await Instructor.findById(req.user._id)
+    if (instructor) {
+      await instructor.remove()
+      const courses = await Course.find({ instructor: instructor._id })
+      if (courses.length) {
+        for (const course of courses) {
+          course.instructor = null
+          await course.save()
+        }
+      }
+    }
     res.json({
       success: true,
       code: 200,
@@ -367,6 +379,17 @@ export const deleteUserById = async (req, res, next) => {
       throw new Error('No User Found')
     }
     await user.remove()
+    const instructor = await Instructor.findById(user._id)
+    if (instructor) {
+      await instructor.remove()
+      const courses = await Course.find({ instructor: instructor._id })
+      if (courses.length) {
+        for (const course of courses) {
+          course.instructor = null
+          await course.save()
+        }
+      }
+    }
     res.json({
       success: true,
       code: 200,
