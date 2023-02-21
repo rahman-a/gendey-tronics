@@ -69,7 +69,7 @@ function App() {
         <Route path='/blog/:id'>
           <Blog />
         </Route>
-        <Route path='/blog'>
+        <Route path='/blogs'>
           <Blogs />
         </Route>
         <Route path='/privacy-policy'>

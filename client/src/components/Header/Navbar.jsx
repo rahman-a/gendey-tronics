@@ -91,7 +91,10 @@ const Nav = ({ elementRefs }) => {
   window.onscroll = () => {
     if (window.pageYOffset > 65) {
       navRef.current?.classList.add(style.header__onScroll)
-      if (window.matchMedia('(min-width:61.99em)').matches) {
+      if (
+        window.matchMedia('(min-width:61.99em)').matches &&
+        arrowRef?.current
+      ) {
         arrowRef.current.style.display = 'block'
       }
       if (elementRefs?.curriculum?.current) {
@@ -99,7 +102,7 @@ const Nav = ({ elementRefs }) => {
       }
     } else {
       navRef.current?.classList.remove(style.header__onScroll)
-      arrowRef.current.style.display = 'none'
+      arrowRef?.current && (arrowRef.current.style.display = 'none')
       if (elementRefs?.curriculum?.current) {
         elementRefs.curriculum.current.style.top = 'unset'
       }
