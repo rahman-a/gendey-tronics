@@ -54,18 +54,21 @@ const Slider = () => {
               navigateTo(slide.target.type, slide.target.itemId._id)
             }
           >
-            <img alt={slide.header[lang]} src={`/api/images/${slide.image}`} />
+            <img
+              alt={slide.header ? slide.header[lang] : 'slide image'}
+              src={`/api/images/${slide.image}`}
+            />
             <div
               className={`${style.carousel__desc} ${
                 lang === 'ar' ? style.carousel__desc_ar : ''
               }`}
             >
               <h2 className={style.carousel__header}>
-                {slide.header[lang].toLocaleUpperCase()}
+                {slide.header && slide.header[lang].toLocaleUpperCase()}
               </h2>
               <div className={style.carousel__info}>
                 <h3 className={style.carousel__subheader}>
-                  {slide.subHeader[lang].toLocaleUpperCase()}
+                  {slide.subHeade && slide.subHeader[lang].toLocaleUpperCase()}
                 </h3>
                 <button
                   className={style.carousel__more}

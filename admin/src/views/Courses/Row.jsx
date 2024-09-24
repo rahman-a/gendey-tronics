@@ -123,7 +123,11 @@ const Row = ({ course, idx }) => {
             </CopyToClipboard>
             <Badge bg='dark'> {course._id.substring(0, 12) + '...'} </Badge>
           </td>
-          <td>{course.name}</td>
+          <td>
+            <span style={{ lineBreak: 'anywhere', padding: '0 0.8rem' }}>
+              {course.name?.substring(0, 35) + '...'}
+            </span>
+          </td>
           <td>
             <img
               className='row-photo'

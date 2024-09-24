@@ -11,10 +11,10 @@ export const getAdminInfo = async (req, res, next) => {
       lastName: user.lastName,
       email: user.email,
       phoneNumber: user.phoneNumber,
-      about: instructor.about,
-      image: instructor.avatar,
-      role: instructor.role,
-      reviews: instructor.reviews,
+      about: instructor?.about ?? '',
+      image: instructor?.avatar ?? '',
+      role: instructor?.role ?? '',
+      reviews: instructor?.reviews ?? '',
     }
     res.send({
       info,

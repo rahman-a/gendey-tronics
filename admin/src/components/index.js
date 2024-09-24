@@ -32,3 +32,4 @@ export { default as CreateEnrollment } from './CreateEnrollment/CreateEnrollment
 export { default as Coupons } from './Coupons/Coupons'
 export { default as Overlay } from './Overlay/Overlay'
 export { default as CardModal } from './CardModal/CardModal'
+export { default as NotAvailable } from './NotAvailable/NotAvailable'

@@ -9,6 +9,7 @@ import CourseSection from '../../components/CourseSection'
 import ProductSection from '../../components/ProductSection'
 import { useSelector, useDispatch } from 'react-redux'
 import actions from '../../actions'
+import Instructor from '../../components/Instructor'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -27,7 +28,7 @@ const Home = () => {
         <Slider />
         <Feature />
         <CourseSection />
-        {/* <Instructor/> */}
+        {/* <Instructor /> */}
         {products &&
           products.map((data) => (
             <ProductSection

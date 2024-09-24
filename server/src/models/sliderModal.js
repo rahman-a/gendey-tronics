@@ -9,11 +9,9 @@ const sliderSchema = new mongoose.Schema(
     header: {
       en: {
         type: String,
-        required: true,
       },
       ar: {
         type: String,
-        required: true,
       },
     },
     subHeader: {

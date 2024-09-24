@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Modal, Button } from 'react-bootstrap'
 import actions from '../../actions'
 import { Eye, Times } from '../../icons'
-import { Loader } from '../../components'
+import { Loader, NotAvailable } from '../../components'
 
 const Row = ({ slide, idx }) => {
   const [confirmDelete, setConfirmDelete] = useState(false)
@@ -112,11 +112,11 @@ const Row = ({ slide, idx }) => {
         <>
           <td>{idx + 1}</td>
 
-          <td> {slide.header['en']} </td>
-          <td> {slide.header['ar']} </td>
+          <td> {slide.header ? slide.header.en : <NotAvailable />} </td>
+          <td> {slide.header ? slide.header.ar : <NotAvailable />} </td>
 
-          <td> {slide.subHeader['en']} </td>
-          <td> {slide.subHeader['ar']} </td>
+          <td> {slide.subHeader ? slide.subHeader.en : <NotAvailable />} </td>
+          <td> {slide.subHeader ? slide.subHeader.ar : <NotAvailable />} </td>
 
           <td style={{ padding: '0' }}>
             <p className={style.sliders__image}>

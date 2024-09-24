@@ -74,6 +74,7 @@ export const userAuthentication = async (req, res, next) => {
 
 export const adminLogin = async (req, res, next) => {
   const { email, password } = req.body
+  console.log({ email, password })
   try {
     if (!email) {
       res.status(400)
@@ -88,7 +89,9 @@ export const adminLogin = async (req, res, next) => {
       res.status(401)
       throw new Error('invalid login or password')
     }
+    console.log('reach here...')
     const token = user.generateToken('1d')
+    console.log('token')
     res.cookie('tokenAd', token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 1,

@@ -30,22 +30,22 @@ const CreateSlider = ({ isCreateSlide, setIsCreateSlide }) => {
   const isFormValid = () => {
     const { headerEn, headerAr, subHeaderEn, subHeaderAr, slider } = data
     const { itemId, type } = target
-    if (!headerEn) {
-      setIsError('Please Write English Header For Slider')
-      return false
-    }
-    if (!headerAr) {
-      setIsError('Please Write Arabic Header For Slider')
-      return false
-    }
-    if (!subHeaderEn) {
-      setIsError('Please Write English Sub Header For Slider')
-      return false
-    }
-    if (!subHeaderAr) {
-      setIsError('Please Write Arabic Sub Header For Slider')
-      return false
-    }
+    // if (!headerEn) {
+    //   setIsError('Please Write English Header For Slider')
+    //   return false
+    // }
+    // if (!headerAr) {
+    //   setIsError('Please Write Arabic Header For Slider')
+    //   return false
+    // }
+    // if (!subHeaderEn) {
+    //   setIsError('Please Write English Sub Header For Slider')
+    //   return false
+    // }
+    // if (!subHeaderAr) {
+    //   setIsError('Please Write Arabic Sub Header For Slider')
+    //   return false
+    // }
     if (!slider) {
       setIsError('Please Select Slider Image')
       return false
