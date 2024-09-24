@@ -26,11 +26,6 @@ const CreateEnrollment = ({ isEnrollment, setIsEnrollment }) => {
       setErrors('Course Id is Required')
       return
     }
-    console.log({
-      course: courseId,
-      user: userId,
-      payment: paidByClient,
-    })
     dispatch(
       actions.courses.createEnrollment(courseId, {
         user: userId,

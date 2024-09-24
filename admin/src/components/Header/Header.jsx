@@ -85,7 +85,6 @@ const Header = () => {
       setSideMenu(false)
       navigate('/login')
     }
-    console.log('Client Website:', process.env.REACT_APP_CLIENT_WEBSITE)
   }, [isLogout])
 
   return (
@@ -165,7 +164,7 @@ const Header = () => {
                       Profile <User />
                     </span>
                     <a
-                      href={`${process.env.REACT_APP_CLIENT_WEBSITE}`}
+                      href={`${import.meta.env.VITE_CLIENT_WEBSITE}`}
                       target='_blank'
                       rel='noreferrer'
                     >

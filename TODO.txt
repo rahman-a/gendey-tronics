@@ -1,0 +1,21 @@
+- remove react-scripts `npm uninstall react-scripts`
+- install vite @vitejs/plugin-react `npm i -D vite @vitejs/plugin-react`
+- move the index.html to root folder and remove %PUBLIC_URL%
+- add script tag to index.html `<script type="module" src="/src/index.jsx"></script>`
+- change the file extension from .js to .jsx
+- create a vite.config.js file and inside this file
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()]
+})
+```
+- in package.json change the start script to `vite`
+```
+"scripts": {
+  "start": "vite",
+  "build": "vite build"
+},
+```

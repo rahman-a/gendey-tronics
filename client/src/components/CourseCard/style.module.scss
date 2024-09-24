@@ -59,6 +59,7 @@
   &__content {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background-color: #fff80f;
     padding: 5rem 1rem 0.5rem;
     border-bottom-left-radius: 2rem;
@@ -66,24 +67,32 @@
     border: 1px solid gv.$bg-color;
     box-shadow: 0 -1px 12px -6px rgba(0, 0, 0, 0.5);
     transition: all 0.5s ease;
+    height: 15rem;
     h3 {
       padding-bottom: 1.5rem;
       font-weight: 600;
-      font-size: 16px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-size: 14px;
+      text-transform: capitalize;
+      letter-spacing: 0.75px;
       margin: 0;
       @include media.mq(sm) {
         font-size: 14px;
+      }
+      @include media.mq(xs) {
+        font-size: 12px;
+        letter-spacing: 0;
+        text-transform: capitalize;
       }
     }
 
     p {
       align-self: flex-end;
-      padding-bottom: 1.5rem;
       color: gv.$light-gray;
       line-height: 1.3;
       font-weight: 500;
+      @include media.mq(xs) {
+        font-size: 12px;
+      }
     }
     &:hover {
       box-shadow: 5px 1px 16px 0px rgba(0, 0, 0, 0.5);

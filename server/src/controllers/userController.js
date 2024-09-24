@@ -74,7 +74,6 @@ export const userAuthentication = async (req, res, next) => {
 
 export const adminLogin = async (req, res, next) => {
   const { email, password } = req.body
-  console.log({ email, password })
   try {
     if (!email) {
       res.status(400)
@@ -89,9 +88,7 @@ export const adminLogin = async (req, res, next) => {
       res.status(401)
       throw new Error('invalid login or password')
     }
-    console.log('reach here...')
     const token = user.generateToken('1d')
-    console.log('token')
     res.cookie('tokenAd', token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 1,
@@ -138,7 +135,6 @@ export const updateUserData = async (req, res, next) => {
   const { lang } = req.headers
 
   try {
-    console.log(updatedData)
     const allowedKeys = [
       'firstName',
       'lastName',
@@ -265,9 +261,7 @@ export const listAllUsers = async (req, res, next) => {
         },
       }
     }
-    console.log({ searchFilter })
     const count = await User.count({ ...searchFilter })
-    console.log({ count })
     const users = await User.find({ ...searchFilter })
       .limit(parseInt(page) || 10)
       .skip(parseInt(skip) || 0)
@@ -284,7 +278,6 @@ export const listAllUsers = async (req, res, next) => {
       count,
     })
   } catch (error) {
-    console.log(error)
     next(error)
   }
 }
@@ -552,8 +545,6 @@ export const getCourseAndProductDownloadLink = async (req, res, next) => {
 export const generalSearchHandler = async (req, res, next) => {
   const { keyword } = req.query
 
-  console.log({ keyword })
-  console.log('this is search endpoint')
   try {
     const result = []
 

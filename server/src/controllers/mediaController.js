@@ -23,7 +23,6 @@ export const createMedia = async (req, res, next) => {
 
 export const listAllMedia = async (req, res, next) => {
   const { type, skip } = req.query
-  console.log({ skip })
   try {
     const media = await Media.find({ type })
       .sort({ createdAt: -1 })

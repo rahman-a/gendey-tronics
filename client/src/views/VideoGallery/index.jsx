@@ -91,7 +91,6 @@ const VideoGallery = () => {
   }
   const prevHandlerVideos = () => {
     if (skip >= 5) {
-      console.log({ skip })
       const skipValue = skip - 15
       setSkip(skipValue)
       dispatch(
@@ -129,11 +128,13 @@ const VideoGallery = () => {
             {isLoading ? (
               <Loader size='8' center custom={{ top: '10%' }} />
             ) : videos && videos.length === 0 ? (
-              <img
-                className={style.videoGallery__noVideos}
-                src='/images/no-videos-available.png'
-                alt='not found'
-              />
+              <figure>
+                <img
+                  className={style.videoGallery__noVideos}
+                  src='/images/no-videos-available.png'
+                  alt='not found'
+                />
+              </figure>
             ) : (
               videos &&
               videos.map((video, idx) => (

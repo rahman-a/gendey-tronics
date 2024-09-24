@@ -30,7 +30,6 @@ const Rating = ({ id }) => {
       comment: ratingText,
       rating: ratingValue,
     }
-    console.log('add review', data)
     dispatch(actions.courses.addReview(data))
   }
 

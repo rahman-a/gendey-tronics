@@ -14,10 +14,6 @@ const Slider = () => {
   const { lang } = useSelector((state) => state.language)
 
   useEffect(() => {
-    sliders?.length && console.log({ sliders })
-  }, [sliders])
-
-  useEffect(() => {
     dispatch(actions.client.pageSliders())
   }, [])
 

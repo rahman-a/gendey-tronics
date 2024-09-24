@@ -17,10 +17,6 @@ const Slider = () => {
     dispatch(actions.admin.sliders())
   }, [])
 
-  useEffect(() => {
-    sliders && console.log({ sliders })
-  }, [sliders])
-
   return (
     <div className={style.sliders}>
       <SideAlert

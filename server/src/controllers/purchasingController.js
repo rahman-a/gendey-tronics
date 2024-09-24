@@ -27,7 +27,6 @@ export const sendClientId = async (req, res) => {
 export const createOrder = async (req, res, next) => {
   const { type } = req.params
   const { items, courseId, coupon } = req.body
-  console.log('createOrder ~ items', items)
   let total = 0
   let purchasedItems = []
   let breakdown = {}
@@ -130,7 +129,6 @@ export const createOrder = async (req, res, next) => {
     const order = await paypalClient.execute(request)
     res.send({ order: { id: order.result.id, total }, success: true })
   } catch (error) {
-    console.log('🚀createOrder ~ error', error)
     next(error)
   }
 }

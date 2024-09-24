@@ -14,7 +14,6 @@ const Blogs = () => {
   const { lang } = useSelector((state) => state.language)
 
   useEffect(() => {
-    console.log('blogs loading page...')
     dispatch(actions.blogs.blogs())
   }, [dispatch])
   return (

@@ -190,7 +190,6 @@ const downloadLinks = (_) => async (dispatch) => {
   dispatch({ type: constants.client.DOWNLOAD_LINKS_REQUEST })
   try {
     const { data } = await api.client.links()
-    console.log('🚀 ~ file: clientAction.js:164 ~ downloadLinks ~ data', data)
     dispatch({
       type: constants.client.DOWNLOAD_LINKS_SUCCESS,
       payload: data.links,

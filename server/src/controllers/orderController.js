@@ -17,7 +17,6 @@ export const createOrder = async (req, res, next) => {
         select: 'name price driveFile',
       },
     })
-    console.log('populatedOrder: ', populatedOrder)
     res.status(201).json({
       success: true,
       code: 201,
@@ -136,8 +135,6 @@ export const getAllOrders = async (req, res, next) => {
       }
     }
 
-    console.log({ ...searchFilter })
-
     const aggregateOption = [
       {
         $lookup: {
@@ -250,7 +247,6 @@ export const getAllOrders = async (req, res, next) => {
       count,
     })
   } catch (error) {
-    console.log(error)
     next(error)
   }
 }

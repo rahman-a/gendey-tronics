@@ -85,7 +85,6 @@ const PhotoGallery = () => {
   }
   const prevHandlerImages = () => {
     if (skip >= 5) {
-      console.log({ skip })
       const skipValue = skip - 15
       setSkip(skipValue)
       dispatch(
@@ -137,11 +136,13 @@ const PhotoGallery = () => {
               {isLoading ? (
                 <Loader size='8' center custom={{ top: '10%' }} />
               ) : images && images.length === 0 ? (
-                <img
-                  className={style.photoGallery__noImage}
-                  src='/images/no-image-available.png'
-                  alt='not found'
-                />
+                <div>
+                  <img
+                    className={style.photoGallery__noImage}
+                    src='/images/no-image-available.png'
+                    alt='not found'
+                  />
+                </div>
               ) : (
                 images &&
                 images.map((image, idx) => {

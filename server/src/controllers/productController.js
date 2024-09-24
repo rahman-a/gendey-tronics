@@ -31,7 +31,6 @@ export const createNewProduct = async (req, res, next) => {
       product,
     })
   } catch (error) {
-    console.log(error)
     next(error)
   }
 }
@@ -41,9 +40,7 @@ export const listAllProduct = async (req, res, next) => {
     req.query
   const { lang } = req.headers
   let searchFilter = {}
-  console.log('List All Products....?!!')
   try {
-    console.log({ query: req.query })
     if (type) {
       searchFilter = {
         ...searchFilter,

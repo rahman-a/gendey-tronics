@@ -43,7 +43,6 @@ const Content = ({ email, setIsReplay, setIsNewEmail }) => {
   const updateEmail = (key) => {
     setIsLoading(key)
     const value = !email[key]
-    console.log({ value })
     dispatch(actions.support.updateEmail(email._id, { [key]: `${value}` }))
   }
 

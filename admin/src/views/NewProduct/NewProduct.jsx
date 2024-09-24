@@ -46,7 +46,6 @@ const Product = () => {
       }
     }
     data.append('options', JSON.stringify(options))
-    console.log({ product })
     dispatch(actions.products.createNewProduct(data))
   }
 

@@ -44,7 +44,6 @@ const Login = () => {
   useEffect(() => {
     if (isAuth) {
       navigate('/')
-      console.log('Navigate to Main page')
     }
   }, [isAuth, navigate])
 

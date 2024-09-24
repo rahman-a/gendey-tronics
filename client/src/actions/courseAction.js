@@ -21,7 +21,6 @@ const getOneCourseData = (id, type) => async (dispatch, getState) => {
   dispatch({ type: constants.courses.GET_ONE_REQUEST })
   try {
     const { data } = await api.courses.get(id, type)
-    console.log('🚀 ~ file: courseAction.js:24 ~ getOneCourseData ~ data', data)
     dispatch({ type: constants.courses.GET_ONE_SUCCESS, payload: data.course })
   } catch (error) {
     dispatch({

@@ -14,7 +14,6 @@ const RatingStar = ({ repeat }) => {
 }
 
 const CourseRating = ({ data, lang }) => {
-  console.log('🚀 CourseRating ~ data', data)
   const rating = [83, 10, 5, 2, 0]
   return (
     <div className={style.rating}>

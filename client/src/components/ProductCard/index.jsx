@@ -34,8 +34,6 @@ const ProductCard = ({ card }) => {
   }
   useEffect(() => {
     if (message && isLoading) {
-      console.log('message', message)
-      console.log('count', count)
       setIsLoading(false)
       setMessagePosition(1)
       setTimeout(() => {

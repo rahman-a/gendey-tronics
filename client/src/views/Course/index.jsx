@@ -28,7 +28,6 @@ const Course = () => {
   const { id } = useParams()
 
   useEffect(() => {
-    console.log('course Data', course)
     dispatch({ type: constants.courses.VERIFY_COUPON_RESET })
     dispatch({ type: constants.courses.NEW_ENROLLMENT_RESET })
     isAuth

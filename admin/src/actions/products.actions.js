@@ -80,7 +80,6 @@ const updateProductImage = (id, info) => async (dispatch, getState) => {
     const { data } = await api.products.updateImage(id, info)
     const { product } = getState().getProduct
     const updatedProduct = { ...product }
-    console.log({ coming: data.image })
     updatedProduct.images.push(data.image)
     updatedProduct.image &&
       updatedProduct.images.push({

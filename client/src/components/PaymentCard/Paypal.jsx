@@ -47,9 +47,7 @@ const PaypalCheckout = ({
   }
 
   const approvePaymentHandler = (data, actions) => {
-    console.log('on approve payment', actions)
     return actions.order.capture().then(function (orderData) {
-      console.log('🚀orderData', orderData)
       // Successful capture! For dev/demo purposes:
       var transaction = orderData.purchase_units[0].payments.captures[0]
       const transaction_data = {
@@ -74,7 +72,6 @@ const PaypalCheckout = ({
 
   const onPaymentErrorHandler = (error) => {
     setError(strings.client[lang].went_wrong)
-    console.log('onPaymentError ==> ', error)
   }
 
   const onPaymentCancelHandler = (error) => {

@@ -12,7 +12,6 @@ export const contentAPI = {
       }
     }
     const queryString = new URLSearchParams(queryObject).toString()
-    console.log('queryString: ', queryString)
     return service().get(`/media?${queryString}`)
   },
 }

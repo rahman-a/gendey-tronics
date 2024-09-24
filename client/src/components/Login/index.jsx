@@ -54,7 +54,6 @@ const Login = () => {
         history.push(redirect)
         return
       }
-      console.log('push to main page', info)
       history.push('/')
     }
   }, [error, info, history, re_error, redirect])

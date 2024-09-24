@@ -34,7 +34,6 @@ export const createNewCourse = async (req, res, next) => {
       course: savedCourse._id,
     })
   } catch (error) {
-    console.log({ error })
     next(error)
   }
 }
@@ -91,8 +90,6 @@ export const getTheCourseData = async (req, res, next) => {
       ? await Wishlist.findOne({ itemType: 'course', item: id })
       : null
     if (type === 'preview') {
-      console.log('course price preview', course.price)
-      console.log('course discount', course.discount)
       res.json({
         success: true,
         code: 200,
@@ -646,7 +643,6 @@ function calculateReviewData(reviews) {
   const averageNumericRating = isNaN(overAllRating / numberOfReview)
     ? '0.0'
     : (overAllRating / numberOfReview).toFixed(1)
-  console.log('🚀 averageNumericRating', averageNumericRating)
   const rating1Percentage =
     Math.floor((numberOfRating1 * 100) / numberOfReview) || 0
   const rating2Percentage =

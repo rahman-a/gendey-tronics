@@ -12,10 +12,6 @@ const Instructors = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    instructors && console.log({ instructors })
-  }, [instructors])
-
-  useEffect(() => {
     dispatch(actions.instructor.getAllInstructors())
   }, [])
   return (

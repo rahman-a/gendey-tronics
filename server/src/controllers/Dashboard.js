@@ -8,7 +8,6 @@ import Contact from '../models/contactModal.js'
 import Calls from '../models/callsModal.js'
 
 export const mainDashboardInfo = async (req, res, next) => {
-  console.log('mainDashboardInfo')
   try {
     const users = await User.count({})
     const courses = await Course.count({})

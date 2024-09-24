@@ -24,6 +24,7 @@ import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import ImagesGallery from './Images'
 import strings from '../../localization'
+import CardsContainer from '../../components/CardsContainer'
 
 const Product = () => {
   const [qty, setQty] = useState(1)
@@ -450,15 +451,11 @@ const Product = () => {
                       <Message type='error' size='3rem' message={error_p} />
                     ) : (
                       products && (
-                        <CardSlider
-                          length={products.length}
-                          containerRef={containerRef}
-                          title='related products'
-                        >
+                        <CardsContainer title='Related Products'>
                           {products.map((product) => (
                             <ProductCard card={product} key={product._id} />
                           ))}
-                        </CardSlider>
+                        </CardsContainer>
                       )
                     )}
                   </div>

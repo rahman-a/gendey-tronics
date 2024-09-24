@@ -10,6 +10,7 @@ import product from '../../constants/productConstant'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import strings from '../../localization'
+import CardsContainer from '../../components/CardsContainer'
 
 const Products = () => {
   // const [imgSrc, setImgSrc] = useState(null)
@@ -97,14 +98,11 @@ const Products = () => {
               </figure> */}
               <div className={`container ${style.products__container}`}>
                 <div className={style.products__wrapper} ref={wrapperRef}>
-                  <CardSlider
-                    length={products.length}
-                    containerRef={wrapperRef}
-                  >
+                  <CardsContainer>
                     {products.map((product) => (
                       <ProductCard card={product} key={product._id} />
                     ))}
-                  </CardSlider>
+                  </CardsContainer>
                 </div>
               </div>
             </>
@@ -116,3 +114,14 @@ const Products = () => {
 }
 
 export default Products
+
+/***
+ * <CardSlider
+                    length={products.length}
+                    containerRef={wrapperRef}
+                  >
+                    {products.map((product) => (
+                      <ProductCard card={product} key={product._id} />
+                    ))}
+                  </CardSlider>
+ */

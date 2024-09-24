@@ -8,6 +8,7 @@ import actions from '../../actions'
 import Loader from '../../components/Loader'
 import Alert from 'react-bootstrap/Alert'
 import strings from '../../localization'
+import CardsContainer from '../../components/CardsContainer'
 
 const Courses = () => {
   // const [showHeroImage, setShowHeroImage] = useState(false)
@@ -21,11 +22,9 @@ const Courses = () => {
 
   // const getHeroImageSrc = () => {
   //   if (items && !imgSrc) {
-  //     console.log({ items })
   //     const navItem = items.find(
   //       (item) => item.title['en'].toLocaleLowerCase() === 'courses'
   //     )
-  //     console.log({ navItem })
   //     if (navItem) {
   //       setImgSrc(navItem.image)
   //     }
@@ -80,14 +79,12 @@ const Courses = () => {
           ) : (
             courses &&
             courses.length > 0 && (
-              <div className={style.courses__wrapper} ref={wrapperRef}>
-                <CardSlider length={courses.length} containerRef={wrapperRef}>
-                  {courses &&
-                    courses.map((course) => (
-                      <CourseCard key={course._id} data={course} />
-                    ))}
-                </CardSlider>
-              </div>
+              <CardsContainer>
+                {courses &&
+                  courses.map((course) => (
+                    <CourseCard key={course._id} data={course} />
+                  ))}
+              </CardsContainer>
             )
           )}
         </div>
@@ -97,3 +94,14 @@ const Courses = () => {
 }
 
 export default Courses
+
+/***
+ * <div className={style.courses__wrapper} ref={wrapperRef}>
+                <CardSlider length={courses.length} containerRef={wrapperRef}>
+                  {courses &&
+                    courses.map((course) => (
+                      <CourseCard key={course._id} data={course} />
+                    ))}
+                </CardSlider>
+ * 
+ */
