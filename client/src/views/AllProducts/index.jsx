@@ -94,7 +94,7 @@ const Products = () => {
                   <h2>online file services</h2>
                   <p>think more about tested solution</p>
                 </div>
-                <img src={`/api/images/${imgSrc}`} alt='products-files' />
+                <img src={`${import.meta.env.VITE_API_URL}/images/${imgSrc}`} alt='products-files' />
               </figure> */}
               <div className={`container ${style.products__container}`}>
                 <div className={style.products__wrapper} ref={wrapperRef}>

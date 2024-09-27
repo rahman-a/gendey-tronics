@@ -33,7 +33,10 @@ const VideoCard = ({ lang, strings, video }) => {
       </Modal>
       <div className={style.videoCard}>
         <figure>
-          <img src={`/api/images/${video.thumbnail}`} alt='thumbnail' />
+          <img
+            src={`${import.meta.env.VITE_API_URL}/images/${video.thumbnail}`}
+            alt='thumbnail'
+          />
           <span onClick={() => setPlayVideo(true)}>
             <PlayCircle />
           </span>

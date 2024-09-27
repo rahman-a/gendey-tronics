@@ -7,9 +7,6 @@ export default defineConfig({
     global: 'window',
   },
   server: {
-    proxy: {
-      '/api': 'http://localhost:5000',
-    },
     host: '0.0.0.0',
     port: 3000,
   },

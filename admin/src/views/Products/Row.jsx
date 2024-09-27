@@ -88,9 +88,11 @@ const Row = ({ product, idx }) => {
               className='row-photo'
               src={
                 product.image
-                  ? `/api/images/${product.image}`
+                  ? `${import.meta.env.VITE_API_URL}/images/${product.image}`
                   : product.images?.length
-                  ? `/api/images/${product.images[0].src}`
+                  ? `${import.meta.env.VITE_API_URL}/images/${
+                      product.images[0].src
+                    }`
                   : '/images/no-image.png'
               }
               alt={product.name}

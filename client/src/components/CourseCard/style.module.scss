@@ -90,6 +90,7 @@
       color: gv.$light-gray;
       line-height: 1.3;
       font-weight: 500;
+      font-size: 14px;
       @include media.mq(xs) {
         font-size: 12px;
       }

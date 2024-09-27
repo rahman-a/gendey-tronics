@@ -32,7 +32,10 @@ const BlogCard = ({ blog, lang, strings }) => {
   return (
     <div className={style.blog}>
       <figure>
-        <img src={`/api/images/${blog.image}`} alt='mechanic' />
+        <img
+          src={`${import.meta.env.VITE_API_URL}/images/${blog.image}`}
+          alt='mechanic'
+        />
       </figure>
       <div className={style.blog__content}>
         <h3>{blog.title}</h3>

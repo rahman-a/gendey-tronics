@@ -52,7 +52,7 @@ const Courses = () => {
       <div className={style.courses}>
         {/* {showHeroImage && (
           <figure>
-            <img src={`/api/images/${imgSrc}`} alt='learn' />
+            <img src={`${import.meta.env.VITE_API_URL}/images/${imgSrc}`} alt='learn' />
           </figure>
         )} */}
         <div

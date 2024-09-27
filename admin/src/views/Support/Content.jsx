@@ -57,7 +57,7 @@ const Content = ({ email, setIsReplay, setIsNewEmail }) => {
 
   const displayAsset = (file) => {
     const anchor = document.createElement('a')
-    anchor.href = `/api/images/${file}`
+    anchor.href = `${import.meta.env.VITE_API_URL}/images/${file}`
     anchor.target = '_blank'
     anchor.click()
   }

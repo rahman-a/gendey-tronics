@@ -43,7 +43,7 @@ const CourseInstructor = ({ instructor }) => {
           <img
             src={
               instructor.avatar
-                ? `/api/images/${instructor.avatar}`
+                ? `${import.meta.env.VITE_API_URL}/images/${instructor.avatar}`
                 : '/images/instructor_info.png'
             }
             alt='instructor'

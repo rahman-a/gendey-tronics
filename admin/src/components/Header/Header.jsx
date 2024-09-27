@@ -147,7 +147,10 @@ const Header = () => {
                   onClick={toggleLogoutDisplay}
                 >
                   {image ? (
-                    <img src={`/api/images/${image}`} alt='personal avatar' />
+                    <img
+                      src={`${import.meta.env.VITE_API_URL}/images/${image}`}
+                      alt='personal avatar'
+                    />
                   ) : (
                     <img
                       style={{

@@ -235,7 +235,9 @@ const Course = () => {
                         />
                       </div>
                       <img
-                        src={`/api/images/${course.image}`}
+                        src={`${import.meta.env.VITE_API_URL}/images/${
+                          course.image
+                        }`}
                         alt={course.name}
                       />
                     </figure>

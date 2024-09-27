@@ -165,9 +165,11 @@ const Product = () => {
                       <img
                         src={
                           product.image
-                            ? `/api/images/${product.image}`
+                            ? `${import.meta.env.VITE_API_URL}/images/${
+                                product.image
+                              }`
                             : product.images?.length
-                            ? `/api/images/${
+                            ? `${import.meta.env.VITE_API_URL}/images/${
                                 product.images[product.images.length - 1].src
                               }`
                             : '/images/no-image.png'

@@ -34,7 +34,10 @@ const Fav = ({ product }) => {
       <div className={style.favList__product}>
         <HeartOutline />
 
-        <img src={`/api/images/${product.image}`} alt='item' />
+        <img
+          src={`${import.meta.env.VITE_API_URL}/images/${product.image}`}
+          alt='item'
+        />
 
         <a href='/product'>{product.name}</a>
       </div>

@@ -25,7 +25,9 @@ const OrderItems = ({ itemsToggle, setItemsToggle, items }) => {
                     <div className={style.orders__items_info}>
                       <figure>
                         <img
-                          src={`/api/images/${item.product.images[0]?.src}`}
+                          src={`${import.meta.env.VITE_API_URL}/images/${
+                            item.product.images[0]?.src
+                          }`}
                           alt={item.product.name}
                         />
                       </figure>

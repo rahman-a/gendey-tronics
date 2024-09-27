@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "target": "ES6"
+    "target": "ES6",
+    "checkJs": false,
+    "allowJs": true
   },
+  "include": ["server/src/**/*", "client/src/**/*", "admin/src/**/*"],
   "exclude": ["node_modules", "**/node_modules/*"]
 }

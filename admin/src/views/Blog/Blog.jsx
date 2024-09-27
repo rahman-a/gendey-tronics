@@ -127,7 +127,12 @@ const Product = () => {
                         style={{ display: 'none' }}
                       />
                     </div>
-                    <img src={`/api/images/${blog.image}`} alt={blog.title} />
+                    <img
+                      src={`${import.meta.env.VITE_API_URL}/images/${
+                        blog.image
+                      }`}
+                      alt={blog.title}
+                    />
                   </figure>
                 </div>
               </>

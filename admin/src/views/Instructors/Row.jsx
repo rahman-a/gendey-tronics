@@ -128,7 +128,9 @@ const Row = ({ instructor, idx }) => {
           <td>
             <img
               className='row-photo'
-              src={`/api/images/${instructor.avatar}`}
+              src={`${import.meta.env.VITE_API_URL}/images/${
+                instructor.avatar
+              }`}
               alt={instructor.info.firstName}
             />
           </td>

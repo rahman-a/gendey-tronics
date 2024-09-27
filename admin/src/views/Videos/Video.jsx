@@ -47,7 +47,10 @@ const VideoCard = ({ thumbnail, url, id, title }) => {
         className={style.videos__video}
         onClick={() => setIsPlayVideo(true)}
       >
-        <img src={`/api/images/${thumbnail}`} alt='gallery' />
+        <img
+          src={`${import.meta.env.VITE_API_URL}/images/${thumbnail}`}
+          alt='gallery'
+        />
         <div className={style.videos__actions}>
           {isDeleting ? (
             <Loader

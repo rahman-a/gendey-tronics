@@ -104,7 +104,7 @@ const Photos = () => {
       <CardModal toggle={showImage} closeHandler={closeModalHandler}>
         <figure style={{ minWidth: '40rem', maxHeight: '100vh', margin: '0' }}>
           <img
-            src={`/api/images/${imageSrc}`}
+            src={`${import.meta.env.VITE_API_URL}/images/${imageSrc}`}
             alt=''
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />

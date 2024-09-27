@@ -6,7 +6,7 @@ import Blog from '../models/blogModel.js'
 import Enrollment from '../models/enrollmentModal.js'
 import Order from '../models/orderModal.js'
 import randomstring from 'randomstring'
-import sendEmail from '../../emails/send.js'
+import sendEmail from '../emails/send.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import { OAuth2Client } from 'google-auth-library'
@@ -637,7 +637,7 @@ const sendAuthLinkToUser = async (user, req, type) => {
     await user.save()
 
     // compose the url
-    const resetUrl = `${req.protocol}://${req.hostname}/${type}?TOKEN=${token}`
+    const resetUrl = `${process.env.APP_URL}/${type}?TOKEN=${token}`
     // const resetUrl = `${req.protocol}://172.21.80.180:3000/${type}?TOKEN=${token}`
     const info = {
       link: resetUrl,
@@ -645,8 +645,8 @@ const sendAuthLinkToUser = async (user, req, type) => {
       email: user.email,
     }
     const emailData = {
-      to: user.email,
-      from: 'noreplay@Gendytronics.com',
+      to: [user.email],
+      from: 'noreplay@gendyecu.com',
       subject:
         type === 'reset' ? 'Reset your password' : 'Activate your account',
       info,

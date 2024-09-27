@@ -1,7 +1,8 @@
+// @ts-nocheck
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+import { DIRNAME } from '../constants.js'
 import { google } from 'googleapis'
 import fetch from 'node-fetch'
 import Course from '../models/courseModal.js'
@@ -18,9 +19,8 @@ const GOOGLE_COURSES_FOLDER = '12JHc6nWos-HuOmHvPollweyZuVv6b-E7'
 const GOOGLE_PRODUCTS_FOLDER = '1zCNLfYRxhrahRi4v0evO81QSg32QCScp'
 
 const getOauthClient = async () => {
-  const credentials = JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../gcr.json'))
-  ).web
+  const credentialsPath = path.join(DIRNAME, 'src/gcr.json')
+  const credentials = JSON.parse(fs.readFileSync(credentialsPath, 'utf8')).web
 
   const { client_id, client_secret, redirect_uris } = credentials
 
@@ -45,12 +45,12 @@ const generateAccessToken = async (code) => {
   const auth = await getOauthClient()
   const token = await auth.getToken(code)
   auth.setCredentials(token)
-  fs.writeFileSync(path.join(__dirname, '../gact.json'), JSON.stringify(token))
+  fs.writeFileSync(path.join(DIRNAME, 'src/gact.json'), JSON.stringify(token))
 }
 
 const credential = (_) => {
   const accessToken = JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../gact.json'))
+    fs.readFileSync(path.join(DIRNAME, 'src/gact.json'), 'utf8')
   ).tokens
   return accessToken
 }
@@ -136,10 +136,10 @@ const deleteDriveFile = async (id) => {
 
 const getGoogleAccessTokenByRefreshToken = async (_) => {
   const refresh_token = JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../gact.json'))
+    fs.readFileSync(path.join(DIRNAME, 'src/gact.json'), 'utf8')
   ).tokens.refresh_token
   const { client_secret, client_id } = JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../gcr.json'))
+    fs.readFileSync(path.join(DIRNAME, 'src/gcr.json'), 'utf8')
   ).web
 
   const accessTokenUrl = 'https://www.googleapis.com/oauth2/v4/token'
@@ -188,7 +188,7 @@ export async function getResumableURI(req, res, next) {
         : type === 'product' && [GOOGLE_PRODUCTS_FOLDER]
 
     const uris = JSON.parse(
-      fs.readFileSync(path.join(__dirname, '../resumable_uri.json'))
+      fs.readFileSync(path.join(DIRNAME, 'src/resumable_uri.json'), 'utf8')
     )
     const isResumableURI = uris.find((ur) => ur._id === id && ur.part === part)
 
@@ -224,7 +224,7 @@ export async function getResumableURI(req, res, next) {
     if (resumableURI) {
       const updatedUris = [...uris, { _id: id, part, uri: resumableURI }]
       fs.writeFileSync(
-        path.join(__dirname, '../resumable_uri.json'),
+        path.join(DIRNAME, 'src/resumable_uri.json'),
         JSON.stringify(updatedUris)
       )
       req.resumeURI = resumableURI
@@ -241,7 +241,7 @@ export async function getResumableURI(req, res, next) {
 export const getAccessToken = async (req, res, next) => {
   const { code } = req.query
   try {
-    if (!fs.existsSync(path.join(__dirname, '../gact.json'))) {
+    if (!fs.existsSync(path.join(DIRNAME, 'src/gact.json'))) {
       await generateAccessToken(code)
     }
     const files = await listDriveFiles()
@@ -258,8 +258,9 @@ export const getAccessToken = async (req, res, next) => {
 
 export const authenticateMember = async (req, res, next) => {
   try {
-    if (fs.existsSync(path.join(__dirname, '../gact.json'))) {
+    if (fs.existsSync(path.join(DIRNAME, 'src/gact.json'))) {
       const files = await listDriveFiles()
+      console.log('Files: ', files)
       res.send({
         success: true,
         code: 200,
@@ -282,7 +283,7 @@ export const authenticateMember = async (req, res, next) => {
 export const searchDriveFiles = async (req, res, next) => {
   const { name, folder } = req.query
   try {
-    if (fs.existsSync(path.join(__dirname, '../gact.json'))) {
+    if (fs.existsSync(path.join(DIRNAME, 'src/gact.json'))) {
       const files = await listDriveFiles(name, folder)
       res.send({
         success: true,
@@ -345,12 +346,15 @@ export const uploadFile = async (req, res, next) => {
           }
 
           const uris = JSON.parse(
-            fs.readFileSync(path.join(__dirname, '../resumable_uri.json'))
+            fs.readFileSync(
+              path.join(DIRNAME, 'src/resumable_uri.json'),
+              'utf-8'
+            )
           )
           const idx = uris.findIndex((ur) => ur._id === id && ur.part === part)
           if (idx !== -1) uris.splice(idx, 1)
           fs.writeFileSync(
-            path.join(__dirname, '../resumable_uri.json'),
+            path.join(DIRNAME, 'src/resumable_uri.json'),
             JSON.stringify(uris)
           )
 
@@ -361,7 +365,6 @@ export const uploadFile = async (req, res, next) => {
           })
         } else {
           res.status(200).send({
-            success: 200,
             success: true,
             uploaded: length - end,
             message: null,
@@ -453,7 +456,7 @@ export const resumePreviousUpload = async (req, res, next) => {
     }
 
     const uris = JSON.parse(
-      fs.readFileSync(path.join(__dirname, '../resumable_uri.json'))
+      fs.readFileSync(path.join(DIRNAME, 'src/resumable_uri.json'), 'utf-8')
     )
     const isResumableURI = uris.find((ur) => ur._id === id && ur.part === part)
 
@@ -484,12 +487,12 @@ export const resumePreviousUpload = async (req, res, next) => {
       })
       // remove the resumable link if exist
       const uris = JSON.parse(
-        fs.readFileSync(path.join(__dirname, '../resumable_uri.json'))
+        fs.readFileSync(path.join(DIRNAME, 'src/resumable_uri.json'), 'utf-8')
       )
       const idx = uris.findIndex((ur) => ur._id === id && ur.part === part)
       if (idx !== -1) uris.splice(idx, 1)
       fs.writeFileSync(
-        path.join(__dirname, '../resumable_uri.json'),
+        path.join(DIRNAME, 'src/resumable_uri.json'),
         JSON.stringify(uris)
       )
       return

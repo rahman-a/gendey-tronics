@@ -60,9 +60,9 @@ const ProductCard = ({ card }) => {
         <img
           src={
             card.images?.length
-              ? `/api/images/${card.images[0]?.src}`
+              ? `${import.meta.env.VITE_API_URL}/images/${card.images[0]?.src}`
               : card.image
-              ? `/api/images/${card.image}`
+              ? `${import.meta.env.VITE_API_URL}/images/${card.image}`
               : 'images/no-image.jpg'
           }
           alt='product'

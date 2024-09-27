@@ -8,6 +8,7 @@ import Loader from '../Loader'
 import Message from '../Message'
 import strings from '../../localization'
 import { tm } from '../../utils'
+import CoursePrice from '../CoursePrice'
 
 const CourseOverview = ({ data }) => {
   const [couponCode, setCouponCode] = useState('')
@@ -91,14 +92,29 @@ const CourseOverview = ({ data }) => {
             </div>
           ) : data.isPaid ? (
             <div className={style.overview__price} style={{ direction: 'ltr' }}>
-              <p>{`$${
-                coupon?.success
-                  ? (data.price - (data.price * coupon.discount) / 100).toFixed(
-                      2
-                    )
-                  : data.price
-              }`}</p>
-              <span>{`${data?.discount}% ${strings.course[lang].off}`}</span>
+              <p>
+                {coupon?.success ? (
+                  <CoursePrice
+                    finalPrice={Math.round(
+                      (
+                        data.price -
+                        (data.price * coupon.discount) / 100
+                      ).toFixed(2)
+                    )}
+                    discount={coupon.discount}
+                    originalPrice={data.price}
+                  />
+                ) : (
+                  <CoursePrice
+                    finalPrice={data.price}
+                    discount={data.discount}
+                    originalPrice={data.originalPrice}
+                  />
+                )}
+              </p>
+              <span>{`${coupon?.success ? coupon.discount : data?.discount}% ${
+                strings.course[lang].off
+              }`}</span>
             </div>
           ) : (
             <div className={style.overview__price}>

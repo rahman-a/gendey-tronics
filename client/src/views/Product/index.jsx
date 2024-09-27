@@ -271,7 +271,9 @@ const Product = () => {
                           product.images.map((image) => (
                             <img
                               onClick={(e) => setImgSrc(image.src)}
-                              src={`/api/images/${image.src}`}
+                              src={`${import.meta.env.VITE_API_URL}/images/${
+                                image.src
+                              }`}
                               alt='product'
                               key={image._id}
                             />
@@ -281,7 +283,9 @@ const Product = () => {
                         <img
                           src={
                             imgSrc
-                              ? `/api/images/${imgSrc}`
+                              ? `${
+                                  import.meta.env.VITE_API_URL
+                                }/images/${imgSrc}`
                               : '/images/no-image.jpg'
                           }
                           alt='product file'

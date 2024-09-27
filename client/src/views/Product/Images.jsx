@@ -23,7 +23,7 @@ const Gallery = ({ isGallery, setIsGallery, images, name }) => {
   useEffect(() => {
     if (images) {
       setImgSrc({
-        src: `/api/images/${images[0]?.src}`,
+        src: `${import.meta.env.VITE_API_URL}/images/${images[0]?.src}`,
         _id: images[0]?._id,
       })
     }
@@ -54,17 +54,20 @@ const Gallery = ({ isGallery, setIsGallery, images, name }) => {
                   <img
                     key={image.key}
                     className={
-                      imgSrc?.src === `/api/images/${image.src}`
+                      imgSrc?.src ===
+                      `${import.meta.env.VITE_API_URL}/images/${image.src}`
                         ? style.product__gallery_active
                         : ''
                     }
                     onClick={() =>
                       setImgSrc({
-                        src: `/api/images/${image.src}`,
+                        src: `${import.meta.env.VITE_API_URL}/images/${
+                          image.src
+                        }`,
                         _id: image._id,
                       })
                     }
-                    src={`/api/images/${image.src}`}
+                    src={`${import.meta.env.VITE_API_URL}/images/${image.src}`}
                     alt='product'
                   />
                 ))}

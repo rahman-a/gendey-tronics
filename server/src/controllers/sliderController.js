@@ -1,8 +1,7 @@
 import Slider from '../models/sliderModal.js'
+import { DIRNAME } from '../constants.js'
 import fs from 'fs'
 import path from 'path'
-import { fileURLToPath } from 'url'
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export const createSlider = async (req, res, next) => {
   const { target } = req.body
@@ -50,7 +49,7 @@ export const deleteSlider = async (req, res, next) => {
       throw new Error('Slider not found')
     }
 
-    fs.unlinkSync(path.resolve(__dirname, `../../uploads/${slider.image}`))
+    fs.unlinkSync(path.resolve(DIRNAME, `src/uploads/${slider.image}`))
 
     await slider.remove()
 

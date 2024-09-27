@@ -2,8 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import Menu from '../models/MenuModel.js'
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+import { DIRNAME } from '../constants.js'
 
 export const createItem = async (req, res, next) => {
   const { title, order, parent } = req.body
@@ -113,7 +112,7 @@ export const updateItem = async (req, res, next) => {
 
       if (req.fileName) {
         item.image &&
-          fs.unlinkSync(path.join(__dirname, '../../uploads/', item.image))
+          fs.unlinkSync(path.join(DIRNAME, 'src/uploads/', item.image))
         item.image = req.fileName
       }
 
@@ -141,7 +140,7 @@ export const updateItem = async (req, res, next) => {
 
     if (req.fileName) {
       item.image &&
-        fs.unlinkSync(path.join(__dirname, '../../uploads/', item.image))
+        fs.unlinkSync(path.join(DIRNAME, 'src/uploads/', item.image))
       item.image = req.fileName
     }
 

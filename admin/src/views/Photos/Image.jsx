@@ -25,7 +25,10 @@ const Image = ({ src, id, idx, showImageHandler }) => {
       className={style.photos__image}
       onClick={() => showImageHandler(src, idx)}
     >
-      <img src={`/api/images/${src}`} alt='gallery' />
+      <img
+        src={`${import.meta.env.VITE_API_URL}/images/${src}`}
+        alt='gallery'
+      />
       <div>
         {isLoading ? (
           <Loader

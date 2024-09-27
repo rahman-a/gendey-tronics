@@ -1,10 +1,8 @@
 import multer from 'multer'
-import { fileURLToPath } from 'url'
 import path from 'path'
 import strings from '../localization.js'
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const uploadsDirectory = path.resolve(__dirname, '../../uploads')
+import { DIRNAME } from '../constants.js'
+const uploadsDirectory = path.join(DIRNAME, 'src/uploads')
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -25,7 +23,11 @@ export const uploadHandler = multer({
     fileSize: 5000000,
   },
   fileFilter(req, file, cb) {
-    if (!file.originalname.match(/\.(png|jpg|jpeg|PNG|JPG|JPEG|pdf|PDF)$/)) {
+    if (
+      !file.originalname.match(
+        /\.(png|jpg|jpeg|PNG|JPG|JPEG|webp|WEBP|pdf|PDF)$/
+      )
+    ) {
       cb(new Error(strings.product[req.headers.lang].image_upload_formats))
     }
     cb(undefined, true)

@@ -10,7 +10,10 @@ const ImageCard = ({ src, showImage, idx }) => {
       onClick={() => showImage(src, idx)}
     >
       <div className={style.imageCard__image}>
-        <img src={`/api/images/${src}`} alt={`imageCard-${idx}`} />
+        <img
+          src={`${import.meta.env.VITE_API_URL}/images/${src}`}
+          alt={`imageCard-${idx}`}
+        />
       </div>
       <span></span>
     </figure>

@@ -71,6 +71,7 @@
     display: flex;
     color: gv.$white-color;
     gap: 0.5rem;
+    align-items: center;
     &_price {
       display: flex;
       flex-direction: column;
@@ -95,6 +96,17 @@
       font-weight: 500;
       border-radius: 0.5rem;
       cursor: pointer;
+      min-height: 5rem;
+      span {
+        width: max-content;
+      }
+      @include media.mq(sm) {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: smaller;
+      }
     }
   }
 }

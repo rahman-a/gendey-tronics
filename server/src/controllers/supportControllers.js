@@ -1,18 +1,17 @@
+// @ts-nocheck
 import fs from 'fs'
 import path from 'path'
-import { fileURLToPath } from 'url'
 import Support from '../models/supportModel.js'
 import User from '../models/userModal.js'
-import template from '../../emails/template.js'
-import sendEmail from '../../emails/send.js'
+import template from '../emails/template.js'
+import sendEmail from '../emails/send.js'
+import { DIRNAME } from '../constants.js'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-
-export const incomingEmails = async (req, res) => {
+export const incomingEmails = async (req, res, next) => {
   if (req.body['X-Mailgun-Incoming'] !== 'Yes') {
     if (req.files) {
       req.files.forEach((file) => {
-        fs.unlinkSync(path.resolve(__dirname, `../../uploads/${file.filename}`))
+        fs.unlinkSync(path.resolve(DIRNAME, `src/uploads/${file.filename}`))
       })
     }
     return res.status(400).json('Invalid request')
@@ -69,7 +68,7 @@ export const outgoingEmails = async (req, res, next) => {
 
     const data = {
       from: `Elgendy Autotronics Center <${sender}>`,
-      to: recipient,
+      to: [recipient],
       subject,
       html: outputHTML,
     }

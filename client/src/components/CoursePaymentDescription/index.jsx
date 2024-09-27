@@ -32,7 +32,7 @@ const CoursePaymentDescription = ({ loading, error, data, coupon }) => {
               <img
                 src={
                   data && data.image
-                    ? `/api/images/${data.image}`
+                    ? `${import.meta.env.VITE_API_URL}/images/${data.image}`
                     : '/images/img_placeholder.png'
                 }
                 alt={data ? data.name : 'Course Preview'}

@@ -52,7 +52,7 @@ const Slider = () => {
           >
             <img
               alt={slide.header ? slide.header[lang] : 'slide image'}
-              src={`/api/images/${slide.image}`}
+              src={`${import.meta.env.VITE_API_URL}/images/${slide.image}`}
             />
             <div
               className={`${style.carousel__desc} ${

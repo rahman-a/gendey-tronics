@@ -37,6 +37,10 @@ const Course = () => {
       dispatch({ type: constants.courses.GET_ONE_RESET })
     }
   }, [id, dispatch, isAuth])
+
+  useEffect(() => {
+    console.log('course', course)
+  }, [course])
   return (
     <Template>
       {loading ? (
@@ -72,6 +76,7 @@ const Course = () => {
               data={{
                 video: course.trailer,
                 price: course.price,
+                originalPrice: course.original_Price,
                 discount: course.discount,
                 duration: course.duration,
                 isEnrolled: course.enrollment.isEnrolled,
@@ -87,6 +92,7 @@ const Course = () => {
               data={{
                 video: course.trailer,
                 price: course.price,
+                originalPrice: course.original_Price,
                 discount: course.discount,
                 title: course.name,
                 isEnrolled: course.enrollment.isEnrolled,

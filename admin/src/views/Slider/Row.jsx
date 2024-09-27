@@ -92,7 +92,7 @@ const Row = ({ slide, idx }) => {
         <Modal.Body>
           <img
             style={{ width: '100%', height: '100%' }}
-            src={`/api/images/${slide.image}`}
+            src={`${import.meta.env.VITE_API_URL}/images/${slide.image}`}
             alt='slider'
           />
         </Modal.Body>
@@ -123,7 +123,10 @@ const Row = ({ slide, idx }) => {
               <span onClick={() => setIsImage(true)}>
                 <Eye />
               </span>
-              <img src={`/api/images/${slide.image}`} alt='slider' />
+              <img
+                src={`${import.meta.env.VITE_API_URL}/images/${slide.image}`}
+                alt='slider'
+              />
             </p>
           </td>
 

@@ -5,6 +5,7 @@ import { useHistory, useLocation, useParams } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import actions from '../../actions'
 import strings from '../../localization'
+import CoursePrice from '../CoursePrice'
 
 const CourseInfoTab = ({ data }) => {
   const history = useHistory()
@@ -79,25 +80,41 @@ const CourseInfoTab = ({ data }) => {
                 ${style.infoTab__cta_price}
                 ${style.infoTab__cta_price_ar}`}
           >
-            <h3>{`$${
-              coupon?.success
-                ? Math.round(
-                    data?.price - (coupon?.discount * data?.price) / 100
-                  ).toFixed(2)
-                : data?.price
-            }`}</h3>
-            <p>{`${coupon?.success ? coupon.discount : data?.discount}% ${
-              strings.course[lang].off
-            }`}</p>
+            <h3>
+              {coupon?.success ? (
+                <CoursePrice
+                  finalPrice={Math.round(
+                    (data.price - (data.price * coupon.discount) / 100).toFixed(
+                      2
+                    )
+                  )}
+                  discount={coupon.discount}
+                  originalPrice={data.price}
+                />
+              ) : (
+                <CoursePrice
+                  finalPrice={data.price}
+                  discount={data.discount}
+                  originalPrice={data.originalPrice}
+                />
+              )}
+            </h3>
+            {(coupon?.success || data?.discount > 0) && (
+              <p>{`${coupon?.success ? coupon.discount : data?.discount}% ${
+                strings.course[lang].off
+              }`}</p>
+            )}
           </div>
         )}
         <button
           onClick={directClientHandler}
           style={{ padding: data?.isEnrolled ? '1.2rem' : '0.5rem' }}
         >
-          {data?.isEnrolled
-            ? strings.course[lang].enrolled_course
-            : strings.course[lang].enroll}
+          <span>
+            {data?.isEnrolled
+              ? strings.course[lang].enrolled_course
+              : strings.course[lang].enroll}
+          </span>
         </button>
       </div>
     </div>
