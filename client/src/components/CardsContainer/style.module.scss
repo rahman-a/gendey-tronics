@@ -4,6 +4,9 @@
 .container {
   display: grid;
   place-content: center;
+  @include media.mq(xs) {
+    place-content: unset;
+  }
   &__title {
     transform: translateX(6px);
     font-size: 2rem;

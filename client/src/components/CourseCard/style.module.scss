@@ -11,9 +11,6 @@
   @include media.mq(sm) {
     width: 100%;
   }
-  &:not(:last-child) {
-    margin-right: 2rem;
-  }
   &:hover {
     transform: translateY(-5px);
   }

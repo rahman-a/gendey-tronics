@@ -83,16 +83,13 @@
   }
   &__container {
     width: 120rem;
-    @include media.mq(xl) {
-      width: 90rem;
-    }
     @include media.mq(md) {
       width: 100%;
     }
   }
   &__wrapper {
     position: relative;
-    margin-top: 8rem;
+    margin-top: 10.5rem;
     overflow: hidden;
   }
 }
