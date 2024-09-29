@@ -1,6 +1,7 @@
 import React from 'react'
 import style from './style.module.scss'
 import { Modal, Button, Badge, Table, Accordion } from 'react-bootstrap'
+import { API_URL } from '../../constants'
 
 const OrderItems = ({ itemsToggle, setItemsToggle, items }) => {
   return (
@@ -25,9 +26,7 @@ const OrderItems = ({ itemsToggle, setItemsToggle, items }) => {
                     <div className={style.orders__items_info}>
                       <figure>
                         <img
-                          src={`${import.meta.env.VITE_API_URL}/images/${
-                            item.product.images[0]?.src
-                          }`}
+                          src={`${API_URL}/images/${item.product.images[0]?.src}`}
                           alt={item.product.name}
                         />
                       </figure>

@@ -9,7 +9,7 @@ import BlogComment from '../../components/BlogComment'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import actions from '../../actions'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 import strings from '../../localization'
 
 const Blog = () => {
@@ -66,7 +66,7 @@ const Blog = () => {
                         `}</p>
                 <figure>
                   <img
-                    src={`${import.meta.env.VITE_API_URL}/images/${blog.image}`}
+                    src={`${API_URL}/images/${blog.image}`}
                     alt={blog.title}
                   />
                 </figure>

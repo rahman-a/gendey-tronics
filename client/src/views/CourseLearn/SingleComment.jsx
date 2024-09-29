@@ -1,5 +1,6 @@
 import React from 'react'
 import style from './style.module.scss'
+import { API_URL } from '../../constants'
 
 const SingleComment = ({ comment }) => {
   const urlConstructor = (string) => {
@@ -7,7 +8,7 @@ const SingleComment = ({ comment }) => {
     if (url.protocol === 'http:' || url.protocol === 'https:') {
       return url
     }
-    return `${import.meta.env.VITE_API_URL}/images/${string}`
+    return `${API_URL}/images/${string}`
   }
   return (
     <div

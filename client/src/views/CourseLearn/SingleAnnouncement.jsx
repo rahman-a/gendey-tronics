@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import style from './style.module.scss'
 import SingleComment from './SingleComment'
 import strings from '../../localization'
+import { API_URL } from '../../constants'
 
 const SingleAnnouncement = ({ data, lang }) => {
   const [toggleComment, setToggleComment] = useState(false)
@@ -17,7 +18,7 @@ const SingleAnnouncement = ({ data, lang }) => {
           <img
             src={
               data.image
-                ? `${import.meta.env.VITE_API_URL}/images/${data.image}`
+                ? `${API_URL}/images/${data.image}`
                 : '/images/instructor_info.png'
             }
             alt='instructor'

@@ -19,7 +19,7 @@ import Call from './call'
 import PhoneNumber from './phoneNumber'
 import Calender from '../../components/Calender'
 import actions from '../../actions'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import ImagesGallery from './Images'
@@ -271,9 +271,7 @@ const Product = () => {
                           product.images.map((image) => (
                             <img
                               onClick={(e) => setImgSrc(image.src)}
-                              src={`${import.meta.env.VITE_API_URL}/images/${
-                                image.src
-                              }`}
+                              src={`${API_URL}/images/${image.src}`}
                               alt='product'
                               key={image._id}
                             />
@@ -283,9 +281,7 @@ const Product = () => {
                         <img
                           src={
                             imgSrc
-                              ? `${
-                                  import.meta.env.VITE_API_URL
-                                }/images/${imgSrc}`
+                              ? `${API_URL}/images/${imgSrc}`
                               : '/images/no-image.jpg'
                           }
                           alt='product file'

@@ -4,9 +4,10 @@ import { Heart, HeartOutline } from '../icons'
 import { useHistory } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import actions from '../../actions'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 import Loader from '../Loader'
 import { tm } from '../../utils'
+import CoursePrice from '../CoursePrice'
 
 const Course = ({ fav, data, isAuth, enrolled }) => {
   const [isLiked, setIsLiked] = useState(false)
@@ -56,7 +57,7 @@ const Course = ({ fav, data, isAuth, enrolled }) => {
         <img
           src={
             data?.image
-              ? `${import.meta.env.VITE_API_URL}/images/${data.image}`
+              ? `${API_URL}/images/${data.image}`
               : '/images/img_placeholder.png'
           }
           alt={data ? data.name : 'Course Image'}
@@ -75,11 +76,34 @@ const Course = ({ fav, data, isAuth, enrolled }) => {
       </figure>
       <div className={style.courseCard__content}>
         <h3>{data && data.name}</h3>
-        <p>
-          {lang === 'ar'
-            ? `مدة الدورة : ${tm(data.time, lang)}`
-            : `Time : ${tm(data.time, lang)}`}
-        </p>
+        <div className={style.courseCard__metadata}>
+          <p className={style.courseCard__metadata_price}>
+            {data.discount > 0 && (
+              <span className={style['courseCard__metadata_price--discount']}>
+                {data.price}$
+              </span>
+            )}
+            <span className={style['courseCard__metadata_price--original']}>
+              {Math.round(
+                (data.price - (data.price * data.discount) / 100).toFixed(2)
+              )}
+              $
+            </span>
+          </p>
+          <p className={style.courseCard__metadata_duration}>
+            {lang === 'ar' ? (
+              <>
+                <span>مدة الدورة:</span>
+                <span>{tm(data.time, lang)}</span>
+              </>
+            ) : (
+              <>
+                <span>Time:</span>
+                <span>{tm(data.time, lang)}</span>
+              </>
+            )}
+          </p>
+        </div>
       </div>
     </div>
   )

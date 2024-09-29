@@ -9,6 +9,7 @@ import { Loader } from '../../components'
 import actions from '../../actions'
 import UserModal from './userModal'
 import BlogModal from './blogModal'
+import { API_URL } from '../../constants'
 
 const Row = ({ blog, idx }) => {
   const [toggleComments, setToggleComments] = useState(false)
@@ -116,7 +117,7 @@ const Row = ({ blog, idx }) => {
           <td>
             <img
               className='row-photo'
-              src={`${import.meta.env.VITE_API_URL}/images/${blog.image}`}
+              src={`${API_URL}/images/${blog.image}`}
               alt={blog.title}
             />
           </td>

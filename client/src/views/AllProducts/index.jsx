@@ -11,6 +11,7 @@ import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import strings from '../../localization'
 import CardsContainer from '../../components/CardsContainer'
+import { API_URL } from '../../constants'
 
 const Products = () => {
   // const [imgSrc, setImgSrc] = useState(null)
@@ -94,7 +95,7 @@ const Products = () => {
                   <h2>online file services</h2>
                   <p>think more about tested solution</p>
                 </div>
-                <img src={`${import.meta.env.VITE_API_URL}/images/${imgSrc}`} alt='products-files' />
+                <img src={`${API_URL}/images/${imgSrc}`} alt='products-files' />
               </figure> */}
               <div className={`container ${style.products__container}`}>
                 <div className={style.products__wrapper} ref={wrapperRef}>

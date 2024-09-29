@@ -6,7 +6,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Copy, Check, Upload } from '../../icons'
 import { Loader, SideAlert, BackButton } from '../../components'
 import actions from '../../actions'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 import BlogData from './BlogData'
 
 const Product = () => {
@@ -128,9 +128,7 @@ const Product = () => {
                       />
                     </div>
                     <img
-                      src={`${import.meta.env.VITE_API_URL}/images/${
-                        blog.image
-                      }`}
+                      src={`${API_URL}/images/${blog.image}`}
                       alt={blog.title}
                     />
                   </figure>

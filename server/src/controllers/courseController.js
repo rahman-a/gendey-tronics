@@ -133,6 +133,7 @@ export const getTheCourseData = async (req, res, next) => {
 
 export const listAllCourses = async (req, res, next) => {
   const { lang } = req.headers
+  console.log('list all courses')
   const {
     name,
     price,
@@ -271,6 +272,7 @@ export const listAllCourses = async (req, res, next) => {
           image: { $first: '$image' },
           description: { $first: '$description' },
           price: { $first: '$price' },
+          discount: { $first: '$discount' },
           students: { $first: '$students' },
           isPaid: { $first: '$isPaid' },
           createdAt: { $first: '$createdAt' },
@@ -294,6 +296,7 @@ export const listAllCourses = async (req, res, next) => {
           description: 1,
           price: 1,
           isPaid: 1,
+          discount: 1,
           createdAt: 1,
           updatedAt: 1,
           isPublished: 1,

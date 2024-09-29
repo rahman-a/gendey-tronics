@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import Loader from '../Loader'
 import actions from '../../actions'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 
 const BlogCard = ({ blog, lang, strings }) => {
   const [seenLoading, setSeenLoading] = useState(false)
@@ -32,10 +32,7 @@ const BlogCard = ({ blog, lang, strings }) => {
   return (
     <div className={style.blog}>
       <figure>
-        <img
-          src={`${import.meta.env.VITE_API_URL}/images/${blog.image}`}
-          alt='mechanic'
-        />
+        <img src={`${API_URL}/images/${blog.image}`} alt='mechanic' />
       </figure>
       <div className={style.blog__content}>
         <h3>{blog.title}</h3>

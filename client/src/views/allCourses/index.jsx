@@ -9,6 +9,7 @@ import Loader from '../../components/Loader'
 import Alert from 'react-bootstrap/Alert'
 import strings from '../../localization'
 import CardsContainer from '../../components/CardsContainer'
+import { API_URL } from '../../constants'
 
 const Courses = () => {
   // const [showHeroImage, setShowHeroImage] = useState(false)
@@ -52,7 +53,7 @@ const Courses = () => {
       <div className={style.courses}>
         {/* {showHeroImage && (
           <figure>
-            <img src={`${import.meta.env.VITE_API_URL}/images/${imgSrc}`} alt='learn' />
+            <img src={`${API_URL}/images/${imgSrc}`} alt='learn' />
           </figure>
         )} */}
         <div

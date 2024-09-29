@@ -9,6 +9,7 @@ import Enrollments from './Enrollments'
 import { Times, Check, Copy, Edit, Reader } from '../../icons'
 import { Loader, Note, Rating } from '../../components'
 import actions from '../../actions'
+import { API_URL } from '../../constants'
 
 const Row = ({ course, idx }) => {
   const [isDescriptionOn, setIsDescriptionOn] = useState(false)
@@ -131,7 +132,7 @@ const Row = ({ course, idx }) => {
           <td>
             <img
               className='row-photo'
-              src={`${import.meta.env.VITE_API_URL}/images/${course.image}`}
+              src={`${API_URL}/images/${course.image}`}
               alt={course.name}
             />
           </td>

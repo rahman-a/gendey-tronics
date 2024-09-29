@@ -6,6 +6,7 @@ import actions from '../../actions'
 import style from './style.module.scss'
 import { ArrowRight } from '../icons'
 import strings from '../../localization'
+import { API_URL } from '../../constants'
 
 const Slider = () => {
   const { sliders } = useSelector((state) => state.pageSliders)
@@ -52,7 +53,7 @@ const Slider = () => {
           >
             <img
               alt={slide.header ? slide.header[lang] : 'slide image'}
-              src={`${import.meta.env.VITE_API_URL}/images/${slide.image}`}
+              src={`${API_URL}/images/${slide.image}`}
             />
             <div
               className={`${style.carousel__desc} ${

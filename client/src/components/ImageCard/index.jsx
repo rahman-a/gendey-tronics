@@ -1,5 +1,6 @@
 import React from 'react'
 import style from './style.module.scss'
+import { API_URL } from '../../constants'
 
 const ImageCard = ({ src, showImage, idx }) => {
   return (
@@ -10,10 +11,7 @@ const ImageCard = ({ src, showImage, idx }) => {
       onClick={() => showImage(src, idx)}
     >
       <div className={style.imageCard__image}>
-        <img
-          src={`${import.meta.env.VITE_API_URL}/images/${src}`}
-          alt={`imageCard-${idx}`}
-        />
+        <img src={`${API_URL}/images/${src}`} alt={`imageCard-${idx}`} />
       </div>
       <span></span>
     </figure>

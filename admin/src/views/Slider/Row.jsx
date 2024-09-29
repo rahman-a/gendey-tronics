@@ -6,6 +6,7 @@ import { Modal, Button } from 'react-bootstrap'
 import actions from '../../actions'
 import { Eye, Times } from '../../icons'
 import { Loader, NotAvailable } from '../../components'
+import { API_URL } from '../../constants'
 
 const Row = ({ slide, idx }) => {
   const [confirmDelete, setConfirmDelete] = useState(false)
@@ -92,7 +93,7 @@ const Row = ({ slide, idx }) => {
         <Modal.Body>
           <img
             style={{ width: '100%', height: '100%' }}
-            src={`${import.meta.env.VITE_API_URL}/images/${slide.image}`}
+            src={`${API_URL}/images/${slide.image}`}
             alt='slider'
           />
         </Modal.Body>
@@ -123,10 +124,7 @@ const Row = ({ slide, idx }) => {
               <span onClick={() => setIsImage(true)}>
                 <Eye />
               </span>
-              <img
-                src={`${import.meta.env.VITE_API_URL}/images/${slide.image}`}
-                alt='slider'
-              />
+              <img src={`${API_URL}/images/${slide.image}`} alt='slider' />
             </p>
           </td>
 

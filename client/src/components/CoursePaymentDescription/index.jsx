@@ -3,7 +3,7 @@ import style from './style.module.scss'
 import Loader from '../Loader'
 import Message from '../Message'
 import { useDispatch, useSelector } from 'react-redux'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 import strings from '../../localization'
 
 const CoursePaymentDescription = ({ loading, error, data, coupon }) => {
@@ -32,7 +32,7 @@ const CoursePaymentDescription = ({ loading, error, data, coupon }) => {
               <img
                 src={
                   data && data.image
-                    ? `${import.meta.env.VITE_API_URL}/images/${data.image}`
+                    ? `${API_URL}/images/${data.image}`
                     : '/images/img_placeholder.png'
                 }
                 alt={data ? data.name : 'Course Preview'}

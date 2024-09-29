@@ -3,6 +3,7 @@ import style from './style.module.scss'
 import { PlayCircle, Logo } from '../icons'
 import { Modal } from '../Modal'
 import { Overlay } from '../Overlay'
+import { API_URL } from '../../constants'
 
 const VideoCard = ({ lang, strings, video }) => {
   const [playVideo, setPlayVideo] = useState(false)
@@ -33,10 +34,7 @@ const VideoCard = ({ lang, strings, video }) => {
       </Modal>
       <div className={style.videoCard}>
         <figure>
-          <img
-            src={`${import.meta.env.VITE_API_URL}/images/${video.thumbnail}`}
-            alt='thumbnail'
-          />
+          <img src={`${API_URL}/images/${video.thumbnail}`} alt='thumbnail' />
           <span onClick={() => setPlayVideo(true)}>
             <PlayCircle />
           </span>

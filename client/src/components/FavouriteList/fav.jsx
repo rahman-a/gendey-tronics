@@ -4,7 +4,7 @@ import { CartPlus, HeartOutline } from '../icons'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../actions'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 import Loader from '../Loader'
 
 const Fav = ({ product }) => {
@@ -34,10 +34,7 @@ const Fav = ({ product }) => {
       <div className={style.favList__product}>
         <HeartOutline />
 
-        <img
-          src={`${import.meta.env.VITE_API_URL}/images/${product.image}`}
-          alt='item'
-        />
+        <img src={`${API_URL}/images/${product.image}`} alt='item' />
 
         <a href='/product'>{product.name}</a>
       </div>

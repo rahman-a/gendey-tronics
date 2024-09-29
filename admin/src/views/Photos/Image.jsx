@@ -4,6 +4,7 @@ import style from './style.module.scss'
 import { Trash } from '../../icons'
 import { Loader } from '../../components'
 import actions from '../../actions'
+import { API_URL } from '../../constants'
 
 const Image = ({ src, id, idx, showImageHandler }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -25,10 +26,7 @@ const Image = ({ src, id, idx, showImageHandler }) => {
       className={style.photos__image}
       onClick={() => showImageHandler(src, idx)}
     >
-      <img
-        src={`${import.meta.env.VITE_API_URL}/images/${src}`}
-        alt='gallery'
-      />
+      <img src={`${API_URL}/images/${src}`} alt='gallery' />
       <div>
         {isLoading ? (
           <Loader

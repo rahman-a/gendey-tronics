@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { SideAlert, Loader } from '../../components'
 import { Photos, Trash } from '../../icons'
 import actions from '../../actions'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 
 const Gallery = ({ isGallery, setIsGallery }) => {
   const [imgSrc, setImgSrc] = useState(null)
@@ -57,7 +57,7 @@ const Gallery = ({ isGallery, setIsGallery }) => {
   useEffect(() => {
     if (product || message) {
       setImgSrc({
-        src: `${import.meta.env.VITE_API_URL}/images/${product.images[0]?.src}`,
+        src: `${API_URL}/images/${product.images[0]?.src}`,
         _id: product.images[0]?._id,
       })
     }
@@ -94,20 +94,17 @@ const Gallery = ({ isGallery, setIsGallery }) => {
                 <img
                   key={image._id}
                   className={
-                    imgSrc?.src ===
-                    `${import.meta.env.VITE_API_URL}/images/${image.src}`
+                    imgSrc?.src === `${API_URL}/images/${image.src}`
                       ? style.product__gallery_active
                       : ''
                   }
                   onClick={() =>
                     setImgSrc({
-                      src: `${import.meta.env.VITE_API_URL}/images/${
-                        image.src
-                      }`,
+                      src: `${API_URL}/images/${image.src}`,
                       _id: image._id,
                     })
                   }
-                  src={`${import.meta.env.VITE_API_URL}/images/${image.src}`}
+                  src={`${API_URL}/images/${image.src}`}
                   alt='product'
                 />
               ))}

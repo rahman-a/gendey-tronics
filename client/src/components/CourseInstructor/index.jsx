@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import style from './style.module.scss'
 import { CertificateStar, Star, DemandVideo, Person } from '../icons'
 import strings from '../../localization'
+import { API_URL } from '../../constants'
 
 const about = {
   en: [
@@ -52,9 +53,7 @@ const CourseInstructor = ({ instructor, lang }) => {
             <img
               src={
                 instructor.avatar
-                  ? `${import.meta.env.VITE_API_URL}/images/${
-                      instructor?.avatar
-                    }`
+                  ? `${API_URL}/images/${instructor?.avatar}`
                   : '/images/instructor_info.png'
               }
               alt='instructor'

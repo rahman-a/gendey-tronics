@@ -15,7 +15,7 @@ import {
 } from '../../components'
 import { Check, Copy, Upload } from '../../icons'
 import actions from '../../actions'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 import CourseData from './CourseData'
 import Points from './Points'
 import Targets from './Target'
@@ -235,9 +235,7 @@ const Course = () => {
                         />
                       </div>
                       <img
-                        src={`${import.meta.env.VITE_API_URL}/images/${
-                          course.image
-                        }`}
+                        src={`${API_URL}/images/${course.image}`}
                         alt={course.name}
                       />
                     </figure>

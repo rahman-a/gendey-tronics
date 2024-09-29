@@ -15,3 +15,12 @@ const constants = {
 }
 
 export default constants
+
+export const API_URL =
+  import.meta.env.MODE === 'development'
+    ? 'http://localhost:5000/api'
+    : 'https://api.gendyecu.com/api'
+export const ADMIN_URL =
+  import.meta.env.MODE === 'development'
+    ? 'http://localhost:3000'
+    : 'https://admin.gendyecu.com'

@@ -9,6 +9,7 @@ import { Times, Check, Copy, Edit, Reader, Comments } from '../../icons'
 import { Loader, Note, Reviews } from '../../components'
 import actions from '../../actions'
 import UpdateInstructor from './UpdateInstructor'
+import { API_URL } from '../../constants'
 
 const Row = ({ instructor, idx }) => {
   const [isDescriptionOn, setIsDescriptionOn] = useState(false)
@@ -128,9 +129,7 @@ const Row = ({ instructor, idx }) => {
           <td>
             <img
               className='row-photo'
-              src={`${import.meta.env.VITE_API_URL}/images/${
-                instructor.avatar
-              }`}
+              src={`${API_URL}/images/${instructor.avatar}`}
               alt={instructor.info.firstName}
             />
           </td>

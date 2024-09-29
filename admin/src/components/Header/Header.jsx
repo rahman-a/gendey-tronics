@@ -13,6 +13,7 @@ import {
   User,
 } from '../../icons'
 import { SideNavbar, NotificationContainer } from '../../components'
+import { API_URL, CLIENT_WEBSITE } from '../../constants'
 
 const Header = () => {
   const [showSideMenu, setSideMenu] = useState(false)
@@ -148,7 +149,7 @@ const Header = () => {
                 >
                   {image ? (
                     <img
-                      src={`${import.meta.env.VITE_API_URL}/images/${image}`}
+                      src={`${API_URL}/images/${image}`}
                       alt='personal avatar'
                     />
                   ) : (
@@ -167,7 +168,7 @@ const Header = () => {
                       Profile <User />
                     </span>
                     <a
-                      href={`${import.meta.env.VITE_CLIENT_WEBSITE}`}
+                      href={`${CLIENT_WEBSITE}`}
                       target='_blank'
                       rel='noreferrer'
                     >

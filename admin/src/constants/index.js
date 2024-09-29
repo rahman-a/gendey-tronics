@@ -29,3 +29,13 @@ const constants = {
 }
 
 export default constants
+
+export const API_URL =
+  import.meta.env.MODE === 'development'
+    ? 'http://localhost:5000/api'
+    : 'https://api.gendyecu.com/api'
+
+export const CLIENT_WEBSITE =
+  import.meta.env.MODE === 'development'
+    ? 'http://localhost:5173'
+    : 'https://www.gendyecu.com'

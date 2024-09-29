@@ -14,7 +14,7 @@ import {
 } from 'react-bootstrap'
 import { SideAlert, Loader } from '../../components'
 import actions from '../../actions'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 import { Upload } from '../../icons'
 import Info from './Info'
 import Password from './Password'
@@ -112,13 +112,7 @@ const Profile = () => {
                     <Image
                       rounded
                       alt='171x180'
-                      src={
-                        info
-                          ? `${import.meta.env.VITE_API_URL}/images/${
-                              info.image
-                            }`
-                          : ''
-                      }
+                      src={info ? `${API_URL}/images/${info.image}` : ''}
                     />
                     <span>
                       <Upload />

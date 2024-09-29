@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from './style.module.scss'
 import { Modal, Button } from 'react-bootstrap'
 import { Photos } from '../../components/icons'
+import { API_URL } from '../../constants'
 
 const Gallery = ({ isGallery, setIsGallery, images, name }) => {
   const [imgSrc, setImgSrc] = useState(null)
@@ -23,7 +24,7 @@ const Gallery = ({ isGallery, setIsGallery, images, name }) => {
   useEffect(() => {
     if (images) {
       setImgSrc({
-        src: `${import.meta.env.VITE_API_URL}/images/${images[0]?.src}`,
+        src: `${API_URL}/images/${images[0]?.src}`,
         _id: images[0]?._id,
       })
     }
@@ -54,20 +55,17 @@ const Gallery = ({ isGallery, setIsGallery, images, name }) => {
                   <img
                     key={image.key}
                     className={
-                      imgSrc?.src ===
-                      `${import.meta.env.VITE_API_URL}/images/${image.src}`
+                      imgSrc?.src === `${API_URL}/images/${image.src}`
                         ? style.product__gallery_active
                         : ''
                     }
                     onClick={() =>
                       setImgSrc({
-                        src: `${import.meta.env.VITE_API_URL}/images/${
-                          image.src
-                        }`,
+                        src: `${API_URL}/images/${image.src}`,
                         _id: image._id,
                       })
                     }
-                    src={`${import.meta.env.VITE_API_URL}/images/${image.src}`}
+                    src={`${API_URL}/images/${image.src}`}
                     alt='product'
                   />
                 ))}

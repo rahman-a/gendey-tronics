@@ -7,6 +7,7 @@ import { Overlay, CardModal, Loader, HeaderAlert } from '../../components'
 import { Trash } from '../../icons'
 import actions from '../../actions'
 import Image from './Image'
+import { API_URL } from '../../constants'
 
 // const images = [
 //   '/images/img-3.png',
@@ -104,7 +105,7 @@ const Photos = () => {
       <CardModal toggle={showImage} closeHandler={closeModalHandler}>
         <figure style={{ minWidth: '40rem', maxHeight: '100vh', margin: '0' }}>
           <img
-            src={`${import.meta.env.VITE_API_URL}/images/${imageSrc}`}
+            src={`${API_URL}/images/${imageSrc}`}
             alt=''
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />

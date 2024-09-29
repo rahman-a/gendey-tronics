@@ -15,7 +15,7 @@ import {
   Whats,
 } from '../icons'
 import actions from '../../actions'
-import constants from '../../constants'
+import constants, { ADMIN_URL } from '../../constants'
 import Loader from '../Loader'
 import SearchOutput from '../SearchOutput'
 import strings from '../../localization'
@@ -361,7 +361,7 @@ const Nav = ({ elementRefs }) => {
           <span onClick={dashboardPositionHandler}>
             {dashboardPosition === 0 ? <CloseSquare /> : <AdminCounter />}
           </span>
-          <a href='https://admin.gendyecu.com' target='_blank' rel='noreferrer'>
+          <a href={ADMIN_URL} target='_blank' rel='noreferrer'>
             <AdminCounter />
           </a>
         </div>

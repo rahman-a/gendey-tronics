@@ -18,6 +18,7 @@ import {
 } from '../../icons'
 import actions from '../../actions'
 import { filePlaceholder } from '../../utils'
+import { API_URL } from '../../constants'
 
 const Content = ({ email, setIsReplay, setIsNewEmail }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -57,7 +58,7 @@ const Content = ({ email, setIsReplay, setIsNewEmail }) => {
 
   const displayAsset = (file) => {
     const anchor = document.createElement('a')
-    anchor.href = `${import.meta.env.VITE_API_URL}/images/${file}`
+    anchor.href = `${API_URL}/images/${file}`
     anchor.target = '_blank'
     anchor.click()
   }

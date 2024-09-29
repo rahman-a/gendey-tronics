@@ -7,6 +7,7 @@ import style from './style.module.scss'
 import { Times, Check, Copy, Edit } from '../../icons'
 import { Loader } from '../../components'
 import actions from '../../actions'
+import { API_URL } from '../../constants'
 
 const Row = ({ product, idx }) => {
   const [productId, setProductId] = useState(null)
@@ -88,11 +89,9 @@ const Row = ({ product, idx }) => {
               className='row-photo'
               src={
                 product.image
-                  ? `${import.meta.env.VITE_API_URL}/images/${product.image}`
+                  ? `${API_URL}/images/${product.image}`
                   : product.images?.length
-                  ? `${import.meta.env.VITE_API_URL}/images/${
-                      product.images[0].src
-                    }`
+                  ? `${API_URL}/images/${product.images[0].src}`
                   : '/images/no-image.png'
               }
               alt={product.name}

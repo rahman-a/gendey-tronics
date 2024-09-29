@@ -7,7 +7,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Copy, Check, Upload } from '../../icons'
 import { Loader, SideAlert, BackButton } from '../../components'
 import actions from '../../actions'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 import ProductData from './ProductData'
 import ProductOptions from './ProductOptions'
 import ProductLinks from './ProductLinks'
@@ -165,11 +165,9 @@ const Product = () => {
                       <img
                         src={
                           product.image
-                            ? `${import.meta.env.VITE_API_URL}/images/${
-                                product.image
-                              }`
+                            ? `${API_URL}/images/${product.image}`
                             : product.images?.length
-                            ? `${import.meta.env.VITE_API_URL}/images/${
+                            ? `${API_URL}/images/${
                                 product.images[product.images.length - 1].src
                               }`
                             : '/images/no-image.png'

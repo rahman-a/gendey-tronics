@@ -6,6 +6,7 @@ import { Loader } from '../../components'
 import actions from '../../actions'
 import PlayVideo from './PlayVideo'
 import UpdateVideo from './UpdateVideo'
+import { API_URL } from '../../constants'
 
 const VideoCard = ({ thumbnail, url, id, title }) => {
   const [isPlayVideo, setIsPlayVideo] = useState(false)
@@ -47,10 +48,7 @@ const VideoCard = ({ thumbnail, url, id, title }) => {
         className={style.videos__video}
         onClick={() => setIsPlayVideo(true)}
       >
-        <img
-          src={`${import.meta.env.VITE_API_URL}/images/${thumbnail}`}
-          alt='gallery'
-        />
+        <img src={`${API_URL}/images/${thumbnail}`} alt='gallery' />
         <div className={style.videos__actions}>
           {isDeleting ? (
             <Loader

@@ -6,7 +6,9 @@ export default function CoursePrice({ originalPrice, discount, finalPrice }) {
       {discount > 0 ? (
         <div className={styles.price__container}>
           <span className={styles.price__original}>{`$${originalPrice}`}</span>
-          <span className={styles.price__final}>{`$${finalPrice}`}</span>
+          <span className={styles.price__final}>{`$${Math.round(
+            finalPrice
+          )}`}</span>
         </div>
       ) : (
         `$${finalPrice}`

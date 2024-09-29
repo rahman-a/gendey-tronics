@@ -7,7 +7,7 @@ import { Plus } from '../icons'
 import Loader from '../Loader'
 import { ShoppingCart } from '../../components/icons'
 import strings from '../../localization'
-import constants from '../../constants'
+import constants, { API_URL } from '../../constants'
 let count = 0
 
 const ProductCard = ({ card }) => {
@@ -60,9 +60,9 @@ const ProductCard = ({ card }) => {
         <img
           src={
             card.images?.length
-              ? `${import.meta.env.VITE_API_URL}/images/${card.images[0]?.src}`
+              ? `${API_URL}/images/${card.images[0]?.src}`
               : card.image
-              ? `${import.meta.env.VITE_API_URL}/images/${card.image}`
+              ? `${API_URL}/images/${card.image}`
               : 'images/no-image.jpg'
           }
           alt='product'

@@ -4,6 +4,7 @@ import { Button, Badge } from 'react-bootstrap'
 import parser from 'html-react-parser'
 import { Reviews } from '../../components'
 import { CertificateStar, Star, DemandVideo, Person } from '../../icons'
+import { API_URL } from '../../constants'
 
 const CourseInstructor = ({ instructor }) => {
   const [isInfo, setIsInfo] = useState(false)
@@ -43,7 +44,7 @@ const CourseInstructor = ({ instructor }) => {
           <img
             src={
               instructor.avatar
-                ? `${import.meta.env.VITE_API_URL}/images/${instructor.avatar}`
+                ? `${API_URL}/images/${instructor.avatar}`
                 : '/images/instructor_info.png'
             }
             alt='instructor'

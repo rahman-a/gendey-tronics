@@ -9,6 +9,7 @@ import { Modal } from '../../components/Modal'
 import Loader from '../../components/Loader'
 import actions from '../../actions'
 import strings from '../../localization'
+import { API_URL } from '../../constants'
 
 const PhotoGallery = () => {
   const [showImage, setShowImage] = useState(false)
@@ -113,7 +114,7 @@ const PhotoGallery = () => {
       <Modal toggle={showImage} closeHandler={closeModalHandler}>
         <figure style={{ minWidth: '40rem', maxHeight: '100vh', margin: '0' }}>
           <img
-            src={`${import.meta.env.VITE_API_URL}/images/${imageSrc}`}
+            src={`${API_URL}/images/${imageSrc}`}
             alt=''
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
