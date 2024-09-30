@@ -133,7 +133,6 @@ export const getTheCourseData = async (req, res, next) => {
 
 export const listAllCourses = async (req, res, next) => {
   const { lang } = req.headers
-  console.log('list all courses')
   const {
     name,
     price,

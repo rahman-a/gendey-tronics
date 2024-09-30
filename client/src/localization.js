@@ -196,7 +196,7 @@ const strings = {
       browse_product: 'تسوق المنتجات',
       item: 'المنتج',
       price: 'السعر',
-      cart_add: 'أضف الى عربة التسوق',
+      cart_add: 'أضف الى العربة',
       delete: 'حذف',
       sign_in: 'دخول',
       sign_up: 'تسجيل',
@@ -528,7 +528,7 @@ const strings = {
     },
     ar: {
       details: 'التفاصيل',
-      cart: 'أضف الى عربة التسوق',
+      cart: 'أضف الى العربة',
       cart_name: 'عربة التسوق',
       payment: 'الدفع',
       delivery: 'التوصيل',

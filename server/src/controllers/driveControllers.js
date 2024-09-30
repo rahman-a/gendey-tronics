@@ -260,7 +260,6 @@ export const authenticateMember = async (req, res, next) => {
   try {
     if (fs.existsSync(path.join(DIRNAME, 'src/gact.json'))) {
       const files = await listDriveFiles()
-      console.log('Files: ', files)
       res.send({
         success: true,
         code: 200,

@@ -12,6 +12,8 @@ import Message from '../../components/Message'
 import strings from '../../localization'
 import CardsContainer from '../../components/CardsContainer'
 import { API_URL } from '../../constants'
+import { Helmet } from 'react-helmet-async'
+import { capitalizeSentences } from '../../utils'
 
 const Products = () => {
   // const [imgSrc, setImgSrc] = useState(null)
@@ -61,6 +63,15 @@ const Products = () => {
 
   return (
     <Template>
+      {type && (
+        <Helmet>
+          <title>{capitalizeSentences(type)}</title>
+          <meta
+            name='description'
+            content='list different kinds of products related to autotronices field'
+          />
+        </Helmet>
+      )}
       <div
         className={style.products}
         style={{ height: loading ? 'calc(100vh - 55rem)' : 'unset' }}

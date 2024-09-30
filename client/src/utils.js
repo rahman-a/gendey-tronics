@@ -26,3 +26,12 @@ export function extractInitials(name) {
   // return the initials
   return initials
 }
+
+export const capitalizeSentences = (sentence) => {
+  return sentence
+    .split(' ')
+    .map((word) => {
+      return word[0].toUpperCase() + word.substring(1)
+    })
+    .join(' ')
+}

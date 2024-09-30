@@ -10,6 +10,7 @@ import Alert from 'react-bootstrap/Alert'
 import strings from '../../localization'
 import CardsContainer from '../../components/CardsContainer'
 import { API_URL } from '../../constants'
+import { Helmet } from 'react-helmet-async'
 
 const Courses = () => {
   // const [showHeroImage, setShowHeroImage] = useState(false)
@@ -50,6 +51,13 @@ const Courses = () => {
   }, [dispatch, isAuth])
   return (
     <Template>
+      <Helmet>
+        <title>Courses</title>
+        <meta
+          name='description'
+          content='list all courses related to autotronices field'
+        />
+      </Helmet>
       <div className={style.courses}>
         {/* {showHeroImage && (
           <figure>

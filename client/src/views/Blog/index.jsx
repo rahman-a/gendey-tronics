@@ -11,6 +11,7 @@ import Message from '../../components/Message'
 import actions from '../../actions'
 import constants, { API_URL } from '../../constants'
 import strings from '../../localization'
+import { Helmet } from 'react-helmet-async'
 
 const Blog = () => {
   const { id } = useParams()
@@ -31,6 +32,11 @@ const Blog = () => {
   }, [id, dispatch])
   return (
     <Template>
+      {blog && (
+        <Helmet>
+          <title>{blog.title}</title>
+        </Helmet>
+      )}
       <div className={style.blog}>
         <div
           className='container'

@@ -86,6 +86,7 @@ app.post(
 
 // SERVING IMAGES
 app.use('/api/images', express.static(path.join(DIRNAME, 'src/uploads')))
+app.use('/api/files', express.static(path.join(DIRNAME, 'src/files')))
 // CHECKING API KEY
 app.use('/api/*', checkApiKey)
 

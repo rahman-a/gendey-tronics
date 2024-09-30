@@ -7,6 +7,7 @@ import Message from '../../components/Message'
 import { useSelector, useDispatch } from 'react-redux'
 import actions from '../../actions'
 import strings from '../../localization'
+import { Helmet } from 'react-helmet-async'
 
 const Blogs = () => {
   const dispatch = useDispatch()
@@ -18,6 +19,13 @@ const Blogs = () => {
   }, [dispatch])
   return (
     <Template>
+      <Helmet>
+        <title>Our Blogs</title>
+        <meta
+          name='description'
+          content='Sharing our information and experiences'
+        />
+      </Helmet>
       <div className={`${style.blogs} ${lang === 'ar' ? style.blogs_ar : ''}`}>
         <div
           className='container'

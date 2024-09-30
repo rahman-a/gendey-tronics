@@ -8,6 +8,7 @@ import VideoCard from '../../components/VideoCard'
 import Loader from '../../components/Loader'
 import strings from '../../localization'
 import actions from '../../actions'
+import { Helmet } from 'react-helmet-async'
 
 // const videos = [
 //   {
@@ -110,6 +111,13 @@ const VideoGallery = () => {
 
   return (
     <Template>
+      <Helmet>
+        <title>Video Gallery</title>
+        <meta
+          name='description'
+          content='We sharing our great moments with our precious clients'
+        />
+      </Helmet>
       <div className={style.videoGallery}>
         <figure>
           <img src='images/img-2.png' alt='screen' />

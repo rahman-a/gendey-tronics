@@ -71,7 +71,11 @@ const ProductCard = ({ card }) => {
       <div className={style.productCard__option}>
         <p>${card.price}</p>
         <h3>{card.name}</h3>
-        <div className={style.productCard__cta}>
+        <div
+          className={`${style.productCard__cta} ${
+            lang === 'ar' ? style.productCard__cta_ar : ''
+          }`}
+        >
           <button
             onClick={() =>
               history.push(`/product/${card._id}?type=${reformType(card.type)}`)

@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import actions from '../../actions'
 import constants from '../../constants'
 import strings from '../../localization'
+import { Helmet } from 'react-helmet-async'
 
 const VerifyEmail = () => {
   const [width, setWidth] = useState(0)
@@ -39,6 +40,13 @@ const VerifyEmail = () => {
   }, [token, history, success])
   return (
     <Template>
+      <Helmet>
+        <title>E-mail Verification</title>
+        <meta
+          name='description'
+          content='verify your E-mail and start use your account'
+        />
+      </Helmet>
       <div className={style.verify}>
         <div className='container'>
           {loading ? (

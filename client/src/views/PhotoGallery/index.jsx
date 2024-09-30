@@ -10,6 +10,7 @@ import Loader from '../../components/Loader'
 import actions from '../../actions'
 import strings from '../../localization'
 import { API_URL } from '../../constants'
+import { Helmet } from 'react-helmet-async'
 
 const PhotoGallery = () => {
   const [showImage, setShowImage] = useState(false)
@@ -103,6 +104,13 @@ const PhotoGallery = () => {
   }, [])
   return (
     <>
+      <Helmet>
+        <title>Photo Gallery</title>
+        <meta
+          name='description'
+          content='We sharing our great moments with our precious clients'
+        />
+      </Helmet>
       <Overlay
         toggle={showImage}
         arrow

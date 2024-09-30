@@ -6,6 +6,9 @@ export default defineConfig({
   define: {
     'process.env': process.env,
   },
+  build: {
+    target: ['es2015'],
+  },
   server: {
     host: '0.0.0.0',
     port: 5173,

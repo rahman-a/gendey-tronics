@@ -25,6 +25,7 @@ import Message from '../../components/Message'
 import ImagesGallery from './Images'
 import strings from '../../localization'
 import CardsContainer from '../../components/CardsContainer'
+import { Helmet } from 'react-helmet-async'
 
 const Product = () => {
   const [qty, setQty] = useState(1)
@@ -172,6 +173,12 @@ const Product = () => {
 
   return (
     <Template>
+      {product && (
+        <Helmet>
+          <title>{product.name}</title>
+          <meta name='description' content={product.description} />
+        </Helmet>
+      )}
       <Modal
         toggle={toggle}
         closeHandler={() => setToggle(false)}

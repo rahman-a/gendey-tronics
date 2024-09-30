@@ -24,3 +24,7 @@ export const ADMIN_URL =
   import.meta.env.MODE === 'development'
     ? 'http://localhost:3000'
     : 'https://admin.gendyecu.com'
+
+////////// For Test ///////////////////
+// export const API_URL = 'http://localhost:5000/api'
+// export const ADMIN_URL = 'http://localhost:3000'

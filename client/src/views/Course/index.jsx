@@ -17,6 +17,7 @@ import constants from '../../constants'
 import { useParams } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import strings from '../../localization'
+import { Helmet } from 'react-helmet-async'
 
 const Course = () => {
   const [showContent, setShowContent] = useState(false)
@@ -38,11 +39,14 @@ const Course = () => {
     }
   }, [id, dispatch, isAuth])
 
-  useEffect(() => {
-    console.log('course', course)
-  }, [course])
   return (
     <Template>
+      {course && (
+        <Helmet>
+          <title>{course.name}</title>
+          <meta name='description' content={course.description} />
+        </Helmet>
+      )}
       {loading ? (
         <div style={{ padding: '21rem', marginBottom: '10rem' }}>
           <Loader size='20' center>

@@ -10,6 +10,7 @@ import ProductSection from '../../components/ProductSection'
 import { useSelector, useDispatch } from 'react-redux'
 import actions from '../../actions'
 import Instructor from '../../components/Instructor'
+import { Helmet } from 'react-helmet-async'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -24,6 +25,13 @@ const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Gendy Tronics</title>
+        <meta
+          name='description'
+          content='This Website offering Mechanics Courses for learning every thing related to cars'
+        />
+      </Helmet>
       <Template>
         <Slider />
         <Feature />

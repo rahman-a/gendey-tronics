@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import actions from '../../actions'
 import constants from '../../constants'
+import { Helmet } from 'react-helmet-async'
 
 const CoursePayment = () => {
   const { id } = useParams()
@@ -22,6 +23,12 @@ const CoursePayment = () => {
   }, [id, dispatch])
   return (
     <Template>
+      {course && (
+        <Helmet>
+          <title>{course.name}</title>
+          <meta name='description' content={course.description} />
+        </Helmet>
+      )}
       <div className={style.coursePayment}>
         <div className={style.coursePayment__pay}>
           {course && (

@@ -31,7 +31,6 @@ function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    console.log('Node Env: ', import.meta.env.MODE)
   }, [pathname, lang])
   return (
     <div
