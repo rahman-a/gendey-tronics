@@ -37,6 +37,11 @@ const about = {
 const CourseInstructor = ({ instructor, lang }) => {
   const [isInfo, setIsInfo] = useState(false)
 
+  const aboutStyle = {
+    height: isInfo ? 'fit-content' : '11.5rem',
+    overflow: isInfo ? 'visible' : 'hidden',
+  }
+
   return (
     <div className={style.instructor}>
       <div className={style.instructor__name}>
@@ -118,7 +123,7 @@ const CourseInstructor = ({ instructor, lang }) => {
       </div>
       <div className={style.instructor__info}>
         <div
-          style={{ height: isInfo ? 'fit-content' : '12rem' }}
+          style={aboutStyle}
           dangerouslySetInnerHTML={{ __html: instructor?.about }}
         ></div>
         <button onClick={() => setIsInfo((prev) => !prev)}>
