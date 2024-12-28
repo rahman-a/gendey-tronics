@@ -19,7 +19,7 @@ const about = {
     `Experience over than six years in training Field.`,
   ],
   ar: [
-    ` درس هندسة ميكانيك السيارات`,
+    ` درس هندسة السيارات`,
     <br />,
     `مؤلف كتاب الكامل في هندسة الأوتوترونكس يقع في أربع أجزاء`,
     <br />,
@@ -117,9 +117,10 @@ const CourseInstructor = ({ instructor, lang }) => {
         </div>
       </div>
       <div className={style.instructor__info}>
-        <p style={{ height: isInfo ? 'fit-content' : '12rem' }}>
-          {about[lang]}
-        </p>
+        <div
+          style={{ height: isInfo ? 'fit-content' : '12rem' }}
+          dangerouslySetInnerHTML={{ __html: instructor?.about }}
+        ></div>
         <button onClick={() => setIsInfo((prev) => !prev)}>
           {isInfo
             ? strings.course[lang].read_less
